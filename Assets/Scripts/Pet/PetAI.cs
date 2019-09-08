@@ -35,9 +35,9 @@ public class PetAI : MonoBehaviour
                     Skills[1].SetActive(true);
                     break;
                 case 2://连锁闪电
-                    //if (nearest == null)
-                    //{
-
+					   //if (nearest == null)
+					   //{
+					Instantiate(Skills[2], player.transform.position, transform.rotation);
                     //}
                     //else
                     //{
