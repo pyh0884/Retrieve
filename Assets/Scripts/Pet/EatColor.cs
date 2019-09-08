@@ -9,6 +9,7 @@ public class EatColor : MonoBehaviour
     public Sprite[] ElementsSprites;
     public Sprite[] SkillSprites;
     public int[] elements= {0,0,0};
+    public Animator anim;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -178,17 +179,22 @@ public class EatColor : MonoBehaviour
         {
             case 0:
                 ElementsImages[0].sprite = ElementsSprites[0];
+                anim.SetInteger("First", 0);
                 break;
             case 1:
+                anim.SetInteger("First", 1);
                 ElementsImages[0].sprite = ElementsSprites[2];
                 break;
             case 2:
+                anim.SetInteger("First", 2);
                 ElementsImages[0].sprite = ElementsSprites[4];
                 break;
             case 3:
+                anim.SetInteger("First", 3);
                 ElementsImages[0].sprite = ElementsSprites[6];
                 break;
             case 4:
+                anim.SetInteger("First", 4);
                 ElementsImages[0].sprite = ElementsSprites[8];
                 break;
         }
@@ -233,18 +239,23 @@ public class EatColor : MonoBehaviour
         switch (elements[2])
         {
             case 0:
+                anim.SetInteger("Second", 0);
                 ElementsImages[2].sprite = ElementsSprites[1];
                 break;
             case 1:
+                anim.SetInteger("Second", 1);
                 ElementsImages[2].sprite = ElementsSprites[3];
                 break;
             case 2:
+                anim.SetInteger("Second", 2);
                 ElementsImages[2].sprite = ElementsSprites[5];
                 break;
             case 3:
+                anim.SetInteger("Second", 3);
                 ElementsImages[2].sprite = ElementsSprites[7];
                 break;
             case 4:
+                anim.SetInteger("Second", 4);
                 ElementsImages[2].sprite = ElementsSprites[9];
                 break;
         }

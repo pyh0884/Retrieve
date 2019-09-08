@@ -28,6 +28,7 @@ public class PetAI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) && pc.controllable)
         {
+            anim.SetTrigger("Attack");
             switch (ec.elements[1])
             {
                 case 1://防护罩

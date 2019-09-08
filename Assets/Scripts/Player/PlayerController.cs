@@ -73,12 +73,13 @@ public class PlayerController : MonoBehaviour
     bool grabed;
     public bool isAttacking;
     void MoveABit()
-    {
+    {if(!isGround2)
         playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y==0?playerRigidbody2D.transform.position.x+0.5f: playerRigidbody2D.transform.position.x - 0.5f, playerRigidbody2D.transform.position.y, 0);
     }
     void MoveTwoBit()
     {
-        playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y == 0 ? playerRigidbody2D.transform.position.x + 0.8f : playerRigidbody2D.transform.position.x - 0.8f, playerRigidbody2D.transform.position.y, 0);
+        if (!isGround2)
+            playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y == 0 ? playerRigidbody2D.transform.position.x + 0.8f : playerRigidbody2D.transform.position.x - 0.8f, playerRigidbody2D.transform.position.y, 0);
     }
     void StopMoving()
     {
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour
                     }
                     currentSpeed = new Vector3(HorizontalSpeed * horizontalDirection, playerRigidbody2D.velocity.y, 0);
                 }
-                if ((isGround || OnBoss) && !jumping)
+                if ((isGround || OnBoss) && !jumping) //((isGround || OnBoss) && !jumping)
                     playerRigidbody2D.velocity = new Vector2(currentSpeed.x, 0);
                 else
                     playerRigidbody2D.velocity = new Vector2(currentSpeed.x, playerRigidbody2D.velocity.y);
@@ -190,6 +191,14 @@ public class PlayerController : MonoBehaviour
             return HitWall;
         }
     }
+    bool isGround2
+    {
+        get
+        {
+            Debug.DrawLine(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.27f), WallCheck.position, Color.blue);
+            return Physics2D.Linecast(new Vector2(gameObject.transform.position.x - 0.95f, gameObject.transform.position.y + 0.27f), WallCheck.position, groundLayer);
+        }
+    }
     void Dash()
 	{
 		am.Play("Dash");
@@ -223,7 +232,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Time.timeScale != 0 && controllable)
 		{
-            if (isGround|| OnBoss)
+            if (isGround)//|| OnBoss)
             {
                 anim.SetBool("Land", true);
                 InsDust();
@@ -233,14 +242,14 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("Land", false);
             }
-			if ((isGround || OnBoss) && JumpKey &&!isAttacking)
-			{
+			if ((isGround || OnBoss) && JumpKey && !isAttacking) //((isGround || OnBoss) && JumpKey &&!isAttacking)
+            {
                 jumping = true;
                 anim.SetTrigger("Jump");
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpSpeed);
 				doubleJump = true;
 			}
-            if (!(isGround || OnBoss) && JumpKey && doubleJump)
+            if (!(isGround || OnBoss) && JumpKey && doubleJump) //(!(isGround || OnBoss) && JumpKey && doubleJump)
             {
                 jumping = true;
 
@@ -280,10 +289,11 @@ public class PlayerController : MonoBehaviour
     //}
     public void InsDust()
     {
+
         if (highFallTimer >= 0.65f)
         {
-            am.Play("PlayerLand");
             Instantiate(DustEFX, transform.position, Quaternion.Euler(-90, 0, 0));
+            am.Play("PlayerLand");
             highFallTimer = 0;
         }
     }
