@@ -15,6 +15,8 @@ public class HealthBarControl : MonoBehaviour
     public float invincibleCD;
     public bool cheat;
     public float JumpTimer;
+	public float vibrationStrength = 2;
+	public float vibrationTime = 0.3f;
     void Awake()
     {
         gm= FindObjectOfType<GameManager>();
@@ -40,7 +42,8 @@ public class HealthBarControl : MonoBehaviour
         }//回血特效 
         if ((damageCount > 0) && (invincibleCD > 0.7f))
         {
-            StartCoroutine("timeStop");
+			StartCoroutine("Vibration");
+			StartCoroutine("timeStop");
             if (!cheat)
             {
                 Hp -= damageCount;
@@ -125,4 +128,11 @@ public class HealthBarControl : MonoBehaviour
         //currentHealth();
         invincibleCD += Time.deltaTime;
     }
+
+	IEnumerator Vibration()
+	{
+		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, vibrationStrength, vibrationStrength);
+		yield return new WaitForSeconds(vibrationTime);
+		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+	}
 }
