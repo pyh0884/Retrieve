@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Skill10 : MonoBehaviour
 {
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         Destroy(gameObject, 1.5f);
 
     }
@@ -17,12 +20,19 @@ public class Skill10 : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)) * 2, 1);
+                else
                 collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)));
-                collision.gameObject.GetComponent<BossHp>().Burn = 5;
 
+                collision.gameObject.GetComponent<BossHp>().Burn = 5;
+                
             }
             else
             {
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)) * 2, 1);
+                else
                 collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)));
                 collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
 

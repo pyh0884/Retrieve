@@ -24,7 +24,7 @@ public class HealthPoint : MonoBehaviour
         else
             FindObjectOfType<AudioManager>().Play("Boss_Hit");
 
-        DamageTextControler.CreatDamageText(damageCount.ToString(),mainObject.transform);
+        DamageTextControler.CreatDamageText(damageCount.ToString(),mainObject.transform,2);
         hp -= damageCount;
         
     }

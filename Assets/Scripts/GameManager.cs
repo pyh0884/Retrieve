@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int CurrentHp;
     public int HpCapacity;
     public int CurrentDMG;
+    public float CritPos;
     public GameObject playerPrefab;
 	private GameObject player;
     private GameObject boss;
@@ -42,7 +43,15 @@ public class GameManager : MonoBehaviour
             return CurrentHp;
         }
     }
-	public void OpenTreasureChest(int index) {
+    public float CRIT
+    {
+        get
+        {
+            return CritPos;
+        }
+    }
+
+    public void OpenTreasureChest(int index) {
 		if (index <= TreasureChestOpened.Count) 
 			if (!TreasureChestOpened[index])TreasureChestOpened[index] = true;
 	}
@@ -94,7 +103,7 @@ public class GameManager : MonoBehaviour
 		int index = PlayerPrefs.GetInt("RespwanSceneIndex", 2);
         spawnPos = new Vector3(x, y);
 /*		if(SceneManager.GetActiveScene().buildIndex!=index)*/SceneManager.LoadScene(index);
-        CurrentHp = HpCapacity;		
+        CurrentHp = HpCapacity;	
     }
     private void Update()
     {

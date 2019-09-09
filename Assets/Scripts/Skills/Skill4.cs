@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Skill4 : MonoBehaviour
 {
+    public GameManager gm;
+
     private void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+
         Destroy(gameObject, 0.8f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,13 +19,19 @@ public class Skill4 : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30))*2,1);
+                else
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
                 collision.gameObject.GetComponent<BossHp>().Burn=5;
 
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)) * 2, 1);
+                else
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
                 collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
 
             }
