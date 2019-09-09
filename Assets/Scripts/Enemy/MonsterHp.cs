@@ -7,7 +7,7 @@ public class MonsterHp : MonoBehaviour
     public float Hp;
     public float HpMax;
     private Animator anim;
-    private bool dead = false;
+    public bool dead = false;
     public bool CauseDMG=false;
     public GameObject drop;
     public int Burn;
@@ -68,8 +68,8 @@ public class MonsterHp : MonoBehaviour
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
             Instantiate(drop, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
             dead = true;
-        }
+			if(GetComponent<StabFish>()==null) Destroy(gameObject);
+		}
     }
 }
