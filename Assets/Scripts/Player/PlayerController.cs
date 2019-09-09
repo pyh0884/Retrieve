@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
                 //				Instantiate(dashEFX, transform.position, Quaternion.identity);
                 doubleJump = false;
             }
-            if (playerRigidbody2D.velocity.y < 0) //||(isGround&&playerRigidbody2D.velocity.y==0))
+            if (!isGround && playerRigidbody2D.velocity.y < 0) //||(isGround&&playerRigidbody2D.velocity.y==0))
             {
                 jumping = false;
                 anim.SetBool("Fall", true);
