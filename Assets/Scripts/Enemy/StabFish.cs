@@ -11,9 +11,15 @@ public class StabFish : MonoBehaviour
 	public bool dead = false;
 	public bool attackOver = false;
 
+	MonsterHp hp;
 	Coroutines.Coroutine _Main;
 
 	// Use this for initialization
+	private void Awake()
+	{
+		hp = GetComponent<MonsterHp>();
+	}
+
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
@@ -26,33 +32,44 @@ public class StabFish : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Main() {
-		Transform target = null;
+		
 		try
 		{
-			while (!dead)
-			{
-				yield return ControlFlow.ExecuteWhileRunning(
-					FindTargetInRadius(catchRange, trgt => target = trgt),
-					Idle());
-				if (target != null)
-				{
-					yield return ControlFlow.ExecuteWhile(
-						() => Vector3.Distance(target.position, transform.position) < lostRange,
-						Attack()
-					);
-				}
-			}
-			Destroy(this);
+			yield return ControlFlow.ExecuteWhile(
+				()=>!hp.dead,
+				Cycle()
+				);
+			yield break;
 		}
 		finally {
 			//播放爆炸动画,生成遗物
-			Destroy(this);
+			Destroy(gameObject);
+		}
+	}
+
+	IEnumerable<Instruction> Cycle() {
+		Transform target = null;
+		while (true)
+		{
+			yield return ControlFlow.ExecuteWhileRunning(
+				FindTargetInRadius(catchRange, trgt => target = trgt),
+				Idle());
+			if (target != null)
+			{
+				yield return ControlFlow.ExecuteWhile(
+					() => Vector3.Distance(target.position, transform.position) < lostRange,
+					Attack()
+				);
+			}
 		}
 	}
 
 	IEnumerable<Instruction> Idle(){
 		//暂时不动，播放idle动画
-		while(true)yield return null;
+		while (true)
+		{
+			yield return null;
+		}
 	}
 
 	IEnumerable<Instruction> FindTargetInRadius(float radius, System.Action<Transform> targetFound)

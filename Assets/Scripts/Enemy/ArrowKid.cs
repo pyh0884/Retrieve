@@ -15,11 +15,9 @@ public class ArrowKid : MonoBehaviour
 	public float shootGap = 1.5f;
 	public Projectile _ProjectilePrefab;
 	public Transform _ProjectileExit;
+	public bool right = false;
 
-	private bool right = false;
 	private Rigidbody2D rb;
-	private Vector3 dist;
-
 	Coroutines.Coroutine _Main;
 	void Start()
 	{
@@ -32,8 +30,10 @@ public class ArrowKid : MonoBehaviour
 		_Main.Update();
 	}
 
-	IEnumerable<Instruction> Main() {
+	IEnumerable<Instruction> Main()
+	{
 		rb = GetComponent<Rigidbody2D>();
+		right = transform.right.x > 0 ? true : false;		
 		while (true)
 		{
 			Transform target = null;
@@ -44,11 +44,12 @@ public class ArrowKid : MonoBehaviour
 			if (target != null)
 			{
 				yield return ControlFlow.ExecuteWhile(
-					() => Mathf.Abs(dist.x) > attackRange,
-					ChaseTarget(target, isright=>right=isright)
+					() => Mathf.Abs(target.position.x - transform.position.x) > attackRange,
+					ChaseTarget(target),
+					TrackTarget(target, isright => right = isright)
 					);
 				yield return ControlFlow.ExecuteWhile(
-					() => Mathf.Abs(dist.x) < catchRange,
+					() => Mathf.Abs(target.position.x - transform.position.x) < catchRange,
 					ArrowAttack(target),
 					TrackTarget(target, isright => right = isright)
 					);
@@ -62,7 +63,7 @@ public class ArrowKid : MonoBehaviour
 		var playerObj = GameObject.FindGameObjectWithTag("Player");
 		if (playerObj != null)
 		{
-			dist = playerObj.transform.position - transform.position;
+			Vector3 dist = playerObj.transform.position - transform.position;
 			while (dist.magnitude > radius)
 			{
 				yield return null;
@@ -76,36 +77,32 @@ public class ArrowKid : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Idle() {
-		yield break;
+		while (true) {
+			Debug.Log("Idle");
+			yield return null;
+		}
 	}
 
-	IEnumerable<Instruction> ChaseTarget(Transform target, System.Action<bool> isRight)
+	IEnumerable<Instruction> ChaseTarget(Transform target)
 	{
-		bool isright = right;
 		try
 		{
 			while (true)
 			{
-				dist = target.position - transform.position;
-				if (isright != dist.x > 0 ? true : false)
-				{
-					isright = dist.x > 0 ? true : false;
-					rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
-					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
-					isRight(isright);
-				}
 				yield return null;
+				rb.velocity = new Vector2(right ? moveSpeed : -moveSpeed, 0);
+				Debug.Log("Chasing");
 			}
 		}
 		finally
 		{
 			rb.velocity = Vector2.zero;
-			isRight(isright);
 		}
 	}
 
 	IEnumerable<Instruction> TrackTarget(Transform target, System.Action<bool> isRight) {
 		bool isright = right;
+		Vector3 dist;
 		try
 		{
 			while (true)
@@ -126,26 +123,21 @@ public class ArrowKid : MonoBehaviour
 		}
 	}
 
-	IEnumerable<Instruction> ArrowAttack(Transform target) {
-		try
+	IEnumerable<Instruction> ArrowAttack(Transform target)
+	{
+		while (true)
 		{
-			while (true)
+			var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
+			proj.transform.position = _ProjectileExit.position;
+			proj.transform.right = transform.right;
+			proj.InitialForce = transform.right * _ProjectileInitialVelocity;
+			yield return Utils.WaitForSeconds(shootGap);
+			Vector3 targetTrans = transform.position + new Vector3(transform.right.x < 0 ? runAmt : -runAmt, 0);
+			while (transform.position != targetTrans)
 			{
-				var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
-				proj.transform.position = _ProjectileExit.position;
-				proj.transform.right = -transform.right;
-				proj.InitialForce = -transform.right * _ProjectileInitialVelocity;
-				yield return Utils.WaitForSeconds(shootGap);
-				Vector3 targetTrans = transform.position + new Vector3(right ? runAmt : -runAmt, 0);
-				while (transform.position != targetTrans)
-				{
-					transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
-					yield return null;
-				}
+				transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
+				yield return null;
 			}
-		}
-		finally {
-
 		}
 	}
 }
