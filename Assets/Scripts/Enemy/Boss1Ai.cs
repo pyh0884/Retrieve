@@ -190,7 +190,7 @@ public class Boss1Ai : MonoBehaviour
 			//}
 		}
 		enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, 0);
-		transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+		transform.eulerAngles = new Vector3(0, !isright ? 0f : -180f, 0);
 		try
 		{
 			while (true)
@@ -199,7 +199,7 @@ public class Boss1Ai : MonoBehaviour
 				{
 					isright = !isright;
 					enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, 0);
-					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+					transform.eulerAngles = new Vector3(0, !isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
 				yield return null;
@@ -221,7 +221,7 @@ public class Boss1Ai : MonoBehaviour
 				if (isright != dist.x > 0 ? true : false)
 				{
 					isright = dist.x > 0 ? true : false;
-					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+					transform.eulerAngles = new Vector3(0, !isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
 				yield return null;
@@ -247,10 +247,10 @@ public class Boss1Ai : MonoBehaviour
 	IEnumerable<Instruction> StoneSpawn(Transform target,bool aftermath= false)
 	{
 		anim.SetTrigger("Skill1");
-		for (int i = 0; i < handTrans.Count; i++)
+		for (int i = 0; i < handTrans.Count*(aftermath?2:1); i++)
 		{
-			Instantiate(stonePrefab, handTrans[i].position, new Quaternion());
-			yield return Utils.WaitForSeconds(stoneWaitTime);
+			Instantiate(stonePrefab, handTrans[i%handTrans.Count].position, new Quaternion());
+			yield return Utils.WaitForSeconds(stoneWaitTime/(aftermath?2:1));
 		}
 	}
 	IEnumerable<Instruction> Rush(Transform target,bool aftermath =false)
@@ -259,10 +259,10 @@ public class Boss1Ai : MonoBehaviour
 		{
 			skill2Object.GetComponent<Collider2D>().enabled = true;
 			anim.SetBool("Skill2", true);
-			Vector3 targetPos = transform.position + new Vector3(target.position.x > transform.position.x ? sprintDistance : -sprintDistance, 0);
+			Vector3 targetPos = transform.position + new Vector3((target.position.x > transform.position.x ? sprintDistance : -sprintDistance)*(aftermath?1.5f:1), 0);
 			yield return ControlFlow.ExecuteWhile(
 				() => !(isWall || transform.position == targetPos),
-				MoveTo(targetPos, true),
+				MoveTo(targetPos, sprintSpeed*(aftermath?1.5f:1)),
 				CreateShadow()
 				);
 			anim.SetBool("Skill2", false);
@@ -278,35 +278,40 @@ public class Boss1Ai : MonoBehaviour
 	{
 		try
 		{
+			Vector3 targetPos = target.position;
+			float temp = Time.fixedDeltaTime;
 			float tempY = transform.position.y;
 			float tempX = transform.position.x;
+			float prob = jumphighAmt / ((targetPos.x - tempX) * (targetPos.x - tempX));
 			skill2Object.GetComponent<Collider2D>().enabled = true;
-			enemyRigidBody.isKinematic = false;
-			enemyRigidBody.gravityScale = acceleration;
-			yield return null;
+			//enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
+			//enemyRigidBody.gravityScale = acceleration;
 			anim.SetBool("Skill3", true);
 			int num = aftermath ? 3 : 1;//这行代码决定了两个阶段分别跳几次
 			for(int i=0;i<num;i++)
 			{
-				enemyRigidBody.velocity = new Vector2(
-					(target.position.x - tempX) / (jumpTime*num),
-					Mathf.Sqrt(2 * acceleration * jumphighAmt)
-					);
-				while (transform.position.y >= tempY) yield return null;
+				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / (jumpTime * num), 0);
+				
+				Time.fixedDeltaTime = Time.deltaTime;
+				while (transform.right.x>0? (transform.position.x >= targetPos.x):(transform.position.x<=targetPos.x)) {
+					transform.position = new Vector3(transform.position.x, tempY+jumphighAmt - prob * (targetPos.x - transform.position.x) * (targetPos.x - transform.position.x));
+					yield return null;
+				}
 				FindObjectOfType<AudioManager>().Play("BossLand");
 				Instantiate(quakePrefab0, footTrans[0], false);
 				Instantiate(quakePrefab1, footTrans[1], false);
 			}
 			skill2Object.GetComponent<Collider2D>().enabled = false;
-			enemyRigidBody.isKinematic = true;
+			//enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
+			Time.fixedDeltaTime = temp;
 			anim.SetBool("Skill3", false);
 		}
 		finally
 		{
 			anim.SetBool("Skill3", false);
 			skill2Object.GetComponent<Collider2D>().enabled = false;
-			enemyRigidBody.isKinematic = true;
+			//enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
 		}
 	}
@@ -314,7 +319,7 @@ public class Boss1Ai : MonoBehaviour
 		try
 		{
 			shield.SetActive(true);
-			yield return Utils.WaitForSeconds(shieldLifeTime);
+			yield return Utils.WaitForSeconds(shieldLifeTime*(aftermath?2:1));
 			shield.SetActive(false);
 		}
 		finally {
@@ -342,6 +347,14 @@ public class Boss1Ai : MonoBehaviour
 		while (transform.position != target)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, target, (isSprint ? sprintSpeed : speed) * Time.deltaTime);
+			yield return null;
+		}
+	}
+	IEnumerable<Instruction> MoveTo(Vector3 target, float speed)
+	{
+		while (transform.position != target)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 			yield return null;
 		}
 	}
