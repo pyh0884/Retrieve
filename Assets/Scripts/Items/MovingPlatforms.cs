@@ -19,41 +19,6 @@ public class MovingPlatforms : MonoBehaviour
 		StartCoroutine(Move(endPos.position));
     }
 
-    //private void Update()
-    //{
-    //        if (!player) player = GameObject.FindWithTag("Player");
-    //    if (player)
-    //    {
-    //        if (OnPlatform)
-    //            player.transform.SetParent(gameObject.transform);
-    //        else
-    //            player.transform.SetParent(null);
-    //    }
-
-    //}
-    //private void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        player.transform.SetParent(gameObject.transform);
-    //    }
-    //}
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        player.transform.SetParent(null);
-    //    }
-    //}
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        player.transform.SetParent(gameObject.transform);
-    //    }
-    //}
-    
-
 
     IEnumerator Move(Vector3 target) {
 		while (Moving)
