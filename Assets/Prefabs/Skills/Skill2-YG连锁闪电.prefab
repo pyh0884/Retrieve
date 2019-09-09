@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4210502227783506633}
   - component: {fileID: 5392261566829169826}
   - component: {fileID: 818714292992041093}
+  - component: {fileID: -5657238295622427622}
   m_Layer: 0
   m_Name: "Skill2-YG\u8FDE\u9501\u95EA\u7535"
   m_TagString: PlayerAttack
@@ -107,7 +108,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8244907618830773312}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5b71de71124cf4f4fb1d72350f64096a, type: 2}
   m_CullingMode: 0
@@ -137,3 +138,24 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!50 &-5657238295622427622
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244907618830773312}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

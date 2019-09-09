@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class selfDestroy : MonoBehaviour
 {
-    void Update()
+    public bool yes;
+    public void DestroyMeeeeeeeeeeeeeeeeeeeee()
     {
+        Destroy(gameObject);
+    }
+    void Update()
+    {if (!yes)
         Destroy(gameObject, 2);      
     }
 }

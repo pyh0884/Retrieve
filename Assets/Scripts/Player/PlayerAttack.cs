@@ -19,13 +19,20 @@ public class PlayerAttack : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)+ gm.DAMAGE * 5)* dmgMultiplier));
+                if (Random.Range(0,100)<gm.CRIT)
+                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)+ gm.DAMAGE * 5)* dmgMultiplier)*2,1);
+                else
+                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 5) * dmgMultiplier));
                 //collision.gameObject.GetComponent<BossHp>().Burn=5;
 
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 5) * dmgMultiplier));
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 5) * dmgMultiplier) * 2, 1);
+                else
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 5) * dmgMultiplier));
+    
                 //collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
 
             }

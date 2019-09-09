@@ -26,12 +26,29 @@ public class BossHp : MonoBehaviour
         //       anim.SetTrigger("Hit");
         Hp -= damageCount;
 		if (bossTransform != null)
-			DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform);
+			DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform,2);
 		else
-			DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform);
+			DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,2);
 
 
 	}
+    public void Damage(int damageCount,int DMGtype)
+    {
+        if (damageCount > 0)
+        {
+            ps.Play();
+        }
+        //伤害特效 
+        //       FindObjectOfType<AudioManager>().Play("Player_Hit");
+        //       anim.SetTrigger("Hit");
+        Hp -= damageCount;
+        if (bossTransform != null)
+            DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, DMGtype);
+        else
+            DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, DMGtype);
+
+
+    }
     void Start()
     {
         Hp = HpMax;
@@ -51,7 +68,7 @@ public class BossHp : MonoBehaviour
         if (Burn > 0 && timer >= 0.3f)
         {
             timer = 0;
-            Damage(3);
+            Damage(3,3);
             Burn -= 1;
         }
         Hp = Mathf.Clamp(Hp, 0, HpMax);

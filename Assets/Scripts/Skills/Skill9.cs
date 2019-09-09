@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Skill9 : MonoBehaviour
 {
+    public GameManager gm;
+
     Rigidbody2D rb;
     public LayerMask enemyLayer;
     Collider2D nearest;
     private void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+
         FindEnemy();
         if (nearest != null)
         {
@@ -43,12 +47,18 @@ public class Skill9 : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)-4 )));
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) - 4))*2,1);
+                else
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)-4 )));
 
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)))-4);
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) - 4)) * 2, 1);
+                else
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)))-4);
 
             }
         }
