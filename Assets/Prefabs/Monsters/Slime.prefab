@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7972443351959143546}
   - component: {fileID: 9157667105139519575}
   - component: {fileID: 412655715020408886}
+  - component: {fileID: 2031809310}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -112,6 +113,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &2031809310
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885879463445333247}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7990994818196870821
 GameObject:
   m_ObjectHideFlags: 0

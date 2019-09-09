@@ -5,7 +5,6 @@ using Coroutines;
 
 public class SandWorm : MonoBehaviour
 {
-
 	public float catchRange = 5.0f;
 	public float lostRange = 7.5f;
 	public float moveSpeed = 3.0f;
@@ -21,6 +20,11 @@ public class SandWorm : MonoBehaviour
 	Coroutines.Coroutine _Main;
 
 	// Use this for initialization
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+	}
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
@@ -37,8 +41,8 @@ public class SandWorm : MonoBehaviour
 		while (true) {
 			Transform target = null;
 			yield return ControlFlow.ExecuteWhileRunning(
-			FindTargetInRadius(catchRange, trgt => target = trgt),
-			Idle(isright=>right=isright));
+				FindTargetInRadius(catchRange, trgt => target = trgt),
+				Idle(isright=>right=isright));
 			if (target != null) {
 				yield return ControlFlow.ExecuteWhile(
 					()=>(Vector3.Distance(target.position,transform.position)<lostRange),
@@ -65,10 +69,10 @@ public class SandWorm : MonoBehaviour
 	IEnumerable<Instruction> Idle(System.Action<bool>isRight)
 	{
 		bool isright = right;
-		rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
-		transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 		try
 		{
+			rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
+			transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 			while (true)
 			{
 				if (!isGround || isWall)
@@ -77,7 +81,9 @@ public class SandWorm : MonoBehaviour
 					rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
+					Debug.Log("changed");
 				}
+				Debug.Log("Idle");
 				yield return null;
 			}
 		}

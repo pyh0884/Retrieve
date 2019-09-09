@@ -26,15 +26,18 @@ public class Ghost : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Main()
-	{
-		Transform target = null;
+	{	
 		while (true) {
-			yield return ControlFlow.Call(FindTargetInRadius(catchRange, trgt => target = trgt));
-			yield return ControlFlow.ExecuteWhile(
-				() => Vector3.Distance(target.position, transform.position) < lostRange,
-				Attack(target),
-				TrackTarget(target,isright=>right=isright)
-				);
+			Transform target = null;
+			yield return ControlFlow.ExecuteWhileRunning(FindTargetInRadius(catchRange, trgt => target = trgt));
+			if (target != null)
+			{
+				yield return ControlFlow.ExecuteWhile(
+					() => Vector3.Distance(target.position, transform.position) < lostRange,
+					Attack(target),
+					TrackTarget(target, isright => right = isright)
+					);
+			}
 		}
 	}
 
@@ -45,6 +48,7 @@ public class Ghost : MonoBehaviour
 		{
 			while (Vector3.Distance(playerObj.transform.position, transform.position) > radius)
 			{
+				Debug.Log("Finding...");
 				yield return null;
 			}
 
@@ -60,7 +64,11 @@ public class Ghost : MonoBehaviour
 			{
 				appear = true;
 				//播放消失动画，播完appear=false
-				while (appear) yield return null;
+				while (appear)
+				{
+					Debug.Log("anim");
+					yield return null;
+				}
 				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, 0);
 				appear = true;
 				//播放出现动画、攻击动画、消失动画

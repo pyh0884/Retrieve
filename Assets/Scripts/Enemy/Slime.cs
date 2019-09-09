@@ -27,6 +27,11 @@ public class Slime : MonoBehaviour
 
 	Coroutines.Coroutine _Main;
 
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+	}
+
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
@@ -39,15 +44,14 @@ public class Slime : MonoBehaviour
 		_Main.Update();
 	}
 
-	IEnumerable<Instruction> Main() {
-		rb = GetComponent<Rigidbody2D>();
-		Transform target = null;
-		yield return ControlFlow.ExecuteWhileRunning(
-			FindTargetInRectangle(catchXRange,catchYRange, trgt => target = trgt),
-			Idle(isright => right = isright)
-			);
+	IEnumerable<Instruction> Main() {		
 		while (true)
 		{
+			Transform target = null;
+			yield return ControlFlow.ExecuteWhileRunning(
+				FindTargetInRectangle(catchXRange, catchYRange, trgt => target = trgt),
+				Idle(isright => right = isright)
+				);
 			if (target != null)
 			{
 				yield return ControlFlow.ExecuteWhile(
@@ -67,6 +71,7 @@ public class Slime : MonoBehaviour
 		{
 			while (Mathf.Abs((playerObj.transform.position-transform.position).x) >xRange||Mathf.Abs((playerObj.transform.position - transform.position).y)>yRange)
 			{
+				Debug.Log("finding");
 				yield return null;
 			}
 			targetFound(playerObj.transform);
@@ -75,11 +80,11 @@ public class Slime : MonoBehaviour
 
 	IEnumerable<Instruction> Idle(System.Action<bool> isRight)
 	{
-		bool isright = right;
-		rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
-		transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+		bool isright = right;	
 		try
 		{
+			transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+			rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
 			while (true)
 			{
 				if (!isGround || isWall)
@@ -89,6 +94,7 @@ public class Slime : MonoBehaviour
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
+				Debug.Log("Idle");
 				yield return null;
 			}
 		}
@@ -114,6 +120,7 @@ public class Slime : MonoBehaviour
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
+				Debug.Log("Tracking");
 				yield return null;
 			}
 		}

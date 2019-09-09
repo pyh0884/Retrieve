@@ -57,6 +57,7 @@ MonoBehaviour:
   _ProjectilePrefab: {fileID: 2631157408221860939, guid: 05ab45ef567ec294089d99c2666a0a1b,
     type: 3}
   _ProjectileExit: {fileID: 6659417579359345571}
+  right: 0
 --- !u!212 &2599284526679869025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 100
   HpMax: 100
+  dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
   Burn: 0
