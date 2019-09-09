@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7955972116058893807}
   - component: {fileID: 1181340894}
   - component: {fileID: 6578164926659674182}
-  - component: {fileID: 5764848977356221633}
+  - component: {fileID: 3565144716921577279}
   m_Layer: 10
   m_Name: ArrowKid
   m_TagString: Enemy
@@ -55,12 +55,13 @@ MonoBehaviour:
   attackRange: 3
   runAmt: 2
   moveSpeed: 2
-  _ProjectileInitialVelocity: 2.5
-  shootGap: 1.5
-  _ProjectilePrefab: {fileID: 2631157408221860939, guid: 05ab45ef567ec294089d99c2666a0a1b,
+  _ProjectileInitialVelocity: 5
+  shootGap: 1
+  _ProjectilePrefab: {fileID: 2631157408221860939, guid: e39a1b834a1483a43b8280d4b256f977,
     type: 3}
   _ProjectileExit: {fileID: 6659417579359345571}
   right: 0
+  gotHit: 0
 --- !u!212 &2599284526679869025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5764848977356221633
+--- !u!114 &3565144716921577279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5866192877144424085
 Transform:
   m_ObjectHideFlags: 0

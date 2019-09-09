@@ -16,9 +16,17 @@ public class ArrowKid : MonoBehaviour
 	public Projectile _ProjectilePrefab;
 	public Transform _ProjectileExit;
 	public bool right = false;
-
+	public bool gotHit = false;
+	private Animator anim;
 	private Rigidbody2D rb;
 	Coroutines.Coroutine _Main;
+
+	private void Awake()
+	{
+		anim = GetComponent<Animator>();
+		rb = GetComponent<Rigidbody2D>();
+		right = transform.right.x > 0 ? true : false;
+	}
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
@@ -32,8 +40,7 @@ public class ArrowKid : MonoBehaviour
 
 	IEnumerable<Instruction> Main()
 	{
-		rb = GetComponent<Rigidbody2D>();
-		right = transform.right.x > 0 ? true : false;		
+				
 		while (true)
 		{
 			Transform target = null;
@@ -49,10 +56,11 @@ public class ArrowKid : MonoBehaviour
 					TrackTarget(target, isright => right = isright)
 					);
 				yield return ControlFlow.ExecuteWhile(
-					() => Mathf.Abs(target.position.x - transform.position.x) < catchRange,
+					() => Mathf.Abs(target.position.x - transform.position.x) < catchRange&&!gotHit,
 					ArrowAttack(target),
 					TrackTarget(target, isright => right = isright)
 					);
+				if (gotHit) gotHit = false;
 			}
 		}
 	}
@@ -127,10 +135,7 @@ public class ArrowKid : MonoBehaviour
 	{
 		while (true)
 		{
-			var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
-			proj.transform.position = _ProjectileExit.position;
-			proj.transform.right = transform.right;
-			proj.InitialForce = transform.right * _ProjectileInitialVelocity;
+			anim.SetTrigger("Attack");
 			yield return Utils.WaitForSeconds(shootGap);
 			Vector3 targetTrans = transform.position + new Vector3(transform.right.x < 0 ? runAmt : -runAmt, 0);
 			while (transform.position != targetTrans)
@@ -139,5 +144,11 @@ public class ArrowKid : MonoBehaviour
 				yield return null;
 			}
 		}
+	}
+	public void Shoot() {
+		var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
+		proj.transform.position = _ProjectileExit.position;
+		proj.transform.right = transform.right;
+		proj.InitialForce = transform.right * _ProjectileInitialVelocity;
 	}
 }

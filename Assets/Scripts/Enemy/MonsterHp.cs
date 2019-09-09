@@ -12,12 +12,13 @@ public class MonsterHp : MonoBehaviour
     public GameObject drop;
     public int Burn;
     float timer;
+
     public void Damage(int damageCount)
     {
         if (damageCount > 0) { }
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        //       anim.SetTrigger("Hit");
+        anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
         DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,2);
@@ -28,7 +29,7 @@ public class MonsterHp : MonoBehaviour
         if (damageCount > 0) { }
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        //       anim.SetTrigger("Hit");
+        //anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
         DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,DMGtype);
@@ -69,7 +70,7 @@ public class MonsterHp : MonoBehaviour
             // destroy the object or play the dead animation
             Instantiate(drop, gameObject.transform.position, Quaternion.identity);
             dead = true;
-			if(GetComponent<StabFish>()==null) Destroy(gameObject);
+			if (GetComponent<StabFish>() == null) anim.SetBool("Die", true);
 		}
     }
 }
