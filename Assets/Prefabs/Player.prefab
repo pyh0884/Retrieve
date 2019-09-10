@@ -659,7 +659,7 @@ MonoBehaviour:
   controllable: 1
   dashEFX: {fileID: 0}
   HorizontalSpeed: 8
-  jumpSpeed: 11
+  jumpSpeed: 11.3
   currentSpeed: {x: 0, y: 0, z: 0}
   slowMultiplier: 0.15
   isAttacking: 0
@@ -735,6 +735,8 @@ MonoBehaviour:
   invincibleCD: 0
   cheat: 0
   JumpTimer: 0
+  vibrationStrength: 2
+  vibrationTime: 0.3
 --- !u!114 &394743465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,8 +792,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.090919256, y: 1.1212438}
-  m_Size: {x: 1.1110132, y: 1.8589022}
+  m_Offset: {x: 0.090919256, y: 1.0899429}
+  m_Size: {x: 1.1110132, y: 1.7963004}
   m_Direction: 0
 --- !u!60 &4178805772073099267
 PolygonCollider2D:

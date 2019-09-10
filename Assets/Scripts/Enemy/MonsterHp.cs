@@ -18,6 +18,7 @@ public class MonsterHp : MonoBehaviour
         if (damageCount > 0) { }
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
+        if (anim)
         anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
@@ -31,6 +32,7 @@ public class MonsterHp : MonoBehaviour
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
         //anim.SetTrigger("Hit");
         if (DMGtype!=3)
+            if(anim)
         anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
