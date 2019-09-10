@@ -35,16 +35,14 @@ public class PetAI : MonoBehaviour
                     Skills[1].SetActive(true);
                     break;
                 case 2://连锁闪电
-					   //if (nearest == null)
-					   //{
 					Instantiate(Skills[2], player.transform.position, transform.rotation);
-                    //}
-                    //else
-                    //{
-
-                    //}
                     break;
                 case 3://悬浮大剑
+
+
+
+
+
                     break;
                 case 4://陨石
                     {
@@ -82,10 +80,19 @@ public class PetAI : MonoBehaviour
                             Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         break;
                     }
-                case 8://冰锥
+                case 8://弹射箭
+
+
+
+
+
                     break;
                 case 9://TODO黑洞
                     {
+
+
+
+
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[9], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else

@@ -30,6 +30,8 @@ public class MonsterHp : MonoBehaviour
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
         //anim.SetTrigger("Hit");
+        if (DMGtype!=3)
+        anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
         DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,DMGtype);
@@ -40,14 +42,6 @@ public class MonsterHp : MonoBehaviour
         Hp = HpMax;
         anim = GetComponent<Animator>();
         DamageTextControler.Initialize();
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player"&&CauseDMG)
-        {
-            collision.gameObject.GetComponent<HealthBarControl>().Damage(1);
-
-        }
     }
     public void SelfDestroy()
     {
@@ -70,7 +64,7 @@ public class MonsterHp : MonoBehaviour
             // destroy the object or play the dead animation
             Instantiate(drop, gameObject.transform.position, Quaternion.identity);
             dead = true;
-			if (GetComponent<StabFish>() == null) anim.SetBool("Die", true);
+            if (GetComponent<StabFish>() == null) anim.SetBool("Die", true);
 		}
     }
 }
