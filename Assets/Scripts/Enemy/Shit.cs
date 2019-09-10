@@ -21,23 +21,23 @@ public class Shit : MonoBehaviour
         }
         if (dist.magnitude < 10)
         {
-            //anim.speed = 1;
-        }
+			anim.speed = 1;
+		}
         else
         {
-            //anim.speed = 0;
-        }
+			anim.speed = 0;
+		}
         if (dist.x > 0) transform.eulerAngles = new Vector3(0, 180, 0);
 		else transform.eulerAngles = Vector3.zero;
     }
     private void Start()
     {
-        //anim = GetComponent<Animator>();
-    }
+		anim = GetComponent<Animator>();
+	}
     public void Shoot() {
 		//动画里调用此方法
 		Vector2 rand = Random.insideUnitCircle.normalized;
         if (dist.magnitude<10)
-        Instantiate(missile, spawn.position+new Vector3(rand.x,rand.y), new Quaternion());
+        Instantiate(missile, spawn.position, transform.rotation);
 	}
 }

@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 817068254951646498, guid: afa4b5df5db089a44a5460f8839a6d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -154,7 +154,7 @@ MonoBehaviour:
   HpMax: 100
   dead: 0
   CauseDMG: 0
-  drop: {fileID: 0}
+  drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
   Burn: 0
 --- !u!58 &1840608896433564262
 CircleCollider2D:

@@ -11,6 +11,7 @@ public class StabFish : MonoBehaviour
 	public bool dead = false;
 	public bool attackOver = false;
 
+	Animator anim;
 	MonsterHp hp;
 	Coroutines.Coroutine _Main;
 
@@ -18,6 +19,7 @@ public class StabFish : MonoBehaviour
 	private void Awake()
 	{
 		hp = GetComponent<MonsterHp>();
+		anim = GetComponent<Animator>();
 	}
 
 	void Start()
@@ -42,8 +44,7 @@ public class StabFish : MonoBehaviour
 			yield break;
 		}
 		finally {
-			//播放爆炸动画,生成遗物
-			Destroy(gameObject);
+			anim.SetTrigger("Die");
 		}
 	}
 

@@ -16,10 +16,12 @@ public class SwordFish : MonoBehaviour
 	public float extraDist = 5.0f;
 	public float moveRadius = 5.0f;
 	Coroutines.Coroutine _Main;
+	Animator anim;
 
 	// Start is called before the first frame update
 	void Start()
     {
+		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
@@ -59,6 +61,7 @@ public class SwordFish : MonoBehaviour
 		while (true)
 		{
 			Vector2 randVector = Random.insideUnitCircle.normalized;
+			Vector3 startPos = transform.position;
 			Vector3 moveTarget = new Vector3(randVector.x, randVector.y) * moveRadius + transform.position;
 			yield return ControlFlow.Call(RotateFor(randVector, rotateSpeedMove));
 			while (transform.position != moveTarget)
@@ -67,17 +70,23 @@ public class SwordFish : MonoBehaviour
 				yield return null;
 			}
 			yield return Utils.WaitForSeconds(CD_Time_Idle);
+			yield return ControlFlow.Call(RotateFor(-randVector, rotateSpeedMove));
+			while (transform.position != startPos) {
+				transform.position = Vector3.MoveTowards(transform.position, startPos, moveSpeed * Time.deltaTime);
+				yield return null;
+			}
+			yield return Utils.WaitForSeconds(CD_Time_Idle);
 		}
 	}
 
 	IEnumerable<Instruction> Strike(Transform target) {
-		Vector3 dist,strikeTarget,currentVector;
+		Vector3 dist,strikeTarget;
 		while (true)
 		{
 			dist = target.position - transform.position;
 			strikeTarget = target.position + extraDist * dist.normalized;
-			currentVector = transform.right;
 			yield return ControlFlow.Call(RotateFor(dist, rotateSpeedStrike));
+			anim.SetTrigger("Attack");
 			while (transform.position != strikeTarget)
 			{
 				transform.position = Vector3.MoveTowards(transform.position, strikeTarget, strikeSpeed * Time.deltaTime);

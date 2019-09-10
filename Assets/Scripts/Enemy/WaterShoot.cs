@@ -84,10 +84,12 @@ public class WaterShoot : MonoBehaviour
 	public float _MaxRotationSpeed = 90.0f;
 	private int goalNum = 0;
 	Coroutines.Coroutine _Main;
+	Animator anim;
 
 	// Use this for initialization
 	void Start()
 	{
+		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
@@ -148,8 +150,8 @@ public class WaterShoot : MonoBehaviour
 			{
 				Vector3 dist = target.position - transform.position;
 				Quaternion targetRot = Quaternion.LookRotation(dist, Vector3.forward);
-				if (dist.x < 0) targetRot.eulerAngles = new Vector3(0, 0, targetRot.eulerAngles.x - 90);
-				if (dist.x > 0) targetRot.eulerAngles = new Vector3(0, 0, 90 - targetRot.eulerAngles.x);
+				if (dist.x < 0) targetRot.eulerAngles = new Vector3(0, 0, targetRot.eulerAngles.x);
+				if (dist.x > 0) targetRot.eulerAngles = new Vector3(0, 0, 180 - targetRot.eulerAngles.x);
 				Child.localRotation = Quaternion.RotateTowards(Child.localRotation, targetRot, _MaxRotationSpeed * Time.deltaTime);
 				yield return null;
 			}
@@ -165,6 +167,8 @@ public class WaterShoot : MonoBehaviour
 	{
 		while (true)
 		{
+			anim.SetTrigger("Attack");
+			yield return Utils.WaitForFrames(12);
 			var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
 			proj.transform.position = _ProjectileExit.position;
 			proj.transform.right = -Child.right;
@@ -197,43 +201,43 @@ public class WaterShoot : MonoBehaviour
 		}
 	}
 
-	IEnumerable<Instruction> RotateTo(float targetZAngle, float rotationSpeed)
-	{
-		// Extract current euler angles
-		float startZAngle = Child.localRotation.eulerAngles.z;
+	//IEnumerable<Instruction> RotateTo(float targetZAngle, float rotationSpeed)
+	//{
+	//	// Extract current euler angles
+	//	float startZAngle = Child.localRotation.eulerAngles.z;
 
-		// Wrap if necessary
-		float deltaZAngle = targetZAngle - startZAngle;
-		if (deltaZAngle < -180.0f)
-		{
-			deltaZAngle += 360.0f;
-		}
-		else if (deltaZAngle > 180.0f)
-		{
-			deltaZAngle -= 360.0f;
-		}
+	//	// Wrap if necessary
+	//	float deltaZAngle = targetZAngle - startZAngle;
+	//	if (deltaZAngle < -180.0f)
+	//	{
+	//		deltaZAngle += 360.0f;
+	//	}
+	//	else if (deltaZAngle > 180.0f)
+	//	{
+	//		deltaZAngle -= 360.0f;
+	//	}
 
-		if (deltaZAngle > 0.0f)
-		{
-			float currentDelta = rotationSpeed * Time.deltaTime;
-			while (currentDelta < deltaZAngle)
-			{
-				Child.localRotation = Quaternion.Euler(0.0f, 0.0f, startZAngle + currentDelta);
-				yield return null;
-				currentDelta += rotationSpeed * Time.deltaTime;
-			}
-			Child.localRotation = Quaternion.Euler(0.0f, 0.0f, targetZAngle);
-		}
-		else
-		{
-			float currentDelta = -rotationSpeed * Time.deltaTime;
-			while (currentDelta > deltaZAngle)
-			{
-				Child.localRotation = Quaternion.Euler(0.0f, 0.0f, startZAngle + currentDelta);
-				yield return null;
-				currentDelta -= rotationSpeed * Time.deltaTime;
-			}
-			Child.localRotation = Quaternion.Euler(0.0f, 0.0f, targetZAngle);
-		}
-	}
+	//	if (deltaZAngle > 0.0f)
+	//	{
+	//		float currentDelta = rotationSpeed * Time.deltaTime;
+	//		while (currentDelta < deltaZAngle)
+	//		{
+	//			Child.localRotation = Quaternion.Euler(0.0f, 0.0f, startZAngle + currentDelta);
+	//			yield return null;
+	//			currentDelta += rotationSpeed * Time.deltaTime;
+	//		}
+	//		Child.localRotation = Quaternion.Euler(0.0f, 0.0f, targetZAngle);
+	//	}
+	//	else
+	//	{
+	//		float currentDelta = -rotationSpeed * Time.deltaTime;
+	//		while (currentDelta > deltaZAngle)
+	//		{
+	//			Child.localRotation = Quaternion.Euler(0.0f, 0.0f, startZAngle + currentDelta);
+	//			yield return null;
+	//			currentDelta -= rotationSpeed * Time.deltaTime;
+	//		}
+	//		Child.localRotation = Quaternion.Euler(0.0f, 0.0f, targetZAngle);
+	//	}
+	//}
 }

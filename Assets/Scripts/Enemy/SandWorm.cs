@@ -8,6 +8,7 @@ public class SandWorm : MonoBehaviour
 	public float catchRange = 5.0f;
 	public float lostRange = 7.5f;
 	public float moveSpeed = 3.0f;
+	public float CD_Time = 0.5f;
 	public GameObject GroundCheck;
 	public GameObject WallCheck;
 	public bool Grounded;
@@ -18,11 +19,13 @@ public class SandWorm : MonoBehaviour
 	private bool right = true;
 	public bool attackOver;
 	Coroutines.Coroutine _Main;
+	Animator anim;
 
 	// Use this for initialization
 
 	private void Awake()
 	{
+		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 	}
 	void Start()
@@ -107,8 +110,9 @@ public class SandWorm : MonoBehaviour
 					transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 					yield return null;
 				}
-				//播放动画，结束帧将attackOver置true
+				anim.SetTrigger("Attack");
 				while (!attackOver) yield return null;
+				yield return Utils.WaitForSeconds(CD_Time);
 			}
 		}
 		finally {

@@ -12,7 +12,6 @@ public class Slime : MonoBehaviour
 	public float CD_Time = 2.0f;
 	public float moveSpeed = 3.0f;
 	public float chaseSpeed = 5.0f;
-
 	public GameObject GroundCheck;
 	public GameObject WallCheck;
 	public bool Grounded;
@@ -21,7 +20,7 @@ public class Slime : MonoBehaviour
 	public LayerMask wallLayer;
 
 	public bool attackOver;
-
+	Animator anim;
 	private Rigidbody2D rb;
 	private bool right = true;
 
@@ -29,6 +28,7 @@ public class Slime : MonoBehaviour
 
 	private void Awake()
 	{
+		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 	}
 
@@ -55,11 +55,13 @@ public class Slime : MonoBehaviour
 			if (target != null)
 			{
 				yield return ControlFlow.ExecuteWhile(
-					() => Vector3.Distance(target.position, transform.position) > attackRange,
+					() => Vector3.Distance(target.position, transform.position) > attackRange/*&& Vector3.Distance(target.position, transform.position)<catchXRange*/,
 					TrackTarget(target, isright=>right=isright)
 					);
-				yield return ControlFlow.Call(Attack());
-				yield return Utils.WaitForSeconds(CD_Time);
+				attackOver = false;				
+				yield return ControlFlow.ExecuteWhile(()=>!attackOver,Attack());
+				//yield return Utils.WaitForSeconds(CD_Time);
+				attackOver = true;
 			}
 		}
 	}
@@ -107,6 +109,7 @@ public class Slime : MonoBehaviour
 	IEnumerable<Instruction> TrackTarget(Transform target, System.Action<bool> isRight)
 	{
 		bool isright = right;
+		rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
 		Vector3 dist;
 		try
 		{
@@ -131,9 +134,13 @@ public class Slime : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Attack() {
-		attackOver = false;
 		//播放动画,动画结束时将attackOver置true;
-		while (!attackOver) yield return null;
+			anim.SetTrigger("Attack");
+		while (!attackOver)
+		{
+			Debug.Log("Attacking");
+			yield return null;
+		}
 	}
 
 	bool isGround
