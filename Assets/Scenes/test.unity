@@ -4784,33 +4784,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2031809306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3885879463445333247, guid: a03183145cb16d5498faf64617a5fc7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1201377249144921426}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &2031809310
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031809306}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &1201377249144921426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4822,11 +4795,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 3885879463445333247, guid: a03183145cb16d5498faf64617a5fc7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7972443351959143546, guid: a03183145cb16d5498faf64617a5fc7a,
         type: 3}
