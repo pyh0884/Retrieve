@@ -32,16 +32,25 @@ public class PetAI : MonoBehaviour
             switch (ec.elements[1])
             {
                 case 1://防护罩
-                    Skills[1].SetActive(true);
+                    Skills[1].SetActive(true); ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
+
                     break;
                 case 2://连锁闪电
-					Instantiate(Skills[2], player.transform.position, transform.rotation);
+					Instantiate(Skills[2], player.transform.position, transform.rotation); ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
+
                     break;
                 case 3://悬浮大剑
 
 
 
 
+                    ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
 
                     break;
                 case 4://陨石
@@ -59,17 +68,26 @@ public class PetAI : MonoBehaviour
                         {
                             Instantiate(Skills[4], new Vector3(nearest.transform.position.x - 4, nearest.transform.position.y + 8, 0), Quaternion.identity);
                         }
+                        ec.elements[0] = 0;
+                        ec.elements[1] = 0;
+                        ec.elements[2] = 0;
                         break;
                     }
                 case 5://回血
-                    Skills[5].SetActive(true);
+                    Skills[5].SetActive(true); ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
+
                     break;
                 case 6://匕首
                     {
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                        ec.elements[1] = 0;
+                        ec.elements[2] = 0;
+
                         break;
                     }
                 case 7://地火
@@ -77,7 +95,10 @@ public class PetAI : MonoBehaviour
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                        ec.elements[1] = 0;
+                        ec.elements[2] = 0;
+
                         break;
                     }
                 case 8://弹射箭
@@ -85,6 +106,9 @@ public class PetAI : MonoBehaviour
 
 
 
+                    ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
 
                     break;
                 case 9://TODO黑洞
@@ -96,17 +120,24 @@ public class PetAI : MonoBehaviour
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[9], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[9], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                            Instantiate(Skills[9], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                        ec.elements[1] = 0;
+                        ec.elements[2] = 0;
+
                         break;
                     }
                 case 10://爆炸
                     GameObject obj;
                     obj=Instantiate(Skills[10], player.transform.position, Quaternion.identity);
-                    obj.transform.SetParent(player.transform);
+                    obj.transform.SetParent(player.transform); ec.elements[0] = 0;
+                    ec.elements[1] = 0;
+                    ec.elements[2] = 0;
+
                     break;
                 default:
                     break;
             }
+
         }
     }
     void FindEnemy()
