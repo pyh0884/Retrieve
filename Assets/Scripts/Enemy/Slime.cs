@@ -60,7 +60,7 @@ public class Slime : MonoBehaviour
 					);
 				attackOver = false;				
 				yield return ControlFlow.ExecuteWhile(()=>!attackOver,Attack());
-				//yield return Utils.WaitForSeconds(CD_Time);
+				yield return Utils.WaitForSeconds(CD_Time);
 				attackOver = true;
 			}
 		}
