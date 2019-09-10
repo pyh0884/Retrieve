@@ -107,6 +107,7 @@ public class SandWorm : MonoBehaviour
 				targetPos = new Vector3(target.position.x, transform.position.y);
 				while (transform.position != targetPos)
 				{
+					transform.right = target.right;
 					transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 					yield return null;
 				}

@@ -17,7 +17,6 @@ public class stabStab : MonoBehaviour
 	public LayerMask groundLayer;
 	public LayerMask wallLayer;
 	private Rigidbody2D rb;
-	private SpriteRenderer sr;
 	private Animator anim;
 	private bool right = true;
 
@@ -53,7 +52,6 @@ public class stabStab : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
-		sr = GetComponent<SpriteRenderer>();
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
@@ -138,11 +136,11 @@ public class stabStab : MonoBehaviour
 		try {
 			while (true) {
 				Vector3 dist = target.position - transform.position;
-				sr.flipX = dist.x > 0 ? right : !right;
+				transform.eulerAngles = new Vector3( 0,dist.x > 0 ? 0 : -180);
 				yield return null;
 			}
 		}
-		finally { sr.flipX = true; }
+		finally { transform.eulerAngles = new Vector3(0, right ? 0 : -180); }
 	}
 
 	bool isGround
