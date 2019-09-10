@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6329901867511067233}
   - component: {fileID: 7907886172806455660}
   - component: {fileID: -7527795677592781507}
+  - component: {fileID: 1317768152424762880}
   m_Layer: 10
   m_Name: Sandworm
   m_TagString: Enemy
@@ -36,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 1589732024514258181}
   - {fileID: 4437047837236625861}
+  - {fileID: 2172561579309589876}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,6 +106,7 @@ MonoBehaviour:
   catchRange: 5
   lostRange: 7.5
   moveSpeed: 3
+  CD_Time: 0.5
   GroundCheck: {fileID: 8244283963927198829}
   WallCheck: {fileID: 4598109849422819339}
   Grounded: 0
@@ -202,6 +205,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yes: 1
+--- !u!114 &1317768152424762880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946662742444387506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10122e9299aea7245b0e4ec920ea7b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBackDist: 2
+  hitBackSpeed: 10
+  maxBackFrame: 10
+  GroundCheck1: {fileID: 8244283963927198829}
+  GroundCheck2: {fileID: 3209044552042731924}
+  WallCheck: {fileID: 4598109849422819339}
+  Grounded: 0
+  Walled: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 4352
+--- !u!1 &3209044552042731924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2172561579309589876}
+  m_Layer: 0
+  m_Name: groundCheck (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2172561579309589876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209044552042731924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1425117349972966608}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4598109849422819339
 GameObject:
   m_ObjectHideFlags: 0

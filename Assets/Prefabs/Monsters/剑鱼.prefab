@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3682652035522854866}
   - component: {fileID: 6948973820982588608}
   - component: {fileID: -7832098170109884108}
+  - component: {fileID: 3613368535076273084}
   m_Layer: 10
   m_Name: "\u5251\u9C7C"
   m_TagString: Enemy
@@ -174,3 +175,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yes: 1
+--- !u!114 &3613368535076273084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887810525284083672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10122e9299aea7245b0e4ec920ea7b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBackDist: 3
+  hitBackSpeed: 30
+  maxBackFrame: 10
+  GroundCheck1: {fileID: 6887810525284083672}
+  GroundCheck2: {fileID: 6887810525284083672}
+  WallCheck: {fileID: 6887810525284083672}
+  Grounded: 0
+  Walled: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
