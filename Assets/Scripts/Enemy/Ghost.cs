@@ -9,13 +9,16 @@ public class Ghost : MonoBehaviour
 	public float attackDist = 1.0f;
 	public float CD_Time = 1.5f;
 	public bool appear = true;
+	public float yOffset;
 	private bool right = true;
 	private Vector3 dist;
+	Animator anim;
 	Coroutines.Coroutine _Main;
 
 	// Use this for initialization
 	void Start()
 	{
+		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
@@ -64,14 +67,15 @@ public class Ghost : MonoBehaviour
 			{
 				appear = true;
 				//播放消失动画，播完appear=false
-				while (appear)
-				{
-					Debug.Log("anim");
-					yield return null;
-				}
-				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, 0);
+				//while (appear)
+				//{
+				//	Debug.Log("anim");
+				//	yield return null;
+				//}
+				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, yOffset);
 				appear = true;
-				//播放出现动画、攻击动画、消失动画
+				anim.SetTrigger("Attack");
+				//播放出现动画、攻击动画、消失动画			
 				while (appear) yield return null;
 				yield return Utils.WaitForSeconds(CD_Time);
 			}
@@ -90,9 +94,9 @@ public class Ghost : MonoBehaviour
 			while (true)
 			{
 				dist = target.position - transform.position;
-				if (isright != dist.x > 0 ? true : false)
+				if (isright != dist.x < 0 ? true : false)
 				{
-					isright = dist.x > 0 ? true : false;
+					isright = dist.x < 0 ? true : false;
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}

@@ -18,6 +18,7 @@ public class stabStab : MonoBehaviour
 	public LayerMask wallLayer;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
+	private Animator anim;
 	private bool right = true;
 
 	//void Start()
@@ -50,6 +51,9 @@ public class stabStab : MonoBehaviour
 
 	void Start()
 	{
+		anim = GetComponent<Animator>();
+		rb = GetComponent<Rigidbody2D>();
+		sr = GetComponent<SpriteRenderer>();
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
@@ -61,8 +65,7 @@ public class stabStab : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Main() {
-		rb = GetComponent<Rigidbody2D>();
-		sr = GetComponent<SpriteRenderer>();
+
 		while (true) {
 			Transform target = null;
 			yield return ControlFlow.ExecuteWhileRunning(
@@ -123,6 +126,8 @@ public class stabStab : MonoBehaviour
 	IEnumerable<Instruction> StabAttack(Transform target) {
 		while (true)
 		{
+			anim.SetTrigger("Attack");
+			yield return Utils.WaitForFrames(2);
 			var stab = GameObject.Instantiate(stabPrefab);
 			stab.transform.position = new Vector3(target.position.x, transform.position.y);
 			yield return Utils.WaitForSeconds(CDTime);
