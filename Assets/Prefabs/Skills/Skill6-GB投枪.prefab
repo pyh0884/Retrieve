@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -608131269109616805}
   - component: {fileID: 4333919030305149666}
   - component: {fileID: 1882681712326396462}
-  - component: {fileID: 5479856022756984979}
+  - component: {fileID: 4272807267182872578}
   m_Layer: 0
   m_Name: "Skill6-GB\u6295\u67AA"
   m_TagString: PlayerAttack
@@ -151,7 +151,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5479856022756984979
+--- !u!114 &4272807267182872578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab6a04bf232e0b47ac261a9ebd6f6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+  moving: 1
