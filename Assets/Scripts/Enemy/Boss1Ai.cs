@@ -28,7 +28,6 @@ public class Boss1Ai : MonoBehaviour
 	public GameObject skill2Object;
 	[Header("护盾子物体")]
 	public GameObject shield;
-	public float shieldLifeTime;
 	[Header("墙壁检测")]
 	public bool HitWall;
 	public Transform wallCheck;
@@ -44,6 +43,7 @@ public class Boss1Ai : MonoBehaviour
 
 	private Rigidbody2D enemyRigidBody;
 	private Vector3 dist;
+	public bool needRefill = false;
     public Animator anim;
     public GameObject Boss1Echo;
 
@@ -90,6 +90,10 @@ public class Boss1Ai : MonoBehaviour
 		//	}
 		//}
 		_Main.Update();
+		if (!shield.activeSelf && needRefill) {
+			SkillList.Add(OpenShield(transform));
+			needRefill = false;
+		}
 	}
 
 	IEnumerable<Instruction> Main() {
@@ -102,7 +106,7 @@ public class Boss1Ai : MonoBehaviour
 
 			var hpObject = GetComponent<BossHp>();
 			yield return ControlFlow.ExecuteWhile(
-				() => hpObject.Hp / hpObject.HpMax > 1 / 2,
+				() => hpObject.Hp >hpObject.HpMax *0.5,
 				Phase(Target));
 			yield return ControlFlow.Call(Change());
 			yield return ControlFlow.ExecuteWhile(
@@ -117,10 +121,12 @@ public class Boss1Ai : MonoBehaviour
 	{
 		try
 		{
+			SkillList.Clear();
 			SkillList.Add(StoneSpawn(target,aftermath));
 			SkillList.Add(Rush(target,aftermath));
 			SkillList.Add(JumpInParabola(target,aftermath));
 			SkillList.Add(OpenShield(target, aftermath));
+			needRefill = false;
 			//增加技能列表内的项目，有新技能就在这里加上
 
 			float y = transform.position.y;
@@ -129,7 +135,8 @@ public class Boss1Ai : MonoBehaviour
 				yield return ControlFlow.ExecuteWhileRunning(
 					WaitForSecondsCr(pubCDTime),
 					Idle(target));
-				yield return ControlFlow.Call(SkillList[curr]);
+				bool right = transform.rotation.eulerAngles != Vector3.zero;
+				yield return ControlFlow.ExecuteWhileRunning(SkillList[curr],TrackTarget(target,right,isright=>right=isright));
 				curr = SkillSelect(SkillList.Count, curr);
 				yield return ControlFlow.Call(MoveTo(new Vector3(transform.position.x, y)));
 			}
@@ -236,10 +243,12 @@ public class Boss1Ai : MonoBehaviour
 	//过渡状态
 	IEnumerable<Instruction> Change()
 	{
+		Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()
 	{
+		Debug.Log("我要死了");
 		yield break;
 	}
 
@@ -279,39 +288,38 @@ public class Boss1Ai : MonoBehaviour
 		try
 		{
 			Vector3 targetPos = target.position;
-			float temp = Time.fixedDeltaTime;
 			float tempY = transform.position.y;
 			float tempX = transform.position.x;
 			float prob = jumphighAmt / ((targetPos.x - tempX) * (targetPos.x - tempX));
 			skill2Object.GetComponent<Collider2D>().enabled = true;
-			//enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
-			//enemyRigidBody.gravityScale = acceleration;
-			anim.SetBool("Skill3", true);
+			enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
+			anim.SetTrigger("Skill3");
 			int num = aftermath ? 3 : 1;//这行代码决定了两个阶段分别跳几次
 			for(int i=0;i<num;i++)
 			{
-				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / (jumpTime * num), 0);
-				
-				Time.fixedDeltaTime = Time.deltaTime;
-				while (transform.right.x>0? (transform.position.x >= targetPos.x):(transform.position.x<=targetPos.x)) {
-					transform.position = new Vector3(transform.position.x, tempY+jumphighAmt - prob * (targetPos.x - transform.position.x) * (targetPos.x - transform.position.x));
-					yield return null;
-				}
+				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / jumpTime, jumphighAmt);
+				yield return null;
+				while (transform.position.y > tempY) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
 				Instantiate(quakePrefab0, footTrans[0], false);
 				Instantiate(quakePrefab1, footTrans[1], false);
+				if (aftermath)
+				{
+					targetPos = target.position;
+					tempX = transform.position.x;
+					yield return Utils.WaitForFrames(10);
+				}
 			}
 			skill2Object.GetComponent<Collider2D>().enabled = false;
-			//enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
+			enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
-			Time.fixedDeltaTime = temp;
-			anim.SetBool("Skill3", false);
+			anim.SetTrigger("Stop");
 		}
 		finally
 		{
-			anim.SetBool("Skill3", false);
+			anim.SetTrigger("Stop");
 			skill2Object.GetComponent<Collider2D>().enabled = false;
-			//enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
+			enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
 		}
 	}
@@ -319,11 +327,12 @@ public class Boss1Ai : MonoBehaviour
 		try
 		{
 			shield.SetActive(true);
-			yield return Utils.WaitForSeconds(shieldLifeTime*(aftermath?2:1));
-			shield.SetActive(false);
+			SkillList.RemoveAt(3);
+			needRefill = true;
+			yield return null;
 		}
 		finally {
-			shield.SetActive(false);
+			
 		}
 	}
 
@@ -361,7 +370,7 @@ public class Boss1Ai : MonoBehaviour
 	IEnumerable<Instruction> CreateShadow() {
 		while (true)
 		{
-			GameObject instance1 = Instantiate(Boss1Echo, transform.position, Quaternion.identity);
+			GameObject instance1 = Instantiate(Boss1Echo, transform.position, transform.rotation);
 			Destroy(instance1, 0.3f);
 			yield return null;
 		}
@@ -374,7 +383,7 @@ public class Boss1Ai : MonoBehaviour
 			//Vector2 end = new Vector2(start.x + direction.x > 0 ? distance:-distance,start.y);
 			Vector2 end;
 			// = new Vector2(start.x + direction.x > 0 ? distance * 15: -distance * 15,start.y);
-			if(transform.rotation.y<0)
+			if(transform.eulerAngles!=Vector3.zero)
 					end = new Vector2(start.x + wallCheckDistance, start.y);
 			else
 					end = new Vector2(start.x - wallCheckDistance, start.y);			
@@ -396,5 +405,4 @@ public class Boss1Ai : MonoBehaviour
 		while (temp == n) temp = Mathf.FloorToInt(Random.value * n);
 		return temp;
 	}
-
 }

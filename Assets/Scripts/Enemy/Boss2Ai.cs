@@ -131,10 +131,12 @@ public class Boss2Ai : MonoBehaviour
 	//过渡状态
 	IEnumerable<Instruction> Change()
 	{
+		Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()
 	{
+		Debug.Log("我要死了");
 		yield break;
 	}
 
