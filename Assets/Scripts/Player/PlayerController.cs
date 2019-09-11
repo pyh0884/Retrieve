@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 	private float DashTimer;
     public float slowMultiplier = 1;
     bool WallDirection; //true=wall is on the right, false=left
-    bool grabed;
+    public bool grabed;
     public bool isAttacking;
     void MoveABit()
     {if(!isGround2)

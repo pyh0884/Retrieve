@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2001030856032255680}
   - component: {fileID: 2681382757603140170}
   - component: {fileID: -6720057983391025144}
+  - component: {fileID: 8517026132190951316}
+  - component: {fileID: 2784317908747575023}
   m_Layer: 0
   m_Name: "Skill3-YB\u60AC\u6D6E\u5927\u5251"
   m_TagString: PlayerAttack
@@ -70,7 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300152, guid: d3796b5632c84244f818ea0490ac6948, type: 3}
+  m_Sprite: {fileID: -6761396672739574100, guid: 18dfc36481129fa4ab693e28bc5bbf1c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,12 +91,43 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9009855776282323086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0.2957286, y: -3.0831027}
+  m_Size: {x: 6.65455, y: 1.9763291}
+  m_Direction: 1
+--- !u!95 &8517026132190951316
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009855776282323086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 504790ef6d599ab498e1b1921631d2bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2784317908747575023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009855776282323086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058c717689af87c4a996e90172b3320d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
