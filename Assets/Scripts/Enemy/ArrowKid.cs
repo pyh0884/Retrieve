@@ -143,6 +143,7 @@ public class ArrowKid : MonoBehaviour
 				transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
 				yield return null;
 			}
+			yield return Utils.WaitForSeconds(shootGap);
 		}
 	}
 	public void Shoot() {
