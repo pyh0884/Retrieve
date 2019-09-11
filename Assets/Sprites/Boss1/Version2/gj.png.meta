@@ -1,7 +1,64 @@
 fileFormatVersion: 2
 guid: f87dda5c1c1f71c4c979a0500e8eda9a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1044332743063988537
+    second: gj_0
+  - first:
+      213: -8409018845129361637
+    second: gj_1
+  - first:
+      213: -1133578068108328758
+    second: gj_2
+  - first:
+      213: 1138350282746405774
+    second: gj_3
+  - first:
+      213: -1217313261797681056
+    second: gj_4
+  - first:
+      213: 2664844986717231419
+    second: gj_5
+  - first:
+      213: 5031359288113508486
+    second: gj_6
+  - first:
+      213: -4350474071787421443
+    second: gj_7
+  - first:
+      213: -9085048079200426457
+    second: gj_8
+  - first:
+      213: 523183014148127805
+    second: gj_9
+  - first:
+      213: -7457454799353152985
+    second: gj_10
+  - first:
+      213: 7897396510402481337
+    second: gj_11
+  - first:
+      213: -2758913910027548916
+    second: gj_12
+  - first:
+      213: -4304297691919541987
+    second: gj_13
+  - first:
+      213: -1821640671916148446
+    second: gj_14
+  - first:
+      213: 4950188233353787704
+    second: gj_15
+  - first:
+      213: -1666006776606476360
+    second: gj_16
+  - first:
+      213: 1684556321524810295
+    second: gj_17
+  - first:
+      213: 2747097897558496703
+    second: gj_18
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,12 +97,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -60,10 +117,34 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -72,7 +153,406 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: gj_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7200f6479a2157448a28d28074e683cf
+      internalID: -1044332743063988537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ec090f7c53daf4b94e63b5b24de037
+      internalID: -8409018845129361637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_2
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d37ce21f5a83b84abfd156cceb4ce84
+      internalID: -1133578068108328758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf5db596a02fc04085204a5431ed02c
+      internalID: 1138350282746405774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ddf02edd10898459c32697d76b249d
+      internalID: -1217313261797681056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_5
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ff19a88750449449676cee45fa6f46
+      internalID: 2664844986717231419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_6
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7082eec6ee282c7499c883450ed80ef0
+      internalID: 5031359288113508486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_7
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bca6d8454774c4bb112ffd73ddaf38
+      internalID: -4350474071787421443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_8
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb9bbd3ade7b1fd4ea03fb4907ac29a6
+      internalID: -9085048079200426457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_9
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3a3caec273fa34695d885ab81e120e
+      internalID: 523183014148127805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_10
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cccf37c5b7e621b40bc175be173747ce
+      internalID: -7457454799353152985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_11
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fd83ec7580d9845ae0a29eb56d3345
+      internalID: 7897396510402481337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_12
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72dd013c41d5d34e9c1cafd647e12fb
+      internalID: -2758913910027548916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_13
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0410009ad250534aa4fdd084f6d90c0
+      internalID: -4304297691919541987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_14
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b950a9a1596ca4c96fb02b8e2e222f
+      internalID: -1821640671916148446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_15
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8379ae63637139e45b3e8694e3ca17ed
+      internalID: 4950188233353787704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_16
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048c2799dacac34499c86da2fdd2ba2d
+      internalID: -1666006776606476360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_17
+      rect:
+        serializedVersion: 2
+        x: 2584
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167c865f688c5e84785ff502c72adde2
+      internalID: 1684556321524810295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gj_18
+      rect:
+        serializedVersion: 2
+        x: 2736
+        y: 13
+        width: 152
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f3f88a886e25946bb4678e2dfe1b96
+      internalID: 2747097897558496703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
