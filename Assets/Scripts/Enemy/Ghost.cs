@@ -74,8 +74,7 @@ public class Ghost : MonoBehaviour
 				//}
 				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, yOffset);
 				appear = true;
-				anim.SetTrigger("Attack");
-				//播放出现动画、攻击动画、消失动画			
+				anim.SetTrigger("Attack");		
 				while (appear) yield return null;
 				yield return Utils.WaitForSeconds(CD_Time);
 			}

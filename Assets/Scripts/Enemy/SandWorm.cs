@@ -20,6 +20,7 @@ public class SandWorm : MonoBehaviour
 	public bool attackOver;
 	Coroutines.Coroutine _Main;
 	Animator anim;
+	private float timer;
 
 	// Use this for initialization
 
@@ -37,6 +38,7 @@ public class SandWorm : MonoBehaviour
 	void Update()
 	{
 		_Main.Update();
+		timer += Time.deltaTime;
 	}
 
 	IEnumerable<Instruction> Main()
@@ -107,13 +109,18 @@ public class SandWorm : MonoBehaviour
 				targetPos = new Vector3(target.position.x, transform.position.y);
 				while (transform.position != targetPos)
 				{
+					targetPos = new Vector3(target.position.x, transform.position.y);
 					transform.right = target.right;
 					transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 					yield return null;
 				}
-				anim.SetTrigger("Attack");
-				while (!attackOver) yield return null;
-				yield return Utils.WaitForSeconds(CD_Time);
+				if (timer > CD_Time)
+				{
+					anim.SetTrigger("Attack");
+					while (!attackOver) yield return null;
+					timer = 0;
+				}
+				yield return null;
 			}
 		}
 		finally {
