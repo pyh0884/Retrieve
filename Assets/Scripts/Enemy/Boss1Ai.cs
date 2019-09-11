@@ -297,12 +297,18 @@ public class Boss1Ai : MonoBehaviour
 			int num = aftermath ? 3 : 1;//这行代码决定了两个阶段分别跳几次
 			for(int i=0;i<num;i++)
 			{
-				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / (jumpTime * num), jumphighAmt);
+				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / jumpTime, jumphighAmt);
 				yield return null;
 				while (transform.position.y > tempY) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
 				Instantiate(quakePrefab0, footTrans[0], false);
 				Instantiate(quakePrefab1, footTrans[1], false);
+				if (aftermath)
+				{
+					targetPos = target.position;
+					tempX = transform.position.x;
+					yield return Utils.WaitForFrames(10);
+				}
 			}
 			skill2Object.GetComponent<Collider2D>().enabled = false;
 			enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
