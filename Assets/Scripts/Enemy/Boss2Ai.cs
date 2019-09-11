@@ -11,7 +11,8 @@ public class Boss2Ai : MonoBehaviour
 	public Transform stop;
 	public bool isAwake;
 	[Header("技能CD")]
-	public float pubCDTime;
+	public float waitTime;
+	public float CD_Time;
 	//	public List<bool> skillCD;
 	//	public List<int> skillCDTime;
 	[Header("默认速度")]
@@ -20,12 +21,11 @@ public class Boss2Ai : MonoBehaviour
 	public float sprintSpeed;
 	public float sprintSpeedFast;
 	public float paraHalfTime;
-	public float waitTime;
+
 
 	[Header("技能表演出生点、释放点、终结点")]
 	public List<Transform> skillSpawnPos;
 	public List<Transform> skillActPos;
-	public List<Transform> skillEndPos;
 
 	[Header("地刺")]
 	public List<Transform> stabPosList;
@@ -57,6 +57,8 @@ public class Boss2Ai : MonoBehaviour
 
 	void Start()
 	{
+		anim = GetComponent<Animator>();
+		sr = GetComponent<SpriteRenderer>();
 		_Main = new Coroutines.Coroutine(Main());//根节点初始化
 	}
 	void Update()
@@ -68,15 +70,13 @@ public class Boss2Ai : MonoBehaviour
 	{
 		SkillList = new List<IEnumerable<Instruction>>();
 		SkillList.Clear();
-		anim = GetComponent<Animator>();
-		sr = GetComponent<SpriteRenderer>();
 		Transform Target = null;
 		yield return ControlFlow.Call(FindPlayer(target => Target = target));
 		if (Target != null)
 		{
 			var hpObject = GetComponent<BossHp>();
 			yield return ControlFlow.ExecuteWhile(
-				() => hpObject.Hp / hpObject.HpMax > 1 / 2,
+				() => hpObject.Hp > hpObject.HpMax * 0.5,
 				Phase(Target));
 			yield return ControlFlow.Call(Change());
 			yield return ControlFlow.ExecuteWhile(
@@ -91,15 +91,16 @@ public class Boss2Ai : MonoBehaviour
 	{
 		try
 		{
+			SkillList.Clear();
 			if (!aftermath)
 			{
-				SkillList.Add(Sprint(target, sprintSpeed));//0
+				SkillList.Add(Sprint(target, paraHalfTime));//0
 				SkillList.Add(GhostFire(target, phase1MissileAmount));//1
 				SkillList.Add(Stab(target, stabCallNum1));//2
 			}
 			else
 			{
-				SkillList.Add(Sprint(target, sprintSpeedFast));//0
+				SkillList.Add(Sprint(target, paraHalfTime/2));//0
 				SkillList.Add(GhostFire(target, phase2MissileAmount));//1
 				SkillList.Add(Stab(target, stabCallNum2));//2
 				SkillList.Add(Sprint(target,sprintSpeedFast ,aftermath));//3
@@ -109,14 +110,15 @@ public class Boss2Ai : MonoBehaviour
 			int curr = SkillSelect(SkillList.Count);
 			while (true)
 			{
-				transform.position = skillSpawnPos[curr % (SkillList.Count / 2)].position;
+				int p = curr % (SkillList.Count / (aftermath ? 2 : 1));
+				transform.position = skillSpawnPos[p].position;
 				yield return ControlFlow.ExecuteWhileRunning(
-					MoveTo(skillActPos[curr % (SkillList.Count / 2)].position),
+					MoveTo(skillActPos[p].position),
 					TrackTarget(target, sr.flipX, isright => sr.flipX = isright)
 					);
 				yield return ControlFlow.Call(SkillList[curr]);
 				yield return ControlFlow.ExecuteWhileRunning(
-					Restore(waitTime, stop.position),
+					Restore(CD_Time, stop.position),
 					TrackTarget(target, sr.flipX, isright => sr.flipX = isright)
 					);
 				curr = SkillSelect(SkillList.Count, curr);
@@ -147,36 +149,43 @@ public class Boss2Ai : MonoBehaviour
 		{
 			skill3.enabled = true;
 			anim.SetBool("Skill3", true);
+			bool rand = target.position.x < stop.position.x;
 			if (!aftermath)
 			{
 				//一阶段技能表现
-				for (int i = 0; i < paraStartPosList.Count; i++) {
+				
+				for (int i = 0; i < paraStartPosList.Count-1; i++) {
+					int p = rand ? i : (paraStartPosList.Count-1 - i);
 					yield return ControlFlow.ExecuteWhileRunning(
-						MoveTo(paraStartPosList[i].position, true),
+						MoveTo(paraStartPosList[p].position, true),
 						TrackTarget(target,sr.flipX,isright=>sr.flipX=isright)
 						);
-					if (paraBottomPosList[i].position.x > paraStartPosList[i].position.x) sr.flipX = true;
+					if (paraBottomPosList[rand ? p : (p - 1)].position.x > paraStartPosList[p].position.x) sr.flipX = true;
 					else sr.flipX = false;
-					yield return ControlFlow.Call(Para(paraBottomPosList[i], speedOrTime));
+					yield return ControlFlow.Call(Para(paraBottomPosList[rand ? p : (p - 1)], speedOrTime));
 				}
 			}
 			else
 			{
 				//二阶段技能表现
 				for (int i = 0; i < sprintPosList.Count; i++) {
-					if (sprintPosList[i].position.x > transform.position.x) sr.flipX = true;
+					int p = rand ? i : (sprintPosList.Count-i-1);
+					if (sprintPosList[p].position.x > transform.position.x) sr.flipX = true;
 					else sr.flipX = false;
-					yield return ControlFlow.Call(MoveTo(sprintPosList[i].position, speedOrTime));
+					yield return ControlFlow.Call(MoveTo(sprintPosList[p].position, speedOrTime));
 				}
 			}
-			yield break;
+			anim.SetBool("Skill3", false);
+			skill3.enabled = false;
 		}
 		finally {
 			skill3.enabled = false;
+			anim.SetBool("Skill3", false);
 		}
 	}
 	IEnumerable<Instruction> GhostFire(Transform target, int num, bool aftermath = false)
 	{
+		anim.SetTrigger("Skill2");
 		if (!aftermath)
 		{
 			var sp = Instantiate(missileSpawner, transform.position, new Quaternion());
@@ -188,39 +197,31 @@ public class Boss2Ai : MonoBehaviour
 		{
 			for (int i = 0; i < num; i++)
 			{
-				Instantiate(missileSpawnerVice, transform.position, Quaternion.Euler(360 * i / num, 0, 0));
-				yield return Utils.WaitForSeconds(pubCDTime / num);
+				Instantiate(missileSpawnerVice, transform.position, Quaternion.Euler(0, 0, 360 * i / num));
+				yield return Utils.WaitForSeconds(waitTime / num);
 			}
 		}
 	}
 	IEnumerable<Instruction> Stab(Transform target, int num, bool aftermath = false)
 	{
-		try
+		anim.SetTrigger("Skill1");
+		if (!aftermath)
 		{
-			anim.SetBool("Skill1", true);
-			if (!aftermath)
+			int[] stabNumList = isSelected(stabPosList.Count, num);
+			//使用地刺
+			for (int i = 0; i < num; i++)
 			{
-				int[] stabNumList = isSelected(stabPosList.Count, num);
-				//使用地刺
-				for (int i = 0; i < num; i++)
-				{
-					Instantiate(stabPrefab, stabPosList[stabNumList[i]].position, new Quaternion());
-				}
-				yield return Utils.WaitForSeconds(waitTime);
+				Instantiate(stabPrefab, stabPosList[stabNumList[i]].position, new Quaternion());
 			}
-			else
-			{
-				for (int i = 0; i < stabPosList.Count; i++)
-				{
-					Instantiate(stabPrefab, stabPosList[target.position.x > 0 ? (stabPosList.Count - i - 1) : i].position, new Quaternion());
-					yield return Utils.WaitForFrames(num);
-				}
-			}
-			yield break;
+			yield return Utils.WaitForSeconds(CD_Time);
 		}
-		finally
+		else
 		{
-			anim.SetBool("Skill1", false);
+			for (int i = 0; i < stabPosList.Count; i++)
+			{
+				Instantiate(stabPrefab, stabPosList[target.position.x > stop.position.x ? (stabPosList.Count - i - 1) : i].position, new Quaternion());
+				yield return Utils.WaitForFrames(num);
+			}
 		}
 	}
 
