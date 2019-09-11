@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 4172718874280270001, guid: 04d13301f056f054298cd5d221863128, type: 3}
   spawn: {fileID: 4324361383480089604}
+  AttackRange: 10
+  CDTime: 0
 --- !u!70 &8649389250336609589
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -177,8 +179,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000010037382, y: -0.8419967}
-  m_Size: {x: 2.8750002, y: 1.1910179}
+  m_Offset: {x: -0.16811664, y: 0.52745944}
+  m_Size: {x: 2.538773, y: 1.0618297}
   m_Direction: 1
 --- !u!50 &8132556066420762406
 Rigidbody2D:
