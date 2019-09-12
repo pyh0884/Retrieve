@@ -5,7 +5,9 @@ using Coroutines;
 
 public class SKill2 : MonoBehaviour
 {
-	public int damageAmt = 5;
+    Collider2D nearest;
+
+    public int damageAmt = 5;
 	public float maxRadius = 8.0f;
 	public float rushSpeed = 25.0f;
 	public float liveTime = 0.5f;
@@ -14,7 +16,8 @@ public class SKill2 : MonoBehaviour
 	Coroutines.Coroutine _Main;
 	void Start()
 	{
-		_Main = new Coroutines.Coroutine(Main());
+        FindEnemy();
+        _Main = new Coroutines.Coroutine(Main());
 	}
 
 	// Update is called once per frame
@@ -22,7 +25,25 @@ public class SKill2 : MonoBehaviour
 	{
 		// Just tick our root coroutine
 		_Main.Update();
-	}
+    }
+    void FindEnemy()
+    {
+        Collider2D[] list = Physics2D.OverlapCircleAll(transform.position, 11, enemyLayer);
+        if (list.Length == 0)
+        {
+            nearest = null;
+        }
+        else
+        {
+            nearest = list[0];
+            foreach (Collider2D col in list)
+            {
+                if (Vector2.Distance(new Vector2(col.transform.position.x, col.transform.position.y), new Vector2(gameObject.transform.position.x, col.transform.position.y)) <= Vector2.Distance(new Vector2(nearest.transform.position.x, nearest.transform.position.y), new Vector2(gameObject.transform.position.x, col.transform.position.y)))
+                    nearest = col;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -35,7 +56,8 @@ public class SKill2 : MonoBehaviour
             else
             {
                 collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
-            }
+            }hit = true;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         if (collision.gameObject.layer == 11)
         {
@@ -70,7 +92,14 @@ public class SKill2 : MonoBehaviour
 		Vector3 delta = new Vector3((right ? rushSpeed : -rushSpeed) * Time.deltaTime, 0);
 		while (true)
 		{
-			transform.position += delta;
+            if (nearest)
+            {
+                GetComponent<Rigidbody2D>().velocity = (nearest.transform.position - transform.position).normalized * rushSpeed;
+            }
+            else
+            {
+                transform.position += delta;
+            }
 			yield return null;
 		}
 	}

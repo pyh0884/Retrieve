@@ -24,7 +24,7 @@ public class Skill6 : MonoBehaviour
     }
     void FindEnemy()
     {
-        Collider2D[] list = Physics2D.OverlapCircleAll(transform.position, 6, enemyLayer);
+        Collider2D[] list = Physics2D.OverlapCircleAll(transform.position, 10, enemyLayer);
         if (list.Length == 0)
         {
             nearest = null;

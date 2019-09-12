@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//存档点
 public class CheckPointCheckPoint : MonoBehaviour
 {
 	public int sceneIndex;

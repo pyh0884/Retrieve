@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//传送门
 public class LoadCheck : Trans
 {
 	public Vector3 loadPos;
