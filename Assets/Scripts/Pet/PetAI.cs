@@ -28,23 +28,26 @@ public class PetAI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) && pc.controllable)
         {
-            anim.SetTrigger("Attack");
             switch (ec.elements[1])
             {
-                case 1://防护罩
-                    Skills[1].SetActive(true); ec.elements[0] = 0;
+                case 1://防护罩            
+                    anim.SetTrigger("Attack");
+                    Skills[1].SetActive(true);
+                    ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 
                     break;
                 case 2://连锁闪电
-					Instantiate(Skills[2], player.transform.position, transform.rotation);
+                    anim.SetTrigger("Attack");
+                    Instantiate(Skills[2], player.transform.position, transform.rotation);
                     ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 
                     break;
                 case 3://悬浮大剑
+                    anim.SetTrigger("Attack");
                     Skills[3].SetActive(true);
                     ec.elements[0] = 0;
                     ec.elements[1] = 0;
@@ -53,6 +56,7 @@ public class PetAI : MonoBehaviour
                     break;
                 case 4://陨石
                     {
+                        anim.SetTrigger("Attack");
                         FindEnemy();
                         if (nearest == null)
                         {
@@ -72,17 +76,21 @@ public class PetAI : MonoBehaviour
                         break;
                     }
                 case 5://回血
-                    Skills[5].SetActive(true); ec.elements[0] = 0;
+                    anim.SetTrigger("Attack");
+                    Skills[5].SetActive(true);
+                    ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 
                     break;
                 case 6://匕首
                     {
+                        anim.SetTrigger("Attack");
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                        ec.elements[0] = 0;
                         ec.elements[1] = 0;
                         ec.elements[2] = 0;
 
@@ -90,44 +98,41 @@ public class PetAI : MonoBehaviour
                     }
                 case 7://地火
                     {
+                        anim.SetTrigger("Attack");
                         if (player.transform.rotation.y == 0)
                             Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                        ec.elements[0] = 0;
                         ec.elements[1] = 0;
                         ec.elements[2] = 0;
 
                         break;
                     }
                 case 8://弹射箭
-
-
-
-
+                    anim.SetTrigger("Attack");
+                    Instantiate(Skills[8], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.identity); 
                     ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 
                     break;
-                case 9://TODO黑洞
+                case 9://炮台
                     {
-
-
-
-
-                        if (player.transform.rotation.y == 0)
-                            Instantiate(Skills[9], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                        else
-                            Instantiate(Skills[9], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0)); ec.elements[0] = 0;
+                        anim.SetTrigger("Attack");
+                        Instantiate(Skills[9], new Vector3(player.transform.position.x, player.transform.position.y, 0), Quaternion.identity);
+                        ec.elements[0] = 0;
                         ec.elements[1] = 0;
                         ec.elements[2] = 0;
 
                         break;
                     }
                 case 10://爆炸
+                    anim.SetTrigger("Attack");
                     GameObject obj;
                     obj=Instantiate(Skills[10], player.transform.position, Quaternion.identity);
-                    obj.transform.SetParent(player.transform); ec.elements[0] = 0;
+                    obj.transform.SetParent(player.transform);
+                    ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 

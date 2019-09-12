@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Skill8Bullet : MonoBehaviour
 {
+    public GameManager gm;
+
     Vector3 EnemyPosition;
     public float speed;
     Collider2D nearest;
     public LayerMask enemyLayer;
-    public float SlerpNum;
-    public Vector3 relativeCenter;
-    // Start is called before the first frame update
+    public Vector3 DefaultDir;
+    public GameObject balls;
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         FindEnemy();
-        if (nearest!=null)
-        EnemyPosition = nearest.transform.position;
-        else
+        if (nearest != null)
         {
-            Destroy(gameObject);
+            EnemyPosition = nearest.transform.position;
+            DefaultDir = EnemyPosition - transform.position;
         }
-
+        transform.up = -DefaultDir;
+        GetComponent<Rigidbody2D>().velocity = DefaultDir.normalized * speed;
     }
     void FindEnemy()
     {
@@ -41,34 +43,44 @@ public class Skill8Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.tag == "Enemy")
         {
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 10)));
-
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 15)) * 2, 1);
+                else
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 15)));
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 10)));
+                if (Random.Range(0, 100) < gm.CRIT)
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 15)) * 2, 1);
+                else
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 15)));
             }
-            Destroy(gameObject);
         }
         if (collision.gameObject.layer == 11)
         {
             FindObjectOfType<AudioManager>().Play("Hit");
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
+        {
+            Debug.Log("1");
+            Instantiate(balls,transform.position,Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity); Instantiate(balls, transform.position, Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity);
+            Instantiate(balls, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
 
     }
-    void Update()
-    {
-            //transform.up = Vector3.Slerp(transform.up- relativeCenter, EnemyPosition - transform.position - relativeCenter, SlerpNum / Vector2.Distance(this.transform.position, EnemyPosition));
-        //transform.up += relativeCenter;
-        transform.position= Vector3.Slerp(transform.up - relativeCenter, EnemyPosition - relativeCenter, .3f);
-        transform.position += relativeCenter;
-        //transform.position += transform.up * speed * Time.deltaTime;
-    }
+
 }
