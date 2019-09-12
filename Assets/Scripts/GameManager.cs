@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
 		float y = PlayerPrefs.GetFloat("RespwanY", 0);
 		int index = PlayerPrefs.GetInt("RespwanSceneIndex", 2);
         spawnPos = new Vector3(x, y);
-/*		if(SceneManager.GetActiveScene().buildIndex!=index)*/SceneManager.LoadScene(index);
+        /*		if(SceneManager.GetActiveScene().buildIndex!=index)*/
+        SceneManager.LoadScene(index);
         CurrentHp = HpCapacity;	
     }
     private void Update()

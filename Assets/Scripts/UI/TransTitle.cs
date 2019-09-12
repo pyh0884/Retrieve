@@ -26,13 +26,14 @@ public class TransTitle : MonoBehaviour
             yield return new WaitForSeconds(totaltime*.05f*.4f);
         }
         yield return new WaitForSeconds(totaltime*.4f);
-        for(float i=0;i<=1;i+=.05f)
+        for(float i=0;i<=1.05f;i+=.05f)
         {
             col = logo.color;
-            col.a = 1-i;
+            col.a = ((1-i)<=0? 0 : (1-i));
             logo.color = col;
-            yield return new WaitForSeconds(totaltime*.05f*.2f);
+            yield return new WaitForSeconds(totaltime*.05f*.4f);
         }
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(1);
 
     }

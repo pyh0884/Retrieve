@@ -9,7 +9,7 @@ public class LoadCheck : Trans
 	GameManager manager;
     public bool BossPortol;
 	public int bossIndex;
-
+    public Animator anim;
     void Update()
     {
         if(!manager) manager = FindObjectOfType<GameManager>();
@@ -20,7 +20,8 @@ public class LoadCheck : Trans
 		if (collision.tag == "Player"&&(((!manager.BossBeaten[bossIndex])&&BossPortol)||(!BossPortol)))
         {
 			manager.spawnPos = loadPos;
-			QuickLoad(sceneIndex);
+            anim.SetTrigger("FadeOut");
+            LoadScene(sceneIndex);
 		}
     }
 }

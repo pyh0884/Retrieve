@@ -13,10 +13,13 @@ public class DestroyManagers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<AudioManager>() != null)
+        {
             FindObjectOfType<AudioManager>().Mute("BGM1");
             FindObjectOfType<AudioManager>().Mute("BGM2");
             FindObjectOfType<AudioManager>().Mute("BGM3");
             FindObjectOfType<AudioManager>().Mute("BGM4");
+        }
         if (FindObjectOfType<GameManager>() != null)
         {
             Destroy(FindObjectOfType<GameManager>().gameObject);
