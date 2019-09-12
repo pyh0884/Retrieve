@@ -36,6 +36,7 @@ public class SKill2 : MonoBehaviour
             {
                 collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
             }
+			hit = true;
         }
         if (collision.gameObject.layer == 11)
         {
@@ -123,6 +124,6 @@ public class SKill2 : MonoBehaviour
 				);
 			yield return null;
 		}
-		target.GetComponent<MonsterHp>().Damage(damageAmt);
+		//target.GetComponent<MonsterHp>().Damage(damageAmt);
 	}
 }
