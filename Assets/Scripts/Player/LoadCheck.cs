@@ -17,7 +17,7 @@ public class LoadCheck : Trans
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "Player"&&(manager.BossBeaten[bossIndex]&&BossPortol||(!BossPortol)))
+		if (collision.tag == "Player"&&((manager.BossBeaten[bossIndex]&&BossPortol)||(!BossPortol)))
         {
 			manager.spawnPos = loadPos;
 			QuickLoad(sceneIndex);

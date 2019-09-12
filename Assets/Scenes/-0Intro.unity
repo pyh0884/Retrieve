@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1344937437}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &39711614
@@ -2055,6 +2055,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1174253330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3556901874918843867, guid: 0fd0ebdbbe5b73e40910815706ab8287,
+    type: 3}
+  m_PrefabInstance: {fileID: 1818765797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1174253333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174253330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc520b53793ee724bb345a562940b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 1324223305}
 --- !u!1 &1265861833
 GameObject:
   m_ObjectHideFlags: 0
@@ -10429,6 +10448,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1324223305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3671823021263663063, guid: 9199808add8d7504194cb812e6e6ccea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1535472913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1344937437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3671823020303764263, guid: 9199808add8d7504194cb812e6e6ccea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1535472913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1351902560
 GameObject:
   m_ObjectHideFlags: 0
@@ -11013,6 +11044,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3671823021263663063, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3671823021263663059, guid: 9199808add8d7504194cb812e6e6ccea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11123,10 +11159,40 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3671823019696398476, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.8333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671823019696398476, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8333333
+      objectReference: {fileID: 0}
     - target: {fileID: 3671823019684804645, guid: 9199808add8d7504194cb812e6e6ccea,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671823019684804645, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671823020303764260, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1174253333}
+    - target: {fileID: 3671823020303764260, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671823020303764260, guid: 9199808add8d7504194cb812e6e6ccea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9199808add8d7504194cb812e6e6ccea, type: 3}

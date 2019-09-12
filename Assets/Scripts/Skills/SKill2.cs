@@ -8,23 +8,23 @@ public class SKill2 : MonoBehaviour
     Collider2D nearest;
 
     public int damageAmt = 5;
-	public float maxRadius = 8.0f;
-	public float rushSpeed = 25.0f;
-	public float liveTime = 0.5f;
-	public LayerMask enemyLayer;
-	private bool hit = false;
-	Coroutines.Coroutine _Main;
-	void Start()
-	{
+    public float maxRadius = 8.0f;
+    public float rushSpeed = 25.0f;
+    public float liveTime = 0.5f;
+    public LayerMask enemyLayer;
+    private bool hit = false;
+    Coroutines.Coroutine _Main;
+    void Start()
+    {
         FindEnemy();
         _Main = new Coroutines.Coroutine(Main());
-	}
+    }
 
-	// Update is called once per frame
-	void Update()
-	{
-		// Just tick our root coroutine
-		_Main.Update();
+    // Update is called once per frame
+    void Update()
+    {
+        // Just tick our root coroutine
+        _Main.Update();
     }
     void FindEnemy()
     {
@@ -56,7 +56,8 @@ public class SKill2 : MonoBehaviour
             else
             {
                 collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
-            }hit = true;
+            }
+            hit = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         if (collision.gameObject.layer == 11)
@@ -66,32 +67,37 @@ public class SKill2 : MonoBehaviour
         }
     }
 
-    IEnumerable<Instruction> Main() {
-		bool gotFirst = false;
-		bool finished = false;
-		yield return ControlFlow.ExecuteWhile(
-			() => !finished,
-			Throw(transform.rotation.eulerAngles.y == 0),
-			CheckFirst(success => { gotFirst = success; finished = success; }),
-			TimeOut(liveTime, finish => finished = finish)
-			);
-		if (gotFirst) {
-			List<GameObject> aims = new List<GameObject>();
-			bool gotOthers = false;
-			yield return ControlFlow.Call(Search(success => gotOthers = success, result => aims = result));
-			if (gotOthers) {
-				foreach (GameObject aim in aims) {
-					yield return ControlFlow.Call(Attack(aim));
-				}
-			}
-		}
-		Destroy(gameObject);
-	}
+    IEnumerable<Instruction> Main()
+    {
+        bool gotFirst = false;
+        bool finished = false;
+        yield return ControlFlow.ExecuteWhile(
+            () => !finished,
+            Throw(transform.rotation.eulerAngles.y == 0),
+            CheckFirst(success => { gotFirst = success; finished = success; }),
+            TimeOut(liveTime, finish => finished = finish)
+            );
+        if (gotFirst)
+        {
+            List<GameObject> aims = new List<GameObject>();
+            bool gotOthers = false;
+            yield return ControlFlow.Call(Search(success => gotOthers = success, result => aims = result));
+            if (gotOthers)
+            {
+                foreach (GameObject aim in aims)
+                {
+                    yield return ControlFlow.Call(Attack(aim));
+                }
+            }
+        }
+        Destroy(gameObject);
+    }
 
-	IEnumerable<Instruction> Throw(bool right) {
-		Vector3 delta = new Vector3((right ? rushSpeed : -rushSpeed) * Time.deltaTime, 0);
-		while (true)
-		{
+    IEnumerable<Instruction> Throw(bool right)
+    {
+        Vector3 delta = new Vector3((right ? rushSpeed : -rushSpeed) * Time.deltaTime, 0);
+        while (true)
+        {
             if (nearest)
             {
                 GetComponent<Rigidbody2D>().velocity = (nearest.transform.position - transform.position).normalized * rushSpeed;
@@ -100,58 +106,63 @@ public class SKill2 : MonoBehaviour
             {
                 transform.position += delta;
             }
-			yield return null;
-		}
-	}
+            yield return null;
+        }
+    }
 
-	IEnumerable<Instruction> TimeOut(float waitTime,System.Action<bool> finish) {
-		yield return Utils.WaitForSeconds(waitTime);
-		finish(true);
-	}
+    IEnumerable<Instruction> TimeOut(float waitTime, System.Action<bool> finish)
+    {
+        yield return Utils.WaitForSeconds(waitTime);
+        finish(true);
+    }
 
-	IEnumerable<Instruction> CheckFirst(System.Action<bool>success) {
-		//try
-		//{
-			while (true)
-			{
-				if (hit)
-				{
-					Debug.Log("yeah");
-				//collidedWith.GetComponent<MonsterHp>().Damage(damageAmt);
-				success(true);
-					yield break;
-				}
-				else yield return null;
-			}
-		//}
-	}
+    IEnumerable<Instruction> CheckFirst(System.Action<bool> success)
+    {
+        //try
+        //{
+        while (true)
+        {
+            if (hit)
+            {
+                Debug.Log("yeah");
+                //collidedWith.GetComponent<MonsterHp>().Damage(damageAmt);
+                success(true);
+                yield break;
+            }
+            else yield return null;
+        }
+        //}
+    }
 
-	IEnumerable<Instruction> Search(System.Action<bool> success,System.Action<List<GameObject>> result)
-	{
-		Collider2D[] candidates = Physics2D.OverlapCircleAll(transform.position, maxRadius, enemyLayer);
-		List<GameObject> targets = new List<GameObject>();
-		if (candidates.Length == 0)
-		{
-			success(false);
-			yield break;
-		}
-		else {
-			foreach (Collider2D candidate in candidates)
-            targets.Add(candidate.gameObject);
-			success(true);
-			result(targets);
-		}
-	}
+    IEnumerable<Instruction> Search(System.Action<bool> success, System.Action<List<GameObject>> result)
+    {
+        Collider2D[] candidates = Physics2D.OverlapCircleAll(transform.position, maxRadius, enemyLayer);
+        List<GameObject> targets = new List<GameObject>();
+        if (candidates.Length == 0)
+        {
+            success(false);
+            yield break;
+        }
+        else
+        {
+            foreach (Collider2D candidate in candidates)
+                targets.Add(candidate.gameObject);
+            success(true);
+            result(targets);
+        }
+    }
 
-	IEnumerable<Instruction> Attack(GameObject target) {
-		while (transform.position != target.transform.position) {
-			transform.position = Vector3.MoveTowards(
-				transform.position,
-				target.transform.position,
-				rushSpeed * Time.deltaTime
-				);
-			yield return null;
-		}
-		target.GetComponent<MonsterHp>().Damage(damageAmt);
-	}
+    IEnumerable<Instruction> Attack(GameObject target)
+    {
+        while (transform.position != target.transform.position)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target.transform.position,
+                rushSpeed * Time.deltaTime
+                );
+            yield return null;
+        }
+        target.GetComponent<MonsterHp>().Damage(damageAmt);
+    }
 }
