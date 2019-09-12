@@ -88,5 +88,20 @@ public class AudioManager : MonoBehaviour
         }
         //Debug.Log(name + "找到了");
         s.source.Play();
+        
     }
+    public void Stop(string name)
+    {
+
+        Audio s = Array.Find(audios, sound => sound.name == name);
+        if (s == null)
+        {
+            //Debug.Log(name + "没找到啊");
+            //return;
+        }
+        //Debug.Log(name + "找到了");
+        s.source.Stop();
+
+    }
+
 }

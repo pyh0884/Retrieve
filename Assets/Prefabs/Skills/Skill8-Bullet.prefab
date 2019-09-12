@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8774928327820331832}
   - component: {fileID: 6097772755812759085}
-  - component: {fileID: 1882971871961321018}
-  m_Layer: 0
+  - component: {fileID: 3656136560258150482}
+  - component: {fileID: 3446611955199517547}
+  - component: {fileID: 4801223112840317904}
+  m_Layer: 13
   m_Name: Skill8-Bullet
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1882971871961321018
+--- !u!114 &3656136560258150482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +93,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 416746799622748735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff003cc2616870346bd13da63bf655d8, type: 3}
+  m_Script: {fileID: 11500000, guid: dabdf508ff8413243b14ea90f815b6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+  gm: {fileID: 0}
+  IniSpeed: 28
+--- !u!50 &3446611955199517547
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416746799622748735}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &4801223112840317904
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416746799622748735}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 931cdb7cb066b454d88539361e74d5e7, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.65625

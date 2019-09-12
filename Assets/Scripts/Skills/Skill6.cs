@@ -20,7 +20,7 @@ public class Skill6 : MonoBehaviour
             transform.right = nearest.transform.position - transform.position;
         }
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 0.8f);
+        Destroy(gameObject, 1);
     }
     void FindEnemy()
     {

@@ -5,25 +5,21 @@ using UnityEngine;
 public class Skill9 : MonoBehaviour
 {
     public GameManager gm;
-
-    Rigidbody2D rb;
     public LayerMask enemyLayer;
     Collider2D nearest;
+    public float LastTime;
+    public GameObject MainObj;
+    public Transform paokou;
+    private Vector3 direction;
+    public GameObject Bullet;
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-
-        FindEnemy();
-        if (nearest != null)
-        {
-            transform.right = nearest.transform.position - transform.position;
-        }
-        rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 3);
+        Destroy(MainObj,10);
     }
     void FindEnemy()
     {
-        Collider2D[] list = Physics2D.OverlapCircleAll(transform.position, 8, enemyLayer);
+        Collider2D[] list = Physics2D.OverlapCircleAll(transform.position, 20, enemyLayer);
         if (list.Length == 0)
         {
             nearest = null;
@@ -38,40 +34,26 @@ public class Skill9 : MonoBehaviour
             }
         }
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void shoot()
     {
-        if (collision.tag == "Enemy")
-        {
-            FindObjectOfType<AudioManager>().Play("Hit");
-            if (collision.gameObject.GetComponent<BossHp>() != null)
-            {
-                if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) - 4))*2,1);
-                else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)-4 )));
-
-            }
-            else
-            {
-                if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) - 4)) * 2, 1);
-                else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)))-4);
-
-            }
-        }
-        if (collision.gameObject.layer == 11)
-        {
-            FindObjectOfType<AudioManager>().Play("Hit");
-            Destroy(collision.gameObject);
-        }
-
+        GameObject obj = Instantiate(Bullet,paokou.position,Quaternion.FromToRotation(transform.position,direction));
+        obj.transform.up = direction;
+        obj.GetComponent<Rigidbody2D>().velocity = obj.transform.up * 10;
     }
+
 
     private void Update()
     {
-            rb.velocity = transform.right * 5;
+        FindEnemy();
+        if (nearest)
+        {
+            GetComponent<Animator>().speed = 1;
+            direction = nearest.transform.position - transform.position;
+            transform.right = direction;
+        }
+        else
+        {
+            GetComponent<Animator>().speed = 0;
+        }
     }
 }
