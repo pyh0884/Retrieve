@@ -38,16 +38,14 @@ public class PetAI : MonoBehaviour
 
                     break;
                 case 2://连锁闪电
-					Instantiate(Skills[2], player.transform.position, transform.rotation); ec.elements[0] = 0;
+					Instantiate(Skills[2], player.transform.position, transform.rotation);
+                    ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
 
                     break;
                 case 3://悬浮大剑
-
-
-
-
+                    Skills[3].SetActive(true);
                     ec.elements[0] = 0;
                     ec.elements[1] = 0;
                     ec.elements[2] = 0;
