@@ -630,6 +630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5675936890884657065}
+  - component: {fileID: 7080905464761127761}
   m_Layer: 10
   m_Name: Shield
   m_TagString: Untagged
@@ -651,6 +652,23 @@ Transform:
   m_Father: {fileID: 5752338395950375501}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7080905464761127761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300781479599153052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22760ec37d6e78b47b24f3e9398784c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 1676383081568435811, guid: 8dd6089cb272fda489df247140e93ff0,
+    type: 3}
+  spawnPos:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4383104228856530353
 GameObject:
   m_ObjectHideFlags: 0
