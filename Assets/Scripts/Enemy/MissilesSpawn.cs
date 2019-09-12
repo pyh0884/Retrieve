@@ -24,7 +24,7 @@ public class MissilesSpawn : MonoBehaviour
 		yield return Rotate();
 	}
 	IEnumerator Rotate() {
-		for (int i = 0;i<Speed/4; i++) {
+		for (int i = 0;i<Speed/10; i++) {
 			transform.Rotate(Vector3.back, Speed * Time.deltaTime);
 			yield return 0;
 		}

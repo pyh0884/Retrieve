@@ -765,7 +765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240257346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.96, z: 0}
+  m_LocalPosition: {x: 0, y: 1.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7967980083440556897}
@@ -1037,17 +1037,17 @@ PrefabInstance:
         type: 3}
       propertyPath: skillSpawnPos.Array.data[0]
       value: 
-      objectReference: {fileID: 1773541141}
+      objectReference: {fileID: 240257347}
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
       propertyPath: skillSpawnPos.Array.data[1]
       value: 
-      objectReference: {fileID: 662452456}
+      objectReference: {fileID: 240257347}
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
       propertyPath: skillSpawnPos.Array.data[2]
       value: 
-      objectReference: {fileID: 1639176587}
+      objectReference: {fileID: 240257347}
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
       propertyPath: skillActPos.Array.data[0]
@@ -1071,12 +1071,12 @@ PrefabInstance:
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
       propertyPath: stabCallNum1
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
       propertyPath: stabCallNum2
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
         type: 3}
@@ -1222,6 +1222,16 @@ PrefabInstance:
         type: 3}
       propertyPath: CD_Time
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
+        type: 3}
+      propertyPath: stabGapFrame
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420108917502243477, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
+        type: 3}
+      propertyPath: waitTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1268165936, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
       propertyPath: m_AnchorMax.y

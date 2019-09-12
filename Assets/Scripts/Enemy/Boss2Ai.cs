@@ -12,6 +12,7 @@ public class Boss2Ai : MonoBehaviour
 	public bool isAwake;
 	[Header("技能CD")]
 	public float waitTime;
+	public float waitTime_GhostFire = 3;
 	public float CD_Time;
 	//	public List<bool> skillCD;
 	//	public List<int> skillCDTime;
@@ -112,8 +113,9 @@ public class Boss2Ai : MonoBehaviour
 			{
 				int p = curr % (SkillList.Count / (aftermath ? 2 : 1));
 				transform.position = skillSpawnPos[p].position;
+				Vector3 stage = new Vector3(target.position.x > stop.position.x ? 2 * stop.position.x - skillActPos[p].position.x : skillActPos[p].position.x, skillActPos[p].position.y);
 				yield return ControlFlow.ExecuteWhileRunning(
-					MoveTo(skillActPos[p].position),
+					MoveTo(stage),
 					TrackTarget(target, sr.flipX, isright => sr.flipX = isright)
 					);
 				yield return ControlFlow.Call(SkillList[curr]);
@@ -156,10 +158,7 @@ public class Boss2Ai : MonoBehaviour
 				
 				for (int i = 0; i < paraStartPosList.Count-1; i++) {
 					int p = rand ? i : (paraStartPosList.Count-1 - i);
-					yield return ControlFlow.ExecuteWhileRunning(
-						MoveTo(paraStartPosList[p].position, true),
-						TrackTarget(target,sr.flipX,isright=>sr.flipX=isright)
-						);
+					yield return ControlFlow.Call(MoveTo(paraStartPosList[p].position, true));
 					if (paraBottomPosList[rand ? p : (p - 1)].position.x > paraStartPosList[p].position.x) sr.flipX = true;
 					else sr.flipX = false;
 					yield return ControlFlow.Call(Para(paraBottomPosList[rand ? p : (p - 1)], speedOrTime));
@@ -192,13 +191,15 @@ public class Boss2Ai : MonoBehaviour
 			sp.GetComponent<MissilesSpawn>().numOfMissle = num;
 			yield return null;
 			sp.GetComponent<MissilesSpawn>().isOn = true;
+			yield return Utils.WaitForSeconds(waitTime_GhostFire);
 		}
 		else
 		{
 			for (int i = 0; i < num; i++)
 			{
-				Instantiate(missileSpawnerVice, transform.position, Quaternion.Euler(0, 0, 360 * i / num));
-				yield return Utils.WaitForSeconds(waitTime / num);
+				var sp=Instantiate(missileSpawnerVice, transform.position, Quaternion.FromToRotation(transform.up,target.position-transform.position));
+				Destroy(sp, 5.0f);
+				yield return Utils.WaitForSeconds(waitTime);
 			}
 		}
 	}
@@ -213,13 +214,14 @@ public class Boss2Ai : MonoBehaviour
 			{
 				Instantiate(stabPrefab, stabPosList[stabNumList[i]].position, new Quaternion());
 			}
-			yield return Utils.WaitForSeconds(CD_Time);
+			yield return Utils.WaitForSeconds(waitTime_GhostFire);
 		}
 		else
 		{
+			bool rand = target.position.x > stop.position.x;
 			for (int i = 0; i < stabPosList.Count; i++)
 			{
-				Instantiate(stabPrefab, stabPosList[target.position.x > stop.position.x ? (stabPosList.Count - i - 1) : i].position, new Quaternion());
+				Instantiate(stabPrefab, stabPosList[rand ? (stabPosList.Count - i - 1) : i].position, new Quaternion());
 				yield return Utils.WaitForFrames(num);
 			}
 		}
