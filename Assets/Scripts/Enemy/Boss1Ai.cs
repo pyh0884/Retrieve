@@ -33,7 +33,11 @@ public class Boss1Ai : MonoBehaviour
 	public Transform wallCheck;
 	public float wallCheckDistance;
 	public LayerMask wallLayer;
-    [Header("技能CD")]
+	[Header("地面检测")]
+	public bool Grounded;
+	public float groundCheckDistance;
+	public LayerMask groundLayer;
+	[Header("技能CD")]
     public float pubCDTime;
     [Header("Boss1速度")]
 	public float speed;
@@ -134,11 +138,14 @@ public class Boss1Ai : MonoBehaviour
 			while (true) {
 				yield return ControlFlow.ExecuteWhileRunning(
 					WaitForSecondsCr(pubCDTime),
-					Idle(target));
+					Idle(target)
+					);
+				//while (!isGround) { enemyRigidBody.bodyType = RigidbodyType2D.Dynamic; yield return null; }
+				//enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 				bool right = transform.rotation.eulerAngles != Vector3.zero;
 				yield return ControlFlow.ExecuteWhileRunning(SkillList[curr],TrackTarget(target,right,isright=>right=isright));
 				curr = SkillSelect(SkillList.Count, curr);
-				yield return ControlFlow.Call(MoveTo(new Vector3(transform.position.x, y)));
+				yield return ControlFlow.ExecuteWhile(()=>!isGround,MoveTo(new Vector3(transform.position.x, y)));
 			}
 		}
 		finally {
@@ -208,6 +215,16 @@ public class Boss1Ai : MonoBehaviour
 					enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, 0);
 					transform.eulerAngles = new Vector3(0, !isright ? 0f : -180f, 0);
 					isRight(isright);
+				}
+				if (!isGround)
+				{
+					enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
+					enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, enemyRigidBody.velocity.y);
+				}
+				else
+				{
+					enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
+					enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, 0);
 				}
 				yield return null;
 			}
@@ -299,17 +316,18 @@ public class Boss1Ai : MonoBehaviour
 			{
 				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / jumpTime, jumphighAmt);
 				yield return null;
-				while (transform.position.y > tempY) yield return null;
+				while (enemyRigidBody.velocity.y>0)yield return null;
+				while (!isGround) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
-				Instantiate(quakePrefab0, footTrans[0], false);
-				Instantiate(quakePrefab1, footTrans[1], false);
 				if (aftermath)
 				{
 					targetPos = target.position;
 					tempX = transform.position.x;
-					yield return Utils.WaitForFrames(10);
+					if(i!=num-1)yield return Utils.WaitForFrames(10);
 				}
 			}
+			Instantiate(quakePrefab0, footTrans[0], false);
+			Instantiate(quakePrefab1, footTrans[1], false);
 			skill2Object.GetComponent<Collider2D>().enabled = false;
 			enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
@@ -392,6 +410,18 @@ public class Boss1Ai : MonoBehaviour
 			return HitWall;
 		}
 	}
+
+	bool isGround {
+		get
+		{
+			Vector2 start = wallCheck.position;
+			Vector2 end = new Vector2(start.x, start.y - groundCheckDistance);
+			Debug.DrawLine(start, end, Color.red);
+			Grounded = Physics2D.Linecast(start, end, groundLayer);
+			return Grounded;
+		}
+	}
+
 	int SkillSelect(int amount, int current = 0)
 	{
 		int temp = Random0ToN(amount);

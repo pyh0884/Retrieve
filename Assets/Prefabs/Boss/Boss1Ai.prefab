@@ -949,7 +949,7 @@ MonoBehaviour:
   jumpTime: 1
   acceleration: 1
   jumpSpeed: 20
-  jumphighAmt: 5
+  jumphighAmt: 15
   footTrans:
   - {fileID: 4238908631016314970}
   - {fileID: 874208645932006549}
@@ -962,6 +962,11 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
+  Grounded: 0
+  groundCheckDistance: 0.6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   pubCDTime: 4
   speed: 2.5
   sprintSpeed: 8
