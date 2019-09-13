@@ -1580,7 +1580,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21189643, y: 0}
+  m_Offset: {x: -0.30305374, y: 0.05312726}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1591,7 +1591,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4237928, y: 1}
+  m_Size: {x: 1.8188076, y: 1.1062546}
   m_EdgeRadius: 0
 --- !u!1 &5677338384166940221
 GameObject:
@@ -7016,6 +7016,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
+    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill1-\u9632\u62A4\u7F69"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11608095199680352, guid: abc36e07a04c40a419b752d6d0ea52ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7071,16 +7081,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill1-\u9632\u62A4\u7F69"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2069094801432775909, guid: abc36e07a04c40a419b752d6d0ea52ce,
         type: 3}
       propertyPath: hbc
@@ -7107,6 +7107,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
+    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill3-YB\u60AC\u6D6E\u5927\u5251"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2001030856032255680, guid: 150829aba5380984ebd7a03b91a8d34f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7162,16 +7172,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill3-YB\u60AC\u6D6E\u5927\u5251"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2784317908747575023, guid: 150829aba5380984ebd7a03b91a8d34f,
         type: 3}
       propertyPath: LastTime
@@ -7208,6 +7208,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
+    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill5-GG\u751F\u547D\u6062\u590D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7430260129435544879, guid: d12796ba872d1154baacf645fc9549c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7261,16 +7271,6 @@ PrefabInstance:
     - target: {fileID: 7430260129435544879, guid: d12796ba872d1154baacf645fc9549c5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill5-GG\u751F\u547D\u6062\u590D"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4573376486717523695, guid: d12796ba872d1154baacf645fc9549c5,
