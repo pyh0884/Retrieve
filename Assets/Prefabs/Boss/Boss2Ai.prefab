@@ -725,6 +725,7 @@ MonoBehaviour:
   player: {fileID: 0}
   dist: {x: 0, y: 0, z: 0}
   skill3: {fileID: 2134589906}
+  AngryAnim: {fileID: 0}
 --- !u!95 &583622107
 Animator:
   serializedVersion: 3
@@ -778,8 +779,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052886724, y: -0.72279644}
-  m_Size: {x: 4.1214576, y: 5.461273}
+  m_Offset: {x: 0.5228226, y: -0.05288863}
+  m_Size: {x: 3.1815858, y: 4.1214576}
   m_Direction: 0
 --- !u!114 &6420108919175237991
 MonoBehaviour:
@@ -801,6 +802,7 @@ MonoBehaviour:
   isBoss: 1
   BossIndex: 3
   Burn: 0
+  Shield: 0
 --- !u!1 &9025640271348194707
 GameObject:
   m_ObjectHideFlags: 0

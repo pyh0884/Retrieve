@@ -15,37 +15,65 @@ public class BossHp : MonoBehaviour
 	public bool isBoss;
     public int BossIndex;
     public int Burn;
+    public bool Shield=false;
     float timer;
     public void Damage(int damageCount)
     {
-        if (damageCount > 0) {
-            ps.Play();
+        if (!Shield)
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            Hp -= damageCount;
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, 2);
+            else
+                DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, 2);
+
         }
-        //伤害特效 
-        //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        //       anim.SetTrigger("Hit");
-        Hp -= damageCount;
-		if (bossTransform != null)
-			DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform,2);
-		else
-			DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,2);
+        else
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            Hp -= 1;
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(1.ToString(), bossTransform, 2);
+            else
+                DamageTextControler.CreatDamageText(1.ToString(), gameObject.transform, 2);
 
-
-	}
+        }
+    }
     public void Damage(int damageCount,int DMGtype)
     {
-        if (damageCount > 0)
+        if (!Shield)
         {
-            ps.Play();
+
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            Hp -= damageCount;
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, DMGtype);
+            else
+                DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, DMGtype);
         }
-        //伤害特效 
-        //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        //       anim.SetTrigger("Hit");
-        Hp -= damageCount;
-        if (bossTransform != null)
-            DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, DMGtype);
         else
-            DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, DMGtype);
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            Hp -= 1;
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(1.ToString(), bossTransform, DMGtype);
+            else
+                DamageTextControler.CreatDamageText(1.ToString(), gameObject.transform, DMGtype);
+
+        }
 
 
     }

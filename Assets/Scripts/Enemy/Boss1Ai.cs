@@ -50,8 +50,10 @@ public class Boss1Ai : MonoBehaviour
 	public bool needRefill = false;
     public Animator anim;
     public GameObject Boss1Echo;
+    public RuntimeAnimatorController AngryAnim;
 
-	List<IEnumerable<Instruction>> SkillList;
+
+    List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;
     void Awake()
     {
@@ -259,8 +261,9 @@ public class Boss1Ai : MonoBehaviour
 
 	//过渡状态
 	IEnumerable<Instruction> Change()
-	{
-		Debug.Log("血不到一半了");
+    {
+        anim.runtimeAnimatorController = AngryAnim as RuntimeAnimatorController;
+        Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()

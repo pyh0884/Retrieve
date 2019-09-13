@@ -51,9 +51,11 @@ public class Boss2Ai : MonoBehaviour
 	public GameObject player;
 	public Vector3 dist;
 	public Collider2D skill3;
+    public RuntimeAnimatorController AngryAnim;
 
 
-	List<IEnumerable<Instruction>> SkillList;
+
+    List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;//协程根节点
 
 	void Start()
@@ -134,8 +136,9 @@ public class Boss2Ai : MonoBehaviour
 
 	//过渡状态
 	IEnumerable<Instruction> Change()
-	{
-		Debug.Log("血不到一半了");
+    {
+        anim.runtimeAnimatorController = AngryAnim as RuntimeAnimatorController;
+        Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()

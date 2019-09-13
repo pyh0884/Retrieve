@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShieldTrigger : MonoBehaviour
 {
+    //public Shield sd;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,11 @@ public class ShieldTrigger : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("PlayerAttack")) Destroy(gameObject);
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            //sd.count -= 1;
+            GetComponent<Animator>().SetTrigger("Die");
+            anim.SetTrigger("Hit");
+        }
 	}
 }
