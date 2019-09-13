@@ -15,6 +15,11 @@ public class FishPeddle : MonoBehaviour
 	public float gridSpeed = 2.5f;
 	public Transform ViceLeft, ViceRight;
 
+	[Header("击退")]
+	public float hitBackDist = 1;
+	public float hitBackSpeed = 5;
+	public int maxBackFrame = 10;
+
 	Coroutines.Coroutine _Main;
 
 	// Start is called before the first frame update
@@ -27,6 +32,31 @@ public class FishPeddle : MonoBehaviour
 	void Update()
 	{
 		_Main.Update();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("PlayerAttack")) {
+			StartCoroutine(GotHit(transform));
+			StartCoroutine(GotHit(ViceLeft));
+			StartCoroutine(GotHit(ViceRight));
+		}
+	}
+
+	IEnumerator GotHit(Transform curr)
+	{
+		Vector3 target;
+		int frameCount = 0;
+		target = curr.position + curr.right * hitBackDist;
+		//if (right) target = transform.position + new Vector3(hitBackDist, 0, 0);
+		//else target = transform.position + new Vector3(-hitBackDist, 0, 0);
+		while (frameCount < maxBackFrame)
+		{
+			curr.position = Vector3.MoveTowards(curr.position, target, hitBackSpeed * Time.deltaTime);
+			Debug.Log("Backing");
+			yield return null;
+			frameCount++;
+		}
 	}
 
 	IEnumerable<Instruction> Main()
