@@ -58,7 +58,7 @@ public class Boss3Ai : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 		enemyRigidBody = GetComponent<Rigidbody2D>();
-		for (int i = 0; i < seTu.Count; i++) sr[i] = seTu[i].GetComponent<SpriteRenderer>();
+		for (int i = 0; i < seTu.Count; i++) if (seTu[i] != null) sr[i] = seTu[i].GetComponent<SpriteRenderer>();
 		colorState = 0;
 		isSkill = false;
 		StartCoroutine("PubCD_Counter");
@@ -94,7 +94,7 @@ public class Boss3Ai : MonoBehaviour
 			else enemyRigidBody.velocity = Vector2.zero;
 			if (!pubCD)
 			{
-				StartCoroutine(seTuFadeIn(seTu[colorState].GetComponent<SpriteRenderer>(), seTuFadeSpeed));
+				if(seTu[colorState])StartCoroutine(seTuFadeIn(seTu[colorState].GetComponent<SpriteRenderer>(), seTuFadeSpeed));
 				colorState = ColorSelect();
 				if (!skyAttack) skillNum = colorState * 2 - 1;
 				else skillNum = colorState * 2;
@@ -318,7 +318,7 @@ public class Boss3Ai : MonoBehaviour
 	}
 
 	void Refresh() {
-		if (transform.position.x < 0) transform.position = new Vector3(birthPoints[0].position.x, transform.position.y);
+		if (transform.position.x < 14) transform.position = new Vector3(birthPoints[0].position.x, transform.position.y);
 		else transform.position = new Vector3(birthPoints[1].position.x, transform.position.y);
 		StartCoroutine(RefreshCount());
 	}
@@ -331,18 +331,24 @@ public class Boss3Ai : MonoBehaviour
 	}
 
 	IEnumerator seTuFadeOut(SpriteRenderer renderer, float fadeSpeed) {
-		while (renderer.color != Color.clear)
+		if (renderer != null)
 		{
-			renderer.color = Vector4.MoveTowards(renderer.color, Color.clear, fadeSpeed * Time.deltaTime);
-			yield return 0;
+			while (renderer.color != Color.clear)
+			{
+				renderer.color = Vector4.MoveTowards(renderer.color, Color.clear, fadeSpeed * Time.deltaTime);
+				yield return null;
+			}
 		}
 	}
 
 	IEnumerator seTuFadeIn(SpriteRenderer renderer, float fadeSpeed) {
-		while (renderer.color != Color.white)
+		if (renderer != null)
 		{
-			renderer.color = Vector4.MoveTowards(renderer.color, Color.white, fadeSpeed * Time.deltaTime);
-			yield return 0;
+			while (renderer.color != Color.white)
+			{
+				renderer.color = Vector4.MoveTowards(renderer.color, Color.white, fadeSpeed * Time.deltaTime);
+				yield return null;
+			}
 		}
 	}
 }
