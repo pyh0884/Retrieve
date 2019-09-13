@@ -33,7 +33,9 @@ public class Boss3Ai : MonoBehaviour
 	public List<Transform> footTrans;
 	public List<Transform> birthPoints;
 	public GameObject eyes;
-	public List<GameObject> seTu;
+	public List<GameObject> seTuYellow;
+	public List<GameObject> seTuGreen;
+	public List<GameObject> seTuBlue;
 	public float seTuFadeSpeed = 5f;
 
 	public bool HitWall;
@@ -49,16 +51,19 @@ public class Boss3Ai : MonoBehaviour
 	private GameObject spawn;
 	private GameObject bull;
 	private GameObject ball;
-	private SpriteRenderer[] sr = new SpriteRenderer[4];
+	private List<SpriteRenderer>[] sr = new List<SpriteRenderer>[4];
     private Animator anim;
     public ParticleSystem ps;
 
     // Start is called before the first frame update
     void Awake()
     {
-        anim = GetComponent<Animator>();
+		for (int i = 0; i < 4; i++) { sr[i] = new List<SpriteRenderer>(); sr[i].Clear(); }
+		anim = GetComponent<Animator>();
 		enemyRigidBody = GetComponent<Rigidbody2D>();
-		for (int i = 0; i < seTu.Count; i++) if (seTu[i] != null) sr[i] = seTu[i].GetComponent<SpriteRenderer>();
+		for (int i = 0; i < seTuYellow.Count; i++) sr[1].Add(seTuYellow[i].GetComponent<SpriteRenderer>());
+		for (int i = 0; i < seTuGreen.Count; i++) sr[2].Add(seTuGreen[i].GetComponent<SpriteRenderer>());
+		for (int i = 0; i < seTuBlue.Count; i++) sr[3].Add(seTuBlue[i].GetComponent<SpriteRenderer>());
 		colorState = 0;
 		isSkill = false;
 		StartCoroutine("PubCD_Counter");
@@ -80,7 +85,6 @@ public class Boss3Ai : MonoBehaviour
 
     }
 
-
     void Update()
 	{
         if (!player) player = GameObject.FindWithTag("Player");
@@ -94,7 +98,7 @@ public class Boss3Ai : MonoBehaviour
 			else enemyRigidBody.velocity = Vector2.zero;
 			if (!pubCD)
 			{
-				if(seTu[colorState])StartCoroutine(seTuFadeIn(seTu[colorState].GetComponent<SpriteRenderer>(), seTuFadeSpeed));
+				StartCoroutine(seTuFadeIn(sr[colorState], seTuFadeSpeed));
 				colorState = ColorSelect();
 				if (!skyAttack) skillNum = colorState * 2 - 1;
 				else skillNum = colorState * 2;
@@ -247,9 +251,9 @@ public class Boss3Ai : MonoBehaviour
 				case 5://蓝色地面技能（激光）
 					{
                         FindObjectOfType<AudioManager>().Play("Laser");
-						Instantiate(laserPrefab, new Vector3(0, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
-						Instantiate(laserPrefab, new Vector3(laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
-						Instantiate(laserPrefab, new Vector3(-laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+						Instantiate(laserPrefab, new Vector3(14, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+						Instantiate(laserPrefab, new Vector3(14+laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+						Instantiate(laserPrefab, new Vector3(14-laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
 						isSkill = false;
 						break;
 					}
@@ -330,23 +334,29 @@ public class Boss3Ai : MonoBehaviour
 		pubCD = false;
 	}
 
-	IEnumerator seTuFadeOut(SpriteRenderer renderer, float fadeSpeed) {
-		if (renderer != null)
+	IEnumerator seTuFadeOut(List<SpriteRenderer> renderer, float fadeSpeed) {
+		if (renderer.Count != 0)
 		{
-			while (renderer.color != Color.clear)
+			while (renderer[0].color != Color.clear)
 			{
-				renderer.color = Vector4.MoveTowards(renderer.color, Color.clear, fadeSpeed * Time.deltaTime);
+				for (int i = 0; i < renderer.Count; i++)
+				{
+					renderer[i].color = Vector4.MoveTowards(renderer[i].color, Color.clear, fadeSpeed * Time.deltaTime);
+				}
 				yield return null;
 			}
 		}
 	}
 
-	IEnumerator seTuFadeIn(SpriteRenderer renderer, float fadeSpeed) {
-		if (renderer != null)
+	IEnumerator seTuFadeIn(List<SpriteRenderer> renderer, float fadeSpeed) {
+		if (renderer.Count != 0)
 		{
-			while (renderer.color != Color.white)
+			while (renderer[0].color != Color.white)
 			{
-				renderer.color = Vector4.MoveTowards(renderer.color, Color.white, fadeSpeed * Time.deltaTime);
+				for (int i = 0; i < renderer.Count; i++)
+				{
+					renderer[i].color = Vector4.MoveTowards(renderer[i].color, Color.white, fadeSpeed * Time.deltaTime);
+				}
 				yield return null;
 			}
 		}

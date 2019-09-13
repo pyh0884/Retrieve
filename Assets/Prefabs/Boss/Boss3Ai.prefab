@@ -5540,7 +5540,7 @@ MonoBehaviour:
   numOfCall: 5
   stabGap: 1.6
   laserGap: 5
-  stabFloor: -4
+  stabFloor: -6
   missileSpawner: {fileID: 4534671281863586551, guid: 0fb32d92d90922f4aa1b829296894e90,
     type: 3}
   stonePrefab: {fileID: 4133435358091610535, guid: 9a90e82581efe284897f40c556aa99cc,
@@ -5554,12 +5554,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   eyes: {fileID: 2019973144045681990}
-  seTu:
+  seTuYellow:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  seTuFadeSpeed: 5
+  - {fileID: 0}
+  - {fileID: 0}
+  seTuGreen:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  seTuBlue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  seTuFadeSpeed: 2
   HitWall: 0
   wallCheck: {fileID: 4463456279201937112}
   wallCheckDistance: 0.1
@@ -5693,6 +5709,7 @@ MonoBehaviour:
   ps: {fileID: 1734004955118383505}
   isBoss: 1
   BossIndex: 4
+  Burn: 0
 --- !u!1 &7350020359032296327
 GameObject:
   m_ObjectHideFlags: 0

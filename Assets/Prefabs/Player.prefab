@@ -597,9 +597,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -360303427
-  m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingLayerID: 1569299025
+  m_SortingLayer: 1
+  m_SortingOrder: 100
   m_Sprite: {fileID: 2998544047866705335, guid: f6909a04bd38f094aaf6ca06a39dd016,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1424,9 +1424,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1569299025
+  m_SortingLayer: 1
+  m_SortingOrder: 101
   m_Sprite: {fileID: -1710447996192812845, guid: 6dbc7620884639846b2af8f0c20af45e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7016,16 +7016,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
-    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill1-\u9632\u62A4\u7F69"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 11608095199680352, guid: abc36e07a04c40a419b752d6d0ea52ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7081,6 +7071,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill1-\u9632\u62A4\u7F69"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366922929095064371, guid: abc36e07a04c40a419b752d6d0ea52ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2069094801432775909, guid: abc36e07a04c40a419b752d6d0ea52ce,
         type: 3}
       propertyPath: hbc
@@ -7107,16 +7107,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
-    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill3-YB\u60AC\u6D6E\u5927\u5251"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2001030856032255680, guid: 150829aba5380984ebd7a03b91a8d34f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7172,6 +7162,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill3-YB\u60AC\u6D6E\u5927\u5251"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009855776282323086, guid: 150829aba5380984ebd7a03b91a8d34f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2784317908747575023, guid: 150829aba5380984ebd7a03b91a8d34f,
         type: 3}
       propertyPath: LastTime
@@ -7208,16 +7208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1807133155380881763}
     m_Modifications:
-    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
-        type: 3}
-      propertyPath: m_Name
-      value: "Skill5-GG\u751F\u547D\u6062\u590D"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7430260129435544879, guid: d12796ba872d1154baacf645fc9549c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7271,6 +7261,16 @@ PrefabInstance:
     - target: {fileID: 7430260129435544879, guid: d12796ba872d1154baacf645fc9549c5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
+        type: 3}
+      propertyPath: m_Name
+      value: "Skill5-GG\u751F\u547D\u6062\u590D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219259794686151486, guid: d12796ba872d1154baacf645fc9549c5,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4573376486717523695, guid: d12796ba872d1154baacf645fc9549c5,
