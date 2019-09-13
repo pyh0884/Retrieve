@@ -123,7 +123,7 @@ public class HealthBarControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            gm.Respawn();
+            StartCoroutine("Die");
         }
         //currentHealth();
         invincibleCD += Time.deltaTime;
