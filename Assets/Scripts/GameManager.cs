@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
 	}
     public void Respawn()
     {
-		float x = PlayerPrefs.GetFloat("RespwanX", 0);
-		float y = PlayerPrefs.GetFloat("RespwanY", 0);
-		int index = PlayerPrefs.GetInt("RespwanSceneIndex", 2);
+		float x = PlayerPrefs.GetFloat("RespwanX", 1.5f);
+		float y = PlayerPrefs.GetFloat("RespwanY", -1);
+		int index = PlayerPrefs.GetInt("RespwanSceneIndex", 3);
         spawnPos = new Vector3(x, y);
         /*		if(SceneManager.GetActiveScene().buildIndex!=index)*/
         SceneManager.LoadScene(index);

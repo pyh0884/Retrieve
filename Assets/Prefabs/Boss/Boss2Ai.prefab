@@ -592,7 +592,7 @@ Transform:
   m_GameObject: {fileID: 6420108917502243466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.1, y: 3.48, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2134589905}
   - {fileID: 1927124110}
@@ -635,8 +635,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1569299025
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -4167225361896645164, guid: 016bb89d18994b149844731a23c07e1e,
     type: 3}
@@ -664,15 +664,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   shadow: {fileID: 0}
-  stop: {fileID: 0}
+  SceneCenter: {fileID: 0}
   isAwake: 0
-  waitTime: 2.5
+  waitTime: 1
   waitTime_GhostFire: 3
-  CD_Time: 0
+  CD_Time: 6
   sprintSpeed: 14
   sprintSpeedFast: 21
-  paraHalfTime: 1
-  skillSpawnPos:
+  paraHalfTime: 0.6
+  skillRestPos:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -686,11 +686,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   stabPrefab: {fileID: 4961831566965219017, guid: cc8a3cf17f4497447bc5a804b0a2d709,
     type: 3}
-  stabCallNum1: 3
-  stabCallNum2: 5
-  stabGapFrame: 5
+  stabCallNum1: 4
+  stabCallNum2: 6
+  stabGapFrame: 10
   missileSpawner: {fileID: 4534671281863586551, guid: 0fb32d92d90922f4aa1b829296894e90,
     type: 3}
   missileSpawnerVice: {fileID: 4534671281863586551, guid: 5c8bf939d60b720449839a3687a3a82e,
@@ -698,9 +703,25 @@ MonoBehaviour:
   phase1MissileAmount: 5
   phase2MissileAmount: 7
   viceMissileAmount: 3
-  paraStartPosList: []
-  paraBottomPosList: []
-  sprintPosList: []
+  paraStartPosList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  paraBottomPosList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sprintPosList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   player: {fileID: 0}
   dist: {x: 0, y: 0, z: 0}
   skill3: {fileID: 2134589906}

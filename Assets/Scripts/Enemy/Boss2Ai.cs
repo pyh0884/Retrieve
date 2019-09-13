@@ -8,7 +8,7 @@ public class Boss2Ai : MonoBehaviour
 	public Animator anim;
 	private SpriteRenderer sr;
 	public Boss2Shadow shadow;
-	public Transform stop;
+	public Transform SceneCenter;
 	public bool isAwake;
 	[Header("技能CD")]
 	public float waitTime;
@@ -25,7 +25,7 @@ public class Boss2Ai : MonoBehaviour
 
 
 	[Header("技能表演出生点、释放点、终结点")]
-	public List<Transform> skillSpawnPos;
+	public List<Transform> skillRestPos;
 	public List<Transform> skillActPos;
 
 	[Header("地刺")]
@@ -112,15 +112,15 @@ public class Boss2Ai : MonoBehaviour
 			while (true)
 			{
 				int p = curr % (SkillList.Count / (aftermath ? 2 : 1));
-				transform.position = skillSpawnPos[p].position;
-				Vector3 stage = new Vector3(target.position.x > stop.position.x ? 2 * stop.position.x - skillActPos[p].position.x : skillActPos[p].position.x, skillActPos[p].position.y);
+				//yield return ControlFlow.Call(MoveTo(SceneCenter.position));
+				Vector3 stage = new Vector3(target.position.x > SceneCenter.position.x ? 2 * SceneCenter.position.x - skillActPos[p].position.x : skillActPos[p].position.x, skillActPos[p].position.y);
 				yield return ControlFlow.ExecuteWhileRunning(
 					MoveTo(stage),
 					TrackTarget(target, sr.flipX, isright => sr.flipX = isright)
 					);
 				yield return ControlFlow.Call(SkillList[curr]);
 				yield return ControlFlow.ExecuteWhileRunning(
-					Restore(CD_Time, stop.position),
+					Restore(CD_Time, skillRestPos[Random0ToN(SkillList.Count / (aftermath ? 2 : 1))].position),
 					TrackTarget(target, sr.flipX, isright => sr.flipX = isright)
 					);
 				curr = SkillSelect(SkillList.Count, curr);
@@ -151,7 +151,7 @@ public class Boss2Ai : MonoBehaviour
 		{
 			skill3.enabled = true;
 			anim.SetBool("Skill3", true);
-			bool rand = target.position.x < stop.position.x;
+			bool rand = target.position.x < SceneCenter.position.x;
 			if (!aftermath)
 			{
 				//一阶段技能表现
@@ -218,7 +218,7 @@ public class Boss2Ai : MonoBehaviour
 		}
 		else
 		{
-			bool rand = target.position.x > stop.position.x;
+			bool rand = target.position.x > SceneCenter.position.x;
 			for (int i = 0; i < stabPosList.Count; i++)
 			{
 				Instantiate(stabPrefab, stabPosList[rand ? (stabPosList.Count - i - 1) : i].position, new Quaternion());
