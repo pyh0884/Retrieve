@@ -5,12 +5,12 @@ using UnityEngine;
 public class HoleReveal : MonoBehaviour
 {
 	public float fadespeed = 5f;
-	private SpriteRenderer sr;
+	private Renderer sr;
 	private Coroutine c;
     // Start is called before the first frame update
     void Start()
     {
-		sr = GetComponent<SpriteRenderer>();
+		sr = GetComponent<Renderer>();
 		c = null;
     }
 
@@ -37,16 +37,16 @@ public class HoleReveal : MonoBehaviour
 		}
 	}
 
-	public IEnumerator FadeInOut(bool isFadeOut,float fadeSpeed,SpriteRenderer renderer) {
+	public IEnumerator FadeInOut(bool isFadeOut,float fadeSpeed,Renderer renderer) {
 		if (isFadeOut)
-			while (renderer.color.a != 0)
+			while (renderer.material.color.a != 0)
 			{
-				renderer.color = Vector4.MoveTowards(renderer.color, new Vector4(1, 1, 1, 0), fadeSpeed * Time.deltaTime);
+				renderer.material.color = Vector4.MoveTowards(renderer.material.color, new Vector4(1, 1, 1, 0), fadeSpeed * Time.deltaTime);
 				yield return 0;
 			}
 		else
-			while (renderer.color.a != 1) {
-				renderer.color = Vector4.MoveTowards(renderer.color, Vector4.one, fadeSpeed * Time.deltaTime);
+			while (renderer.material.color.a != 1) {
+				renderer.material.color = Vector4.MoveTowards(renderer.material.color, Vector4.one, fadeSpeed * Time.deltaTime);
 				yield return 0;
 			}
 	}
