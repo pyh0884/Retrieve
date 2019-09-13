@@ -14,7 +14,8 @@ public class CheckPointCheckPoint : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player")) {
+		if (collision.gameObject.tag=="Player") {
+            Debug.Log("Data Saved");
 			UpdateSaveData(transform.position,sceneIndex);
 		}
 	}
