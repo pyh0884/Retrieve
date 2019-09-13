@@ -38,8 +38,6 @@ public class FishPeddle : MonoBehaviour
 	{
 		if (collision.CompareTag("PlayerAttack")) {
 			StartCoroutine(GotHit(transform));
-			StartCoroutine(GotHit(ViceLeft));
-			StartCoroutine(GotHit(ViceRight));
 		}
 	}
 
@@ -53,7 +51,6 @@ public class FishPeddle : MonoBehaviour
 		while (frameCount < maxBackFrame)
 		{
 			curr.position = Vector3.MoveTowards(curr.position, target, hitBackSpeed * Time.deltaTime);
-			Debug.Log("Backing");
 			yield return null;
 			frameCount++;
 		}

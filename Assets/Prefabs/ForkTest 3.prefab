@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 732755046390457267}
   - component: {fileID: 5363003396454947208}
+  - component: {fileID: 9152606827960492256}
+  - component: {fileID: 6037361603930189995}
   m_Layer: 0
   m_Name: Fork (1)
   m_TagString: Untagged
@@ -81,6 +83,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9152606827960492256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615824168320368422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b590e8cb1a012478101981458f1862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBackDist: -6
+  hitBackSpeed: 40
+  maxBackFrame: 20
+--- !u!58 &6037361603930189995
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615824168320368422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!1 &6671594142445474213
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +125,7 @@ GameObject:
   - component: {fileID: 6968500606159755986}
   - component: {fileID: 97934328338464887}
   - component: {fileID: 8872177534303609417}
+  - component: {fileID: 310066008}
   m_Layer: 0
   m_Name: ForkTest
   m_TagString: Untagged
@@ -128,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catchRange: 22
+  resetRange: 0.3
   CD_Time_Strike: 3
   strikeSpeed: 20
   moveSpeed: 5
@@ -136,6 +171,9 @@ MonoBehaviour:
   gridSpeed: 2.5
   ViceLeft: {fileID: 732755046390457267}
   ViceRight: {fileID: 99336252032779574}
+  hitBackDist: -6
+  hitBackSpeed: 40
+  maxBackFrame: 20
 --- !u!212 &8872177534303609417
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186,6 +224,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &310066008
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671594142445474213}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0132985115}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!1 &7400802235872407282
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +250,8 @@ GameObject:
   m_Component:
   - component: {fileID: 99336252032779574}
   - component: {fileID: 4484955361836817128}
+  - component: {fileID: 4496128625230152346}
+  - component: {fileID: 1835391980273021937}
   m_Layer: 0
   m_Name: Fork (2)
   m_TagString: Untagged
@@ -267,3 +323,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4496128625230152346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400802235872407282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b590e8cb1a012478101981458f1862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBackDist: -6
+  hitBackSpeed: 40
+  maxBackFrame: 20
+--- !u!58 &1835391980273021937
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400802235872407282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
