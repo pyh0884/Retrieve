@@ -20,10 +20,12 @@ public class Boss4Ai : MonoBehaviour
 	[Header("喷墨")]
 	public GameObject inkObject;
 	public GameObject inkObject_Naive;
-    public Animator anim;
+    private Animator anim;
+    public RuntimeAnimatorController AngryAnim;
 
 
-	List<IEnumerable<Instruction>> SkillList;
+
+    List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;
     // Start is called before the first frame update
     void Start()
@@ -114,8 +116,9 @@ public class Boss4Ai : MonoBehaviour
 	
 	//过渡状态
 	IEnumerable<Instruction> Change()
-	{
-		Debug.Log("血不到一半了");
+    {
+        anim.runtimeAnimatorController = AngryAnim as RuntimeAnimatorController;
+        Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()
