@@ -14,14 +14,14 @@ public class PlayerFollowPlatform : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "PlayerFoot")
-        {
-            player.transform.SetParent(gameObject.transform.parent);
-        }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "PlayerFoot")
+    //    {
+    //        player.transform.SetParent(gameObject.transform.parent);
+    //    }
 
-    }
+    //}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerFoot")
