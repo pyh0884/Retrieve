@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
 	public Vector3 spawnPos;
     public int BossIndex;
     public bool cheat;
-	public List<bool> TreasureChestOpened;
-	public List<bool> BossBeaten;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -33,8 +31,9 @@ public class GameManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
-		for (int i = 0; i < TreasureChestOpened.Count; i++) TreasureChestOpened[i] = false;
-		for (int i = 0; i < BossBeaten.Count; i++) BossBeaten[i] = false;
+		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 5);
+		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
     }
     public int HP
     {
@@ -51,14 +50,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OpenTreasureChest(int index) {
-		if (index <= TreasureChestOpened.Count) 
-			if (!TreasureChestOpened[index])TreasureChestOpened[index] = true;
-	}
-	public void BeatBoss(int index) {
-		if (index <= BossBeaten.Count)
-			if (!BossBeaten[index]) BossBeaten[index] = true;
-	}
     public void SetBossIndex(int num)
     {
             BossIndex = num;

@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviour
     bool WallDirection; //true=wall is on the right, false=left
     public bool grabed;
     public bool isAttacking;
+
+	private bool isPressing = false;
+
     void MoveABit()
     {if(!isGround2)
         playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y==0?playerRigidbody2D.transform.position.x+0.5f: playerRigidbody2D.transform.position.x - 0.5f, playerRigidbody2D.transform.position.y, 0);
@@ -303,21 +306,37 @@ public class PlayerController : MonoBehaviour
     //}
     void TryAttack()
     {
-        if (Input.GetButtonDown("Fire1") && controllable && !grabed)
-        {
-            if (isGround)
-            {
-                //slowMultiplier = 0.7f;
-                //if (Random.Range(0, 2) < 1)
-                //    anim.SetTrigger("Attack1");
-                //else
-                //    anim.SetTrigger("Attack2");
-                playerRigidbody2D.velocity = Vector2.zero;
-                anim.SetTrigger("Attack");
-            }
-            else
-                anim.SetTrigger("AirAttack");
-        }
+		if (controllable && !grabed)
+		{
+			//if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") == 1))
+			if (Input.GetAxisRaw("Fire1") != 0|| Input.GetButtonDown("Fire1"))
+			{
+				if (isPressing == false)
+				{
+					// Call your event function here.
+					if (isGround)
+					{
+						//slowMultiplier = 0.7f;
+						//if (Random.Range(0, 2) < 1)
+						//    anim.SetTrigger("Attack1");
+						//else
+						//    anim.SetTrigger("Attack2");
+						playerRigidbody2D.velocity = Vector2.zero;
+						anim.SetTrigger("Attack");
+					}
+					else
+						anim.SetTrigger("AirAttack");
+					isPressing = true;
+				}
+			}
+			if (Input.GetAxisRaw("Fire1") == 0)
+			{
+				isPressing = false;
+			}
+			{
+
+			}
+		}
        
     }
     public void AtkAudio()

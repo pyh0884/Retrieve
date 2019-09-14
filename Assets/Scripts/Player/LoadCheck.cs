@@ -9,15 +9,32 @@ public class LoadCheck : Trans
 	GameManager manager;
     public bool BossPortol;
 	public int bossIndex;
-    public Animator anim;
-    void Update()
+	public Animator anim;
+	private bool[] BossBeaten=new bool[3];
+	private void Start()
+	{
+		if (PlayerPrefs.GetInt("GreenBossBeaten", 0) > 0)
+		{
+			BossBeaten[1] = true;
+		}
+		if (PlayerPrefs.GetInt("YellowBossBeaten", 0) > 0)
+		{
+			BossBeaten[0] = true;
+		}
+		if (PlayerPrefs.GetInt("BlueBossBeaten", 0) > 0)
+		{
+			BossBeaten[2] = true;
+		}
+
+	}
+	void Update()
     {
         if(!manager) manager = FindObjectOfType<GameManager>();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "Player"&&(((!manager.BossBeaten[bossIndex])&&BossPortol)||(!BossPortol)))
+		if (collision.tag == "Player"&&(((!BossBeaten[bossIndex])&&BossPortol)||(!BossPortol)))
         {
 			manager.spawnPos = loadPos;
             anim.SetTrigger("FadeOut");

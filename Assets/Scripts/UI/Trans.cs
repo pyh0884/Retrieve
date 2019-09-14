@@ -32,6 +32,9 @@ public class Trans : MonoBehaviour
     }
 
 	public void ClearSaveData() {
+		if (PlayerPrefs.HasKey("MAXHP")) PlayerPrefs.DeleteKey("MAXHP");
+		if (PlayerPrefs.HasKey("CRIT")) PlayerPrefs.DeleteKey("CRIT");
+		if (PlayerPrefs.HasKey("DAMAGE")) PlayerPrefs.DeleteKey("DAMAGE");
 		if (PlayerPrefs.HasKey("YellowBossBeaten"))PlayerPrefs.DeleteKey("YellowBossBeaten");
 		if (PlayerPrefs.HasKey("BlueBossBeaten"))PlayerPrefs.DeleteKey("BlueBossBeaten");
 		if (PlayerPrefs.HasKey("GreenBossBeaten"))PlayerPrefs.DeleteKey("GreenBossBeaten");
