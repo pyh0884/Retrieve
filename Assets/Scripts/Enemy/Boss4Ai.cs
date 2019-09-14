@@ -108,7 +108,8 @@ public class Boss4Ai : MonoBehaviour
 			inkObject_Naive.SetActive(true);
 			inkObject_Naive.transform.eulerAngles = new Vector3(0, target.position.x < transform.position.x ? 0 : -180f);
 			yield return ControlFlow.ExecuteWhile(() => inkObject_Naive.activeSelf, Donothing());
-		}		
+		}
+		anim.SetTrigger("Stop");
 	}
 	
 	//过渡状态
