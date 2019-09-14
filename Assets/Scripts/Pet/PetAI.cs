@@ -17,16 +17,30 @@ public class PetAI : MonoBehaviour
     public float yOffSet;
     GameObject CurrentSkill;
 
+	private bool isPressing = false;
+
     void TryEat()
     {
-        if (Input.GetKeyDown(KeyCode.E)&& pc.controllable)
-        {
-            anim.SetTrigger("Eat");
-        }
+		if (pc.controllable)
+		{
+			if (Input.GetButtonDown("Fire4") || Input.GetAxisRaw("Fire4") != 0)
+			{				
+				if (isPressing == false)
+				{
+					// Call your event function here.
+					anim.SetTrigger("Eat");
+					isPressing = true;
+				}
+			}
+			if (Input.GetAxisRaw("Fire4") == 0)
+			{
+				isPressing = false;
+			}
+		}
     }
     void UseSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && pc.controllable)
+        if (Input.GetButtonDown("Fire3") && pc.controllable)
         {
             switch (ec.elements[1])
             {

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -211,9 +211,9 @@ MonoBehaviour:
   PauseMenu: {fileID: 0}
   loadPos: {x: 0, y: 0, z: 0}
   sceneIndex: 4
-  manager: {fileID: 0}
   BossPortol: 0
   bossIndex: 0
+  anim: {fileID: 0}
 --- !u!212 &108971015
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ SpriteRenderer:
   m_Size: {x: 8.333333, y: 5.6666665}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &108971016
@@ -3977,9 +3977,9 @@ MonoBehaviour:
   PauseMenu: {fileID: 0}
   loadPos: {x: -7.25, y: -2.93, z: 0}
   sceneIndex: 2
-  manager: {fileID: 0}
   BossPortol: 0
   bossIndex: 0
+  anim: {fileID: 0}
 --- !u!212 &1059500067
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4148,9 +4148,9 @@ MonoBehaviour:
   PauseMenu: {fileID: 0}
   loadPos: {x: -7.25, y: -2.93, z: 0}
   sceneIndex: 3
-  manager: {fileID: 0}
   BossPortol: 0
   bossIndex: 0
+  anim: {fileID: 0}
 --- !u!212 &1458025910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4198,7 +4198,7 @@ SpriteRenderer:
   m_Size: {x: 8.333333, y: 5.6666665}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1458025911
@@ -4430,6 +4430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1Ai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7122157298219054651, guid: 654e48bc8774093499f8cf08290bee02,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5752338395950375501, guid: 654e48bc8774093499f8cf08290bee02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4487,7 +4492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 889582323, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 746280079, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
