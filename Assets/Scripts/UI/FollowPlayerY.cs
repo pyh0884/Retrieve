@@ -21,9 +21,9 @@ public class FollowPlayerY : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {//if(!player) player = GameObject.FindGameObjectWithTag("Player");
-        float parallax = (previousCamPos.y - cam.position.y)* -1;
+        float parallax = (previousCamPos.y - cam.position.y) * -1;
         float backgroundTargetPosY = transform.position.y + parallax;
         Vector3 backgroundTargetPos = new Vector3(transform.position.x, backgroundTargetPosY, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, backgroundTargetPos, smooth * Time.deltaTime);
@@ -33,4 +33,5 @@ public class FollowPlayerY : MonoBehaviour
 
         //transform.position = Vector3.Lerp(transform.position,new Vector3(transform.position.x,player.transform.position.y+5,transform.position.z), smooth * Time.deltaTime);
     }
+
 }
