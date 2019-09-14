@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ShakeTest : MonoBehaviour
 {
-	public float vibrationStrength = 2;
+	public float vibrationLeft = 2;
+	public float vibrationRight = 1;
 	public float vibrationTime = 0.3f;
 	// Start is called before the first frame update
 	void Start()
@@ -18,10 +19,28 @@ public class ShakeTest : MonoBehaviour
         
     }
 
-	IEnumerator Vibration(int mode)
+	public void StartVibration(float leftStrength, float rightStrength, float time = 0.5f)
 	{
-		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, vibrationStrength, vibrationStrength);
-		yield return new WaitForSeconds(vibrationTime);
-		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+		StartCoroutine(Vibration(leftStrength, rightStrength, time));
+	}
+
+	public IEnumerator Vibration(float left,float right,float time=0.5f)
+	{
+		try
+		{
+			XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, left, right);
+			yield return new WaitForSeconds(time);
+			XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+		}
+		finally {
+			XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("PlayerAttack")) {
+			StartVibration(vibrationLeft, vibrationRight, vibrationTime);
+		}
 	}
 }
