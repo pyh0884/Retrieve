@@ -7,7 +7,6 @@ public class Boss2Ai : MonoBehaviour
 {
 	public Animator anim;
 	private SpriteRenderer sr;
-	public Boss2Shadow shadow;
 	public Transform SceneCenter;
 	public bool isAwake;
 	[Header("技能CD")]
