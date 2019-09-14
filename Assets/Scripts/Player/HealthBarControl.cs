@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class HealthBarControl : MonoBehaviour
 {
-    public int Hp = 6;
-    public int HpMax = 6;
+    public int Hp = 5;
+    public int HpMax = 5;
     public int HeartCapacity;
     public Image[] HeartImages;
     public Sprite[] HeartSprites;
@@ -22,7 +22,7 @@ public class HealthBarControl : MonoBehaviour
         gm= FindObjectOfType<GameManager>();
         Hp = gm.HP;
         HpMax = gm.MAXHP;
-        HeartCapacity = 9;
+        HeartCapacity = 10;
         currentHealth();
         anim = GetComponent<Animator>();
         invincibleCD = 0;
@@ -62,9 +62,11 @@ public class HealthBarControl : MonoBehaviour
 
     public void IncreaseMax()
     {
-        if (HpMax <= 8) 
+        if (HpMax <= 9) 
         HpMax += 1;
         Hp = HpMax;
+        currentHealth();
+        gm.HpCapacity = HpMax;
     }
     IEnumerator timeStop()
     {
@@ -125,14 +127,20 @@ public class HealthBarControl : MonoBehaviour
         {
             StartCoroutine("Die");
         }
-        //currentHealth();
         invincibleCD += Time.deltaTime;
     }
 
 	IEnumerator Vibration()
 	{
-		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, vibrationStrength, vibrationStrength);
-		yield return new WaitForSeconds(vibrationTime);
-		XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
-	}
+        try
+        {
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, vibrationStrength, vibrationStrength);
+            yield return new WaitForSeconds(vibrationTime);
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+        }
+        finally
+        {
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+        }
+    }
 }

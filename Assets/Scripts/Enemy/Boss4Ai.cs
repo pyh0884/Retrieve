@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Coroutines;
-
+//章鱼Boss
 public class Boss4Ai : MonoBehaviour
 {
 	public float CD_Time = 5;
@@ -20,6 +20,7 @@ public class Boss4Ai : MonoBehaviour
 	[Header("喷墨")]
 	public GameObject inkObject;
 	public GameObject inkObject_Naive;
+    public Animator anim;
 
 
 	List<IEnumerable<Instruction>> SkillList;
@@ -27,6 +28,7 @@ public class Boss4Ai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
 
 	}
@@ -86,6 +88,8 @@ public class Boss4Ai : MonoBehaviour
 		Destroy(fork);
 	}
 	IEnumerable<Instruction> StoneFall(Transform target,bool aftermath=false) {
+        anim.SetTrigger("Attack1");
+        yield return Utils.WaitForSeconds(0.5f);
 		int[] waitList = isSelected(stoneSpawnPos.Count, aftermath ? Phase2Num : phase1Num);
 		for (int i = 0; i < (aftermath ? Phase2Num : phase1Num); i++) {
 			Instantiate(stonePrefab, stoneSpawnPos[waitList[i]]);
@@ -93,7 +97,8 @@ public class Boss4Ai : MonoBehaviour
 		yield break;
 	}
 	IEnumerable<Instruction> Splash(Transform target,bool aftermath=false) {
-		if (aftermath)
+        anim.SetTrigger("Attack2");
+        if (aftermath)
 		{
 			inkObject.SetActive(true);
 			inkObject.transform.eulerAngles = new Vector3(0, target.position.x < transform.position.x ? 0 : -180f);

@@ -11,7 +11,7 @@ public class BackgroundChoose : MonoBehaviour
 	public List<GameObject> Background_Blue;
 	public List<GameObject> Background_Blue_G;
     // Start is called before the first frame update
-    private void Awake()
+    private void Update()
     {
 		if (PlayerPrefs.HasKey("YellowBossBeaten"))
 		{
