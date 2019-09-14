@@ -82,9 +82,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        HpCapacity = 6;
         CurrentHp = HpCapacity;
-        CurrentDMG = 0;
         BossIndex = 0;
 	}
     public void Respawn()
@@ -111,8 +109,8 @@ public class GameManager : MonoBehaviour
 		{
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
-        CurrentHp = player.GetComponent<HealthBarControl>().Hp;
-        HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
+        //CurrentHp = player.GetComponent<HealthBarControl>().Hp;
+        //HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
     }
 }
 
