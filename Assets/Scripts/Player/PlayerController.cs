@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float tempHorizontalDirection;
     public AudioManager am;
     private Scene scene;
+	private GameObject st;
 
 	/// <summary>
 	/// dash movement variables
@@ -297,6 +298,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(DustEFX, transform.position, Quaternion.Euler(-90, 0, 0));
             am.Play("PlayerLand");
+			st.GetComponent<ShakeTest>().StartVibration(0.3f, 0.3f, 0.1f);
             highFallTimer = 0;
         }
     }
@@ -314,6 +316,7 @@ public class PlayerController : MonoBehaviour
 				if (isPressing == false)
 				{
 					// Call your event function here.
+					st.GetComponent<ShakeTest>().StartVibration(0.05f, 0.1f, 0.2f);
 					if (isGround)
 					{
 						//slowMultiplier = 0.7f;
@@ -363,7 +366,8 @@ public class PlayerController : MonoBehaviour
         DashTime = 0.2f;
         DashTimer = 2.5f;
         anim = GetComponent<Animator>();
-
+		st = new GameObject();
+		st.AddComponent<ShakeTest>();
 	}
     private void Awake()
     {

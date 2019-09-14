@@ -15,7 +15,7 @@ public class HealthBarControl : MonoBehaviour
     public float invincibleCD;
     public bool cheat;
     public float JumpTimer;
-	public float vibrationStrength = 2;
+	public float vibrationStrength = 1.5f;
 	public float vibrationTime = 0.3f;
     void Awake()
     {
