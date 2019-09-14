@@ -298,7 +298,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(DustEFX, transform.position, Quaternion.Euler(-90, 0, 0));
             am.Play("PlayerLand");
-			st.GetComponent<ShakeTest>().StartVibration(0.3f, 0.3f, 0.1f);
+			st.GetComponent<ShakeTest>().StartVibration(0.1f, 0.1f, 0.1f);
             highFallTimer = 0;
         }
     }
@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
 				if (isPressing == false)
 				{
 					// Call your event function here.
-					st.GetComponent<ShakeTest>().StartVibration(0.05f, 0.1f, 0.2f);
+					st.GetComponent<ShakeTest>().StartVibration(0.01f, 0.02f, 0.1f);
 					if (isGround)
 					{
 						//slowMultiplier = 0.7f;

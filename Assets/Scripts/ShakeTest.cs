@@ -36,11 +36,4 @@ public class ShakeTest : MonoBehaviour
 			XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
 		}
 	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.CompareTag("PlayerAttack")) {
-			StartVibration(vibrationLeft, vibrationRight, vibrationTime);
-		}
-	}
 }
