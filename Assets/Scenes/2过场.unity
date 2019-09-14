@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 490953534}
   - component: {fileID: 490953533}
   - component: {fileID: 490953532}
+  - component: {fileID: 490953538}
   m_Layer: 5
   m_Name: "\u6F2B\u753B"
   m_TagString: Untagged
@@ -563,6 +564,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &490953538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490953531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f600c52b32faed41bf01d3787837353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 814152953}
 --- !u!1 &638504206
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +667,7 @@ PrefabInstance:
     - target: {fileID: 2988254367076081490, guid: 9a5e66b6b6bb7bf4fa40a02b5ca66e84,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2988254367076081501, guid: 9a5e66b6b6bb7bf4fa40a02b5ca66e84,
         type: 3}
@@ -759,6 +773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988254367076081500, guid: 9a5e66b6b6bb7bf4fa40a02b5ca66e84,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5e66b6b6bb7bf4fa40a02b5ca66e84, type: 3}
@@ -912,6 +931,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799457192}
   m_CullTransparentMesh: 0
+--- !u!95 &814152953 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2988254366950231499, guid: 9a5e66b6b6bb7bf4fa40a02b5ca66e84,
+    type: 3}
+  m_PrefabInstance: {fileID: 682002625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1081829991
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1081829992
 RectTransform:
   m_ObjectHideFlags: 0
