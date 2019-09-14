@@ -268,6 +268,7 @@ public class Boss1Ai : MonoBehaviour
 	}
 	IEnumerable<Instruction> BeforeDie()
 	{
+		PlayerPrefs.SetInt("YellowBossBeaten", 1);
 		Debug.Log("我要死了");
 		yield break;
 	}
