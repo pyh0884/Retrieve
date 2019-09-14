@@ -30,4 +30,18 @@ public class Trans : MonoBehaviour
     {
         SceneManager.LoadScene(number);
     }
+
+	public void ClearSaveData() {
+		if (PlayerPrefs.HasKey("YellowBossBeaten"))PlayerPrefs.DeleteKey("YellowBossBeaten");
+		if (PlayerPrefs.HasKey("BlueBossBeaten"))PlayerPrefs.DeleteKey("BlueBossBeaten");
+		if (PlayerPrefs.HasKey("GreenBossBeaten"))PlayerPrefs.DeleteKey("GreenBossBeaten");
+		if (PlayerPrefs.HasKey("RespwanX"))PlayerPrefs.DeleteKey("RespwanX");
+		if (PlayerPrefs.HasKey("RespwanY"))PlayerPrefs.DeleteKey("RespwanY");
+		if (PlayerPrefs.HasKey("RespwanSceneIndex"))PlayerPrefs.DeleteKey("RespwanSceneIndex");
+		for (int i = 0; i <= 30; i++) {
+			if (PlayerPrefs.HasKey("TresuareChestOpened" + i)) {
+				PlayerPrefs.DeleteKey("TresuareChestOpened" + i);
+			}
+		}
+	}
 }

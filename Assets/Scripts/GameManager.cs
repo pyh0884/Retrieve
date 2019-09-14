@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
             Destroy(gameObject);
-
+		
         if (instance == null)
             instance = this;
         else

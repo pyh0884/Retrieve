@@ -4,32 +4,18 @@ using UnityEngine;
 
 public class TresureChest : MonoBehaviour
 {
-	public GameManager manager;
 	public int chestIndex;
-	public GameObject content;
-	public GameObject opened;
 
-	private void Awake()
+	public void Start()
 	{
-		if (!manager) manager = FindObjectOfType<GameManager>();
-	}
-
-	private void Start()
-	{
-		if (manager.TreasureChestOpened[chestIndex])
+		if (PlayerPrefs.HasKey("TresuareChestOpened"+chestIndex))
 		{
-			Instantiate(opened, transform.position, new Quaternion());
+			if(PlayerPrefs.GetInt("TresuareChestOpened" + chestIndex,0)>0)
 			Destroy(gameObject);
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.tag == "PlayerAttack") {
-			Instantiate(opened, transform.position, new Quaternion());
-			Instantiate(content, transform.position, new Quaternion());
-			manager.TreasureChestOpened[chestIndex] = true;
-			Destroy(gameObject);
-		}
+	public void SaveOpenState() {
+		PlayerPrefs.SetInt("TresuareChestOpened" + chestIndex, 1);
 	}
 }
