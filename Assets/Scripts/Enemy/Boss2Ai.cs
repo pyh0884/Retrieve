@@ -7,7 +7,6 @@ public class Boss2Ai : MonoBehaviour
 {
 	public Animator anim;
 	private SpriteRenderer sr;
-	public Boss2Shadow shadow;
 	public Transform SceneCenter;
 	public bool isAwake;
 	[Header("技能CD")]
@@ -143,6 +142,7 @@ public class Boss2Ai : MonoBehaviour
 	}
 	IEnumerable<Instruction> BeforeDie()
 	{
+		PlayerPrefs.SetInt("GreenBossBeaten", 1);
 		Debug.Log("我要死了");
 		yield break;
 	}
