@@ -19,7 +19,9 @@ public class Boss4Ai : MonoBehaviour
 	public int Phase2Num = 7;
 	[Header("喷墨")]
 	public GameObject inkObject;
+	public GameObject inkObject_Left;
 	public GameObject inkObject_Naive;
+	public GameObject inkObject_Naive_Left;
     private Animator anim;
     public RuntimeAnimatorController AngryAnim;
 
@@ -100,17 +102,10 @@ public class Boss4Ai : MonoBehaviour
 	}
 	IEnumerable<Instruction> Splash(Transform target,bool aftermath=false) {
         anim.SetTrigger("Attack2");
-        if (aftermath)
-		{
-			inkObject.SetActive(true);
-			inkObject.transform.eulerAngles = new Vector3(0, target.position.x < transform.position.x ? 0 : -180f);
-			yield return ControlFlow.ExecuteWhile(() => inkObject.activeSelf, Donothing());
-		}
-		else {
-			inkObject_Naive.SetActive(true);
-			inkObject_Naive.transform.eulerAngles = new Vector3(0, target.position.x < transform.position.x ? 0 : -180f);
-			yield return ControlFlow.ExecuteWhile(() => inkObject_Naive.activeSelf, Donothing());
-		}
+		bool left = target.position.x < transform.position.x;
+		GameObject obj = aftermath ? (left ? inkObject_Left : inkObject) : (left ? inkObject_Naive_Left : inkObject_Naive);
+	    obj.SetActive(true);
+		yield return ControlFlow.ExecuteWhile(() => obj.activeSelf, Donothing());
 		anim.SetTrigger("Stop");
 	}
 	
