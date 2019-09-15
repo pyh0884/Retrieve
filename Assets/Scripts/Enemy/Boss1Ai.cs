@@ -52,12 +52,14 @@ public class Boss1Ai : MonoBehaviour
     public Animator anim;
     public GameObject Boss1Echo;
     public RuntimeAnimatorController AngryAnim;
-
+	GameObject st;
 
     List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;
     void Awake()
     {
+		st = new GameObject();
+		st.AddComponent<ShakeTest>();
 		enemyRigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -324,6 +326,7 @@ public class Boss1Ai : MonoBehaviour
 				while (enemyRigidBody.velocity.y>0)yield return null;
 				while (!isGround) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
+				st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
 				if (aftermath)
 				{
 					targetPos = target.position;

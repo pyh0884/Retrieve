@@ -52,13 +52,15 @@ public class Boss2Ai : MonoBehaviour
 	public Collider2D skill3;
     public RuntimeAnimatorController AngryAnim;
 
-
+	GameObject st;
 
     List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;//协程根节点
 
 	void Start()
 	{
+		st = new GameObject();
+		st.AddComponent<ShakeTest>();
 		anim = GetComponent<Animator>();
 		sr = GetComponent<SpriteRenderer>();
 		_Main = new Coroutines.Coroutine(Main());//根节点初始化
@@ -216,7 +218,9 @@ public class Boss2Ai : MonoBehaviour
 			for (int i = 0; i < num; i++)
 			{
 				Instantiate(stabPrefab, stabPosList[stabNumList[i]].position, new Quaternion());
+				
 			}
+			st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
 			yield return Utils.WaitForSeconds(waitTime_GhostFire);
 		}
 		else

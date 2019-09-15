@@ -25,14 +25,16 @@ public class Boss4Ai : MonoBehaviour
     private Animator anim;
     public RuntimeAnimatorController AngryAnim;
 
-
+	GameObject st;
 
     List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+		st = new GameObject();
+		st.AddComponent<ShakeTest>();
+		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
 
 	}
@@ -52,6 +54,7 @@ public class Boss4Ai : MonoBehaviour
 		if (Target != null)
 		{
 			var hpObject = GetComponent<BossHp>();
+			Fork1.SetActive(true);
 			yield return ControlFlow.ExecuteWhile(
 				() => hpObject.Hp > hpObject.HpMax * 0.5,
 				Phase(Target));
@@ -68,7 +71,6 @@ public class Boss4Ai : MonoBehaviour
 		try
 		{
 			SkillList.Clear();
-			SkillList.Add(Fork(target, aftermath));
 			SkillList.Add(StoneFall(target, aftermath));
 			SkillList.Add(Splash(target, aftermath));
 			int curr = SkillSelect(SkillList.Count);
@@ -85,16 +87,18 @@ public class Boss4Ai : MonoBehaviour
 	}
 
 	//技能容器
-	IEnumerable<Instruction> Fork(Transform target,bool aftermath=false) {
-		var fork = Instantiate(aftermath ? Fork3 : Fork1);
-		fork.transform.position = target.transform.position + new Vector3(target.position.x < transform.position.x ? forkXDist : -forkXDist, forkYDist);
-		yield return Utils.WaitForSeconds(forkLife);
-		Destroy(fork);
-	}
+	//IEnumerable<Instruction> Fork(Transform target,bool aftermath=false) {
+	//	GameObject fork = aftermath ? Fork3 : Fork1;
+	//	fork.SetActive(true);
+	//	fork.transform.position = target.transform.position + new Vector3(target.position.x < transform.position.x ? forkXDist : -forkXDist, forkYDist);
+	//	yield return Utils.WaitForSeconds(forkLife);
+	//	Destroy(fork);
+	//}
 	IEnumerable<Instruction> StoneFall(Transform target,bool aftermath=false) {
         anim.SetTrigger("Attack1");
         yield return Utils.WaitForSeconds(0.5f);
 		int[] waitList = isSelected(stoneSpawnPos.Count, aftermath ? Phase2Num : phase1Num);
+		st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
 		for (int i = 0; i < (aftermath ? Phase2Num : phase1Num); i++) {
 			Instantiate(stonePrefab, stoneSpawnPos[waitList[i]]);
 		}
@@ -113,12 +117,16 @@ public class Boss4Ai : MonoBehaviour
 	IEnumerable<Instruction> Change()
     {
         anim.runtimeAnimatorController = AngryAnim as RuntimeAnimatorController;
+		Fork3.SetActive(true);
+		Fork3.transform.position = Fork1.transform.position;
+		Destroy(Fork1);
         Debug.Log("血不到一半了");
 		yield break;
 	}
 	IEnumerable<Instruction> BeforeDie()
 	{
 		PlayerPrefs.SetInt("BlueBossBeaten", 1);
+		Destroy(Fork3);
 		Debug.Log("我要死了");
 		yield break;
 	}
