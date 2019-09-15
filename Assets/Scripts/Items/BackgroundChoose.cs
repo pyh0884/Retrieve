@@ -10,6 +10,7 @@ public class BackgroundChoose : MonoBehaviour
 	public List<GameObject> Background_Yellow_G;
 	public List<GameObject> Background_Blue;
 	public List<GameObject> Background_Blue_G;
+    public GameObject portal;
     // Start is called before the first frame update
     private void Update()
     {
@@ -55,5 +56,12 @@ public class BackgroundChoose : MonoBehaviour
 				}
 			}
 		}
+        if (PlayerPrefs.HasKey("BlueBossBeaten") && PlayerPrefs.HasKey("GreenBossBeaten") && PlayerPrefs.HasKey("YellowBossBeaten"))
+        {
+            if (PlayerPrefs.GetInt("BlueBossBeaten", 0) > 0 && PlayerPrefs.GetInt("GreenBossBeaten", 0) > 0 && PlayerPrefs.GetInt("YellowBossBeaten", 0) > 0)
+            {
+                portal.SetActive(true);
+            }
+        }
 	}
 }

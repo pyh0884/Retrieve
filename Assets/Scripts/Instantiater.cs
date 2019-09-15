@@ -9,6 +9,7 @@ public class Instantiater : MonoBehaviour
     void Start()
     {
 		for (int i = 0; i < monsters.Count; i++) Instantiate(monsters[i], transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

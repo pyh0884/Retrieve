@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: 3bd46ad84c00a104984b4095652d068f
+guid: 4033f6306cf0bfa4ba74ec54a5de9e11
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6963903149986692927
-    second: slim die_0
+      213: -3295478734950127446
+    second: item_ladder_0
   - first:
-      213: -1831718321260452464
-    second: slim die_1
+      213: 1122274812373708130
+    second: item_ladder_1
   - first:
-      213: -1762762282959246838
-    second: slim die_2
+      213: -5109395647702373754
+    second: item_ladder_2
   - first:
-      213: -248679073097581408
-    second: slim die_3
+      213: -4590376766578467247
+    second: item_ladder_3
   - first:
-      213: 553292977075822533
-    second: slim die_4
+      213: -205324273002025589
+    second: item_ladder_4
   - first:
-      213: -7206443562488476513
-    second: slim die_5
+      213: -2420498295456802000
+    second: item_ladder_5
   - first:
-      213: -4812310875569389635
-    second: slim die_6
+      213: 8511990930518499295
+    second: item_ladder_6
   - first:
-      213: 8475768511102637454
-    second: slim die_7
+      213: 4928630244110470298
+    second: item_ladder_7
+  - first:
+      213: 8984486711910942502
+    second: item_ladder_8
+  - first:
+      213: -471775585362233221
+    second: item_ladder_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -69,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,169 +128,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slim die_0
+      name: item_ladder_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f86affbe5cc4b134fab3d7979d2530c5
+      internalID: -3295478734950127446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef237c9f0fed6aa4b98333a79c93cc2a
+      internalID: 1122274812373708130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8e8d8e7989b3f4ea6b9058d7f10fc3
+      internalID: -5109395647702373754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c29d5f80491b024e8f0a1f5f1137843
+      internalID: -4590376766578467247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f6b4361e7e22e4ba902745fa70991c
+      internalID: -205324273002025589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ee30628e60d93e4e9ccf476400be808
+      internalID: -2420498295456802000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665bfbdd9faa18444a33e3ce78263373
+      internalID: 8511990930518499295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69236a642ccdcf74092f2aab8861f33e
+      internalID: 4928630244110470298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_ladder_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 614af017f20708c4abb3962b937ffe6c
-      internalID: 6963903149986692927
+      spriteID: 7a5bd1ed4359f6d46a321baceab85176
+      internalID: 8984486711910942502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slim die_1
+      name: item_ladder_9
       rect:
         serializedVersion: 2
-        x: 42
+        x: 32
         y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c530c75e138b1b44a90a388e90fba28
-      internalID: -1831718321260452464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_2
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db6bbf9942e329745ba2f06a8c8a5e61
-      internalID: -1762762282959246838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_3
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33931255d88a0384bb855329e5830ca8
-      internalID: -248679073097581408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_4
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee28a6f9a7e29994c87b3c5bfffbc7f8
-      internalID: 553292977075822533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_5
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23e0fb77c30885749a8b025ce1e7e171
-      internalID: -7206443562488476513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_6
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 081861c6ad4d0e94eaea177351ff17ec
-      internalID: -4812310875569389635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slim die_7
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6b7d809104fa95479ab5731f62b4f81
-      internalID: 8475768511102637454
+      spriteID: 573169a1fc3acf84b9804d977974ab03
+      internalID: -471775585362233221
       vertices: []
       indices: 
       edges: []
