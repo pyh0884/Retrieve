@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Instantiater : MonoBehaviour
 {
-    public GameObject[] monsters;
+    public List<GameObject> monsters;
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(monsters[0], transform.position, Quaternion.identity);
-        Instantiate(monsters[1], transform.position, Quaternion.identity);
-        Instantiate(monsters[2], transform.position, Quaternion.identity);
-        Instantiate(monsters[3], transform.position, Quaternion.identity);
-        Instantiate(monsters[4], transform.position, Quaternion.identity);
-
-
+		for (int i = 0; i < monsters.Count; i++) Instantiate(monsters[i], transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
