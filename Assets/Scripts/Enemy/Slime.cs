@@ -135,7 +135,7 @@ public class Slime : MonoBehaviour
 
 	IEnumerable<Instruction> Attack() {
 		//播放动画,动画结束时将attackOver置true;
-			anim.SetTrigger("Attack");
+		anim.SetTrigger("Attack");
 		while (!attackOver)
 		{
 			Debug.Log("Attacking");
