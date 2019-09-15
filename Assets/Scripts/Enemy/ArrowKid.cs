@@ -20,9 +20,11 @@ public class ArrowKid : MonoBehaviour
 	private Animator anim;
 	private Rigidbody2D rb;
 	Coroutines.Coroutine _Main;
+	MonsterHitBack hb;
 
 	private void Awake()
 	{
+		hb = GetComponent<MonsterHitBack>();
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 		right = transform.right.x > 0 ? true : false;
@@ -138,7 +140,7 @@ public class ArrowKid : MonoBehaviour
 			anim.SetTrigger("Attack");
 			yield return Utils.WaitForSeconds(shootGap);
 			Vector3 targetTrans = transform.position + new Vector3(transform.right.x < 0 ? runAmt : -runAmt, 0);
-			while (transform.position != targetTrans)
+			while (transform.position != targetTrans&&!hb.isWall&&hb.isGround)
 			{
 				transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
 				yield return null;
@@ -152,4 +154,6 @@ public class ArrowKid : MonoBehaviour
 		proj.transform.right = transform.right;
 		proj.InitialForce = transform.right * _ProjectileInitialVelocity;
 	}
+
+
 }

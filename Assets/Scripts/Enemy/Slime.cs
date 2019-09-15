@@ -54,7 +54,7 @@ public class Slime : MonoBehaviour
 				);
 			if (target != null)
 			{
-				yield return ControlFlow.ExecuteWhileRunning(
+				yield return ControlFlow.ConcurrentCall(
 					WaitForSecondsCr(CD_Time),
 					TrackTarget(target, isright=>right=isright)
 					);
@@ -123,6 +123,7 @@ public class Slime : MonoBehaviour
 					isRight(isright);
 				}
 				Debug.Log("Tracking");
+				if (Mathf.Abs(dist.x) < attackRange) yield break;
 				yield return null;
 			}
 		}

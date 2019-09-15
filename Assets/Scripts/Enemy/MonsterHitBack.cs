@@ -44,7 +44,7 @@ public class MonsterHitBack : MonoBehaviour
 		} 
 	}
 
-	bool isGround
+	public bool isGround
 	{
 		get
 		{
@@ -59,7 +59,7 @@ public class MonsterHitBack : MonoBehaviour
 		}
 	}
 
-	bool isWall
+	public bool isWall
 	{
 		get
 		{
