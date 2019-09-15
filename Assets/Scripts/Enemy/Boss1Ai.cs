@@ -13,6 +13,7 @@ public class Boss1Ai : MonoBehaviour
 	public float stopstopDist = 0.5f;
 	public GameObject player;
 	public GameObject stonePrefab;
+    public GameObject stonePrefab2;
     [Header("投掷起始点")]
     public List<Transform> handTrans;
 	public GameObject quakePrefab0;

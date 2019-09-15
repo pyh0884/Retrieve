@@ -46,7 +46,9 @@ public class PlayerController : MonoBehaviour
 	public float distance;
 	[Header("start point of the ray")]
 	public Transform groundCheck;
-	[Header("ground mask")]
+    public Transform groundCheck2;
+
+    [Header("ground mask")]
 	public LayerMask groundLayer;
 	public bool grounded;
 
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
     void MovementX()
 	{
         horizontalDirection = Input.GetAxisRaw("Horizontal");
+        if (horizontalDirection < 0) horizontalDirection = -1;
+        else if (horizontalDirection > 0) horizontalDirection = 1;
         if (Time.timeScale != 0 && controllable)
         {
             if (horizontalDirection != 0 && isGround && !isAttacking)
@@ -162,7 +166,8 @@ public class PlayerController : MonoBehaviour
 			Vector2 start = groundCheck.position;
 			Vector2 end = new Vector2(start.x, start.y - distance);
 			Debug.DrawLine(start, end, Color.blue);
-			grounded = Physics2D.Linecast(start, end, groundLayer);
+            Debug.DrawLine(groundCheck2.position, new Vector2(groundCheck2.position.x,groundCheck2.position.y-distance), Color.blue);
+            grounded = (Physics2D.Linecast(start, end, groundLayer)|| Physics2D.Linecast(groundCheck2.position, new Vector2(groundCheck2.position.x, groundCheck2.position.y - distance), groundLayer));
 			return grounded;
 		}
 	}
@@ -294,11 +299,14 @@ public class PlayerController : MonoBehaviour
     public void InsDust()
     {
 
-        if (highFallTimer >= 0.65f)
+        if (highFallTimer >= 0.25f)
         {
             Instantiate(DustEFX, transform.position, Quaternion.Euler(-90, 0, 0));
-            am.Play("PlayerLand");
-			st.GetComponent<ShakeTest>().StartVibration(0.1f, 0.1f, 0.1f);
+            if (highFallTimer >= 1.2f)
+            {
+                am.Play("PlayerLand");
+                st.GetComponent<ShakeTest>().StartVibration(0.05f, 0.05f, 0.1f);
+            }
             highFallTimer = 0;
         }
     }
@@ -316,7 +324,7 @@ public class PlayerController : MonoBehaviour
 				if (isPressing == false)
 				{
 					// Call your event function here.
-					st.GetComponent<ShakeTest>().StartVibration(0.01f, 0.02f, 0.1f);
+					//st.GetComponent<ShakeTest>().StartVibration(0.01f, 0.02f, 0.1f);
 					if (isGround)
 					{
 						//slowMultiplier = 0.7f;
@@ -344,6 +352,7 @@ public class PlayerController : MonoBehaviour
     }
     public void AtkAudio()
     {
+        st.GetComponent<ShakeTest>().StartVibration(0.01f, 0.02f, 0.1f);
         am.Play("Nothing");
     }
     public void controllableOn()
@@ -537,6 +546,11 @@ public class PlayerController : MonoBehaviour
         //    playerRigidbody2D.gravityScale = 0;
         //else playerRigidbody2D.gravityScale = 1;
         MovementX();
+    }
+    private void FixedUpdate()
+    {
+        MovementX();
+
     }
     //public float WallTime=0.3f;
     //void wallJump()

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8508571642360860234}
-  - component: {fileID: 8508571642360860233}
   - component: {fileID: 8508571642360860232}
   - component: {fileID: 8508571642360860239}
   - component: {fileID: -2663926568598783179}
+  - component: {fileID: 420767233992792061}
   m_Layer: 11
   m_Name: "\u84DD\u8272\u77F3\u5934"
   m_TagString: EnemyAttack
@@ -34,22 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &8508571642360860233
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8508571642360860238}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!212 &8508571642360860232
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3525846479783296584, guid: 3459737cb47dca44c87c56376f37c8fb,
+  m_Sprite: {fileID: 8583458596983680649, guid: 1b318bf19529a3442bcac5052ac31750,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,3 +118,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 1
+--- !u!70 &420767233992792061
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508571642360860238}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0

@@ -70,7 +70,7 @@ public class HealthBarControl : MonoBehaviour
     }
     IEnumerator timeStop()
     {
-        Time.timeScale = 0.15f;
+        Time.timeScale = 0.4f;
         yield return new WaitForSecondsRealtime(0.2f);
         Time.timeScale = 1;
     }

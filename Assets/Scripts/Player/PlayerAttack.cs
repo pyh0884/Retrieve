@@ -12,6 +12,20 @@ public class PlayerAttack : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
     }
+    public IEnumerator Vibration(float left, float right, float time = 0.5f)
+    {
+        try
+        {
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, left, right);
+            yield return new WaitForSeconds(time);
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+        }
+        finally
+        {
+            XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -32,10 +46,11 @@ public class PlayerAttack : MonoBehaviour
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier) * 2, 1);
                 else
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier));
-    
+
                 //collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
 
             }
+            StartCoroutine(Vibration(0.03f, 0.03f, 0.1f));
             attackEffect = Instantiate(attackEffectPrefab, (transform.position + collision.transform.position) / 2, new Quaternion());
 			attackEffect.transform.right = GetAttackAngle(transform.position, collision.gameObject.transform.position);
 		}
