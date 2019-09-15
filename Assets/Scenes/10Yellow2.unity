@@ -16896,11 +16896,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2857112702882516301, guid: 391ee35ad8047f948ab2d60201d423a5,
-        type: 3}
-      propertyPath: chestIndex
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 2857112702882516296, guid: 391ee35ad8047f948ab2d60201d423a5,
         type: 3}
       propertyPath: m_Offset.y
@@ -16920,6 +16915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.x
       value: -0.26500076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857112702882516301, guid: 391ee35ad8047f948ab2d60201d423a5,
+        type: 3}
+      propertyPath: chestIndex
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391ee35ad8047f948ab2d60201d423a5, type: 3}
@@ -21910,7 +21910,7 @@ MonoBehaviour:
   PauseMenu: {fileID: 0}
   loadPos: {x: 0, y: -1, z: 0}
   sceneIndex: 11
-  BossPortol: 1
+  BossPortol: 0
   bossIndex: 0
   anim: {fileID: 1398854718}
 --- !u!114 &2200519915995767652

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 		{
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
-        //CurrentHp = player.GetComponent<HealthBarControl>().Hp;
+        CurrentHp = player.GetComponent<HealthBarControl>().Hp;
         //HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
     }
 }

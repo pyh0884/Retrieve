@@ -246,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 100
-  HpMax: 100
+  Hp: 1000
+  HpMax: 1000
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -296,9 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10122e9299aea7245b0e4ec920ea7b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBackDist: 2
+  hitBackDist: 0.5
   hitBackSpeed: 10
-  maxBackFrame: 10
+  maxBackFrame: 8
   GroundCheck1: {fileID: 2931371425205194953}
   GroundCheck2: {fileID: 2941369887380423697}
   WallCheck: {fileID: 5648374008223415338}
