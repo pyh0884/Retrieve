@@ -54,13 +54,12 @@ public class Slime : MonoBehaviour
 				);
 			if (target != null)
 			{
-				yield return ControlFlow.ExecuteWhile(
-					() => Vector3.Distance(target.position, transform.position) > attackRange/*&& Vector3.Distance(target.position, transform.position)<catchXRange*/,
+				yield return ControlFlow.ExecuteWhileRunning(
+					WaitForSecondsCr(CD_Time),
 					TrackTarget(target, isright=>right=isright)
 					);
 				attackOver = false;				
 				yield return ControlFlow.ExecuteWhile(()=>!attackOver,Attack());
-				yield return Utils.WaitForSeconds(CD_Time);
 				attackOver = true;
 			}
 		}
@@ -141,6 +140,11 @@ public class Slime : MonoBehaviour
 			Debug.Log("Attacking");
 			yield return null;
 		}
+	}
+
+	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
+	{
+		yield return Utils.WaitForSeconds(seconds);
 	}
 
 	bool isGround
