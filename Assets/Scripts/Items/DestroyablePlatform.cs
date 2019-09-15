@@ -23,7 +23,8 @@ public class DestroyablePlatform : MonoBehaviour
     }
     IEnumerator DestroyPlatform()
     {
-        yield return new WaitForSeconds(1.5f);
+        GetComponent<Animator>().SetTrigger("Stand");
+        yield return new WaitForSeconds(2);
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         Timer = 0;
