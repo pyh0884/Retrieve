@@ -127,11 +127,14 @@ public class stabStab : MonoBehaviour
 		try
 		{
 			while (true)
-			{
+			{			
 				anim.SetTrigger("Attack");
 				yield return Utils.WaitForFrames(2);
-				var stab = GameObject.Instantiate(stabPrefab);
-				stab.transform.position = new Vector3(target.position.x, transform.position.y);
+				if (!gothit)
+				{
+					var stab = GameObject.Instantiate(stabPrefab);
+					stab.transform.position = new Vector3(target.position.x, transform.position.y);
+				}
 				yield return Utils.WaitForSeconds(CDTime);
 			}
 		}
