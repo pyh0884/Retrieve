@@ -20,6 +20,8 @@ public class FishPeddle : MonoBehaviour
 	public float hitBackSpeed = 5;
 	public int maxBackFrame = 10;
 
+    public bool gothit = false;
+
 	Coroutines.Coroutine _Main;
 
 	// Start is called before the first frame update
@@ -51,6 +53,7 @@ public class FishPeddle : MonoBehaviour
 		while (frameCount < maxBackFrame)
 		{
 			curr.position = Vector3.MoveTowards(curr.position, target, hitBackSpeed * Time.deltaTime);
+            gothit = true;
 			yield return null;
 			frameCount++;
 		}
@@ -106,11 +109,16 @@ public class FishPeddle : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> GridLie(Transform center,Transform vice,bool right) {
-		while ((vice.position - center.position).sqrMagnitude < prepareRadius * prepareRadius / 4.0f)
-		{
-			vice.position += vice.up * Time.deltaTime * (right?gridSpeed:-gridSpeed);
-			yield return null;
-		}
+        //while ((vice.position - center.position).sqrMagnitude < prepareRadius * prepareRadius / 4.0f)
+        //{
+        //	vice.position += vice.up * Time.deltaTime * (right?gridSpeed:-gridSpeed);
+        //	yield return null;
+        //}
+        Vector3 targetPos = center.position + center.up * (right ? prepareRadius : -prepareRadius);
+        while (vice.position != targetPos) {
+            vice.position = Vector3.MoveTowards(vice.position, targetPos, gridSpeed * Time.deltaTime);
+            yield return null;
+        }
 	}
 
 	IEnumerable<Instruction> Prepare(Transform target, System.Action<bool> detached)
@@ -128,16 +136,10 @@ public class FishPeddle : MonoBehaviour
 
 	IEnumerable<Instruction> Strike(Transform target, Transform curr, System.Action<bool> need)
 	{
-		Vector3 dist, strikeTarget;
-		dist = target.position - curr.position;
-		strikeTarget = target.position + extraDist * dist.normalized;
-		while (curr.position != strikeTarget)
-		{
-			curr.position = Vector3.MoveTowards(curr.position, strikeTarget, strikeSpeed * Time.deltaTime);
-			yield return null;
-		}
-		yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(CD_Time_Strike), FocusOn(target, curr));
-		need(true);
+        gothit = false;
+        yield return ControlFlow.ExecuteWhile(() => !gothit, StrikeMove(target, curr));
+        yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(CD_Time_Strike), FocusOn(target, curr));
+        need(true);
 	}
 	IEnumerable<Instruction> WaitForSecondsCr(float seconds) {
 		yield return Utils.WaitForSeconds(seconds);
@@ -152,4 +154,16 @@ public class FishPeddle : MonoBehaviour
 			yield return null;
 		}
 	}
+
+    IEnumerable<Instruction> StrikeMove(Transform target, Transform curr) {
+        Vector3 dist, strikeTarget;
+        dist = target.position - curr.position;
+        strikeTarget = target.position + extraDist * dist.normalized;
+        while (curr.position != strikeTarget)
+        {
+            curr.position = Vector3.MoveTowards(curr.position, strikeTarget, strikeSpeed * Time.deltaTime);
+            yield return null;
+        }
+        gothit = true;
+    }
 }
