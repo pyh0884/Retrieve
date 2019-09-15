@@ -38,7 +38,7 @@ public class MonsterHitBack : MonoBehaviour
 		//else target = transform.position + new Vector3(-hitBackDist, 0, 0);
 		while (frameCount<maxBackFrame) {
 			transform.position = Vector3.MoveTowards(transform.position, target, hitBackSpeed * Time.deltaTime);
-			Debug.Log("Backing");
+			//Debug.Log("Backing");
 			yield return null;
 			frameCount++;
 		} 
