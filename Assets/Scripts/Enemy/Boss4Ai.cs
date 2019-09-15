@@ -96,7 +96,7 @@ public class Boss4Ai : MonoBehaviour
 	//}
 	IEnumerable<Instruction> StoneFall(Transform target,bool aftermath=false) {
         anim.SetTrigger("Attack1");
-        yield return Utils.WaitForSeconds(0.5f);
+        yield return Utils.WaitForSeconds(1);
 		int[] waitList = isSelected(stoneSpawnPos.Count, aftermath ? Phase2Num : phase1Num);
 		st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
 		for (int i = 0; i < (aftermath ? Phase2Num : phase1Num); i++) {
