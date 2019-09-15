@@ -85,7 +85,7 @@ public class SwordFish : MonoBehaviour
 		{
 			dist = target.position - transform.position;
 			strikeTarget = target.position + extraDist * dist.normalized;
-			yield return ControlFlow.Call(RotateFor(dist, rotateSpeedStrike));
+			yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(0.5f),RotateFor(dist, rotateSpeedStrike));
 			anim.SetTrigger("Attack");
 			while (transform.position != strikeTarget)
 			{
@@ -99,14 +99,20 @@ public class SwordFish : MonoBehaviour
 
 	IEnumerable<Instruction> RotateFor(Vector3 dist, float rotationSpeed)
 	{
+		Debug.Log("旋转开始");
 		Quaternion targetRot = Quaternion.LookRotation(dist, Vector3.forward);
 		if (dist.x < 0) targetRot.eulerAngles = new Vector3(0, 0, targetRot.eulerAngles.x);
 		else targetRot.eulerAngles = new Vector3(0, 0, 180f - targetRot.eulerAngles.x);
 		while (transform.rotation != targetRot)
 		{
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
-            Debug.Log("Rotating");
 			yield return null;
 		}
+		Debug.Log("旋转结束");
+	}
+
+	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
+	{
+		yield return Utils.WaitForSeconds(seconds);
 	}
 }

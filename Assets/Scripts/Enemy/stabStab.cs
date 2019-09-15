@@ -19,6 +19,7 @@ public class stabStab : MonoBehaviour
 	private Rigidbody2D rb;
 	private Animator anim;
 	private bool right = true;
+	public bool gothit = false;
 
 	//void Start()
 	//{
@@ -72,8 +73,9 @@ public class stabStab : MonoBehaviour
 				);
 			if (target != null)
 			{
+				gothit = false;
 				yield return ControlFlow.ExecuteWhile(
-					() => Vector3.Distance(target.position, transform.position) < lostRange,
+					() => Vector3.Distance(target.position, transform.position) < lostRange&&!gothit,
 					StabAttack(target),
 					TrackTarget(target,right)
 					);
@@ -122,13 +124,19 @@ public class stabStab : MonoBehaviour
 		}
 	}
 	IEnumerable<Instruction> StabAttack(Transform target) {
-		while (true)
+		try
 		{
-			anim.SetTrigger("Attack");
-			yield return Utils.WaitForFrames(2);
-			var stab = GameObject.Instantiate(stabPrefab);
-			stab.transform.position = new Vector3(target.position.x, transform.position.y);
-			yield return Utils.WaitForSeconds(CDTime);
+			while (true)
+			{
+				anim.SetTrigger("Attack");
+				yield return Utils.WaitForFrames(2);
+				var stab = GameObject.Instantiate(stabPrefab);
+				stab.transform.position = new Vector3(target.position.x, transform.position.y);
+				yield return Utils.WaitForSeconds(CDTime);
+			}
+		}
+		finally {
+			gothit = false;
 		}
 	}
 

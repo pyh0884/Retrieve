@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catchXRange: 7
   catchYRange: 2
-  attackRange: 2
+  attackRange: 1
   CD_Time: 2
   moveSpeed: 3
   chaseSpeed: 5
@@ -249,8 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10122e9299aea7245b0e4ec920ea7b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBackDist: -0.5
-  hitBackSpeed: 8
+  hitBackDist: -2
+  hitBackSpeed: 10
   maxBackFrame: 10
   GroundCheck1: {fileID: 8611767781049626564}
   GroundCheck2: {fileID: 930388146775241811}

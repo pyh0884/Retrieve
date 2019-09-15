@@ -54,13 +54,12 @@ public class Slime : MonoBehaviour
 				);
 			if (target != null)
 			{
-				yield return ControlFlow.ExecuteWhile(
-					() => Vector3.Distance(target.position, transform.position) > attackRange/*&& Vector3.Distance(target.position, transform.position)<catchXRange*/,
+				yield return ControlFlow.ConcurrentCall(
+					WaitForSecondsCr(CD_Time),
 					TrackTarget(target, isright=>right=isright)
 					);
 				attackOver = false;				
 				yield return ControlFlow.ExecuteWhile(()=>!attackOver,Attack());
-				yield return Utils.WaitForSeconds(CD_Time);
 				attackOver = true;
 			}
 		}
@@ -124,6 +123,7 @@ public class Slime : MonoBehaviour
 					isRight(isright);
 				}
 				Debug.Log("Tracking");
+				if (Mathf.Abs(dist.x) < attackRange) yield break;
 				yield return null;
 			}
 		}
@@ -135,12 +135,17 @@ public class Slime : MonoBehaviour
 
 	IEnumerable<Instruction> Attack() {
 		//播放动画,动画结束时将attackOver置true;
-			anim.SetTrigger("Attack");
+		anim.SetTrigger("Attack");
 		while (!attackOver)
 		{
 			Debug.Log("Attacking");
 			yield return null;
 		}
+	}
+
+	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
+	{
+		yield return Utils.WaitForSeconds(seconds);
 	}
 
 	bool isGround
