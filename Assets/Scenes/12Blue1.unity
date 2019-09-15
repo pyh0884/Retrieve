@@ -10226,6 +10226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SWORDFISH (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 139592213255603426, guid: 5c24b548eb12a2648b1e404e7d20c756,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 139592213255603428, guid: 5c24b548eb12a2648b1e404e7d20c756,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10455,6 +10460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SWORDFISH
+      objectReference: {fileID: 0}
+    - target: {fileID: 139592213255603426, guid: 5c24b548eb12a2648b1e404e7d20c756,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 139592213255603428, guid: 5c24b548eb12a2648b1e404e7d20c756,
         type: 3}
@@ -12081,7 +12091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768243536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.623904, y: -3.013752, z: -10}
+  m_LocalPosition: {x: 1.6200101, y: -3.013752, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1044651992}
@@ -12155,6 +12165,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4737560607834341124, guid: e40231cc5e19006479c23839198e1ad9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4627917599791773166, guid: e40231cc5e19006479c23839198e1ad9,
         type: 3}
       propertyPath: m_Size.x
@@ -12164,11 +12179,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.x
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737560607834341124, guid: e40231cc5e19006479c23839198e1ad9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e40231cc5e19006479c23839198e1ad9, type: 3}

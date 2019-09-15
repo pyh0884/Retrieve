@@ -90,6 +90,7 @@ public class SwordFish : MonoBehaviour
 			while (transform.position != strikeTarget)
 			{
 				transform.position = Vector3.MoveTowards(transform.position, strikeTarget, strikeSpeed * Time.deltaTime);
+                Debug.Log("Striking");
 				yield return null;
 			}
 			yield return Utils.WaitForSeconds(CD_Time_Strike);
@@ -104,6 +105,7 @@ public class SwordFish : MonoBehaviour
 		while (transform.rotation != targetRot)
 		{
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            Debug.Log("Rotating");
 			yield return null;
 		}
 	}

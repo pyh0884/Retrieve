@@ -280,10 +280,10 @@ public class Boss1Ai : MonoBehaviour
 	IEnumerable<Instruction> StoneSpawn(Transform target,bool aftermath= false)
 	{
 		anim.SetTrigger("Skill1");
-		for (int i = 0; i < handTrans.Count*(aftermath?2:1); i++)
+		for (int i = 0; i < handTrans.Count; i++)
 		{
-			Instantiate(stonePrefab, handTrans[i%handTrans.Count].position, new Quaternion());
-			yield return Utils.WaitForSeconds(stoneWaitTime/(aftermath?2:1));
+			Instantiate(aftermath? stonePrefab2 : stonePrefab, handTrans[i%handTrans.Count].position, new Quaternion());
+			yield return Utils.WaitForSeconds(stoneWaitTime);
 		}
 	}
 	IEnumerable<Instruction> Rush(Transform target,bool aftermath =false)
