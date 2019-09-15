@@ -73,7 +73,6 @@ public class Ghost : MonoBehaviour
 				//	yield return null;
 				//}
 				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, yOffset);
-				appear = true;
 				anim.SetTrigger("Attack");		
 				while (appear) yield return null;
 				yield return Utils.WaitForSeconds(CD_Time);
