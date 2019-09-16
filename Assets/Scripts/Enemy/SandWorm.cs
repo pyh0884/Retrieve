@@ -107,7 +107,7 @@ public class SandWorm : MonoBehaviour
 			{
 				attackOver = false;
 				targetPos = new Vector3(target.position.x, transform.position.y);
-				while (transform.position != targetPos)
+				while (transform.position != targetPos&&isGround&&!isWall)
 				{
 					targetPos = new Vector3(target.position.x, transform.position.y);
 					transform.right = target.right;
@@ -134,7 +134,7 @@ public class SandWorm : MonoBehaviour
 		get
 		{
 			Vector2 start = GroundCheck.transform.position;
-			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 2);
+			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 1.5f);
 			Debug.DrawLine(start, end, Color.blue);
 			Grounded = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded;
@@ -146,7 +146,7 @@ public class SandWorm : MonoBehaviour
 		get
 		{
 			Vector2 start = WallCheck.transform.position;
-			Vector2 end = new Vector2(WallCheck.transform.position.x + (right ? 2 : -2), WallCheck.transform.position.y);
+			Vector2 end = new Vector2(WallCheck.transform.position.x +transform.right.x, WallCheck.transform.position.y);
 			Debug.DrawLine(start, end, Color.red);
 			Walled = Physics2D.Linecast(start, end, wallLayer);
 			return Walled;

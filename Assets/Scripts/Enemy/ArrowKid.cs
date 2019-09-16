@@ -20,11 +20,19 @@ public class ArrowKid : MonoBehaviour
 	private Animator anim;
 	private Rigidbody2D rb;
 	Coroutines.Coroutine _Main;
-	MonsterHitBack hb;
+
+	public GameObject GroundCheck1;
+	public GameObject GroundCheck2;
+	public GameObject WallCheck;
+	public bool Grounded1;
+	public bool Grounded2;
+	public bool Walled1;
+	public bool Walled2;
+	public LayerMask groundLayer;
+	public LayerMask wallLayer;
 
 	private void Awake()
 	{
-		hb = GetComponent<MonsterHitBack>();
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 		right = transform.right.x > 0 ? true : false;
@@ -102,6 +110,7 @@ public class ArrowKid : MonoBehaviour
 				yield return null;
 				rb.velocity = new Vector2(right ? moveSpeed : -moveSpeed, 0);
 				Debug.Log("Chasing");
+				if (isWall1 || !isGround1)yield break;
 			}
 		}
 		finally
@@ -140,8 +149,9 @@ public class ArrowKid : MonoBehaviour
 			anim.SetTrigger("Attack");
 			yield return Utils.WaitForSeconds(shootGap);
 			Vector3 targetTrans = transform.position + new Vector3(transform.right.x < 0 ? runAmt : -runAmt, 0);
-			while (transform.position != targetTrans&&!hb.isWall&&hb.isGround)
+			while (transform.position != targetTrans)
 			{
+				if (isWall2 || !isGround2) break;
 				transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
 				yield return null;
 			}
@@ -155,5 +165,48 @@ public class ArrowKid : MonoBehaviour
 		proj.InitialForce = transform.right * _ProjectileInitialVelocity;
 	}
 
+	bool isGround1 {
+		get {
+			Vector2 start = GroundCheck1.transform.position;
+			Vector2 end = new Vector2(GroundCheck1.transform.position.x,GroundCheck1.transform.position.y-1.5f);
+			Debug.DrawLine(start, end, Color.magenta);
+			Grounded1 = Physics2D.Linecast(start, end, groundLayer);
+			return Grounded1;
+		}
+	}
 
+	bool isGround2
+	{
+		get
+		{
+			Vector2 start = GroundCheck2.transform.position;
+			Vector2 end = new Vector2(GroundCheck2.transform.position.x, GroundCheck2.transform.position.y - 1.5f);
+			Debug.DrawLine(start, end, Color.magenta);
+			Grounded2 = Physics2D.Linecast(start, end, groundLayer);
+			return Grounded2;
+		}
+	}
+
+	bool isWall1
+	{
+		get
+		{
+			Vector2 start = WallCheck.transform.position;
+			Vector2 end = new Vector2(WallCheck.transform.position.x + transform.right.x, WallCheck.transform.position.y);
+			Debug.DrawLine(start, end, Color.cyan);
+			Walled1 = Physics2D.Linecast(start, end, wallLayer);
+			return Walled1;
+		}
+	}
+	bool isWall2
+	{
+		get
+		{
+			Vector2 start = WallCheck.transform.position;
+			Vector2 end = new Vector2(WallCheck.transform.position.x - transform.right.x, WallCheck.transform.position.y);
+			Debug.DrawLine(start, end, Color.cyan);
+			Walled1 = Physics2D.Linecast(start, end, wallLayer);
+			return Walled2;
+		}
+	}
 }

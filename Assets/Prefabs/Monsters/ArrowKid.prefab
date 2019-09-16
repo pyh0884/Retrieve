@@ -64,6 +64,19 @@ MonoBehaviour:
   _ProjectileExit: {fileID: 6659417579359345571}
   right: 0
   gotHit: 0
+  GroundCheck1: {fileID: 7969362787795557496}
+  GroundCheck2: {fileID: 650445876232115118}
+  WallCheck: {fileID: 224620806349074902}
+  Grounded1: 0
+  Grounded2: 0
+  Walled1: 0
+  Walled2: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 4352
 --- !u!212 &2599284526679869025
 SpriteRenderer:
   m_ObjectHideFlags: 0
