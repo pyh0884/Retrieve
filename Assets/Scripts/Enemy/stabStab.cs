@@ -159,7 +159,7 @@ public class stabStab : MonoBehaviour
 		get
 		{
 			Vector2 start = GroundCheck.transform.position;
-			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 2);
+			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 1);
 			Debug.DrawLine(start, end, Color.blue);
 			Grounded = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded;
