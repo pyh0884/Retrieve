@@ -78,7 +78,19 @@ public class EatColor : MonoBehaviour
             }
 
         }
-        chooseSkill();
+        if (collision.tag == "Enemy")
+        {
+            FindObjectOfType<AudioManager>().Play("Hit");
+            if (collision.gameObject.GetComponent<BossHp>() != null)
+            {
+                collision.gameObject.GetComponent<BossHp>().Damage(1, 1);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<MonsterHp>().Damage(1, 1);
+            }
+            chooseSkill();
+        }
     }
     void chooseSkill()
     {

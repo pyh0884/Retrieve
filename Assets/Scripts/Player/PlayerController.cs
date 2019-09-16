@@ -301,10 +301,10 @@ public class PlayerController : MonoBehaviour
 
         if (highFallTimer >= 0.25f)
         {
+            am.Play("PlayerLand");
             Instantiate(DustEFX, transform.position, Quaternion.Euler(-90, 0, 0));
             if (highFallTimer >= 1.2f)
             {
-                am.Play("PlayerLand");
                 st.GetComponent<ShakeTest>().StartVibration(0.05f, 0.05f, 0.1f);
             }
             highFallTimer = 0;
@@ -383,50 +383,93 @@ public class PlayerController : MonoBehaviour
         am=FindObjectOfType<AudioManager>();
         switch (SceneManager.GetActiveScene().buildIndex)
         {
-            case 2:
-                am.UnMute("BGM1");
-                am.Mute("BGM3");
-                am.Mute("BGM2");
-                am.Mute("BGM4");
-                break;
             case 3:
-                am.UnMute("BGM2");
-                am.Mute("BGM1");
+                am.UnMute("BGM1");
+                am.Mute("BGM0");
+                am.Mute("BGM2");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
                 break;
             case 4:
-                am.UnMute("BGM3");
-                am.Mute("BGM1");
+                am.UnMute("BGM1");
+                am.Mute("BGM0");
+                am.Mute("BGM3");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
                 break;
             case 5:
-                am.UnMute("BGM2");
+                am.UnMute("BGM3");
+                am.Mute("BGM0");
                 am.Mute("BGM1");
-                am.Mute("BGM3");
+                am.Mute("BGM2");
                 am.Mute("BGM4");
                 break;
             case 6:
                 am.UnMute("BGM3");
+                am.Mute("BGM0");
                 am.Mute("BGM1");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
                 break;
             case 7:
+                am.UnMute("BGM3");
+                am.Mute("BGM0");
+                am.Mute("BGM1");
+                am.Mute("BGM2");
+                am.Mute("BGM4");
+                break;
+            case 8:
+                am.UnMute("BGM0");
+                am.Mute("BGM1");
+                am.Mute("BGM2");
+                am.Mute("BGM3");
+                am.Mute("BGM4");
+                break;
+            case 9:
                 am.UnMute("BGM2");
+                am.Mute("BGM0");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
                 break;
-            case 8:
-                am.UnMute("BGM4");
-                am.Mute("BGM1");
-                am.Mute("BGM2");
-                am.Mute("BGM3");
-                break;
-            case 9:
+            case 10:
                 am.UnMute("BGM2");
+                am.Mute("BGM0");
+                am.Mute("BGM1");
+                am.Mute("BGM3");
+                am.Mute("BGM4");
+                break;
+            case 11:
+                am.UnMute("BGM0");
+                am.Mute("BGM2");
+                am.Mute("BGM1");
+                am.Mute("BGM3");
+                am.Mute("BGM4");
+                break;
+            case 12:
+                am.UnMute("BGM4");
+                am.Mute("BGM0");
+                am.Mute("BGM1");
+                am.Mute("BGM3");
+                am.Mute("BGM2");
+                break;
+            case 13:
+                am.UnMute("BGM4");
+                am.Mute("BGM0");
+                am.Mute("BGM1");
+                am.Mute("BGM3");
+                am.Mute("BGM2");
+                break;
+            case 14:
+                am.UnMute("BGM0");
+                am.Mute("BGM2");
+                am.Mute("BGM1");
+                am.Mute("BGM3");
+                am.Mute("BGM4");
+                break;
+            case 15:
+                am.UnMute("BGM0");
+                am.Mute("BGM2");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM4");

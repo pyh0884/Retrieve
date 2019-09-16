@@ -6,7 +6,7 @@ public class IncreaseATK : TresureChest
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerAttack"))
+        if (collision.CompareTag("PlayerAttack") || collision.CompareTag("Pet"))
         {
             GameObject.FindObjectOfType<GameManager>().increaseATK(1);
 			SaveOpenState();

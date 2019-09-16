@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
         CurrentHp = player.GetComponent<HealthBarControl>().Hp;
+        if(player.GetComponentInChildren<EatColor>())
         elements = player.GetComponentInChildren<EatColor>().elements;
         //HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
     }

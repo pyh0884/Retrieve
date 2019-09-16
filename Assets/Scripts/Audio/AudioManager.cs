@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
+        Play("BGM0");
         Play("BGM1");
         Play("BGM2");
         Play("BGM3");

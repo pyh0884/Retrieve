@@ -122,7 +122,7 @@ public class Slime : MonoBehaviour
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
-				Debug.Log("Tracking");
+				//Debug.Log("Tracking");
 				if (Mathf.Abs(dist.x) < attackRange) yield break;
 				yield return null;
 			}
@@ -138,7 +138,7 @@ public class Slime : MonoBehaviour
 		anim.SetTrigger("Attack");
 		while (!attackOver)
 		{
-			Debug.Log("Attacking");
+			//Debug.Log("Attacking");
 			yield return null;
 		}
 	}
