@@ -20,7 +20,8 @@ public class Boss3Ai : MonoBehaviour
 	public float midDist;
 	public float flyHeight;
 	public GameObject player;
-	public GameObject boomerangPrefab;
+	public GameObject forkPrefab;
+	public float forkLife;
 	public GameObject sprintPrefab;
 	public GameObject stabPrefab;
 	public GameObject laserPrefab;
@@ -225,7 +226,9 @@ public class Boss3Ai : MonoBehaviour
                         FindObjectOfType<AudioManager>().Play("Throw1");
                         else
                         FindObjectOfType<AudioManager>().Play("Throw2");
-                        Instantiate(boomerangPrefab, handTrans[0].position, new Quaternion());
+                        //Instantiate(boomerangPrefab, handTrans[0].position, new Quaternion());
+						ball = Instantiate(stonePrefab, handTrans[0].position, new Quaternion());
+						Destroy(ball, 5f);
 						isSkill = false;
 						break;
 					}
@@ -268,8 +271,8 @@ public class Boss3Ai : MonoBehaviour
 					}
 				case 6://蓝色空中技能（丢碰撞球）
 					{
-						ball=Instantiate(stonePrefab, handTrans[0].position, new Quaternion());
-						Destroy(ball, 5f);
+						var fork=Instantiate(forkPrefab, handTrans[0].position, new Quaternion());
+						Destroy(fork, forkLife);
 						isSkill = false;
 						break;
 					}
