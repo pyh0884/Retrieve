@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
     {
         CurrentDMG += ATK;
     }
+
+    public void increaseCrit(int CRIt)
+    {
+        CritPos += CRIt;
+    }
     void Start()
     {
         CurrentHp = HpCapacity;
