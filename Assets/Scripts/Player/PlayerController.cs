@@ -380,6 +380,7 @@ public class PlayerController : MonoBehaviour
 	}
     private void Awake()
     {
+		Time.timeScale = 1;
         am=FindObjectOfType<AudioManager>();
         switch (SceneManager.GetActiveScene().buildIndex)
         {
