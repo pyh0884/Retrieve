@@ -51,7 +51,7 @@ public class Ghost : MonoBehaviour
 		{
 			while (Vector3.Distance(playerObj.transform.position, transform.position) > radius)
 			{
-				Debug.Log("Finding...");
+				//Debug.Log("Finding...");
 				yield return null;
 			}
 

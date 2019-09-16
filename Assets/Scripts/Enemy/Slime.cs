@@ -72,7 +72,7 @@ public class Slime : MonoBehaviour
 		{
 			while (Mathf.Abs((playerObj.transform.position-transform.position).x) >xRange||Mathf.Abs((playerObj.transform.position - transform.position).y)>yRange)
 			{
-				Debug.Log("finding");
+				//Debug.Log("finding");
 				yield return null;
 			}
 			targetFound(playerObj.transform);
@@ -95,7 +95,7 @@ public class Slime : MonoBehaviour
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
-				Debug.Log("Idle");
+				//Debug.Log("Idle");
 				yield return null;
 			}
 		}

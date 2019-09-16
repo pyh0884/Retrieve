@@ -12,6 +12,7 @@ public class Boss4Skill6 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-3,-3);
+        Destroy(gameObject, 5);
     }
 
     private void ControlDirection()

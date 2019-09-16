@@ -16,6 +16,7 @@ public class StoneBehaviour : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         ready = false;
         StartCoroutine("Main");
+        Destroy(gameObject, 5);
     }
 
     // Update is called once per frame

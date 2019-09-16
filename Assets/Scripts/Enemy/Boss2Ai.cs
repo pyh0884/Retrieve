@@ -220,7 +220,7 @@ public class Boss2Ai : MonoBehaviour
 				Instantiate(stabPrefab, stabPosList[stabNumList[i]].position, new Quaternion());
 				
 			}
-			st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
+			st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.3f, 0.4f);
 			yield return Utils.WaitForSeconds(waitTime_GhostFire);
 		}
 		else
@@ -250,7 +250,7 @@ public class Boss2Ai : MonoBehaviour
 		yield return ControlFlow.ConcurrentCall(
 			WaitForSecondsCr(time),
 			MoveTo(end));
-		anim.SetTrigger("Rest");
+		//anim.SetTrigger("Rest");
 	}
 	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
 	{

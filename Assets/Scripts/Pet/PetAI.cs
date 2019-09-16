@@ -114,9 +114,9 @@ public class PetAI : MonoBehaviour
                     {
                         anim.SetTrigger("Attack");
                         if (player.transform.rotation.y == 0)
-                            Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                            Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         else
-                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                            Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                         ec.elements[0] = 0;
                         ec.elements[1] = 0;
                         ec.elements[2] = 0;

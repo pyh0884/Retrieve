@@ -98,7 +98,7 @@ public class Boss4Ai : MonoBehaviour
         anim.SetTrigger("Attack1");
         yield return Utils.WaitForSeconds(1);
 		int[] waitList = isSelected(stoneSpawnPos.Count, aftermath ? Phase2Num : phase1Num);
-		st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
+		st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.3f, 0.4f);
 		for (int i = 0; i < (aftermath ? Phase2Num : phase1Num); i++) {
 			Instantiate(stonePrefab, stoneSpawnPos[waitList[i]]);
 		}

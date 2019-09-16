@@ -46,11 +46,18 @@ public class Skill3 : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > LastTime)
         {
+            timer = 0;
             gameObject.SetActive(false);
         }
-        if (Input.GetButtonDown("Fire1")&&pc.controllable&&!pc.grabed)
+        if (pc.controllable && !pc.grabed)
         {
-            anim.SetTrigger("Attack");
+            //if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") == 1))
+            if (Input.GetAxisRaw("Fire1") != 0 || Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("Attack");
+
+            }
+
         }
     }
 }

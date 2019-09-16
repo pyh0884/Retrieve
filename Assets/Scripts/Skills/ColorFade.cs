@@ -5,19 +5,34 @@ using UnityEngine;
 public class ColorFade : MonoBehaviour
 {
     private Collider2D col;
-    public Animator anim;
+    //public float fadeSpeed=2;
+    public float timer;
+    private float Timer;
+    public GameObject ps;
     //2Dguangxiao
     void Start()
     {
         col = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Pet")
         {
             col.enabled = false;
-            anim.SetTrigger("Fade");
+            GetComponent<SpriteRenderer>().enabled = false;
+            ps.SetActive(false);
+            Timer = 0;
+        }
+    }
+    private void Update()
+    {
+        Timer += Time.deltaTime;
+        if (Timer >= timer)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            ps.SetActive(true);
+            
+            col.enabled = true;
         }
     }
 }

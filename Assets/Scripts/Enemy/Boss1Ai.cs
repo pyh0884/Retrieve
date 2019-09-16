@@ -326,7 +326,7 @@ public class Boss1Ai : MonoBehaviour
 				while (enemyRigidBody.velocity.y>0)yield return null;
 				while (!isGround) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
-				st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.2f, 0.2f);
+			    st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.3f, 0.4f);
 				if (aftermath)
 				{
 					targetPos = target.position;
