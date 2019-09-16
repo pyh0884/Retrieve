@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public Vector3 spawnPos;
     public int BossIndex;
     public bool cheat;
+    public int[] elements= { 0, 0, 0 };
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -76,6 +77,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int[] ELEMENTS
+    {
+        get
+        {
+            return elements;
+        }
+    }
+
     public void increaseATK(int ATK)
     {
         CurrentDMG += ATK;
@@ -110,6 +119,7 @@ public class GameManager : MonoBehaviour
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
         CurrentHp = player.GetComponent<HealthBarControl>().Hp;
+        elements = player.GetComponentInChildren<EatColor>().elements;
         //HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
     }
 }
