@@ -154,7 +154,6 @@ public class Boss2Ai : MonoBehaviour
 	{
 		try
 		{
-			skill3.enabled = true;
 			anim.SetBool("Skill3", true);
 			bool rand = target.position.x < SceneCenter.position.x;
 			if (!aftermath)
@@ -164,6 +163,7 @@ public class Boss2Ai : MonoBehaviour
 				for (int i = 0; i < paraStartPosList.Count-1; i++) {
 					int p = rand ? i : (paraStartPosList.Count-1 - i);
 					yield return ControlFlow.Call(MoveTo(paraStartPosList[p].position, true));
+					skill3.enabled = true;
 					if (paraBottomPosList[rand ? p : (p - 1)].position.x > paraStartPosList[p].position.x) sr.flipX = true;
 					else sr.flipX = false;
 					yield return ControlFlow.Call(Para(paraBottomPosList[rand ? p : (p - 1)], speedOrTime));
@@ -171,12 +171,15 @@ public class Boss2Ai : MonoBehaviour
 			}
 			else
 			{
+
 				//二阶段技能表现
 				for (int i = 0; i < sprintPosList.Count; i++) {
 					int p = rand ? i : (sprintPosList.Count-i-1);
 					if (sprintPosList[p].position.x > transform.position.x) sr.flipX = true;
 					else sr.flipX = false;
 					yield return ControlFlow.Call(MoveTo(sprintPosList[p].position, speedOrTime));
+					skill3.enabled = true;
+					
 				}
 			}
 			anim.SetBool("Skill3", false);
