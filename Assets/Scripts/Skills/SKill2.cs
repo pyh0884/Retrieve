@@ -51,11 +51,11 @@ public class SKill2 : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
             }
             hit = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
