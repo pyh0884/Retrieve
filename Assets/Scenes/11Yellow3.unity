@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1329,7 +1329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410273340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000035762787, y: 0, z: -10}
+  m_LocalPosition: {x: -0.00000029802322, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1344321612}
@@ -2610,7 +2610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895577965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.440788, y: 0.31028366, z: -10}
+  m_LocalPosition: {x: 7.4446616, y: 0.31028366, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2114030616}
@@ -7347,11 +7347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u77F3\u5934\u4EBABOSS"
       objectReference: {fileID: 0}
-    - target: {fileID: 7122157298219054651, guid: 654e48bc8774093499f8cf08290bee02,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5752338395950375501, guid: 654e48bc8774093499f8cf08290bee02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7411,6 +7406,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 889582323, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7080905464761127761, guid: 654e48bc8774093499f8cf08290bee02,
         type: 3}
       propertyPath: spawnPos.Array.data[0]
@@ -7421,15 +7420,6 @@ PrefabInstance:
       propertyPath: spawnPos.Array.data[1]
       value: 
       objectReference: {fileID: 1808322398}
-    - target: {fileID: 7113202442109317266, guid: 654e48bc8774093499f8cf08290bee02,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 0e3255b1ed8b18445993c218a5788c7e, type: 2}
-    - target: {fileID: 746280079, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654e48bc8774093499f8cf08290bee02, type: 3}
 --- !u!114 &1716674417 stripped

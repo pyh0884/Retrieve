@@ -17,6 +17,7 @@ public class BossHp : MonoBehaviour
     public int Burn;
     public bool Shield=false;
     float timer;
+    private GameManager gm;
     public void Damage(int damageCount)
     {
         if (!Shield)
@@ -79,6 +80,8 @@ public class BossHp : MonoBehaviour
     }
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+        HpMax += gm.DAMAGE*100;
         Hp = HpMax;
         anim = GetComponent<Animator>();
         DamageTextControler.Initialize();

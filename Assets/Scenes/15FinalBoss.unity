@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1446,7 +1446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497438957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.733649, y: -0.030407906, z: -16}
+  m_LocalPosition: {x: 6.7375226, y: -0.030407906, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 183814557}
@@ -2533,7 +2533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882230972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000035762787, y: 0, z: -16}
+  m_LocalPosition: {x: -0.00000029802322, y: 0, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 951465779}
@@ -3944,20 +3944,9 @@ PrefabInstance:
       propertyPath: seTuBlue.Array.data[8]
       value: 
       objectReference: {fileID: 1658467692}
-    - target: {fileID: 4948107864663022785, guid: 39172c28885a94648a2a2119fd0b6f4f,
-        type: 3}
-      propertyPath: refreshTime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4948107864663022785, guid: 39172c28885a94648a2a2119fd0b6f4f,
-        type: 3}
-      propertyPath: numOfCall
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4948107864663022785, guid: 39172c28885a94648a2a2119fd0b6f4f,
-        type: 3}
-      propertyPath: stabGap
-      value: 2
+    - target: {fileID: 1473804107, guid: 39172c28885a94648a2a2119fd0b6f4f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1473804107, guid: 39172c28885a94648a2a2119fd0b6f4f, type: 3}
       propertyPath: m_AnchorMax.y
