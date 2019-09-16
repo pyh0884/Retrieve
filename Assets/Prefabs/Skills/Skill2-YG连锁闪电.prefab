@@ -1427,9 +1427,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.64705884, g: 0, b: 0, a: 0}
-        key1: {r: 0.64705884, g: 0, b: 0, a: 0.9019608}
-        key2: {r: 0.97647065, g: 0.60784316, b: 0.39607847, a: 0.8453715}
+        key0: {r: 0.58431375, g: 0.6392157, b: 0.19607845, a: 0}
+        key1: {r: 0.3137255, g: 0.4666667, b: 0.18431373, a: 0.9019608}
+        key2: {r: 0.9568628, g: 0.9333334, b: 0.21176472, a: 0.8453715}
         key3: {r: 1, g: 1, b: 1, a: 0.8206161}
         key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -2750,7 +2750,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4891,6 +4891,7 @@ GameObject:
   - component: {fileID: 5392261566829169826}
   - component: {fileID: 818714292992041093}
   - component: {fileID: -5657238295622427622}
+  - component: {fileID: -5397872322544365430}
   m_Layer: 0
   m_Name: "Skill2-YG\u8FDE\u9501\u95EA\u7535"
   m_TagString: PlayerAttack
@@ -5038,3 +5039,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-5397872322544365430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244907618830773312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c653cd2f25af846a122e22ea03c51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 0.8
+    m_FrequencyGain: 0.4
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.1
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+  main: {fileID: 0}

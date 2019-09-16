@@ -83,11 +83,11 @@ public class EatColor : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(1, 1);
+                collision.gameObject.GetComponent<BossHp>().Damage(1, 2);
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(1, 1);
+                collision.gameObject.GetComponent<MonsterHp>().Damage(1, 2);
             }
             chooseSkill();
         }
