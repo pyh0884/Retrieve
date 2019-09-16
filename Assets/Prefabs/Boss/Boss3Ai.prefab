@@ -5333,7 +5333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3513800472557217053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7996836834203229874}
@@ -5506,8 +5506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5467c2901d4144fa6d024d7e9c7d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aftermath: 0
   pubCD: 0
-  pubCDTime: 7
+  pubCDTime: 5
   isSkill: 0
   skyAttack: 0
   isFlying: 0
@@ -5538,12 +5539,13 @@ MonoBehaviour:
   laserPrefab: {fileID: 3181018753967723819, guid: 02b8a2f2ec9fdc24caf03bc12c695c99,
     type: 3}
   numOfCall: 5
-  stabGap: 1.6
+  stabGap: 3
   laserGap: 5
+  laserNum: 3
   stabFloor: -6
-  missileSpawner: {fileID: 4534671281863586551, guid: 0fb32d92d90922f4aa1b829296894e90,
+  missileSpawner: {fileID: 4534671281863586551, guid: 4380a240f0635154ba0a25f2632162f3,
     type: 3}
-  stonePrefab: {fileID: 4133435358091610535, guid: 9a90e82581efe284897f40c556aa99cc,
+  stonePrefab: {fileID: 4133435358091610535, guid: 2649c41d1e55134488f089d2a989c0c4,
     type: 3}
   handTrans:
   - {fileID: 4895946155976334990}
@@ -5735,7 +5737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7350020359032296327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7996836834203229874}

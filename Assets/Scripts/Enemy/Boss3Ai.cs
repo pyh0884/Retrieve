@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Boss3Ai : MonoBehaviour
 {
+	public bool aftermath;
 	public bool pubCD;
 	public float pubCDTime;
 	public bool isSkill;
@@ -26,6 +27,7 @@ public class Boss3Ai : MonoBehaviour
 	public int numOfCall = 5;
 	public float stabGap;
 	public float laserGap;
+	public int laserNum;
 	public float stabFloor;
 	public GameObject missileSpawner;
 	public GameObject stonePrefab;
@@ -53,6 +55,7 @@ public class Boss3Ai : MonoBehaviour
 	private GameObject ball;
 	private List<SpriteRenderer>[] sr = new List<SpriteRenderer>[4];
     private Animator anim;
+	private BossHp hpObj;
     public ParticleSystem ps;
 
     // Start is called before the first frame update
@@ -61,6 +64,7 @@ public class Boss3Ai : MonoBehaviour
 		for (int i = 0; i < 4; i++) { sr[i] = new List<SpriteRenderer>(); sr[i].Clear(); }
 		anim = GetComponent<Animator>();
 		enemyRigidBody = GetComponent<Rigidbody2D>();
+		hpObj = GetComponent<BossHp>();
 		for (int i = 0; i < seTuYellow.Count; i++) sr[1].Add(seTuYellow[i].GetComponent<SpriteRenderer>());
 		for (int i = 0; i < seTuGreen.Count; i++) sr[2].Add(seTuGreen[i].GetComponent<SpriteRenderer>());
 		for (int i = 0; i < seTuBlue.Count; i++) sr[3].Add(seTuBlue[i].GetComponent<SpriteRenderer>());
@@ -87,6 +91,7 @@ public class Boss3Ai : MonoBehaviour
 
     void Update()
 	{
+		if (!aftermath && (hpObj.Hp < hpObj.HpMax * 0.5)) aftermath = true;
         if (!player) player = GameObject.FindWithTag("Player");
         else
         {
@@ -243,8 +248,9 @@ public class Boss3Ai : MonoBehaviour
 					}
 				case 4://绿色空中技能（羽毛/弹幕射击）
 					{
-						Instantiate(missileSpawner,handTrans[0].position,new Quaternion());
+						var spawner=Instantiate(missileSpawner,handTrans[0].position,new Quaternion());
 						//播放动画
+						spawner.GetComponent<MissilesSpawn>().isOn = true;
 						isSkill = false;
 						break;
 					}
@@ -252,8 +258,11 @@ public class Boss3Ai : MonoBehaviour
 					{
                         FindObjectOfType<AudioManager>().Play("Laser");
 						Instantiate(laserPrefab, new Vector3(14, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
-						Instantiate(laserPrefab, new Vector3(14+laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
-						Instantiate(laserPrefab, new Vector3(14-laserGap, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+						for (int i = 1; i <= laserNum; i++)
+						{
+							Instantiate(laserPrefab, new Vector3(14 + laserGap*i, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+							Instantiate(laserPrefab, new Vector3(14 - laserGap*i, 0), Quaternion.Euler(0, 0, transform.rotation.y == 0 ? -18.75f : 18.75f));
+						}
 						isSkill = false;
 						break;
 					}

@@ -112,7 +112,7 @@ public class Slime : MonoBehaviour
 		Vector3 dist;
 		try
 		{
-			while (true)
+			while (isGround&&!isWall)
 			{
 				dist = target.position - transform.position;
 				if (isright != dist.x > 0 ? true : false)
@@ -153,7 +153,7 @@ public class Slime : MonoBehaviour
 		get
 		{
 			Vector2 start = GroundCheck.transform.position;
-			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 2);
+			Vector2 end = new Vector2(GroundCheck.transform.position.x, GroundCheck.transform.position.y - 1);
 			Debug.DrawLine(start, end, Color.blue);
 			Grounded = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded;
