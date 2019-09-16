@@ -169,9 +169,9 @@ public class EatColor : MonoBehaviour
                 break;
         }
     }
-    void Start()
+    void Awake()
     {
-        
+        elements = FindObjectOfType<GameManager>().ELEMENTS;
     }
     void Update()
     {

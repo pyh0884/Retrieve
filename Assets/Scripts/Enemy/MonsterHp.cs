@@ -10,6 +10,7 @@ public class MonsterHp : MonoBehaviour
     public bool dead = false;
     public bool CauseDMG=false;
     public GameObject drop;
+    public GameObject drop2;
     public int Burn;
     float timer;
 
@@ -64,7 +65,14 @@ public class MonsterHp : MonoBehaviour
         {
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
-            Instantiate(drop, gameObject.transform.position, Quaternion.identity);
+            if (Random.Range(0, 100) > 60)
+            {
+                Instantiate(drop, gameObject.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(drop2, gameObject.transform.position, Quaternion.identity);
+            }
             dead = true;
             if (GetComponent<StabFish>() == null) anim.SetBool("Die", true);
 		}
