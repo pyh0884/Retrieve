@@ -120,7 +120,7 @@ public class PetAI : MonoBehaviour
                 case 9://炮台
                     {
                             anim.SetTrigger("Attack");
-                            Instantiate(Skills[9], new Vector3(player.transform.position.x, player.transform.position.y, 0), Quaternion.identity);
+                            Instantiate(Skills[9], new Vector3(player.transform.position.x-0.5f, player.transform.position.y+1.5f, 0), Quaternion.identity);
                             ec.elements[0] = 0;
                             ec.elements[1] = 0;
                             ec.elements[2] = 0;
