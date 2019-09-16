@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -738,15 +738,15 @@ RectTransform:
   m_GameObject: {fileID: 1638103394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.2, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 915874808}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.3, y: -291.5}
-  m_SizeDelta: {x: 298.7, y: 98}
+  m_AnchoredPosition: {x: 116, y: -196}
+  m_SizeDelta: {x: 684, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638103396
 MonoBehaviour:
@@ -835,7 +835,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 5000927251509650613, guid: 948eb7a46c0dd73489ced620519c23a3,
+  m_Sprite: {fileID: 2418961410521378818, guid: 8c9f7b56e583ec74bbec74622b55569a,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -975,17 +975,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862069266}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.033155207, w: 0.9994502}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1.2, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 915874808}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.8}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: 125}
-  m_SizeDelta: {x: 464.4, y: 98}
+  m_AnchoredPosition: {x: 130, y: 115}
+  m_SizeDelta: {x: 1193, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862069268
 MonoBehaviour:
@@ -1007,7 +1007,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -3001443128094574983, guid: 5682dc621dcbf2c4d819a1d60f3efd56,
+  m_Sprite: {fileID: -9011414555860591450, guid: 8c9f7b56e583ec74bbec74622b55569a,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0

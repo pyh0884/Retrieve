@@ -493,7 +493,6 @@ GameObject:
   - component: {fileID: 112319062}
   - component: {fileID: 112319061}
   - component: {fileID: 112319060}
-  - component: {fileID: 112319063}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -563,28 +562,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112319059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000029802322, y: 0, z: -10}
+  m_LocalPosition: {x: -0.00000035762787, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 41291936}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &112319063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112319059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ChannelMask: -1
-  m_Gain: 1
-  m_Use2DDistance: 1
 --- !u!1 &141031792
 GameObject:
   m_ObjectHideFlags: 0
@@ -6438,7 +6422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489830413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7581663, y: 0.0000014305115, z: -10}
+  m_LocalPosition: {x: 6.763364, y: 0.0000014305115, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1057223432}
@@ -16034,7 +16018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f011827b73068c4690509244a8d5798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 10
+  smoothing: 5
 --- !u!1 &880416269
 GameObject:
   m_ObjectHideFlags: 0
@@ -18133,7 +18117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f011827b73068c4690509244a8d5798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 7.5
+  smoothing: 4.5
 --- !u!1001 &1444387050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19677,7 +19661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f011827b73068c4690509244a8d5798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 2.3
+  smoothing: 2
 --- !u!1 &1780100945
 GameObject:
   m_ObjectHideFlags: 0
