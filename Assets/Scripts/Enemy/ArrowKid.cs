@@ -96,7 +96,7 @@ public class ArrowKid : MonoBehaviour
 
 	IEnumerable<Instruction> Idle() {
 		while (true) {
-			Debug.Log("Idle");
+			//Debug.Log("Idle");
 			yield return null;
 		}
 	}
@@ -109,7 +109,7 @@ public class ArrowKid : MonoBehaviour
 			{
 				yield return null;
 				rb.velocity = new Vector2(right ? moveSpeed : -moveSpeed, 0);
-				Debug.Log("Chasing");
+				//Debug.Log("Chasing");
 				if (isWall1 || !isGround1)yield break;
 			}
 		}

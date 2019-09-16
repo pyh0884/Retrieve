@@ -86,9 +86,10 @@ public class SandWorm : MonoBehaviour
 					rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
 					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
-					Debug.Log("changed");
+					
+                    //.Log("changed");
 				}
-				Debug.Log("Idle");
+				//Debug.Log("Idle");
 				yield return null;
 			}
 		}
