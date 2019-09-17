@@ -255,13 +255,14 @@ public class PlayerController : MonoBehaviour
             {
                 jumping = true;
                 anim.SetTrigger("Jump");
+                //am.Play("Jump");
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpSpeed);
 				doubleJump = true;
 			}
             if (!(isGround || OnBoss) && JumpKey && doubleJump) //(!(isGround || OnBoss) && JumpKey && doubleJump)
             {
                 jumping = true;
-
+                //am.Play("Jump");
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x * 0.8f, jumpSpeed);
                 //				Instantiate(dashEFX, transform.position, Quaternion.identity);
                 doubleJump = false;
