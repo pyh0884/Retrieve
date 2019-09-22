@@ -31,7 +31,7 @@ public class ClimbDown : MonoBehaviour
     public LayerMask BossLayer;
     public bool OnBoss;
     public bool controllable = true;
-    private bool onLadder;
+    //private bool onLadder;
 
     #endregion
 
@@ -62,7 +62,7 @@ public class ClimbDown : MonoBehaviour
         {
             if (Input.GetAxisRaw("Vertical") <-0.5f&&hbc.JumpTimer>0.3f)
             {
-                onLadder = true;
+                //onLadder = true;
                 //anim.speed = 1;
                 player.position = new Vector3(collision.gameObject.transform.position.x, player.position.y, 0);
                 anim.SetBool("Climb", true);
@@ -101,7 +101,7 @@ public class ClimbDown : MonoBehaviour
 
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x + 7, jumpSpeed);
 
-                onLadder = false;
+                //onLadder = false;
                 //playerRigidbody2D.gravityScale = 1;
                 anim.SetBool("Climb", false);
                 anim.SetTrigger("Jump");
