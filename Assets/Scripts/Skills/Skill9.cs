@@ -15,7 +15,7 @@ public class Skill9 : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        Destroy(MainObj,10);
+        Destroy(MainObj,8);
     }
     void FindEnemy()
     {
