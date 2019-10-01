@@ -5,7 +5,9 @@ using UnityEngine;
 public class Skill4 : MonoBehaviour
 {
     public GameManager gm;
+    public GameObject efx;
 
+    public void playEFX() { Instantiate(efx,new Vector3(transform.position.x, transform.position.y-1),Quaternion.Euler(-90,0,0)); }
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
