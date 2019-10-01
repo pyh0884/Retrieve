@@ -8,7 +8,7 @@ public class RandomRoomCreator : MonoBehaviour
 	public Vector2Int mapSizePerRoom;
 	public Vector2Int roomSizePerUnit;
 	public List<GameObject> startRooms;//初始房间一定在最左侧，仅向右连通
-	public List<GameObject> endRooms;//结束房间一定在最右侧，仅向左连通
+	//public List<GameObject> endRooms;//结束房间一定在最右侧，仅向左连通
 	public List<GameObject> horizontalRooms;//水平房间左右连通
 	public List<GameObject> verticalRooms;//垂直房间向下连通，左右任意
 	public List<GameObject> fillRooms;//填充房间任意
@@ -45,6 +45,7 @@ public class RandomRoomCreator : MonoBehaviour
 	private void Awake()
 	{
 		stuffed = new bool[mapSizePerRoom.x, mapSizePerRoom.y];
+		roomData = new List<RoomInfo>();
 		roomData.Clear();
 		//选取开始房间
 		RoomInfo startroom = new RoomInfo();
@@ -52,52 +53,69 @@ public class RandomRoomCreator : MonoBehaviour
 		startroom.roomType = RoomType.start;
 		roomData.Add(startroom);
 		currentRoom = startroom;
+		previousRoom = currentRoom;
 		stuffed[startroom.roomPos.x, startroom.roomPos.y] = true;
-		bool finished = false;
-		while (!finished) {
+		while (!previousRoom.isEnd) {
 			previousRoom = currentRoom;
 			currentRoom = new RoomInfo();
-			if (previousRoom.roomPos.x != mapSizePerRoom.x - 1)
+			if (previousRoom.roomPos.x < mapSizePerRoom.x - 1)
 			{
 				if (previousRoom.roomPos.y == 0||stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y-1]==true)
 				{
-					switch (Random0ToN(2))
+					if (previousRoom.roomPos.y<(mapSizePerRoom.y - 1) &&(stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1] == false))
 					{
-						case 0:
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x;
-								currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
-								currentRoom.roomType = RoomType.vertical;
-								break;
-							}
-						default:
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-								currentRoom.roomPos.y = previousRoom.roomPos.y;
-								currentRoom.roomType = RoomType.horizontal;
-								break;
-							}
+						switch (Random0ToN(2))
+						{
+							case 0:
+								{
+									currentRoom.roomPos.x = previousRoom.roomPos.x;
+									currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
+									currentRoom.roomType = RoomType.vertical;
+									break;
+								}
+							default:
+								{
+									currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+									currentRoom.roomPos.y = previousRoom.roomPos.y;
+									currentRoom.roomType = RoomType.horizontal;
+									break;
+								}
+						}
+					}
+					else {
+						currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+						currentRoom.roomPos.y = previousRoom.roomPos.y;
+						currentRoom.roomType = RoomType.horizontal;
 					}
 				}
 				else if (previousRoom.roomPos.y == (mapSizePerRoom.y - 1)||stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y+1]==true)
 				{
-					switch (Random0ToN(2))
+					if (previousRoom.roomPos.y > 0 && stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y - 1] == false)
 					{
-						case 0:
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x;
-								currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-								currentRoom.roomType = RoomType.horizontal;
-								previousRoom.roomType = RoomType.vertical;
-								break;
-							}
-						default:
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-								currentRoom.roomPos.y = previousRoom.roomPos.y;
-								currentRoom.roomType = RoomType.horizontal;
-								break;
-							}
+						switch (Random0ToN(2))
+						{
+							case 0:
+								{
+									currentRoom.roomPos.x = previousRoom.roomPos.x;
+									currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
+									currentRoom.roomType = RoomType.horizontal;
+									previousRoom.roomType = RoomType.vertical;
+									break;
+								}
+							default:
+								{
+									currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+									currentRoom.roomPos.y = previousRoom.roomPos.y;
+									currentRoom.roomType = RoomType.horizontal;
+									break;
+								}
+						}
+					}
+					else
+					{
+						currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+						currentRoom.roomPos.y = previousRoom.roomPos.y;
+						currentRoom.roomType = RoomType.horizontal;
 					}
 				}
 				else
@@ -134,7 +152,7 @@ public class RandomRoomCreator : MonoBehaviour
 			{
 				if (previousRoom.roomPos.y == 0 || stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y - 1] == true)
 				{
-					if (previousRoom.roomPos.y < mapSizePerRoom.y - 1)
+					if (previousRoom.roomPos.y < mapSizePerRoom.y - 1&&stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y+1]==false)
 					{
 						switch (Random0ToN(2))
 						{
@@ -147,11 +165,8 @@ public class RandomRoomCreator : MonoBehaviour
 								}
 							default:
 								{
-									currentRoom.roomPos.x = previousRoom.roomPos.x;
-									currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
+									currentRoom = null;
 									previousRoom.isEnd = true;
-									currentRoom.roomType = RoomType.fill;
-									finished = true;
 									break;
 								}
 						}
@@ -159,12 +174,11 @@ public class RandomRoomCreator : MonoBehaviour
 					else {
 						currentRoom = null;
 						previousRoom.isEnd = true;
-						finished = true;
 					}
 				}
 				else if (previousRoom.roomPos.y == (mapSizePerRoom.y - 1) || stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1] == true)
 				{
-					if (previousRoom.roomPos.y > 0)
+					if (previousRoom.roomPos.y > 0&&stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y-1]==false)
 					{
 						switch (Random0ToN(2))
 						{
@@ -178,9 +192,7 @@ public class RandomRoomCreator : MonoBehaviour
 								}
 							default:
 								{
-									currentRoom.roomPos.x = previousRoom.roomPos.x;
-									currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-									currentRoom.roomType = RoomType.fill;
+									currentRoom = null;
 									previousRoom.isEnd = true;
 									break;
 								}
@@ -189,7 +201,6 @@ public class RandomRoomCreator : MonoBehaviour
 					else {
 						currentRoom = null;
 						previousRoom.isEnd = true;
-						finished = true;
 					}
 				}
 				else
@@ -213,18 +224,18 @@ public class RandomRoomCreator : MonoBehaviour
 							}
 						default:
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x;
-								currentRoom.roomPos.y = previousRoom.roomPos.y-1;
-								currentRoom.roomType = RoomType.fill;
+								currentRoom = null;
 								previousRoom.isEnd = true;
-								finished = true;
 								break;
 							}
 					}
 				}
 			}
-			if (currentRoom != null) roomData.Add(currentRoom);
-			stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
+			if (currentRoom != null)
+			{
+				roomData.Add(currentRoom);
+				stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
+			}
 		}
 		for (int i = 0; i < mapSizePerRoom.x; i++) {
 			for (int j = 0; j < mapSizePerRoom.y; j++) {
@@ -243,13 +254,15 @@ public class RandomRoomCreator : MonoBehaviour
 		foreach (RoomInfo room in roomData) {
 			if (room.isEnd) { /*生成传送门，机制没想好*/}
 			switch (room.roomType) {
-				case RoomType.start:Instantiate(startRooms[Random0ToN(startRooms.Count)],RoomToWorldPos(room.roomPos)+transform.position,transform.rotation);break;
-				case RoomType.horizontal:Instantiate(horizontalRooms[Random0ToN(horizontalRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation);break;
-				case RoomType.vertical:Instantiate(verticalRooms[Random0ToN(verticalRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation);break;
-				case RoomType.serect:Instantiate(serectRooms[Random0ToN(serectRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation);break;
-				default:Instantiate(fillRooms[Random0ToN(fillRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation);break;
+				case RoomType.start:Instantiate(startRooms[Random0ToN(startRooms.Count)],RoomToWorldPos(room.roomPos)+transform.position,transform.rotation,transform);break;
+				case RoomType.horizontal:Instantiate(horizontalRooms[Random0ToN(horizontalRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation,transform);break;
+				case RoomType.vertical:Instantiate(verticalRooms[Random0ToN(verticalRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation,transform);break;
+				case RoomType.serect:Instantiate(serectRooms[Random0ToN(serectRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation,transform);break;
+				default:Instantiate(fillRooms[Random0ToN(fillRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation,transform);break;
 			}
 		}
+		//var manager = FindObjectOfType<GameManager>();
+		//manager.spawnPos = transform.position + new Vector3(roomData[0].roomPos.x * roomSizePerUnit.x, roomData[0].roomPos.y * roomSizePerUnit.y);
 	}
 
 	Vector3 RoomToWorldPos(Vector2Int roomPos) {
