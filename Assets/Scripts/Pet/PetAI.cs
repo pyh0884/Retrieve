@@ -16,10 +16,11 @@ public class PetAI : MonoBehaviour
     public float xOffSet;
     public float yOffSet;
     GameObject CurrentSkill;
+    GameManager gm;
 
 	private bool isPressing = false;
 
-    void TryEat()
+    void UseSkill()
     {
 		if (pc.controllable)
 		{
@@ -86,14 +87,61 @@ public class PetAI : MonoBehaviour
                 case 6://匕首
                     {
                             anim.SetTrigger("Attack");
-                            if (player.transform.rotation.y == 0)
-                                Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                            else
-                                Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                switch (gm.levels[1]) {
+                                    case 0:
+                                        if (player.transform.rotation.y == 0)
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        else
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        break;
+                                    case 1:
+                                        if (player.transform.rotation.y == 0)
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y -1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+                                        else
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y -1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+                                        break;
+                                    case 2:
+                                        if (player.transform.rotation.y == 0)
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+                                        else
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+
+                                        break;
+                                    case 3:
+                                        if (player.transform.rotation.y == 0)
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y - 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+                                        else
+                                        {
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 3f, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y - 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                            Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        }
+
+                                        break;
+                                }
                             ec.elements[0] = 0;
                             ec.elements[1] = 0;
                             ec.elements[2] = 0;
-
                             break;
                         }
                 case 7://地火
@@ -149,7 +197,7 @@ public class PetAI : MonoBehaviour
 			}
 		}
     }
-    void UseSkill()
+    void TryEat()
     {
         if (Input.GetButtonDown("Fire3") && pc.controllable)
         {
@@ -185,12 +233,12 @@ public class PetAI : MonoBehaviour
     {
         if (Boss)
             Destroy(gameObject);
+        gm = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
         TryEat();
         UseSkill();
-
     }
 }

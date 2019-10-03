@@ -5,11 +5,15 @@ using UnityEngine;
 public class Skill7 : MonoBehaviour
 {
     public GameManager gm;
+    public GameObject efx;
 
+    public void playEFX()
+    {
+        Instantiate(efx, new Vector3(transform.position.x, transform.position.y+0.3f), Quaternion.Euler(-90, 0, 0));
+    }
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-
         Destroy(gameObject, 3f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,19 +24,19 @@ public class Skill7 : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 25) * 1.5f), 1);
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) ) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 25)));
-                collision.gameObject.GetComponent<BossHp>().Burn = 5;
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) )));
+                collision.gameObject.GetComponent<BossHp>().Burn = 7;
 
             }
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 25) * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) ) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 25)));
-                collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) )));
+                collision.gameObject.GetComponent<MonsterHp>().Burn = 7;
 
             }
         }

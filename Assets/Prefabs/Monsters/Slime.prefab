@@ -87,7 +87,7 @@ MonoBehaviour:
   catchXRange: 7
   catchYRange: 2
   attackRange: 1
-  CD_Time: 2
+  CD_Time: 1
   moveSpeed: 3
   chaseSpeed: 5
   GroundCheck: {fileID: 8611767781049626564}
@@ -139,7 +139,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 817068254951646498, guid: afa4b5df5db089a44a5460f8839a6d11, type: 3}
+  m_Sprite: {fileID: 6801573252847618625, guid: 020301eb2b75d264ca679d67a02ec456,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -238,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yes: 1
+  DestroyTime: 2
 --- !u!114 &-254248382825160685
 MonoBehaviour:
   m_ObjectHideFlags: 0

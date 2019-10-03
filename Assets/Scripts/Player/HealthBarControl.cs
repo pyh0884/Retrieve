@@ -42,10 +42,10 @@ public class HealthBarControl : MonoBehaviour
         }//回血特效 
         if ((damageCount > 0) && (invincibleCD > 0.7f))
         {
-			StartCoroutine("Vibration");
-			StartCoroutine("timeStop");
             if (!cheat)
             {
+                StartCoroutine("Vibration");
+                StartCoroutine("timeStop");
                 Hp -= damageCount;
                 anim.SetTrigger("Hit");
             }

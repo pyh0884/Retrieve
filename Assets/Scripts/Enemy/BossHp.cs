@@ -14,10 +14,12 @@ public class BossHp : MonoBehaviour
     public ParticleSystem ps;
 	public bool isBoss;
     public int BossIndex;
-    public int Burn;
+    public float Burn;
     public bool Shield=false;
     float timer;
     private GameManager gm;
+    int BurnDamage;
+
     public void Damage(int damageCount)
     {
         if (!Shield)
@@ -95,11 +97,12 @@ public class BossHp : MonoBehaviour
     }
     private void Update()
     {
+        BurnDamage = gm.BurnDamage;
         timer += Time.deltaTime;
-        if (Burn > 0 && timer >= 0.3f)
+        if (Burn > 0 && timer >= 0.35f)
         {
             timer = 0;
-            Damage(3,3);
+            Damage(BurnDamage, 3);
             Burn -= 1;
         }
         Hp = Mathf.Clamp(Hp, 0, HpMax);

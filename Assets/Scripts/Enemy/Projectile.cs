@@ -60,6 +60,10 @@ public class Projectile
 				collidedWith.GetComponent<HealthBarControl>().Damage(damageAmt);
 				if (selfDestroy) Destroy(gameObject);
 			}
+            else if(collidedWith.gameObject.layer==8|| collidedWith.gameObject.layer == 12)
+            {
+                Destroy(gameObject);
+            }
 			// Else just bounce/roll/etc...
 		}
 	}

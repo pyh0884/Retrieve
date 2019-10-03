@@ -37,7 +37,8 @@ public class PlayerAttack : MonoBehaviour
                 collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13)+ gm.DAMAGE * 4)* dmgMultiplier*1.5f),1);
                 else
                 collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier));
-                //collision.gameObject.GetComponent<BossHp>().Burn=5;
+                if(gm.levels[3]==3)
+                collision.gameObject.GetComponent<BossHp>().Burn=3;
 
             }
             else
@@ -46,8 +47,8 @@ public class PlayerAttack : MonoBehaviour
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier * 1.5f), 1);
                 else
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier));
-
-                //collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
+                if (gm.levels[3] == 3)
+                    collision.gameObject.GetComponent<MonsterHp>().Burn = 3;
 
             }
             StartCoroutine(Vibration(0.03f, 0.03f, 0.1f));

@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
     [Header("Speed")]
-    public float HorizontalSpeed = 8;
-    public float jumpSpeed=10;
+    public float HorizontalSpeed;
+    public float jumpSpeed;
 	Vector3 LeftDirection = new Vector3(0, 180, 0);
 	Vector3 RightDirection = new Vector3(0, 0, 0);
 	public Vector3 currentSpeed;
@@ -75,16 +75,18 @@ public class PlayerController : MonoBehaviour
     bool WallDirection; //true=wall is on the right, false=left
     public bool grabed;
     public bool isAttacking;
+    public bool canTurnAround;
 
 	private bool isPressing = false;
+    GameManager gm;
 
     void MoveABit()
-    {if(!isGround2)
+    {if(!isGround2&&horizontalDirection!=0)
         playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y==0?playerRigidbody2D.transform.position.x+0.5f: playerRigidbody2D.transform.position.x - 0.5f, playerRigidbody2D.transform.position.y, 0);
     }
     void MoveTwoBit()
     {
-        if (!isGround2)
+        if (!isGround2 && horizontalDirection != 0)
             playerRigidbody2D.transform.position = new Vector3(playerRigidbody2D.transform.rotation.y == 0 ? playerRigidbody2D.transform.position.x + 0.8f : playerRigidbody2D.transform.position.x - 0.8f, playerRigidbody2D.transform.position.y, 0);
     }
     void StopMoving()
@@ -107,6 +109,17 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("Run", false);
                 am.Mute("PlayerRun");
+            }
+            if (isAttacking&&canTurnAround)
+            {
+                if (horizontalDirection < 0)
+                {
+                    playerRigidbody2D.transform.eulerAngles = LeftDirection;
+                }
+                else if (horizontalDirection > 0)
+                {
+                    playerRigidbody2D.transform.eulerAngles = RightDirection;
+                }
             }
             if (!isAttacking||isDashing)
             {
@@ -263,11 +276,12 @@ public class PlayerController : MonoBehaviour
             {
                 jumping = true;
                 //am.Play("Jump");
+                anim.SetTrigger("Jump");
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x * 0.8f, jumpSpeed);
                 //				Instantiate(dashEFX, transform.position, Quaternion.identity);
                 doubleJump = false;
             }
-            if (!isGround && playerRigidbody2D.velocity.y < 0) //||(isGround&&playerRigidbody2D.velocity.y==0))
+            if (!isGround && playerRigidbody2D.velocity.y <= 0) //||(isGround&&playerRigidbody2D.velocity.y==0))
             {
                 jumping = false;
                 anim.SetBool("Fall", true);
@@ -370,6 +384,9 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+        HorizontalSpeed = gm.HorizontalSpeed;
+        jumpSpeed = gm.JumpSpeed;
         jumping = false;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
 		controllable = true;
@@ -493,7 +510,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         anim.speed = 1;
-
+        airDashed = false;
+        isDashing = false;
 
     }
     void Update()
