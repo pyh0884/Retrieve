@@ -264,10 +264,11 @@ public class RandomRoomCreator : MonoBehaviour
 			else if ((roomData[i].roomPos.y != (mapSizePerRoom.y - 1)) && (stuffed[roomData[i].roomPos.x, roomData[i].roomPos.y + 1]==false)) rightStartPos.Add(i);
 		}
 		{
-			if (leftStartPos.Count != 0)
+			while(leftStartPos.Count != 0)
 			{
-				int pos = leftStartPos[Random0ToN(leftStartPos.Count)];
-				previousRoom = roomData[pos];
+				int pos = Random0ToN(leftStartPos.Count);
+				previousRoom = roomData[leftStartPos[pos]];
+				if (stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y - 1]) { leftStartPos.RemoveAt(pos);continue;}
 				stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y - 1] = true;
 				currentRoom = new RoomInfo{roomType = RoomType.horizontal};
 				currentRoom.roomPos.x = previousRoom.roomPos.x;
@@ -277,136 +278,22 @@ public class RandomRoomCreator : MonoBehaviour
 				{
 					previousRoom = currentRoom;
 					currentRoom = new RoomInfo();
-					if (previousRoom.roomPos.y == 0 || stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y - 1]==true)
+					if (previousRoom.roomPos.y > 0&&(!stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y-1]))
 					{
-						if (previousRoom.roomPos.x == mapSizePerRoom.x - 1 || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y]==true)
-						{
-							if (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true) { previousRoom.isTreasure = true; currentRoom = null; }
-							else
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
-								currentRoom.roomPos = previousRoom.roomPos;
-								previousRoom.roomType = RoomType.vertical;
-								currentRoom.roomType = RoomType.secretDown;
-							}
-						}
-						else
-						{
-							if (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y]==true)
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-								currentRoom.roomPos.y = previousRoom.roomPos.y;
-								currentRoom.roomType = RoomType.secretUp;
-							}
-							else
-							{
-								switch (Random0ToN(2))
-								{
-									case 0:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-											currentRoom.roomPos.y = previousRoom.roomPos.y;
-											currentRoom.roomType = RoomType.secretUp;
-											break;
-										}
-									default:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
-											currentRoom.roomPos = previousRoom.roomPos;
-											previousRoom.roomType = RoomType.vertical;
-											currentRoom.roomType = RoomType.secretDown;
-											break;
-										}
-								}
-							}
-						}
+						currentRoom.roomPos.x = previousRoom.roomPos.x;
+						currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
+						currentRoom.roomType = RoomType.horizontal;
 					}
-					else
-					{
-						if (previousRoom.roomPos.x == mapSizePerRoom.x - 1 || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y]==true)
+					else {
+						if (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true)
 						{
-							if (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y]==true)
-							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x;
-								currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-								currentRoom.roomType = RoomType.horizontal;
-								if (previousRoom.roomType != RoomType.vertical) previousRoom.roomType = RoomType.horizontal;
-							}
-							else
-							{
-								switch (Random0ToN(2))
-								{
-									case 0:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x;
-											currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-											currentRoom.roomType = RoomType.horizontal;
-											if (previousRoom.roomType != RoomType.vertical) previousRoom.roomType = RoomType.horizontal;
-											break;
-										}
-									default:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
-											currentRoom.roomPos = previousRoom.roomPos;
-											previousRoom.roomType = RoomType.vertical;
-											currentRoom.roomType = RoomType.secretDown;
-											break;
-										}
-								}
-							}
+							currentRoom = null;
+							previousRoom.isTreasure = true;
 						}
-						else
-						{
-							if (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y]==true)
-							{
-								switch (Random0ToN(2))
-								{
-									case 0:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x;
-											currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-											currentRoom.roomType = RoomType.horizontal;
-											if (previousRoom.roomType != RoomType.vertical) previousRoom.roomType = RoomType.horizontal;
-											break;
-										}
-									default:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-											currentRoom.roomPos = previousRoom.roomPos;
-											currentRoom.roomType = RoomType.secretUp;
-											break;
-										}
-								}
-							}
-							else
-							{
-								switch (Random0ToN(3))
-								{
-									case 0:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x;
-											currentRoom.roomPos.y = previousRoom.roomPos.y - 1;
-											currentRoom.roomType = RoomType.horizontal;
-											if (previousRoom.roomType != RoomType.vertical) previousRoom.roomType = RoomType.horizontal;
-											break;
-										}
-									case 1:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
-											currentRoom.roomPos = previousRoom.roomPos;
-											currentRoom.roomType = RoomType.secretUp;
-											break;
-										}
-									default:
-										{
-											currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
-											currentRoom.roomPos = previousRoom.roomPos;
-											previousRoom.roomType = RoomType.vertical;
-											currentRoom.roomType = RoomType.secretDown;
-											break;
-										}
-								}
-							}
+						else {
+							currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+							currentRoom.roomPos.y = previousRoom.roomPos.y;
+							currentRoom.roomType = RoomType.secretUp;
 						}
 					}
 					if (currentRoom != null)
@@ -415,6 +302,49 @@ public class RandomRoomCreator : MonoBehaviour
 						stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
 					}
 				}
+				leftStartPos.RemoveAt(pos);
+			}
+			while (rightStartPos.Count != 0)
+			{
+				int pos = Random0ToN(rightStartPos.Count);
+				previousRoom = roomData[rightStartPos[pos]];
+				if (stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1] == true) {rightStartPos.RemoveAt(pos); continue; }
+				stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1] = true;
+				currentRoom = new RoomInfo { roomType = RoomType.horizontal };
+				currentRoom.roomPos.x = previousRoom.roomPos.x;
+				currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
+				roomData.Add(currentRoom);
+				while (!previousRoom.isTreasure)
+				{
+					previousRoom = currentRoom;
+					currentRoom = new RoomInfo();
+					if (previousRoom.roomPos.y < (mapSizePerRoom.y-1) && (!stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1]))
+					{
+						currentRoom.roomPos.x = previousRoom.roomPos.x;
+						currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
+						currentRoom.roomType = RoomType.horizontal;
+					}
+					else
+					{
+						if (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true)
+						{
+							currentRoom = null;
+							previousRoom.isTreasure = true;
+						}
+						else
+						{
+							currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+							currentRoom.roomPos.y = previousRoom.roomPos.y;
+							currentRoom.roomType = RoomType.secretUp;
+						}
+					}
+					if (currentRoom != null)
+					{
+						roomData.Add(currentRoom);
+						stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
+					}
+				}
+				rightStartPos.RemoveAt(pos);
 			}
 		}
 		for (int i = 0; i < mapSizePerRoom.x; i++) {
