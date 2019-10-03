@@ -43,8 +43,12 @@ public class Slime : MonoBehaviour
 		// Just tick our root coroutine
 		_Main.Update();
 	}
-
-	IEnumerable<Instruction> Main() {		
+    public void Des()
+    {
+        rb.velocity = Vector2.zero;
+        Destroy(this);
+    }
+    IEnumerable<Instruction> Main() {		
 		while (true)
 		{
 			Transform target = null;

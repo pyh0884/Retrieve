@@ -30,8 +30,11 @@ public class SwordFish : MonoBehaviour
     {
 		_Main.Update();
 	}
-
-	IEnumerable<Instruction> Main() {
+    public void Des()
+    {
+        Destroy(this);
+    }
+    IEnumerable<Instruction> Main() {
 		while (true) {
 			Transform target = null;
 			yield return ControlFlow.ExecuteWhileRunning(

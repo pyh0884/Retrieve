@@ -85,9 +85,13 @@ public class WaterShoot : MonoBehaviour
 	private int goalNum = 0;
 	Coroutines.Coroutine _Main;
 	Animator anim;
-
-	// Use this for initialization
-	void Start()
+    public void Des()
+    {
+        
+        Destroy(this);
+    }
+    // Use this for initialization
+    void Start()
 	{
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());

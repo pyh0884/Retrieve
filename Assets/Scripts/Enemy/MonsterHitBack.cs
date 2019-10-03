@@ -18,8 +18,11 @@ public class MonsterHitBack : MonoBehaviour
 	public void gotHitCheck() {
 		if (/*isGround && */!isWall) StartCoroutine(GotHit());
 	}
-
-	IEnumerator GotHit() {
+    public void Des()
+    {
+        Destroy(this);
+    }
+    IEnumerator GotHit() {
 		Vector3 target;
 		int frameCount = 0;
 		target = transform.position + transform.right * hitBackDist;

@@ -22,9 +22,13 @@ public class SandWorm : MonoBehaviour
 	Animator anim;
 	private float timer;
 
-	// Use this for initialization
-
-	private void Awake()
+    // Use this for initialization
+    public void Des()
+    {
+        rb.velocity = Vector2.zero;
+        Destroy(this);
+    }
+    private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
