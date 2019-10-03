@@ -11,8 +11,10 @@ public class MonsterHp : MonoBehaviour
     public bool CauseDMG=false;
     public GameObject drop;
     public GameObject drop2;
-    public int Burn;
+    public float Burn;
+    int BurnDamage;
     float timer;
+    GameManager gm;
 
     public void Damage(int damageCount)
     {
@@ -42,6 +44,7 @@ public class MonsterHp : MonoBehaviour
     }
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         Hp = HpMax;
         anim = GetComponent<Animator>();
         DamageTextControler.Initialize();
@@ -53,11 +56,12 @@ public class MonsterHp : MonoBehaviour
 
     private void Update()
     {
+        BurnDamage = gm.BurnDamage;
         timer += Time.deltaTime;
-        if (Burn>0&&timer>=0.3f)
+        if (Burn>0&&timer>=0.35f)
         {
             timer = 0;
-            Damage(3,3);
+            Damage(BurnDamage,3);
             Burn -= 1;
         }
         Hp = Mathf.Clamp(Hp, 0, HpMax);

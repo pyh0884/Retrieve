@@ -9,7 +9,7 @@ public class Skill9Bullet : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 2);
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,17 +20,19 @@ public class Skill9Bullet : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 10) + 3) * 1.5f), 1);
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt(Random.Range(7, 11) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 10) + 3)));
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt(Random.Range(7, 11)));
+                collision.gameObject.GetComponent<BossHp>().Burn = 3;
                 Destroy(gameObject);
             }
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 10) + 3) * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt(Random.Range(7,11) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 10) + 3)));
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt(Random.Range(7, 11)));
+                collision.gameObject.GetComponent<MonsterHp>().Burn = 3;
                 Destroy(gameObject);
 
             }

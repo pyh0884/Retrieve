@@ -13,7 +13,7 @@ namespace Cinemachine
         public GameObject main;
         void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.tag == "EnemyAttack")
+            if (col.tag == "EnemyAttack"&&main.GetComponent<HealthBarControl>().invincibleCD>0.7f)
             {
                 GenerateImpulseAt(main.transform.position,new Vector3(0,1,0));
             }

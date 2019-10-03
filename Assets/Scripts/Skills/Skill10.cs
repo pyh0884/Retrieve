@@ -5,8 +5,13 @@ using UnityEngine;
 public class Skill10 : MonoBehaviour
 {
     public GameManager gm;
+    public GameObject efx;
 
-    // Start is called before the first frame update
+    public void playEFX()
+    {
+        Instantiate(efx, new Vector3(transform.position.x, transform.position.y + 0.3f), Quaternion.Euler(-90, 0, 0));
+    }
+
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -25,7 +30,7 @@ public class Skill10 : MonoBehaviour
                 else
                 collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)));
 
-                collision.gameObject.GetComponent<BossHp>().Burn = 5;
+                collision.gameObject.GetComponent<BossHp>().Burn = 7;
                 
             }
             else
@@ -34,7 +39,7 @@ public class Skill10 : MonoBehaviour
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40) * 1.4f), 1);
                 else
                 collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 40)));
-                collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
+                collision.gameObject.GetComponent<MonsterHp>().Burn = 7;
 
             }
         }

@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public int BossIndex;
     public bool cheat;
     public int[] elements= { 0, 0, 0 };
+    public int[] levels = { 0, 0, 0, 0 };
+    public float HorizontalSpeed;
+    public float JumpSpeed;
+    public int BurnDamage=2;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -94,11 +98,41 @@ public class GameManager : MonoBehaviour
     {
         CritPos += CRIt;
     }
+    public void LevelUpYellow() {
+        if (levels[0] != 3)
+            levels[0]++;
+    }
+    public void LevelUpGreen()
+    {
+        if (levels[1] != 3)
+        {
+            levels[1]++;
+            HorizontalSpeed += 0;
+            JumpSpeed += 0;
+            player.GetComponent<PlayerController>().HorizontalSpeed = HorizontalSpeed;
+            player.GetComponent<PlayerController>().jumpSpeed = JumpSpeed;
+        }
+    }
+    public void LevelUpBlue()
+    {
+        if (levels[2] != 3)
+            levels[2]++;
+    }
+    public void LevelUpRed()
+    {
+        if (levels[3] != 3)
+        {
+            levels[3]++;
+            BurnDamage = 2+2*levels[3];
+        }
+    }
     void Start()
     {
         CurrentHp = HpCapacity;
         BossIndex = 0;
-	}
+        HorizontalSpeed = 7.75f;
+        JumpSpeed = 11.5f;
+    }
     public void Respawn()
     {
 		float x = PlayerPrefs.GetFloat("RespwanX", 1.5f);
