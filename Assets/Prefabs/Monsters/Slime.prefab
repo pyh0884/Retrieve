@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2055416822758834623
 Transform:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5400692547026399402}
   - component: {fileID: 4704461062113852501}
   - component: {fileID: -254248382825160685}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -159,19 +159,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3885879463445333247}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 50
+  m_Material: {fileID: 6200000, guid: da4fe2154ca8c4139acd7b76f2ed04c3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &4497634828562637413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,12 +201,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.334404, y: 0.35207105}
+  m_Offset: {x: -0.334404, y: 0.45248407}
   serializedVersion: 2
-  m_Radius: 0.56212986
+  m_Radius: 0.46171683
 --- !u!95 &5400692547026399402
 Animator:
   serializedVersion: 3
@@ -255,14 +255,8 @@ MonoBehaviour:
   hitBackDist: -1.8
   hitBackSpeed: 10
   maxBackFrame: 9
-  GroundCheck1: {fileID: 8611767781049626564}
-  GroundCheck2: {fileID: 930388146775241811}
   WallCheck: {fileID: 7990994818196870821}
-  Grounded: 0
   Walled: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
@@ -277,7 +271,7 @@ GameObject:
   - component: {fileID: 485459093421357543}
   - component: {fileID: 3445820851812536416}
   - component: {fileID: 3758218287576746812}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Attack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -342,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5639707624677018940
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2347305783833751600
 Transform:
   m_ObjectHideFlags: 0

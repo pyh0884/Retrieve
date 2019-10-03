@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5608929216393575545}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GroundCheck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5608929216393575545
 Transform:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1893511513382788656}
   - component: {fileID: 1014836221403079177}
   - component: {fileID: 4479246733660044538}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -154,11 +154,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 50
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &686251650
 CapsuleCollider2D:
@@ -173,8 +173,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06288731, y: -0.12709522}
-  m_Size: {x: 2.0052402, y: 2.2608933}
+  m_Offset: {x: 0.06288731, y: -0.02009201}
+  m_Size: {x: 2.0052402, y: 2.046887}
   m_Direction: 0
 --- !u!114 &686251652
 MonoBehaviour:
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yes: 1
+  DestroyTime: 2
 --- !u!114 &4479246733660044538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,14 +243,8 @@ MonoBehaviour:
   hitBackDist: 0.4
   hitBackSpeed: 8
   maxBackFrame: 5
-  GroundCheck1: {fileID: 6877575956282200827}
-  GroundCheck2: {fileID: 1728729381155558968}
   WallCheck: {fileID: 4025124325825807459}
-  Grounded: 0
   Walled: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
@@ -262,13 +257,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6409234089319567098}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6409234089319567098
 Transform:
   m_ObjectHideFlags: 0
@@ -294,7 +289,7 @@ GameObject:
   - component: {fileID: 2110287734659693279}
   - component: {fileID: 1079476310966536623}
   - component: {fileID: 6044752417168715668}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Attack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

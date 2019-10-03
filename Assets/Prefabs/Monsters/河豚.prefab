@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4996790847240149000}
   - component: {fileID: 4888022216769279854}
   - component: {fileID: -5045106030706627601}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: "\u6CB3\u8C5A"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -118,8 +118,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03343469, y: 0}
-  m_Size: {x: 1.7760247, y: 2.8125}
+  m_Offset: {x: -0.11769992, y: 0}
+  m_Size: {x: 1.014306, y: 2.8125}
   m_Direction: 0
 --- !u!50 &564933537324098074
 Rigidbody2D:
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yes: 1
+  DestroyTime: 2
 --- !u!1 &6643269128653936555
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ GameObject:
   - component: {fileID: 1439162530531227091}
   - component: {fileID: 2246635621445036720}
   - component: {fileID: 1721714437656976742}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Attack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

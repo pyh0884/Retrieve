@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3719077093735837047}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: wwwww
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7256856796089370007
 Transform:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4500667935984347165
 Transform:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8940621937736731881}
   - component: {fileID: -3439845863016637570}
   - component: {fileID: -6418032719375657809}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Shit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.16811664, y: 0.52745944}
@@ -221,18 +221,18 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3301055664645926907}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 50
+  m_Material: {fileID: 6200000, guid: da4fe2154ca8c4139acd7b76f2ed04c3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4624651561356114394
 MonoBehaviour:
@@ -301,14 +301,8 @@ MonoBehaviour:
   hitBackDist: 0.5
   hitBackSpeed: 10
   maxBackFrame: 8
-  GroundCheck1: {fileID: 2931371425205194953}
-  GroundCheck2: {fileID: 2941369887380423697}
   WallCheck: {fileID: 5648374008223415338}
-  Grounded: 0
   Walled: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
@@ -327,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9006861625872045551
 Transform:
   m_ObjectHideFlags: 0

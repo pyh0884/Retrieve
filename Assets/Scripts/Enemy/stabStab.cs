@@ -19,35 +19,40 @@ public class stabStab : MonoBehaviour
 	private Rigidbody2D rb;
 	private Animator anim;
 	private bool right = true;
-	public bool gothit = false;
+    private Transform target = null;
 
-	//void Start()
-	//{
-	//	StartCoroutine(CDCount());
-	//}
+    //public bool gothit = false;
 
-	//void Update()
-	//{
-	//	if (!player) player = GameObject.FindWithTag("Player");
-	//	else dist = player.transform.position - transform.position;
-	//       if (!CD&&player)
-	//	{
-	//		if (dist.magnitude < catchRange)
-	//		{
-	//			//动作
-	//			stab = Instantiate(stabPrefab, player.transform.position-Vector3.up*dist.y, new Quaternion());
-	//			StartCoroutine(CDCount());
-	//		}
-	//	}
-	//}
-	//IEnumerator CDCount()
-	//{
-	//	CD = true;
-	//	yield return new WaitForSeconds(CDTime);
-	//	CD = false;
-	//}
+    //void Start()
+    //{
+    //	StartCoroutine(CDCount());
+    //}
 
-	Coroutines.Coroutine _Main;
+    //void Update()
+    //{
+    //	if (!player) player = GameObject.FindWithTag("Player");
+    //	else dist = player.transform.position - transform.position;
+    //       if (!CD&&player)
+    //	{
+    //		if (dist.magnitude < catchRange)
+    //		{
+    //			//动作
+    //			stab = Instantiate(stabPrefab, player.transform.position-Vector3.up*dist.y, new Quaternion());
+    //			StartCoroutine(CDCount());
+    //		}
+    //	}
+    //}
+    //IEnumerator CDCount()
+    //{
+    //	CD = true;
+    //	yield return new WaitForSeconds(CDTime);
+    //	CD = false;
+    //}
+    public void Des()
+    {
+        Destroy(this);
+    }
+    Coroutines.Coroutine _Main;
 
 	void Start()
 	{
@@ -73,9 +78,9 @@ public class stabStab : MonoBehaviour
 				);
 			if (target != null)
 			{
-				gothit = false;
+				//gothit = false;
 				yield return ControlFlow.ExecuteWhile(
-					() => Vector3.Distance(target.position, transform.position) < lostRange&&!gothit,
+					() => Vector3.Distance(target.position, transform.position) < lostRange,//&&!gothit,
 					StabAttack(target),
 					TrackTarget(target,right)
 					);
@@ -124,24 +129,29 @@ public class stabStab : MonoBehaviour
 		}
 	}
 	IEnumerable<Instruction> StabAttack(Transform target) {
-		try
-		{
+        //try
+        //{
+        this.target = target;
 			while (true)
 			{			
 				anim.SetTrigger("Attack");
-				yield return Utils.WaitForFrames(2);
-				if (!gothit)
-				{
-					var stab = GameObject.Instantiate(stabPrefab);
-					stab.transform.position = new Vector3(target.position.x, transform.position.y);
-				}
+				//if (!gothit)
+				//{
+
+				//}
 				yield return Utils.WaitForSeconds(CDTime);
 			}
-		}
-		finally {
-			gothit = false;
-		}
+		//}
+		//finally {
+		//	gothit = false;
+		//}
 	}
+
+    public void Attack()
+    {
+        var stab = GameObject.Instantiate(stabPrefab);
+        stab.transform.position = new Vector3(target.position.x, transform.position.y);
+    }
 
 	IEnumerable<Instruction> TrackTarget(Transform target,bool right) {
 		try {
