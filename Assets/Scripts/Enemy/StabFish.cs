@@ -17,11 +17,25 @@ public class StabFish : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
+    Transform target = null;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
         {
-            //减速
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
         }
     }
     // Use this for initialization
@@ -42,9 +56,18 @@ public class StabFish : MonoBehaviour
 	void Update()
 	{
 		_Main.Update();
-	}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer2 += Time.deltaTime;
+        if (timer2 > SlowTimer && slowed)
+        {
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
 
-	IEnumerable<Instruction> Main() {
+    }
+
+    IEnumerable<Instruction> Main() {
 		
 		try
 		{

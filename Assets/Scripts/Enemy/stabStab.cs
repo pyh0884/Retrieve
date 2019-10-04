@@ -10,7 +10,8 @@ public class stabStab : MonoBehaviour
 	public float catchRange = 3.0f;
 	public float lostRange = 4.0f;
 	public float moveSpeed = 3.0f;
-	public GameObject GroundCheck;
+    private float tempSpeed;
+    public GameObject GroundCheck;
 	public GameObject WallCheck;
 	public bool Grounded;
 	public bool Walled;
@@ -51,14 +52,29 @@ public class stabStab : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
-
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
         {
-            //减速
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+
 
     public void Des()
     {
@@ -73,6 +89,8 @@ public class stabStab : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		_Main = new Coroutines.Coroutine(Main());
         gm = FindObjectOfType<GameManager>();
+        tempSpeed = moveSpeed;
+
     }
 
     // Update is called once per frame
@@ -80,9 +98,27 @@ public class stabStab : MonoBehaviour
 	{
 		// Just tick our root coroutine
 		_Main.Update();
-	}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer2 += Time.deltaTime;
+        if (animatorInfo.IsName("Green3_Hit")||animatorInfo.IsName("Green3_Die"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer2 > SlowTimer && slowed)
+        {
+            moveSpeed = tempSpeed;
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
 
-	IEnumerable<Instruction> Main() {
+    }
+
+    IEnumerable<Instruction> Main() {
 
 		while (true) {
 			Transform target = null;

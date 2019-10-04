@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5105078095517593267}
   - component: {fileID: 5105078095517593269}
   - component: {fileID: 4903723869674655577}
-  - component: {fileID: 2631157408221860939}
+  - component: {fileID: -918609356822227234}
   m_Layer: 11
   m_Name: WaterGun
   m_TagString: EnemyAttack
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2631157408221860939
+--- !u!114 &-918609356822227234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,9 +130,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5105078095517593270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5453a1d1f5e3a8146a69d45de6c7325d, type: 3}
+  m_Script: {fileID: 11500000, guid: 49c8e7fdddab219499d8308ceb2e30d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialForce: {x: 0, y: 0, z: 0}
-  damageAmt: 1
-  selfDestroy: 1
+  target: {fileID: 0}
+  waitTime: 0
+  speed: 5.5
+  SpawnPos: {x: 0, y: 0.1, z: 0}

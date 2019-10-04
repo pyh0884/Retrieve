@@ -52,7 +52,7 @@ public class Ghost : MonoBehaviour
 		_Main.Update();
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer += Time.deltaTime;
-        if (animatorInfo.IsName("Yellow3_Hit"))
+        if (animatorInfo.IsName("Yellow3_Hit")|| animatorInfo.IsName("Yellow3_Die"))
         {
             anim.speed = 1;
         }

@@ -28,27 +28,27 @@ public class Slime : MonoBehaviour
     GameManager gm;
     bool slowed;
     AnimatorStateInfo animatorInfo;
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == 4)
-    //    {
-    //        moveSpeed = tempSpeed / gm.SlowMultiplier;
-    //        anim.speed = 1f / gm.SlowMultiplier;
-    //        slowed = true;
-    //        timer2 = 0;
-    //    }
-    //}
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == 4)
-    //    {
-    //        moveSpeed = tempSpeed / gm.SlowMultiplier;
-    //        anim.speed = 1f / gm.SlowMultiplier;
-    //        slowed = true;
-    //        timer2 = 0;
-    //    }
-    //}
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+
     private void Awake()
 	{
 		anim = GetComponent<Animator>();
@@ -67,23 +67,23 @@ public class Slime : MonoBehaviour
 	{
 		// Just tick our root coroutine
 		_Main.Update();
-        //animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
-        //timer2 += Time.deltaTime;
-        //if (animatorInfo.IsName("Yellow1_Hit"))
-        //{
-        //    anim.speed = 1;
-        //}
-        //else if (slowed)
-        //{
-        //    anim.speed = 1f / gm.SlowMultiplier;
-        //}
-        //if (timer2 > SlowTimer && slowed)
-        //{
-        //    moveSpeed = tempSpeed;
-        //    anim.speed = 1;
-        //    timer2 = 0;
-        //    slowed = false;
-        //}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer2 += Time.deltaTime;
+        if (animatorInfo.IsName("yellow1_hit")|| animatorInfo.IsName("Yellow1_Die"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer2 > SlowTimer && slowed)
+        {
+            moveSpeed = tempSpeed;
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
 
     }
     public void Des()

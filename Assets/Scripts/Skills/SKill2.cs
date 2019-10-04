@@ -125,7 +125,7 @@ public class SKill2 : MonoBehaviour
         {
             if (hit)
             {
-                Debug.Log("yeah");
+                //Debug.Log("yeah");
                 //collidedWith.GetComponent<MonsterHp>().Damage(damageAmt);
                 success(true);
                 yield break;

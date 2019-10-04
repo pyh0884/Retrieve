@@ -71,7 +71,7 @@ public class SandWorm : MonoBehaviour
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer += Time.deltaTime;
         timer2 += Time.deltaTime;
-        if (animatorInfo.IsName("Green2_Hit"))
+        if (animatorInfo.IsName("Green2_Hit")|| animatorInfo.IsName("Green2_Die"))
         {
             anim.speed = 1;
         }

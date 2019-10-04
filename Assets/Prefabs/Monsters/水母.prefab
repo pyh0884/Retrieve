@@ -31,7 +31,6 @@ Transform:
   - {fileID: 213595080904537478}
   - {fileID: 7240398200686145281}
   - {fileID: 8185350466452157364}
-  - {fileID: 6654261181191578900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70,6 +69,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3868062924988657562}
+  - {fileID: 6654261181191578900}
   m_Father: {fileID: 9091854642111817896}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 0.5
-  shootGap: 1.5
+  shootGap: 2
   moveSpeed: 3
   endPos:
   - {fileID: 213595080904537478}
@@ -163,7 +163,7 @@ MonoBehaviour:
   - {fileID: 8185350466452157364}
   _ProjectileExit: {fileID: 3868062925542732820}
   _ProjectileInitialVelocity: 4
-  _ProjectilePrefab: {fileID: 2631157408221860939, guid: 05ab45ef567ec294089d99c2666a0a1b,
+  _ProjectilePrefab: {fileID: 5105078095517593270, guid: 05ab45ef567ec294089d99c2666a0a1b,
     type: 3}
   Child: {fileID: 3868062924988657562}
   _LockOnRadius: 12
@@ -179,19 +179,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2364315780650776178}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: da4fe2154ca8c4139acd7b76f2ed04c3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &3868062926518535626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -448,11 +448,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5670745613489088862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9091854642111817896}
-  m_RootOrder: 4
+  m_Father: {fileID: 2364315780650776189}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2304092513434874704
 BoxCollider2D:
