@@ -85,6 +85,16 @@ public class WaterShoot : MonoBehaviour
 	private int goalNum = 0;
 	Coroutines.Coroutine _Main;
 	Animator anim;
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
     public void Des()
     {
         
@@ -95,10 +105,12 @@ public class WaterShoot : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
-	}
+        gm = FindObjectOfType<GameManager>();
 
-	// Update is called once per frame
-	void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		_Main.Update();
 	}

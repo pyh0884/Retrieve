@@ -21,7 +21,16 @@ public class SandWorm : MonoBehaviour
 	Coroutines.Coroutine _Main;
 	Animator anim;
 	private float timer;
-
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
     // Use this for initialization
     public void Des()
     {
@@ -32,8 +41,10 @@ public class SandWorm : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
-	}
-	void Start()
+        gm = FindObjectOfType<GameManager>();
+
+    }
+    void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}
@@ -112,7 +123,7 @@ public class SandWorm : MonoBehaviour
 			{
 				attackOver = false;
 				targetPos = new Vector3(target.position.x, transform.position.y);
-				while (transform.position != targetPos&&isGround&&!isWall)
+				while ((Mathf.Abs(transform.position.x-targetPos.x)>1)&&isGround&&!isWall)
 				{
 					targetPos = new Vector3(target.position.x, transform.position.y);
 					transform.right = target.right;

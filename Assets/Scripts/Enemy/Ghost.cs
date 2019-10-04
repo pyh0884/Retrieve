@@ -14,16 +14,28 @@ public class Ghost : MonoBehaviour
 	private Vector3 dist;
 	Animator anim;
 	Coroutines.Coroutine _Main;
+    public float SlowTimer;
+    private float timer;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
 
-	// Use this for initialization
-	void Start()
+    // Use this for initialization
+    void Start()
 	{
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
-	}
+        gm = FindObjectOfType<GameManager>();
 
-	// Update is called once per frame
-	void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		_Main.Update();
 	}
@@ -76,7 +88,7 @@ public class Ghost : MonoBehaviour
 				//	yield return null;
 				//}
 				transform.position = target.position + new Vector3(right ? -attackDist : attackDist, yOffset);
-				anim.SetTrigger("Attack");		
+				anim.SetTrigger("Attack");
 				while (appear) yield return null;
 				yield return Utils.WaitForSeconds(CD_Time);
 			}

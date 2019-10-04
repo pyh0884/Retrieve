@@ -53,7 +53,7 @@ public class TargetFollowingEnemy : MonoBehaviour
     public void TraceRoute(Transform aim) {
 		newVelocity = velocity;
 		newPosition = transform.position;
-		dist = aim.position - transform.position;
+		dist = new Vector3(aim.position.x, aim.position.y+1) - transform.position;
 		newVelocity += dist * mouseAttractionAmt;
 	}
 
@@ -66,7 +66,7 @@ public class TargetFollowingEnemy : MonoBehaviour
     {
 		if (lookAtState)
 		{
-			LookAtTarget(target.transform.position);
+			LookAtTarget(new Vector3(target.transform.position.x, target.transform.position.y+1));
 			if (traceRouteState)
 			{
 				TraceRoute(target.transform);

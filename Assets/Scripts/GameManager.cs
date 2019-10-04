@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float HorizontalSpeed;
     public float JumpSpeed;
     public int BurnDamage=2;
+    public float SlowMultiplier=1;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -100,7 +101,10 @@ public class GameManager : MonoBehaviour
     }
     public void LevelUpYellow() {
         if (levels[0] != 3)
+        {
             levels[0]++;
+            SlowMultiplier =1.2f+ 0.2f*levels[0];
+        }
     }
     public void LevelUpGreen()
     {

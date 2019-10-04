@@ -14,15 +14,26 @@ public class StabFish : MonoBehaviour
 	Animator anim;
 	MonsterHp hp;
 	Coroutines.Coroutine _Main;
-
-	// Use this for initialization
-	private void Awake()
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
+    // Use this for initialization
+    private void Awake()
 	{
 		hp = GetComponent<MonsterHp>();
 		anim = GetComponent<Animator>();
-	}
+        gm = FindObjectOfType<GameManager>();
 
-	void Start()
+    }
+
+    void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}

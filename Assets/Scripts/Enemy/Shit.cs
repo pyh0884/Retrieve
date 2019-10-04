@@ -12,8 +12,17 @@ public class Shit : MonoBehaviour
     private Animator anim;
     public float CDTime;
     private float timer=0;
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
     // Start is called before the first frame update
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +43,9 @@ public class Shit : MonoBehaviour
     private void Start()
     {
 		anim = GetComponent<Animator>();
-	}
+        gm = FindObjectOfType<GameManager>();
+
+    }
     public void Shoot() {
         Instantiate(missile, spawn.position, transform.rotation);
 	}

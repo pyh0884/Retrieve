@@ -19,20 +19,30 @@ public class Slime : MonoBehaviour
 	public LayerMask groundLayer;
 	public LayerMask wallLayer;
 
-	public bool attackOver;
 	Animator anim;
 	private Rigidbody2D rb;
 	private bool right = true;
 
 	Coroutines.Coroutine _Main;
-
-	private void Awake()
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
+    private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
-	}
+        gm = FindObjectOfType<GameManager>();
 
-	void Start()
+    }
+
+    void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}
@@ -48,10 +58,10 @@ public class Slime : MonoBehaviour
         rb.velocity = Vector2.zero;
         Destroy(this);
     }
-    IEnumerable<Instruction> Main() {		
+    IEnumerable<Instruction> Main() {
 		while (true)
 		{
-			Transform target = null;
+            Transform target = null;
 			yield return ControlFlow.ExecuteWhileRunning(
 				FindTargetInRectangle(catchXRange, catchYRange, trgt => target = trgt),
 				Idle(isright => right = isright)
@@ -62,9 +72,8 @@ public class Slime : MonoBehaviour
 					WaitForSecondsCr(CD_Time),
 					TrackTarget(target, isright=>right=isright)
 					);
-				attackOver = false;				
-				yield return ControlFlow.ExecuteWhile(()=>!attackOver,Attack());
-				attackOver = true;
+
+                yield return ControlFlow.ExecuteWhile(()=>Mathf.Abs(transform.position.x-target.position.x)<attackRange,Attack());
 			}
 		}
 	}
@@ -138,14 +147,21 @@ public class Slime : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> Attack() {
-		//播放动画,动画结束时将attackOver置true;
-		anim.SetTrigger("Attack");
-		while (!attackOver)
-		{
-			//Debug.Log("Attacking");
-			yield return null;
-		}
-	}
+        //播放动画,动画结束时将attackOver置true;
+        try
+        {
+            Debug.Log(1);
+            anim.SetBool("Attack",true);
+            while (true)
+            {
+                //Debug.Log("Attacking");
+                yield return null;
+            }
+        }
+        finally {
+            anim.SetBool("Attack", false);
+        }
+    }
 
 	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
 	{
