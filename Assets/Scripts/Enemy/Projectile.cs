@@ -15,6 +15,7 @@ public class Projectile
 	// Use this for initialization
 	void Start ()
 	{
+        Destroy(gameObject, 3);
 		_Main = new Coroutines.Coroutine(Main());
 	}
 	

@@ -48,8 +48,21 @@ public class stabStab : MonoBehaviour
     //	yield return new WaitForSeconds(CDTime);
     //	CD = false;
     //}
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
+
     public void Des()
     {
+        rb.velocity = Vector2.zero;
         Destroy(this);
     }
     Coroutines.Coroutine _Main;
@@ -59,10 +72,11 @@ public class stabStab : MonoBehaviour
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 		_Main = new Coroutines.Coroutine(Main());
-	}
+        gm = FindObjectOfType<GameManager>();
+    }
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
 	{
 		// Just tick our root coroutine
 		_Main.Update();

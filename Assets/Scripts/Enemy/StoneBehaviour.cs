@@ -16,13 +16,13 @@ public class StoneBehaviour : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         ready = false;
         StartCoroutine("Main");
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!ready) transform.right = target.transform.position - transform.position;
+        if (!ready) transform.right = new Vector3(target.transform.position.x, target.transform.position.y+1) - transform.position;
     }
 
     void Shoot()

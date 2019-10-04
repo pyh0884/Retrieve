@@ -5,13 +5,12 @@ using Coroutines;
 
 public class ArrowKid : MonoBehaviour
 {
-
-
 	public float catchRange = 8.0f;
 	public float attackRange = 3.0f;
 	public float runAmt = 2.0f;
 	public float moveSpeed = 2.0f;
-	public float _ProjectileInitialVelocity = 2.5f;
+    private float tempSpeed;
+    public float _ProjectileInitialVelocity = 2.5f;
 	public float shootGap = 1.5f;
 	public Projectile _ProjectilePrefab;
 	public Transform _ProjectileExit;
@@ -20,7 +19,6 @@ public class ArrowKid : MonoBehaviour
 	private Animator anim;
 	private Rigidbody2D rb;
 	Coroutines.Coroutine _Main;
-
 	public GameObject GroundCheck1;
 	public GameObject GroundCheck2;
 	public GameObject WallCheck;
@@ -30,13 +28,39 @@ public class ArrowKid : MonoBehaviour
 	public bool Walled2;
 	public LayerMask groundLayer;
 	public LayerMask wallLayer;
-
-	private void Awake()
+    public float SlowTimer;
+    private float timer;
+    GameManager gm;
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed =tempSpeed/gm.SlowMultiplier;
+            anim.speed = 1f/gm.SlowMultiplier;
+            slowed = true;
+            timer = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer = 0;
+        }
+    }
+    private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 		right = transform.right.x > 0 ? true : false;
-	}
+        gm = FindObjectOfType<GameManager>();
+        tempSpeed = moveSpeed;
+    }
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
@@ -46,9 +70,30 @@ public class ArrowKid : MonoBehaviour
 	void Update()
 	{
 		_Main.Update();
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer += Time.deltaTime;
+        if (animatorInfo.IsName("Green1_Hit"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer > SlowTimer&&slowed)
+        {
+            moveSpeed = tempSpeed;
+            anim.speed = 1;
+            timer = 0;
+            slowed = false;
+        }
 	}
-
-	IEnumerable<Instruction> Main()
+    public void Des()
+    {
+        rb.velocity = Vector2.zero;
+        Destroy(this);
+    }
+    IEnumerable<Instruction> Main()
 	{
 				
 		while (true)
@@ -67,7 +112,8 @@ public class ArrowKid : MonoBehaviour
 					);
 				yield return ControlFlow.ExecuteWhile(
 					() => Mathf.Abs(target.position.x - transform.position.x) < catchRange&&!gotHit,
-					ArrowAttack(target),
+                    log(),
+                    ArrowAttack(target),
 					TrackTarget(target, isright => right = isright)
 					);
 				if (gotHit) gotHit = false;
@@ -100,8 +146,12 @@ public class ArrowKid : MonoBehaviour
 			yield return null;
 		}
 	}
-
-	IEnumerable<Instruction> ChaseTarget(Transform target)
+    IEnumerable<Instruction> log()
+    {
+        //Debug.Log(1);
+        yield return null;
+    }
+    IEnumerable<Instruction> ChaseTarget(Transform target)
 	{
 		try
 		{
@@ -151,7 +201,7 @@ public class ArrowKid : MonoBehaviour
 			Vector3 targetTrans = transform.position + new Vector3(transform.right.x < 0 ? runAmt : -runAmt, 0);
 			while (transform.position != targetTrans)
 			{
-				if (isWall2 || !isGround2) break;
+                if (isWall2 || !isGround2)  break; 
 				transform.position = Vector3.MoveTowards(transform.position, targetTrans, moveSpeed * Time.deltaTime);
 				yield return null;
 			}
@@ -168,7 +218,7 @@ public class ArrowKid : MonoBehaviour
 	bool isGround1 {
 		get {
 			Vector2 start = GroundCheck1.transform.position;
-			Vector2 end = new Vector2(GroundCheck1.transform.position.x,GroundCheck1.transform.position.y-1.5f);
+			Vector2 end = new Vector2(GroundCheck1.transform.position.x,GroundCheck1.transform.position.y-1);
 			Debug.DrawLine(start, end, Color.magenta);
 			Grounded1 = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded1;
@@ -180,7 +230,7 @@ public class ArrowKid : MonoBehaviour
 		get
 		{
 			Vector2 start = GroundCheck2.transform.position;
-			Vector2 end = new Vector2(GroundCheck2.transform.position.x, GroundCheck2.transform.position.y - 1.5f);
+			Vector2 end = new Vector2(GroundCheck2.transform.position.x, GroundCheck2.transform.position.y - 1);
 			Debug.DrawLine(start, end, Color.magenta);
 			Grounded2 = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded2;
@@ -193,7 +243,7 @@ public class ArrowKid : MonoBehaviour
 		{
 			Vector2 start = WallCheck.transform.position;
 			Vector2 end = new Vector2(WallCheck.transform.position.x + transform.right.x, WallCheck.transform.position.y);
-			Debug.DrawLine(start, end, Color.cyan);
+			//Debug.DrawLine(start, end, Color.cyan);
 			Walled1 = Physics2D.Linecast(start, end, wallLayer);
 			return Walled1;
 		}
@@ -205,7 +255,7 @@ public class ArrowKid : MonoBehaviour
 			Vector2 start = WallCheck.transform.position;
 			Vector2 end = new Vector2(WallCheck.transform.position.x - transform.right.x, WallCheck.transform.position.y);
 			Debug.DrawLine(start, end, Color.cyan);
-			Walled1 = Physics2D.Linecast(start, end, wallLayer);
+			Walled2 = Physics2D.Linecast(start, end, wallLayer);
 			return Walled2;
 		}
 	}

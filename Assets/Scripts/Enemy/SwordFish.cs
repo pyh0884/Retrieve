@@ -17,21 +17,35 @@ public class SwordFish : MonoBehaviour
 	public float moveRadius = 5.0f;
 	Coroutines.Coroutine _Main;
 	Animator anim;
-
-	// Start is called before the first frame update
-	void Start()
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            //减速
+        }
+    }
+    // Start is called before the first frame update
+    void Start()
     {
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
-	}
+        gm = FindObjectOfType<GameManager>();
+
+    }
 
     // Update is called once per frame
     void Update()
     {
 		_Main.Update();
 	}
-
-	IEnumerable<Instruction> Main() {
+    public void Des()
+    {
+        Destroy(this);
+    }
+    IEnumerable<Instruction> Main() {
 		while (true) {
 			Transform target = null;
 			yield return ControlFlow.ExecuteWhileRunning(

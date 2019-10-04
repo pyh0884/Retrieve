@@ -8,7 +8,8 @@ public class SandWorm : MonoBehaviour
 	public float catchRange = 5.0f;
 	public float lostRange = 7.5f;
 	public float moveSpeed = 3.0f;
-	public float CD_Time = 0.5f;
+    private float tempSpeed;
+    public float CD_Time = 0.5f;
 	public GameObject GroundCheck;
 	public GameObject WallCheck;
 	public bool Grounded;
@@ -21,15 +22,44 @@ public class SandWorm : MonoBehaviour
 	Coroutines.Coroutine _Main;
 	Animator anim;
 	private float timer;
-
-	// Use this for initialization
-
-	private void Awake()
+    public float SlowTimer;
+    private float timer2;
+    GameManager gm;
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+    public void Des()
+    {
+        rb.velocity = Vector2.zero;
+        Destroy(this);
+    }
+    private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
-	}
-	void Start()
+        gm = FindObjectOfType<GameManager>();
+        tempSpeed = moveSpeed;
+    }
+    void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}
@@ -38,10 +68,28 @@ public class SandWorm : MonoBehaviour
 	void Update()
 	{
 		_Main.Update();
-		timer += Time.deltaTime;
-	}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer += Time.deltaTime;
+        timer2 += Time.deltaTime;
+        if (animatorInfo.IsName("Green2_Hit"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer2 > SlowTimer && slowed)
+        {
+            moveSpeed = tempSpeed;
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
 
-	IEnumerable<Instruction> Main()
+    }
+
+    IEnumerable<Instruction> Main()
 	{
 		while (true) {
 			Transform target = null;
@@ -108,7 +156,7 @@ public class SandWorm : MonoBehaviour
 			{
 				attackOver = false;
 				targetPos = new Vector3(target.position.x, transform.position.y);
-				while (transform.position != targetPos&&isGround&&!isWall)
+				while ((Mathf.Abs(transform.position.x-targetPos.x)>1)&&isGround&&!isWall)
 				{
 					targetPos = new Vector3(target.position.x, transform.position.y);
 					transform.right = target.right;
