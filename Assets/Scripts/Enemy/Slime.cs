@@ -158,19 +158,19 @@ public class Slime : MonoBehaviour
 	IEnumerable<Instruction> TrackTarget(Transform target, System.Action<bool> isRight)
 	{
 		bool isright = right;
-		rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
+            rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
 		Vector3 dist;
 		try
 		{
-			while (true)
+			while (isGround)
             {
-                if (!isGround || isWall) { break; }
+                //if (!isGround || isWall) { break; }
 				dist = target.position - transform.position;
 				if (isright != dist.x > 0 ? true : false)
 				{
 					isright = dist.x > 0 ? true : false;
-					rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
-					transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
+                    rb.velocity = new Vector2(isright ? moveSpeed : -moveSpeed, 0);
+                    transform.eulerAngles = new Vector3(0, isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
 				//Debug.Log("Tracking");

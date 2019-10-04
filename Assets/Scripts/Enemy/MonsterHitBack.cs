@@ -13,8 +13,7 @@ public class MonsterHitBack : MonoBehaviour
 	//public bool Grounded;
 	public bool Walled;
 	//public LayerMask groundLayer;
-	public LayerMask wallLayer;
-
+	public LayerMask wallLayer;    
 	public void gotHitCheck() {
 		if (/*isGround && */!isWall) StartCoroutine(GotHit());
 	}
@@ -36,22 +35,22 @@ public class MonsterHitBack : MonoBehaviour
 		} 
 	}
 
-	//public bool isGround
-	//{
-	//	get
-	//	{
-	//		Vector2 start1 = GroundCheck1.transform.position;
-	//		Vector2 start2 = GroundCheck2.transform.position;
-	//		Vector2 end1 = new Vector2(GroundCheck1.transform.position.x, GroundCheck1.transform.position.y - 2);
-	//		Vector2 end2 = new Vector2(GroundCheck2.transform.position.x, GroundCheck2.transform.position.y - 2);
-	//		Debug.DrawLine(start1, end1, Color.blue);
-	//		Debug.DrawLine(start2, end2, Color.yellow);
-	//		Grounded = Physics2D.Linecast(start1, end1, groundLayer) && Physics2D.Linecast(start2, end2, groundLayer);
-	//		return Grounded;
-	//	}
-	//}
+    //public bool isground
+    //{
+    //	get
+    //	{
+    //		vector2 start1 = groundcheck1.transform.position;
+    //		vector2 start2 = groundcheck2.transform.position;
+    //		vector2 end1 = new vector2(groundcheck1.transform.position.x, groundcheck1.transform.position.y - 2);
+    //		vector2 end2 = new vector2(groundcheck2.transform.position.x, groundcheck2.transform.position.y - 2);
+    //		debug.drawline(start1, end1, color.blue);
+    //		debug.drawline(start2, end2, color.yellow);
+    //		grounded = physics2d.linecast(start1, end1, groundlayer) && physics2d.linecast(start2, end2, groundlayer);
+    //		return grounded;
+    //	}
+    //}
 
-	public bool isWall
+    public bool isWall
 	{
 		get
 		{
