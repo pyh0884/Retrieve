@@ -11,35 +11,50 @@ public class Slime : MonoBehaviour
 	public float attackRange = 2.0f;
 	public float CD_Time = 2.0f;
 	public float moveSpeed = 3.0f;
-	public float chaseSpeed = 5.0f;
+    private float tempSpeed;
+    public float chaseSpeed = 5.0f;
 	public GameObject GroundCheck;
 	public GameObject WallCheck;
 	public bool Grounded;
 	public bool Walled;
 	public LayerMask groundLayer;
 	public LayerMask wallLayer;
-
 	Animator anim;
 	private Rigidbody2D rb;
 	private bool right = true;
-
 	Coroutines.Coroutine _Main;
     public float SlowTimer;
     private float timer2;
     GameManager gm;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 4)
-        {
-            //减速
-        }
-    }
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 4)
+    //    {
+    //        moveSpeed = tempSpeed / gm.SlowMultiplier;
+    //        anim.speed = 1f / gm.SlowMultiplier;
+    //        slowed = true;
+    //        timer2 = 0;
+    //    }
+    //}
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 4)
+    //    {
+    //        moveSpeed = tempSpeed / gm.SlowMultiplier;
+    //        anim.speed = 1f / gm.SlowMultiplier;
+    //        slowed = true;
+    //        timer2 = 0;
+    //    }
+    //}
+    
     private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
-
+        tempSpeed = moveSpeed;
     }
 
     void Start()
@@ -52,7 +67,25 @@ public class Slime : MonoBehaviour
 	{
 		// Just tick our root coroutine
 		_Main.Update();
-	}
+        //animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        //timer2 += Time.deltaTime;
+        //if (animatorInfo.IsName("Yellow1_Hit"))
+        //{
+        //    anim.speed = 1;
+        //}
+        //else if (slowed)
+        //{
+        //    anim.speed = 1f / gm.SlowMultiplier;
+        //}
+        //if (timer2 > SlowTimer && slowed)
+        //{
+        //    moveSpeed = tempSpeed;
+        //    anim.speed = 1;
+        //    timer2 = 0;
+        //    slowed = false;
+        //}
+
+    }
     public void Des()
     {
         rb.velocity = Vector2.zero;
@@ -68,12 +101,16 @@ public class Slime : MonoBehaviour
 				);
 			if (target != null)
 			{
-				yield return ControlFlow.ConcurrentCall(
-					WaitForSecondsCr(CD_Time),
+				yield return ControlFlow.ExecuteWhile(
+					//WaitForSecondsCr(CD_Time),
+                    ()=> Mathf.Abs(transform.position.x - target.position.x) >= attackRange,
 					TrackTarget(target, isright=>right=isright)
 					);
 
-                yield return ControlFlow.ExecuteWhile(()=>Mathf.Abs(transform.position.x-target.position.x)<attackRange,Attack());
+                yield return ControlFlow.ExecuteWhile(
+                    ()=>Mathf.Abs(transform.position.x-target.position.x)<attackRange,
+                    Attack()
+                    );
 			}
 		}
 	}
@@ -125,8 +162,9 @@ public class Slime : MonoBehaviour
 		Vector3 dist;
 		try
 		{
-			while (isGround&&!isWall)
-			{
+			while (true)
+            {
+                if (!isGround || isWall) { break; }
 				dist = target.position - transform.position;
 				if (isright != dist.x > 0 ? true : false)
 				{
@@ -136,7 +174,7 @@ public class Slime : MonoBehaviour
 					isRight(isright);
 				}
 				//Debug.Log("Tracking");
-				if (Mathf.Abs(dist.x) < attackRange) yield break;
+				//if (Mathf.Abs(dist.x) < attackRange) yield break;
 				yield return null;
 			}
 		}
@@ -150,7 +188,7 @@ public class Slime : MonoBehaviour
         //播放动画,动画结束时将attackOver置true;
         try
         {
-            Debug.Log(1);
+           // Debug.Log(1);
             anim.SetBool("Attack",true);
             while (true)
             {
@@ -185,7 +223,7 @@ public class Slime : MonoBehaviour
 		get
 		{
 			Vector2 start = WallCheck.transform.position;
-			Vector2 end = new Vector2(WallCheck.transform.position.x + (right ? 2 : -2), WallCheck.transform.position.y);
+			Vector2 end = new Vector2(WallCheck.transform.position.x + (right ? 1 : -1), WallCheck.transform.position.y);
 			Debug.DrawLine(start, end, Color.red);
 			Walled = Physics2D.Linecast(start, end, wallLayer);
 			return Walled;

@@ -5,8 +5,6 @@ using Coroutines;
 
 public class ArrowKid : MonoBehaviour
 {
-
-
 	public float catchRange = 8.0f;
 	public float attackRange = 3.0f;
 	public float runAmt = 2.0f;
