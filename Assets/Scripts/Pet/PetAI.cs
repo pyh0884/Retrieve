@@ -25,7 +25,7 @@ public class PetAI : MonoBehaviour
 		if (pc.controllable)
 		{
 			if (Input.GetButtonDown("Fire4") || Input.GetAxisRaw("Fire4") != 0)
-			{				
+			{
 				if (isPressing == false)
 				{
                     // Call your event function here.
@@ -33,11 +33,11 @@ public class PetAI : MonoBehaviour
                     {
                 case 1://防护罩            
                     anim.SetTrigger("Attack");
-                        Skills[1].SetActive(true);
+                        var skill = Instantiate(Skills[1], new Vector3(player.transform.position.x, player.transform.position.y + 2), transform.rotation);
+                        skill.GetComponent<Rigidbody2D>().velocity = new Vector2(player.transform.rotation.y == 0 ? 5: -5,0);
                         ec.elements[0] = 0;
                         ec.elements[1] = 0;
                         ec.elements[2] = 0;
-
                         break;
                 case 2://连锁闪电
                     anim.SetTrigger("Attack");

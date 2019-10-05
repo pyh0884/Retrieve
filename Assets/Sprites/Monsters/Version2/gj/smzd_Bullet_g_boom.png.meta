@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 33e75816d21269f4394ac7eca37d9f07
+guid: d555493dabe1c6440afa2697cb89b6cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1203808309430006479
-    second: boss_g_fire_0
+      213: 682064644090659489
+    second: smzd_Bullet_g_boom_0
   - first:
-      213: 6190936271700188999
-    second: boss_g_fire_1
+      213: -657921508462245723
+    second: smzd_Bullet_g_boom_1
   - first:
-      213: -8297405050909726379
-    second: boss_g_fire_2
+      213: -7978261684886010577
+    second: smzd_Bullet_g_boom_2
   - first:
-      213: -6409432349245932995
-    second: boss_g_fire_3
+      213: -3384809580406684547
+    second: smzd_Bullet_g_boom_3
   - first:
-      213: -4140036050780017752
-    second: boss_g_fire_4
+      213: -6768799532518036591
+    second: smzd_Bullet_g_boom_4
   - first:
-      213: 195073122483210821
-    second: boss_g_fire_5
+      213: 6324047810305082067
+    second: smzd_Bullet_g_boom_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -100,29 +100,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss_g_fire_0
+      name: smzd_Bullet_g_boom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc8db71685c7fc4baaf82d54083ac3b
-      internalID: -1203808309430006479
+      spriteID: 832474e331ef24c4b8fb19f7e0eff5b4
+      internalID: 682064644090659489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_g_fire_1
+      name: smzd_Bullet_g_boom_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 9
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac6a6e0121b30e049897086b29ecdfd7
-      internalID: 6190936271700188999
+      spriteID: 63e4185f216dcbd4c9bfa362090cf8a3
+      internalID: -657921508462245723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_g_fire_2
+      name: smzd_Bullet_g_boom_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 18
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be39448e155c06f41a45fa8f946bbbb7
-      internalID: -8297405050909726379
+      spriteID: 33b277e0346a7a84b92d4ec5ebea2913
+      internalID: -7978261684886010577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_g_fire_3
+      name: smzd_Bullet_g_boom_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 27
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 703bf07c1d1db0c4ba9720dc610f11a6
-      internalID: -6409432349245932995
+      spriteID: 226ecf2f9fc9a924682951af0384a2da
+      internalID: -3384809580406684547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_g_fire_4
+      name: smzd_Bullet_g_boom_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 36
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38557db082948d440a6824666ffef15d
-      internalID: -4140036050780017752
+      spriteID: 89ec39a61811bca4380349b455b729ef
+      internalID: -6768799532518036591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_g_fire_5
+      name: smzd_Bullet_g_boom_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 45
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be75d7b4ca8fe694387af4de043931c1
-      internalID: 195073122483210821
+      spriteID: 43196489a65c57b439762a6628fe9889
+      internalID: 6324047810305082067
       vertices: []
       indices: 
       edges: []

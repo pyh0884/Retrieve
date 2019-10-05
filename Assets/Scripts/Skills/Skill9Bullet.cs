@@ -16,6 +16,7 @@ public class Skill9Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            GetComponent<Animator>().SetTrigger("Hit");
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
@@ -24,7 +25,7 @@ public class Skill9Bullet : MonoBehaviour
                 else
                     collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt(Random.Range(7, 11)));
                 collision.gameObject.GetComponent<BossHp>().Burn = 3;
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
             else
             {
@@ -33,7 +34,7 @@ public class Skill9Bullet : MonoBehaviour
                 else
                     collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt(Random.Range(7, 11)));
                 collision.gameObject.GetComponent<MonsterHp>().Burn = 3;
-                Destroy(gameObject);
+                //Destroy(gameObject);
 
             }
         }

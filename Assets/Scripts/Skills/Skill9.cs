@@ -47,13 +47,13 @@ public class Skill9 : MonoBehaviour
         FindEnemy();
         if (nearest)
         {
-            GetComponent<Animator>().speed = 1;
+            GetComponent<Animator>().SetBool("Attack", true);
             direction = nearest.transform.position - transform.position;
             transform.right = direction;
         }
         else
         {
-            GetComponent<Animator>().speed = 0;
+            GetComponent<Animator>().SetBool("Attack", false);
         }
     }
 }

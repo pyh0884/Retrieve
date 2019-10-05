@@ -5,22 +5,30 @@ using UnityEngine;
 public class Skill1 : MonoBehaviour
 {
     public HealthBarControl hbc;
+    public float LastTime;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Destroy(gameObject, LastTime);
+        StartCoroutine("StopMoving");
     }
-    void Invincible(float time)
+    IEnumerator StopMoving()
     {
-        hbc.invincibleCD = 0.7f-time;
+        yield return new WaitForSeconds(1);
+        Destroy(rb);
     }
-    void Hide()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            hbc.invincibleCD = 0.3f;
+        }
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Awake()
     {
-        
+        hbc = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthBarControl>();
+
     }
 }
