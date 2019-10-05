@@ -101,13 +101,13 @@ public class PetAI : MonoBehaviour
                                             if (player.transform.rotation.y == 0)
                                             {
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                                             }
                                             else
                                             {
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                                             }
                                             break;
@@ -115,17 +115,17 @@ public class PetAI : MonoBehaviour
                                             if (player.transform.rotation.y == 0)
                                             {
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x + 1, player.transform.position.y + 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                                             }
                                             else
                                             {
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y - 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
-                                                yield return new WaitForSeconds(1);
+                                                yield return new WaitForSeconds(0.3f);
                                                 Instantiate(Skills[6], new Vector3(player.transform.position.x - 1, player.transform.position.y + 3, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
                                             }
 
