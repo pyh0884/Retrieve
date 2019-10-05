@@ -21,8 +21,14 @@ public class EnemyHit : MonoBehaviour
                 }
             }
         }
+        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 12)&&deadBody)
+        {
+            Instantiate(deadBody, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
     }
-	public void SelfDestroy()
+    public void SelfDestroy()
 	{
 		Destroy(gameObject);
 	}

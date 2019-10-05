@@ -1,22 +1,46 @@
 fileFormatVersion: 2
-guid: 560199cfb58ece947aea7b35e05b2d62
+guid: 615c29f45f37cdd4da83b18628532107
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1197847649196165904
-    second: Boss3-Skill5_0
+      213: -709102037388163666
+    second: "\u6FC0\u51492_0"
   - first:
-      213: -2065094212582844731
-    second: Boss3-Skill5_1
+      213: 2524368483006163490
+    second: "\u6FC0\u51492_1"
   - first:
-      213: 1936260690440804025
-    second: Boss3-Skill5_2
+      213: -6231139512162938858
+    second: "\u6FC0\u51492_2"
   - first:
-      213: -3948155442479035238
-    second: Boss3-Skill5_3
+      213: 7355171970234946720
+    second: "\u6FC0\u51492_3"
   - first:
-      213: 9137790636713762977
-    second: Boss3-Skill5_4
+      213: 4945923850302990574
+    second: "\u6FC0\u51492_4"
+  - first:
+      213: -4395718982404034343
+    second: "\u6FC0\u51492_5"
+  - first:
+      213: -7511472286324450889
+    second: "\u6FC0\u51492_6"
+  - first:
+      213: 7159942771789009540
+    second: "\u6FC0\u51492_7"
+  - first:
+      213: 2463327410824685092
+    second: "\u6FC0\u51492_8"
+  - first:
+      213: -1879326498141606027
+    second: "\u6FC0\u51492_9"
+  - first:
+      213: -15434001717699179
+    second: "\u6FC0\u51492_10"
+  - first:
+      213: 8833504984189570267
+    second: "\u6FC0\u51492_11"
+  - first:
+      213: 7158964672900744298
+    second: "\u6FC0\u51492_12"
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -60,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +99,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -87,7 +111,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,33 +125,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss3-Skill5_0
+      name: "\u6FC0\u51492_0"
       rect:
         serializedVersion: 2
-        x: 18
+        x: 0
         y: 0
-        width: 55
-        height: 180
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f34adb204a5534548a5c748692a8027f
-      internalID: -1197847649196165904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss3-Skill5_1
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 0
-        width: 55
+        width: 90
         height: 180
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -136,19 +139,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29c173af62d3e0b4bb53e85a11c10b4d
-      internalID: -2065094212582844731
+      spriteID: 4169e7ab2a9467d468ab8ca645f8244d
+      internalID: -709102037388163666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss3-Skill5_2
+      name: "\u6FC0\u51492_1"
       rect:
         serializedVersion: 2
-        x: 198
+        x: 180
         y: 0
-        width: 55
+        width: 90
         height: 180
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -157,19 +160,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28bbc23b30caaa4889635f313629a8d
-      internalID: 1936260690440804025
+      spriteID: fb54ddd58a825cc44b80ca6fd68bcfa0
+      internalID: 2524368483006163490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss3-Skill5_3
+      name: "\u6FC0\u51492_2"
       rect:
         serializedVersion: 2
-        x: 288
+        x: 360
         y: 0
-        width: 55
+        width: 90
         height: 180
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -178,19 +181,208 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37c906552160e964abb1217d2fe1b4e1
-      internalID: -3948155442479035238
+      spriteID: a99f8f494caa5664d99d3fe214cede62
+      internalID: -6231139512162938858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss3-Skill5_4
+      name: "\u6FC0\u51492_3"
       rect:
         serializedVersion: 2
-        x: 151
+        x: 540
         y: 0
-        width: 55
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1556e5e17fd954f82eecb14df3cc41
+      internalID: 7355171970234946720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_4"
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d94e319ba2e0d349bf135ba40318919
+      internalID: 4945923850302990574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_5"
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7dd33a2c882ce4995ff2c94693dfed
+      internalID: -4395718982404034343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_6"
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6bdabed96019104baab35726ba63dc1
+      internalID: -7511472286324450889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_7"
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc94d6002d015ea448712d0a204caa34
+      internalID: 7159942771789009540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_8"
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd385f51394da84e9a3f57606301c43
+      internalID: 2463327410824685092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_9"
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a591677e12c39034ea042d37813d4ab1
+      internalID: -1879326498141606027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_10"
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49168f59babca3240bf3c3993306e072
+      internalID: -15434001717699179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_11"
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 0
+        width: 90
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70556c1ff8ec14444801f7d8382d3e64
+      internalID: 8833504984189570267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u6FC0\u51492_12"
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 0
+        width: 90
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -199,8 +391,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bace0784f7ce20d4ba551688e544466e
-      internalID: 9137790636713762977
+      spriteID: 4497865c7661b6e4a8ac6ce89eaf7e2d
+      internalID: 7158964672900744298
       vertices: []
       indices: 
       edges: []

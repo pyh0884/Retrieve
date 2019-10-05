@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -373,7 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 544857223}
 --- !u!70 &128776872
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1446,7 +1445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497438957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7375226, y: -0.030407906, z: -16}
+  m_LocalPosition: {x: 6.7266946, y: -0.030407906, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 183814557}
@@ -3455,7 +3454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 1916833734}
 --- !u!70 &1269860725
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
