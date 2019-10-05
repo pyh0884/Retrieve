@@ -6,6 +6,7 @@ public class Boss4Skill6 : MonoBehaviour
 {
     Rigidbody2D rb;
     public Vector2 speed;
+    public GameObject deadBody;
     //public Animator CameraAnim;
     public float BallVelocity=5;
     private void Awake()
@@ -21,12 +22,15 @@ public class Boss4Skill6 : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    //        Debug.Log(collision);
-    //    CameraAnim.SetTrigger("Shake");
-    //    GetComponent<Animator>().SetTrigger("Hit");
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            //加动画
+            Instantiate(deadBody, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
 
     void setAngle()
     {
