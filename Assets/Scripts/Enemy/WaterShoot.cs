@@ -44,12 +44,13 @@ public class WaterShoot : MonoBehaviour
 	public float waitTime = 1.0f;
 	public float shootGap = 1.0f;
 	public float moveSpeed = 3.0f;
-	//public bool Moving;
-	//public Transform startPos;
-	public List<Transform> endPos;
+    private float tempSpeed;
+    //public bool Moving;
+    //public Transform startPos;
+    public List<Transform> endPos;
 	public Transform _ProjectileExit;
 	public float _ProjectileInitialVelocity = 2.0f;
-	public Projectile _ProjectilePrefab;
+	public GameObject _ProjectilePrefab;
 	//IEnumerator Move(Vector3 target)
 	//{
 	//	while (Moving)
@@ -88,13 +89,29 @@ public class WaterShoot : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
         {
-            //减速
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            moveSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+
     public void Des()
     {
         
@@ -106,6 +123,7 @@ public class WaterShoot : MonoBehaviour
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
         gm = FindObjectOfType<GameManager>();
+        tempSpeed = moveSpeed;
 
     }
 
@@ -113,9 +131,26 @@ public class WaterShoot : MonoBehaviour
     void Update()
 	{
 		_Main.Update();
-	}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer2 += Time.deltaTime;
+        if (animatorInfo.IsName("Blue2_Hit")|| animatorInfo.IsName("Blue2_Die"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer2 > SlowTimer && slowed)
+        {
+            moveSpeed = tempSpeed;
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
+    }
 
-	IEnumerable<Instruction> Main()
+    IEnumerable<Instruction> Main()
 	{
 		float startZAngle = Child.localRotation.eulerAngles.z;
 		while (true)
@@ -184,11 +219,12 @@ public class WaterShoot : MonoBehaviour
 		while (true)
 		{
 			anim.SetTrigger("Attack");
-			yield return Utils.WaitForFrames(12);
-			var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
-			proj.transform.position = _ProjectileExit.position;
-			proj.transform.right = -Child.right;
-			proj.InitialForce = - Child.right * _ProjectileInitialVelocity;
+            //yield return Utils.WaitForFrames(12);
+            Instantiate(_ProjectilePrefab,new Vector3(transform.position.x, transform.position.y-0.8f), Quaternion.identity);
+			//var proj = GameObject.Instantiate<Projectile>(_ProjectilePrefab);
+			//proj.transform.position = _ProjectileExit.position;
+			//proj.transform.right = -Child.right;
+			//proj.InitialForce = - Child.right * _ProjectileInitialVelocity;
 
 			yield return Utils.WaitForSeconds(shootGap);
 		}

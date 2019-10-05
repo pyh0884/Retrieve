@@ -53,7 +53,7 @@ public class Shit : MonoBehaviour
 		}
         if (dist.x > 0) transform.eulerAngles = new Vector3(0, 180, 0);
 		else transform.eulerAngles = Vector3.zero;
-        if (animatorInfo.IsName("Yellow2_Hit"))
+        if (animatorInfo.IsName("Yellow2_Hit")|| animatorInfo.IsName("Yellow2_Die"))
         {
             anim.speed = 1;
         }

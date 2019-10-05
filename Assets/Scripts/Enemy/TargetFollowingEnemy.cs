@@ -13,8 +13,9 @@ public class TargetFollowingEnemy : MonoBehaviour
 	private bool lookAtState;
 	private bool traceRouteState;
 	private Vector3 dist;
+    public GameObject deadBody;
 
-	public Vector3 velocity;          //当前帧速度
+    public Vector3 velocity;          //当前帧速度
 	public Vector3 newVelocity;       //下一帧速度
 	public Vector3 newPosition;       //下一帧位置
 	public bool isFire = true;
@@ -84,12 +85,27 @@ public class TargetFollowingEnemy : MonoBehaviour
 	}
 
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "KillArea") Destroy(this);
-	}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 12)
+        {
+            Instantiate(deadBody, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            //FindObjectOfType<AudioManager>().Play("Stone");
+            //此处加动画
+            //Destroy(gameObject, 0.01f);//自毁等待时长要长于动画时长
+        }
+        //private void OnTriggerEnter2D(Collider2D collision)
+        //{
+        if (collision.tag == "Player")
+        {
+            //加动画
+            Instantiate(deadBody, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
 
-	IEnumerator Main() {
+    IEnumerator Main() {
 		yield return new WaitForSeconds(traceRouteStartTime);
 		traceRouteState = true;
 		yield return new WaitForSeconds(lookAtEndTime - traceRouteStartTime);

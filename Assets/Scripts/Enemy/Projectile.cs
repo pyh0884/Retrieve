@@ -8,9 +8,8 @@ public class Projectile
 {
 	public Vector3 InitialForce;
 	public int damageAmt = 1;
-	public bool selfDestroy = true;
-
-	Coroutines.Coroutine _Main;
+    public GameObject deadBody;
+    Coroutines.Coroutine _Main;
 
 	// Use this for initialization
 	void Start ()
@@ -59,13 +58,17 @@ public class Projectile
 			if (collidedWith.CompareTag("Player"))
 			{
 				collidedWith.GetComponent<HealthBarControl>().Damage(damageAmt);
-				if (selfDestroy) Destroy(gameObject);
-			}
+                Instantiate(deadBody, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+
+            }
             else if(collidedWith.gameObject.layer==8|| collidedWith.gameObject.layer == 12)
             {
+                Instantiate(deadBody, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+
             }
-			// Else just bounce/roll/etc...
-		}
+            // Else just bounce/roll/etc...
+        }
 	}
 }

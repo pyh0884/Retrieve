@@ -72,7 +72,7 @@ public class ArrowKid : MonoBehaviour
 		_Main.Update();
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer += Time.deltaTime;
-        if (animatorInfo.IsName("Green1_Hit"))
+        if (animatorInfo.IsName("Green1_Hit")||animatorInfo.IsName("Green1_Die"))
         {
             anim.speed = 1;
         }
