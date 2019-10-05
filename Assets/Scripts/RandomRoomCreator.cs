@@ -423,8 +423,9 @@ public class RandomRoomCreator : MonoBehaviour
 						{
 							foreach (GameObject GO in secretDownTemps) secretDownRooms.Add(GO);
 							secretDownTemps.Clear();
+							pos = Random0ToN(secretDownRooms.Count - 1);
 						}
-						pos = Random0ToN(secretDownRooms.Count);
+						else pos = Random0ToN(secretDownRooms.Count);
 						secretDownTemps.Add(secretDownRooms[pos]);
 						obj=Instantiate(secretDownRooms[pos], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform);
 						secretDownRooms.RemoveAt(pos);
@@ -436,8 +437,9 @@ public class RandomRoomCreator : MonoBehaviour
 						{
 							foreach (GameObject GO in horizontalTemps) horizontalRooms.Add(GO);
 							horizontalTemps.Clear();
+							pos = Random0ToN(horizontalRooms.Count - 1);
 						}
-						pos = Random0ToN(horizontalRooms.Count);
+						else pos = Random0ToN(horizontalRooms.Count);
 						horizontalTemps.Add(horizontalRooms[pos]);
 						obj = Instantiate(horizontalRooms[pos], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform);
 						horizontalRooms.RemoveAt(pos);
@@ -449,8 +451,9 @@ public class RandomRoomCreator : MonoBehaviour
 						{
 							foreach (GameObject GO in verticalTemps) verticalRooms.Add(GO);
 							verticalTemps.Clear();
+							pos = Random0ToN(verticalRooms.Count - 1);
 						}
-						pos = Random0ToN(verticalRooms.Count);
+						else pos = Random0ToN(verticalRooms.Count);
 						verticalTemps.Add(verticalRooms[pos]);
 						obj = Instantiate(verticalRooms[pos], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform);
 						verticalRooms.RemoveAt(pos);
@@ -462,8 +465,9 @@ public class RandomRoomCreator : MonoBehaviour
 						{
 							foreach (GameObject GO in secretUpTemps) secretUpRooms.Add(GO);
 							secretUpTemps.Clear();
+							pos = Random0ToN(secretUpRooms.Count - 1);
 						}
-						pos = Random0ToN(secretUpRooms.Count);
+						else pos = Random0ToN(secretUpRooms.Count);
 						secretUpTemps.Add(secretUpRooms[pos]);
 						obj = Instantiate(secretUpRooms[pos], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform);
 						secretUpRooms.RemoveAt(pos);
@@ -475,7 +479,7 @@ public class RandomRoomCreator : MonoBehaviour
 		if (!isTest)
 		{
 			var manager = FindObjectOfType<GameManager>();
-			manager.spawnPos = transform.position + RoomToWorldPos(roomData[0].roomPos);
+			manager.spawnPos = transform.position + RoomToWorldPos(roomData[0].roomPos)+new Vector3(0,6);
 		}
 	}
 
