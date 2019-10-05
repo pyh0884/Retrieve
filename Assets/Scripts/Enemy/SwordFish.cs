@@ -14,6 +14,7 @@ public class SwordFish : MonoBehaviour
 	public float strikeSpeed = 20.0f;
 	public float moveSpeed = 5.0f;
 	public float extraDist = 5.0f;
+	public float backDist = 2.0f;
 	public float moveRadius = 5.0f;
 	Coroutines.Coroutine _Main;
 	Animator anim;
@@ -100,6 +101,7 @@ public class SwordFish : MonoBehaviour
 			dist = target.position - transform.position;
 			strikeTarget = target.position + extraDist * dist.normalized;
 			yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(0.5f),RotateFor(dist, rotateSpeedStrike));
+			yield return ControlFlow.Call(BackShake(backDist));
 			anim.SetTrigger("Attack");
 			while (transform.position != strikeTarget)
 			{
@@ -128,5 +130,13 @@ public class SwordFish : MonoBehaviour
 	IEnumerable<Instruction> WaitForSecondsCr(float seconds)
 	{
 		yield return Utils.WaitForSeconds(seconds);
+	}
+
+	IEnumerable<Instruction> BackShake(float length) {
+		Vector3 target = transform.position + transform.right * length;
+		while (transform.position != target) {
+			transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+			yield return null;
+		}
 	}
 }
