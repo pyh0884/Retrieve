@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class RandomRoomCreator : MonoBehaviour
 {
 	public bool isTest;
+	public bool isBlue;
 	public int criticalPathLength;
 	public Vector2Int mapSizePerRoom;
 	public Vector2Int roomSizePerUnit;
@@ -86,7 +87,11 @@ public class RandomRoomCreator : MonoBehaviour
 									{
 										currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
 										currentRoom.roomPos.y = previousRoom.roomPos.y;
-										currentRoom.roomType = RoomType.vertical;
+										if (isBlue){
+											currentRoom.roomType = RoomType.horizontal;
+											previousRoom.roomType = RoomType.vertical;
+										}
+										else currentRoom.roomType = RoomType.vertical;
 										break;
 									}
 							}
@@ -100,7 +105,12 @@ public class RandomRoomCreator : MonoBehaviour
 					else {
 						currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
 						currentRoom.roomPos.y = previousRoom.roomPos.y;
-						currentRoom.roomType = RoomType.vertical;
+						if (isBlue)
+						{
+							currentRoom.roomType = RoomType.horizontal;
+							previousRoom.roomType = RoomType.vertical;
+						}
+						else currentRoom.roomType = RoomType.vertical;
 					}
 				}
 				else if (previousRoom.roomPos.y >= (mapSizePerRoom.y - 2)||stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y+1]==true)
@@ -122,7 +132,12 @@ public class RandomRoomCreator : MonoBehaviour
 									{
 										currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
 										currentRoom.roomPos.y = previousRoom.roomPos.y;
-										currentRoom.roomType = RoomType.vertical;
+										if (isBlue)
+										{
+											currentRoom.roomType = RoomType.horizontal;
+											previousRoom.roomType = RoomType.vertical;
+										}
+										else currentRoom.roomType = RoomType.vertical;
 										break;
 									}
 							}
@@ -137,7 +152,12 @@ public class RandomRoomCreator : MonoBehaviour
 					{
 						currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
 						currentRoom.roomPos.y = previousRoom.roomPos.y;
-						currentRoom.roomType = RoomType.vertical;
+						if (isBlue)
+						{
+							currentRoom.roomType = RoomType.horizontal;
+							previousRoom.roomType = RoomType.vertical;
+						}
+						else currentRoom.roomType = RoomType.vertical;
 					}
 				}
 				else
@@ -201,7 +221,7 @@ public class RandomRoomCreator : MonoBehaviour
 				{
 					if (previousRoom.roomPos.y > 1&&stuffed[previousRoom.roomPos.x,previousRoom.roomPos.y-1]==false)
 					{
-						if (previousRoom.roomPos.y < (mapSizePerRoom.y - 1))
+						if (previousRoom.roomPos.y < (mapSizePerRoom.y - 2))
 						{
 							switch (Random0ToN(2))
 							{
@@ -290,7 +310,7 @@ public class RandomRoomCreator : MonoBehaviour
 						currentRoom.roomType = RoomType.horizontal;
 					}
 					else {
-						if (up?(previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true):(previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
+						if ((up^isBlue)?(previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true):(previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
 						{
 							currentRoom = null;
 							previousRoom.isTreasure = true;
@@ -300,12 +320,12 @@ public class RandomRoomCreator : MonoBehaviour
 							currentRoom.roomPos.y = previousRoom.roomPos.y;
 							if (up)
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+								currentRoom.roomPos.x = previousRoom.roomPos.x + (isBlue ? -1 : 1);
 								currentRoom.roomType = RoomType.secretUp;
 							}
 							else
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
+								currentRoom.roomPos.x = previousRoom.roomPos.x + (isBlue ? 1 : -1);
 								currentRoom.roomType = RoomType.secretDown;
 								if (previousRoom.roomType == RoomType.horizontal) previousRoom.roomType = RoomType.vertical;
 								else previousRoom.roomType = RoomType.secretUp;
@@ -345,7 +365,7 @@ public class RandomRoomCreator : MonoBehaviour
 					}
 					else
 					{
-						if (up ? (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true) : (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
+						if ((up^isBlue) ? (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true) : (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
 						{
 							currentRoom = null;
 							previousRoom.isTreasure = true;
@@ -355,12 +375,12 @@ public class RandomRoomCreator : MonoBehaviour
 							currentRoom.roomPos.y = previousRoom.roomPos.y;
 							if (up)
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x + 1;
+								currentRoom.roomPos.x = previousRoom.roomPos.x +(isBlue?-1: 1);
 								currentRoom.roomType = RoomType.secretUp;
 							}
 							else
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x - 1;
+								currentRoom.roomPos.x = previousRoom.roomPos.x +(isBlue?1:- 1);
 								currentRoom.roomType = RoomType.secretDown;
 								if (previousRoom.roomType == RoomType.horizontal) previousRoom.roomType = RoomType.vertical;
 								else previousRoom.roomType = RoomType.secretUp;
@@ -460,6 +480,7 @@ public class RandomRoomCreator : MonoBehaviour
 	}
 
 	Vector3 RoomToWorldPos(Vector2Int roomPos) {
+		if (isBlue) return new Vector3(roomPos.y * roomSizePerUnit.x, -1 * roomPos.x * roomSizePerUnit.y);
 		return new Vector3(roomPos.y*roomSizePerUnit.x, roomPos.x*roomSizePerUnit.y);
 	}
 
