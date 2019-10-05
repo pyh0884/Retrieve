@@ -22,6 +22,7 @@ public class SwordFish : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
+	bool gotHit;
     bool slowed;
     AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +34,9 @@ public class SwordFish : MonoBehaviour
             slowed = true;
             timer2 = 0;
         }
+		if (collision.tag == "PlayerAttack") {
+			gotHit = true;
+		}
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -88,7 +92,11 @@ public class SwordFish : MonoBehaviour
 				Idle()
 				);
 			if (target != null) {
-				yield return ControlFlow.Call(Strike(target));
+				if (gotHit) {
+					yield return Utils.WaitForSeconds(CD_Time_Strike);
+					gotHit = false;
+				}
+				yield return ControlFlow.ExecuteWhile(() => !gotHit, Strike(target));
 			}
 		}
 	}
