@@ -622,6 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
 --- !u!1 &3300781479599153052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,10 +1137,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  pubCDTime: 4
+  pubCDTime: 3.5
   speed: 2.5
-  sprintSpeed: 8
-  sprintDistance: 6
+  sprintSpeed: 11
+  sprintDistance: 7
   needRefill: 0
   anim: {fileID: 0}
   Boss1Echo: {fileID: 6854786755605820192, guid: c3082c2f25a11044fa29d54cfdc8f202,

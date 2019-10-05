@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -467,7 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 1674667309}
 --- !u!70 &108435297
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1521,27 +1520,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 685109818}
     - target: {fileID: 1268165936, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268165936, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1268165936, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.057006836
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1268165936, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.4000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6118258204846493031, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 95a787f2d74103f4585dc2618668c6cc,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c64cceb90fbfe4ea0b53ad97a3fd17, type: 3}
 --- !u!1 &424615844 stripped
@@ -2148,7 +2133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 1897417790}
 --- !u!70 &510812402
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2473,7 +2457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585486139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.259813, y: 1.27227, z: -10}
+  m_LocalPosition: {x: 4.248985, y: 1.27227, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1500658528}
@@ -4806,7 +4790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 797658772}
 --- !u!70 &1098736254
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5191,7 +5174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad88a61e39c8b4048ae65ce409049d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 991199320}
 --- !u!70 &1198294060
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -11558,6 +11540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
 --- !u!61 &8787600312855603363
 BoxCollider2D:
   m_ObjectHideFlags: 0

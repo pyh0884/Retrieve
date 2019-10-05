@@ -13,7 +13,8 @@ public class SwordFish : MonoBehaviour
 	public float CD_Time_Idle = 2.0f;
 	public float strikeSpeed = 20.0f;
 	public float moveSpeed = 5.0f;
-	public float extraDist = 5.0f;
+    private float tempSpeed;
+    public float extraDist = 5.0f;
 	public float backDist = 2.0f;
 	public float moveRadius = 5.0f;
 	Coroutines.Coroutine _Main;
@@ -21,11 +22,26 @@ public class SwordFish : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
+    bool slowed;
+    AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
         {
-            //减速
+            strikeSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4)
+        {
+            strikeSpeed = tempSpeed / gm.SlowMultiplier;
+            anim.speed = 1f / gm.SlowMultiplier;
+            slowed = true;
+            timer2 = 0;
         }
     }
     // Start is called before the first frame update
@@ -34,14 +50,32 @@ public class SwordFish : MonoBehaviour
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());
         gm = FindObjectOfType<GameManager>();
-
+        tempSpeed = strikeSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
 		_Main.Update();
-	}
+        animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
+        timer2 += Time.deltaTime;
+        if (animatorInfo.IsName("Blue3_Hit") || animatorInfo.IsName("Blue3_Die"))
+        {
+            anim.speed = 1;
+        }
+        else if (slowed)
+        {
+            anim.speed = 1f / gm.SlowMultiplier;
+        }
+        if (timer2 > SlowTimer && slowed)
+        {
+            strikeSpeed = tempSpeed;
+            anim.speed = 1;
+            timer2 = 0;
+            slowed = false;
+        }
+
+    }
     public void Des()
     {
         Destroy(this);

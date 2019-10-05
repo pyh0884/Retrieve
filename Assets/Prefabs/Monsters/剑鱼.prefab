@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
 --- !u!70 &2537865181990912226
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ GameObject:
   - component: {fileID: 6948973820982588608}
   - component: {fileID: -7832098170109884108}
   - component: {fileID: 3613368535076273084}
+  - component: {fileID: 4006793034249877476}
   m_Layer: 15
   m_Name: "\u5251\u9C7C"
   m_TagString: Enemy
@@ -228,6 +230,7 @@ MonoBehaviour:
   strikeSpeed: 16
   moveSpeed: 5
   extraDist: 5
+  backDist: 2
   moveRadius: 5
   SlowTimer: 7
 --- !u!114 &7451772118423778678
@@ -318,3 +321,24 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!50 &4006793034249877476
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887810525284083672}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

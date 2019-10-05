@@ -292,7 +292,8 @@ public class Boss1Ai : MonoBehaviour
 		{
 			skill2Object.GetComponent<Collider2D>().enabled = true;
 			anim.SetBool("Skill2", true);
-			Vector3 targetPos = transform.position + new Vector3((target.position.x > transform.position.x ? sprintDistance : -sprintDistance)*(aftermath?1.5f:1), 0);
+            yield return Utils.WaitForFrames(20);
+			Vector3 targetPos = transform.position + new Vector3((target.position.x > transform.position.x ? sprintDistance : -sprintDistance)*(aftermath?1.1f:1), 0);
 			yield return ControlFlow.ExecuteWhile(
 				() => !(isWall || transform.position == targetPos),
 				MoveTo(targetPos, sprintSpeed*(aftermath?1.5f:1)),
@@ -317,10 +318,12 @@ public class Boss1Ai : MonoBehaviour
 			float prob = jumphighAmt / ((targetPos.x - tempX) * (targetPos.x - tempX));
 			skill2Object.GetComponent<Collider2D>().enabled = true;
 			enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
-			anim.SetTrigger("Skill3");
+			
 			int num = aftermath ? 3 : 1;//这行代码决定了两个阶段分别跳几次
 			for(int i=0;i<num;i++)
 			{
+                anim.SetTrigger("Skill3");
+                yield return Utils.WaitForFrames(15);
 				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / jumpTime, jumphighAmt);
 				yield return null;
 				while (enemyRigidBody.velocity.y>0)yield return null;
@@ -333,13 +336,14 @@ public class Boss1Ai : MonoBehaviour
 					tempX = transform.position.x;
 					if(i!=num-1)yield return Utils.WaitForFrames(10);
 				}
-			}
+                anim.SetTrigger("Stop");
+            }
 			Instantiate(quakePrefab0, footTrans[0], false);
 			Instantiate(quakePrefab1, footTrans[1], false);
 			skill2Object.GetComponent<Collider2D>().enabled = false;
 			enemyRigidBody.bodyType = RigidbodyType2D.Kinematic;
 			enemyRigidBody.velocity = Vector2.zero;
-			anim.SetTrigger("Stop");
+			
 		}
 		finally
 		{
