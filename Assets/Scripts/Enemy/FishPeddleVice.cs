@@ -26,6 +26,7 @@ public class FishPeddleVice : MonoBehaviour
 		if (collision.CompareTag("PlayerAttack"))
 		{
 			StartCoroutine(GotHit(transform));
+			//anim.SetTrigger("Die");
 		}
 	}
 

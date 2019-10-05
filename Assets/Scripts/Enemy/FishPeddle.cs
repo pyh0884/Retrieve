@@ -14,6 +14,7 @@ public class FishPeddle : MonoBehaviour
 	public float prepareRadius = 5.0f;
 	public float gridSpeed = 2.5f;
 	public Transform ViceLeft, ViceRight;
+	public GameObject shadowPrefab;
 
 	[Header("击退")]
 	public float hitBackDist = 1;
@@ -39,6 +40,7 @@ public class FishPeddle : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.CompareTag("PlayerAttack")) {
+			gothit = true;
 			StartCoroutine(GotHit(transform));
 		}
 	}
@@ -53,7 +55,6 @@ public class FishPeddle : MonoBehaviour
 		while (frameCount < maxBackFrame)
 		{
 			curr.position = Vector3.MoveTowards(curr.position, target, hitBackSpeed * Time.deltaTime);
-            gothit = true;
 			yield return null;
 			frameCount++;
 		}
@@ -73,25 +74,36 @@ public class FishPeddle : MonoBehaviour
 					FocusOn(target,transform),
 					Prepare(target,detached=>Detached=detached)
 					);
-				bool needReGrid = false;
-				while (true)
+				if (gothit)
 				{
-					yield return ControlFlow.ExecuteWhileRunning(
-						GridLie(transform, ViceLeft, false),
-						GridLie(transform, ViceRight, true),
-						FocusOn(target, transform),
-						FocusOn(target, ViceLeft),
-						FocusOn(target, ViceRight)
-						);
-					needReGrid = false;
-					yield return ControlFlow.ExecuteWhile(
-						() => !needReGrid,
-						Strike(target, transform, need => needReGrid = need),
-						Strike(target, ViceLeft, need => needReGrid = need),
-						Strike(target, ViceRight, need => needReGrid = need)
-						);
+					yield return Utils.WaitForSeconds(CD_Time_Strike);
+					gothit = false;
 				}
+				yield return ControlFlow.ExecuteWhile(() => !gothit, Cycle(target));
 			}
+		}
+	}
+
+	IEnumerable<Instruction> Cycle(Transform target) {
+		bool needReGrid = false;
+		while (true)
+		{
+			if (ViceLeft == null) ViceLeft = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
+			if (ViceRight == null) ViceRight = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
+			yield return ControlFlow.ExecuteWhileRunning(
+				GridLie(transform, ViceLeft, false),
+				GridLie(transform, ViceRight, true),
+				FocusOn(target, transform),
+				FocusOn(target, ViceLeft),
+				FocusOn(target, ViceRight)
+				);
+			needReGrid = false;
+			yield return ControlFlow.ExecuteWhile(
+				() => !needReGrid,
+				Strike(target, transform, need => needReGrid = need),
+				Strike(target, ViceLeft, need => needReGrid = need),
+				Strike(target, ViceRight, need => needReGrid = need)
+				);
 		}
 	}
 
