@@ -5471,6 +5471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTest: 0
+  isBlue: 0
   criticalPathLength: 0
   mapSizePerRoom: {x: 4, y: 6}
   roomSizePerUnit: {x: 32, y: 18}
@@ -5480,18 +5481,20 @@ MonoBehaviour:
   - {fileID: 8079836502421677461, guid: 820640e682322004296f0e223f9ccfa1, type: 3}
   - {fileID: 528570213513087675, guid: e4e0fb8c1c2661949a8a5dc250b40283, type: 3}
   - {fileID: 7450996991157598454, guid: df8cc6b992f7b1a45baef4ca6a8b19f1, type: 3}
-  endRooms: []
+  secretDownTemps: []
   horizontalRooms:
   - {fileID: 1550030643697403116, guid: 22b1d9c9f260d4548bb91f821024e59c, type: 3}
   - {fileID: 4686770154744645300, guid: 7649d55f04a06ce4187feb049029e9bd, type: 3}
   - {fileID: 1311456078849387859, guid: e44bbed12279df3498d5a020f7e063e4, type: 3}
   - {fileID: 1021848547136729484, guid: b356b37de89f07a459c7187db97b23e5, type: 3}
   - {fileID: 1440462167142204167, guid: d332f73294164fc4ebf0f0175c81b2ee, type: 3}
+  horizontalTemps: []
   verticalRooms:
   - {fileID: 8995284222445061181, guid: 10ba4be598fe4964483fd0a5aacc20bd, type: 3}
   - {fileID: 8496186840340269683, guid: a8a703f6a7e1ffb46a45c78eaa4ff741, type: 3}
   - {fileID: 1599267638236928986, guid: fb5bd82e66ef70e4f8691ff1d53d9aef, type: 3}
   - {fileID: 645147846567181125, guid: 89db014c33f9222448ab17617e9ede05, type: 3}
+  verticalTemps: []
   fillRooms:
   - {fileID: 2730367585703395111, guid: 21cf79b57df8fac4db52e843c35dd43f, type: 3}
   secretUpRooms:
@@ -5499,6 +5502,7 @@ MonoBehaviour:
   - {fileID: 9204347033862739753, guid: 5b038313909525347a43043e32035fe4, type: 3}
   - {fileID: 30102158518823947, guid: f75c3532d1709494db1f89cb6027cb65, type: 3}
   - {fileID: 5045211698339815409, guid: 207608cef0072834b956442242583037, type: 3}
+  secretUpTemps: []
   secretRate: 3
 --- !u!156049354 &2098426700
 Grid:
