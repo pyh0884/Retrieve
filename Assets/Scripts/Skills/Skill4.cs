@@ -6,6 +6,7 @@ public class Skill4 : MonoBehaviour
 {
     public GameManager gm;
     public GameObject efx;
+    public int DmgPerLevel = 10;
 
     public void playEFX()
     {
@@ -24,18 +25,18 @@ public class Skill4 : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30) * 1.5f),1);
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30 + gm.levels[3] * DmgPerLevel) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30 + gm.levels[3] * DmgPerLevel)));
                 collision.gameObject.GetComponent<BossHp>().Burn=7;
 
             }
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30) * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30 + gm.levels[3] * DmgPerLevel) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30)));
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 30 + gm.levels[3] * DmgPerLevel)));
                 collision.gameObject.GetComponent<MonsterHp>().Burn = 7;
 
             }

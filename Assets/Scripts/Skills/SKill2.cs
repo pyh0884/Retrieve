@@ -53,20 +53,20 @@ public class SKill2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
-        {
-            FindObjectOfType<AudioManager>().Play("Hit");
-            if (collision.gameObject.GetComponent<BossHp>() != null)
-            {
-                collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-            }
-            else
-            {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-            }
-            hit = true;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
+        //if (collision.tag == "Enemy")
+        //{
+        //    FindObjectOfType<AudioManager>().Play("Hit");
+        //    if (collision.gameObject.GetComponent<BossHp>() != null)
+        //    {
+        //        collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+        //    }
+        //    else
+        //    {
+        //        collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+        //    }
+        //    hit = true;
+        //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //}
         if (collision.gameObject.layer == 11)
         {
             FindObjectOfType<AudioManager>().Play("Hit");
@@ -153,7 +153,7 @@ public class SKill2 : MonoBehaviour
         else
         {
             foreach (Collider2D candidate in candidates)
-                targets.Add(candidate.gameObject);
+                targets.Add(candidate.gameObject.transform.parent.gameObject);
             success(true);
             result(targets);
         }
@@ -161,6 +161,7 @@ public class SKill2 : MonoBehaviour
 
     IEnumerable<Instruction> Attack(GameObject target)
     {
+        Debug.Log(target.name);
         while (transform.position != target.transform.position)
         {
             transform.position = Vector3.MoveTowards(
@@ -171,7 +172,20 @@ public class SKill2 : MonoBehaviour
             yield return null;
         }
 		coll.enabled = true;
-		yield return null;
+        {
+            FindObjectOfType<AudioManager>().Play("Hit");
+            if (target.GetComponent<BossHp>() != null)
+            {
+                target.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+            }
+            else
+            {
+                target.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+            }
+            hit = true;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+        yield return null;
 		coll.enabled = false;
 		Vector2 rand = Random.insideUnitCircle.normalized;
 		Vector3 newTarget = transform.position + (Vector3)rand;

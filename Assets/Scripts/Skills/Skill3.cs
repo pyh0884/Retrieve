@@ -8,8 +8,9 @@ public class Skill3 : MonoBehaviour
     Animator anim;
     public PlayerController pc;
     float timer=0;
-    public float LastTime;
+    private float LastTime;
     public float dmgMultiplier;
+    public int DmgPerLevel = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Skill3 : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         pc = GetComponentInParent<PlayerController>();
+        LastTime = 8 + gm.levels[2] * 2;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,16 +28,16 @@ public class Skill3 : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5) * dmgMultiplier * 1.5f), 1);
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5 + DmgPerLevel * gm.levels[0]) * dmgMultiplier * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5) * dmgMultiplier));
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5 + DmgPerLevel * gm.levels[0]) * dmgMultiplier));
             }
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5) * dmgMultiplier * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5 + DmgPerLevel * gm.levels[0]) * dmgMultiplier * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5) * dmgMultiplier));
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 5 + DmgPerLevel * gm.levels[0]) * dmgMultiplier));
             }
         }
     }

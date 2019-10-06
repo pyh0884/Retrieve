@@ -12,6 +12,7 @@ public class Skill8Bullet : MonoBehaviour
     public LayerMask enemyLayer;
     public Vector3 DefaultDir;
     public GameObject balls;
+    public int numbers = 5;
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -23,6 +24,7 @@ public class Skill8Bullet : MonoBehaviour
         }
         transform.up = -DefaultDir;
         GetComponent<Rigidbody2D>().velocity = DefaultDir.normalized * speed;
+        numbers = 5 + gm.levels[1] * 2;
     }
     void FindEnemy()
     {
@@ -69,15 +71,10 @@ public class Skill8Bullet : MonoBehaviour
         }
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
         {
-            Debug.Log("1");
-            Instantiate(balls,transform.position,Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity); Instantiate(balls, transform.position, Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity);
-            Instantiate(balls, transform.position, Quaternion.identity);
-
+            for (int i = 0; i < numbers; i++)
+            {
+                Instantiate(balls, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
 

@@ -5,14 +5,18 @@ using UnityEngine;
 public class Skill1 : MonoBehaviour
 {
     public HealthBarControl hbc;
-    public float LastTime;
+    private float LastTime;
     public Rigidbody2D rb;
     float timer;
     public Animator anim;
+    GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("StopMoving");
+        gm = FindObjectOfType<GameManager>();
+        LastTime = 5 + gm.levels[0] * 1.5f;
+
     }
     IEnumerator StopMoving()
     {
