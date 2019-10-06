@@ -52,6 +52,8 @@ MonoBehaviour:
   waitTime: 0.83
   speed: 10
   SpawnPos: {x: 0, y: 0.1, z: 0}
+  deadBody: {fileID: 4144415112185166895, guid: 0855dca639bcd474ebfbb95b6eec816a,
+    type: 3}
 --- !u!50 &2091730882052062921
 Rigidbody2D:
   serializedVersion: 4
@@ -171,3 +173,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 1
+  deadBody: {fileID: 0}
+  DMG: 1

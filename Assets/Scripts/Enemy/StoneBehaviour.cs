@@ -11,6 +11,7 @@ public class StoneBehaviour : MonoBehaviour
     public Vector3 SpawnPos;
     private bool ready;
     public GameObject deadBody;
+
     // Start is called before the first frame update
     void Awake()
     {

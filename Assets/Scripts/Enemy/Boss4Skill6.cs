@@ -13,9 +13,15 @@ public class Boss4Skill6 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-3,-3);
-        Destroy(gameObject, 5);
+        StartCoroutine("Des");
     }
+    IEnumerator des()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        Instantiate(deadBody, transform.position, Quaternion.identity);
+        Destroy(gameObject);
 
+    }
     private void ControlDirection()
     {
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, (rb.velocity.x >= 0) ? -Vector2.Angle(Vector2.up, rb.velocity) : Vector2.Angle(Vector2.up, rb.velocity));
