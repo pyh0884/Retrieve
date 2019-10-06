@@ -6,6 +6,7 @@ public class Skill7 : MonoBehaviour
 {
     public GameManager gm;
     public GameObject efx;
+    public int DmgPerLevel = 5;
 
     public void playEFX()
     {
@@ -14,7 +15,7 @@ public class Skill7 : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 4f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,20 +25,18 @@ public class Skill7 : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) ) * 1.5f), 1);
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + DmgPerLevel * gm.levels[3]) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) )));
-                collision.gameObject.GetComponent<BossHp>().Burn = 7;
-
+                    collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + DmgPerLevel * gm.levels[3])));
+                collision.gameObject.GetComponent<BossHp>().Burn = 5;
             }
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) ) * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + DmgPerLevel * gm.levels[3]) * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) )));
-                collision.gameObject.GetComponent<MonsterHp>().Burn = 7;
-
+                    collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + DmgPerLevel * gm.levels[3])));
+                collision.gameObject.GetComponent<MonsterHp>().Burn = 5;
             }
         }
         if (collision.gameObject.layer == 11)

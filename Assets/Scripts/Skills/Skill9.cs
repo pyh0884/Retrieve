@@ -7,7 +7,7 @@ public class Skill9 : MonoBehaviour
     public GameManager gm;
     public LayerMask enemyLayer;
     Collider2D nearest;
-    public float LastTime;
+    public float LastTime = 6;
     public GameObject MainObj;
     public Transform paokou;
     private Vector3 direction;
@@ -15,7 +15,8 @@ public class Skill9 : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        Destroy(MainObj,6);
+        LastTime = 6 + gm.levels[2] * 1.2f;
+        Destroy(MainObj,LastTime);
     }
     void FindEnemy()
     {

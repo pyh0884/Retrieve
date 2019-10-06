@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class selfDestroy : MonoBehaviour
 {
-    public bool yes;
+    public bool DontDestroy;
     public int DestroyTime=2;
     public void DestroyMeeeeeeeeeeeeeeeeeeeee()
     {
@@ -12,7 +12,7 @@ public class selfDestroy : MonoBehaviour
     }
     void Update()
     {
-        if (!yes)
+        if (!DontDestroy)
         Destroy(gameObject, DestroyTime);
     }
 }
