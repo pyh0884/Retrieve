@@ -27,7 +27,6 @@ public class EnemyHit : MonoBehaviour
             Instantiate(deadBody, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-
     }
     public void SelfDestroy()
 	{

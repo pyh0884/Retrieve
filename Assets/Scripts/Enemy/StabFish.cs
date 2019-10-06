@@ -19,7 +19,6 @@ public class StabFish : MonoBehaviour
     GameManager gm;
     bool slowed;
     AnimatorStateInfo animatorInfo;
-    Transform target = null;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
