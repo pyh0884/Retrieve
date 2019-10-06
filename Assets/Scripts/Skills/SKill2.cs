@@ -16,12 +16,14 @@ public class SKill2 : MonoBehaviour
     Coroutines.Coroutine _Main;
     public int HitTimes;
     GameManager gm;
+	Collider2D coll;
     void Start()
     {
         Destroy(gameObject, 3);
         FindEnemy();
         _Main = new Coroutines.Coroutine(Main());
         gm = FindObjectOfType<GameManager>();
+		coll = GetComponent<Collider2D>();
         HitTimes = 4 + gm.levels[1];
     }
 
@@ -168,6 +170,9 @@ public class SKill2 : MonoBehaviour
                 );
             yield return null;
         }
+		coll.enabled = true;
+		yield return null;
+		coll.enabled = false;
 		Vector2 rand = Random.insideUnitCircle.normalized;
 		Vector3 newTarget = transform.position + (Vector3)rand;
 		while (transform.position != newTarget) {
