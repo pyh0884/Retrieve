@@ -118,7 +118,7 @@ public class FishPeddle : MonoBehaviour
 
 	IEnumerable<Instruction> FindTargetInRadius(float radius, System.Action<Transform> targetFound)
 	{
-		var playerObj = GameObject.FindGameObjectWithTag("Player");
+		var playerObj = GameObject.Find("Player");
 		if (playerObj != null)
 		{
 			while (Vector3.Distance(playerObj.transform.position, transform.position) > radius)
@@ -160,7 +160,6 @@ public class FishPeddle : MonoBehaviour
         gothit = false;
 		yield return ControlFlow.ExecuteWhileRunning(BackShake(2.0f, curr),FocusOn(target,curr));
 		yield return ControlFlow.ExecuteWhile(() => !gothit, StrikeMove(target, curr));
-        yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(CD_Time_Strike), FocusOn(target, curr));
         need(true);
 	}
 	IEnumerable<Instruction> WaitForSecondsCr(float seconds) {
@@ -192,6 +191,7 @@ public class FishPeddle : MonoBehaviour
 	IEnumerable<Instruction> BackShake(float length,Transform curr)
 	{
 		Vector3 target = curr.position - curr.right * length;
+		yield return ControlFlow.Call(WaitForSecondsCr(CD_Time_Strike));
 		while (curr.position != target)
 		{
 			curr.position = Vector3.MoveTowards(curr.position, target, moveSpeed * Time.deltaTime);
