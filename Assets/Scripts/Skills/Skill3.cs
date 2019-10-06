@@ -11,6 +11,7 @@ public class Skill3 : MonoBehaviour
     private float LastTime;
     public float dmgMultiplier;
     public int DmgPerLevel = 10;
+    private HealthBarControl hbc;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Skill3 : MonoBehaviour
         anim = GetComponent<Animator>();
         pc = GetComponentInParent<PlayerController>();
         LastTime = 8 + gm.levels[2] * 2;
+        hbc = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthBarControl>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

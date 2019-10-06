@@ -251,9 +251,18 @@ public class PetAI : MonoBehaviour
                                 {
                                     anim.SetTrigger("Attack");
                                     if (player.transform.rotation.y == 0)
-                                        Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                    {
+                                        var ins = Instantiate(Skills[7], new Vector3(player.transform.position.x + 1, player.transform.position.y+1.5f, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        ins.transform.localScale = new Vector3(1 + 0.2f * gm.levels[1], 1 + 0.2f * gm.levels[1], 1 + 0.2f * gm.levels[1]);
+                                        ins.GetComponent<Rigidbody2D>().velocity = new Vector2(3 + gm.levels[1], 0);
+                                    }
                                     else
-                                        Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                    { 
+                                    var ins2 = Instantiate(Skills[7], new Vector3(player.transform.position.x - 1, player.transform.position.y+1.5f, 0), Quaternion.Euler(0, player.transform.rotation.y * 180, 0));
+                                        ins2.transform.localScale = new Vector3(1 + 0.2f * gm.levels[1], 1 + 0.2f * gm.levels[1], 1 + 0.2f * gm.levels[1]);
+                                        ins2.GetComponent<Rigidbody2D>().velocity = new Vector2(-3 - gm.levels[1], 0);
+
+                                    }
                                     ec.elements[0] = 0;
                                     ec.elements[1] = 0;
                                     ec.elements[2] = 0;
