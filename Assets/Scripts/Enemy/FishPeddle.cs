@@ -158,7 +158,8 @@ public class FishPeddle : MonoBehaviour
 	IEnumerable<Instruction> Strike(Transform target, Transform curr, System.Action<bool> need)
 	{
         gothit = false;
-        yield return ControlFlow.ExecuteWhile(() => !gothit, StrikeMove(target, curr));
+		yield return ControlFlow.ExecuteWhileRunning(BackShake(2.0f, curr),FocusOn(target,curr));
+		yield return ControlFlow.ExecuteWhile(() => !gothit, StrikeMove(target, curr));
         yield return ControlFlow.ExecuteWhileRunning(WaitForSecondsCr(CD_Time_Strike), FocusOn(target, curr));
         need(true);
 	}
@@ -187,4 +188,14 @@ public class FishPeddle : MonoBehaviour
         }
         gothit = true;
     }
+
+	IEnumerable<Instruction> BackShake(float length,Transform curr)
+	{
+		Vector3 target = curr.position - curr.right * length;
+		while (curr.position != target)
+		{
+			curr.position = Vector3.MoveTowards(curr.position, target, moveSpeed * Time.deltaTime);
+			yield return null;
+		}
+	}
 }
