@@ -11,9 +11,12 @@ public class FishPeddleVice : MonoBehaviour
 	public int maxBackFrame = 20;
     public GameObject deadBody;
 
+	Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+		anim = GetComponent<Animator>();
 		main = transform.parent.gameObject;
     }
 
@@ -28,7 +31,7 @@ public class FishPeddleVice : MonoBehaviour
 		if (collision.CompareTag("PlayerAttack"))
 		{
 			StartCoroutine(GotHit(transform));
-			//anim.SetTrigger("Die");
+			anim.SetTrigger("Die");
 		}
         if (collision.tag == "Player")
         {
