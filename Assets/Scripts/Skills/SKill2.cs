@@ -14,11 +14,15 @@ public class SKill2 : MonoBehaviour
     public LayerMask enemyLayer;
     private bool hit = false;
     Coroutines.Coroutine _Main;
+    public int HitTimes;
+    GameManager gm;
     void Start()
     {
         Destroy(gameObject, 3);
         FindEnemy();
         _Main = new Coroutines.Coroutine(Main());
+        gm = FindObjectOfType<GameManager>();
+        HitTimes = 4 + gm.levels[1];
     }
 
     // Update is called once per frame
