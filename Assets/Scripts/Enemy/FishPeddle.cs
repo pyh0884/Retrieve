@@ -70,19 +70,12 @@ public class FishPeddle : MonoBehaviour
 			{
                 while (true)
                 {
-                    bool Detached = false;
-
-                    if (ViceLeft == null) ViceLeft = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
-                    if (ViceRight == null) ViceRight = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
-                    yield return ControlFlow.ExecuteWhile(
-                        () => !Detached,
-                        FocusOn(target, transform),
-                        Prepare(target, detached => Detached = detached)
-                        );
+                    if (ViceLeft == null) ViceLeft = Instantiate(shadowPrefab, transform.position, Quaternion.identity,transform).transform;
+                    if (ViceRight == null) ViceRight = Instantiate(shadowPrefab, transform.position, Quaternion.identity,transform).transform;
                     if (gothit)
                     {
-                        yield return Utils.WaitForSeconds(CD_Time_Strike);
                         gothit = false;
+						break;
                     }
                     yield return ControlFlow.ExecuteWhile(() => !gothit, Cycle(target));
                 }
@@ -90,25 +83,29 @@ public class FishPeddle : MonoBehaviour
 		}
 	}
 
-	IEnumerable<Instruction> Cycle(Transform target) {
+	IEnumerable<Instruction> Cycle(Transform target)
+	{
+		bool Detached = false;
+		yield return ControlFlow.ExecuteWhile(
+				() => !Detached,
+				FocusOn(target, transform),
+				Prepare(target, detached => Detached = detached)
+				);
 		bool needReGrid = false;
-		while (true)
-		{
-			yield return ControlFlow.ExecuteWhileRunning(
+		yield return ControlFlow.ExecuteWhileRunning(
 				GridLie(transform, ViceLeft, false),
 				GridLie(transform, ViceRight, true),
 				FocusOn(target, transform),
 				FocusOn(target, ViceLeft),
 				FocusOn(target, ViceRight)
 				);
-			needReGrid = false;
-			yield return ControlFlow.ExecuteWhile(
-				() => !needReGrid,
-				Strike(target, transform, need => needReGrid = need),
-				Strike(target, ViceLeft, need => needReGrid = need),
-				Strike(target, ViceRight, need => needReGrid = need)
-				);
-		}
+		needReGrid = false;
+		yield return ControlFlow.ExecuteWhile(
+			() => !needReGrid,
+			Strike(target, transform, need => needReGrid = need),
+			Strike(target, ViceLeft, need => needReGrid = need),
+			Strike(target, ViceRight, need => needReGrid = need)
+			);
 	}
 
 	IEnumerable<Instruction> FindTargetInRadius(float radius, System.Action<Transform> targetFound)
