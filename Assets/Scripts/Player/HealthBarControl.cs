@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class HealthBarControl : MonoBehaviour
 {
     public Slider slider;
-    public float Hp = 5;
-    public float HpMax = 5;
+    public float Hp = 150;
+    public float HpMax = 150;
     public Transform PlayerTransform;
     public int IncreaseHp;
     //public int HeartCapacity;
@@ -20,6 +20,10 @@ public class HealthBarControl : MonoBehaviour
     public float JumpTimer;
 	public float vibrationStrength = 1.5f;
 	public float vibrationTime = 0.3f;
+    public float TargetHp = 150;
+    public float lerpSpeed=5;
+    public float lerpSpeed2 = 5;
+
     void Awake()
     {
         gm= FindObjectOfType<GameManager>();
@@ -38,9 +42,9 @@ public class HealthBarControl : MonoBehaviour
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
         //       anim.SetTrigger("Hit");
         if (damageCount < 0) {
-            Hp -= damageCount;
-            Hp = Mathf.Clamp(Hp, 0, HpMax);
-            currentHealth();
+            TargetHp -= damageCount;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            //currentHealth();
 
         }//回血特效 
         if ((damageCount > 0) && (invincibleCD > 0.7f))
@@ -49,11 +53,11 @@ public class HealthBarControl : MonoBehaviour
             {
                 StartCoroutine("Vibration");
                 StartCoroutine("timeStop");
-                Hp -= damageCount;
+                TargetHp -= damageCount;
                 anim.SetTrigger("Hit");
             }
-            Hp = Mathf.Clamp(Hp, 0, HpMax);
-            currentHealth();
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            //currentHealth();
             invincibleCD = 0;
         }
      }
@@ -67,8 +71,8 @@ public class HealthBarControl : MonoBehaviour
     {
         //if (HpMax <= 9)
         HpMax += IncreaseHp;
-        Hp += IncreaseHp+20;
-        currentHealth();
+        TargetHp += IncreaseHp+20;
+        //currentHealth();
         gm.HpCapacity = HpMax;
     }
     IEnumerator timeStop()
@@ -80,9 +84,17 @@ public class HealthBarControl : MonoBehaviour
 
     void currentHealth()
     {
-        if (Hp <= 0)
+        if (TargetHp <= 0||Hp<=0)
         {
             StartCoroutine("Die");
+        }
+        if (TargetHp < Hp)
+        {
+            Hp = Mathf.Lerp(Hp, TargetHp, Time.deltaTime * lerpSpeed);
+        }
+        else
+        {
+            Hp = Mathf.Lerp(Hp, TargetHp, Time.deltaTime * lerpSpeed2);
         }
         slider.value = (float)(Hp / HpMax);
     }
@@ -133,6 +145,7 @@ public class HealthBarControl : MonoBehaviour
 
     private void Update()
     {
+        currentHealth();
         JumpTimer += Time.deltaTime;
         cheat = gm.CHEAT;
 

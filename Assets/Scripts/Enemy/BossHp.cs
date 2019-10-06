@@ -7,6 +7,8 @@ public class BossHp : MonoBehaviour
 {
     public Slider slider;
     public float Hp;
+    public float TargetHp;
+    public float lerpSpeed = 5;
     public float HpMax;
     private Animator anim;
     private bool dead = false;
@@ -28,7 +30,8 @@ public class BossHp : MonoBehaviour
             {
                 ps.Play();
             }
-            Hp -= damageCount;
+            TargetHp -= damageCount;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
             if (bossTransform != null)
                 DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, 2);
             else
@@ -41,7 +44,8 @@ public class BossHp : MonoBehaviour
             {
                 ps.Play();
             }
-            Hp -= 1;
+            TargetHp -= 1;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
             if (bossTransform != null)
                 DamageTextControler.CreatDamageText(1.ToString(), bossTransform, 2);
             else
@@ -58,7 +62,8 @@ public class BossHp : MonoBehaviour
             {
                 ps.Play();
             }
-            Hp -= damageCount;
+            TargetHp -= damageCount;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
             if (bossTransform != null)
                 DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, DMGtype);
             else
@@ -70,7 +75,8 @@ public class BossHp : MonoBehaviour
             {
                 ps.Play();
             }
-            Hp -= 1;
+            TargetHp -= 1;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
             if (bossTransform != null)
                 DamageTextControler.CreatDamageText(1.ToString(), bossTransform, DMGtype);
             else
@@ -85,6 +91,7 @@ public class BossHp : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         HpMax += gm.DAMAGE*100;
         Hp = HpMax;
+        TargetHp = Hp;
         anim = GetComponent<Animator>();
         DamageTextControler.Initialize();
         
@@ -106,7 +113,7 @@ public class BossHp : MonoBehaviour
             Burn -= 1;
         }
         Hp = Mathf.Clamp(Hp, 0, HpMax);
-        if (Hp <= 0 && dead == false)
+        if ((Hp <= 0|| TargetHp<=0) && dead == false)
         {
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
@@ -116,7 +123,11 @@ public class BossHp : MonoBehaviour
             StartCoroutine("Die");
         }
 
-		if(isBoss)slider.value = (float)(Hp / HpMax);
+        if (isBoss&&slider)
+        {
+            Hp = Mathf.Lerp(Hp, TargetHp, Time.deltaTime * lerpSpeed);
+            slider.value = (float)(Hp / HpMax);
+        }
 
     }
 

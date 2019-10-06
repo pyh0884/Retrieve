@@ -11,7 +11,8 @@ public class selfDestroy : MonoBehaviour
         Destroy(gameObject);
     }
     void Update()
-    {if (!yes)
+    {
+        if (!yes)
         Destroy(gameObject, DestroyTime);
     }
 }
