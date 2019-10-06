@@ -170,11 +170,13 @@ public class PetAI : MonoBehaviour
                                     break;
                                 }
                             case 5://回血
+
                                 anim.SetTrigger("Attack");
-                                Skills[5].SetActive(true);
+                                Instantiate(Skills[5], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.identity);
                                 ec.elements[0] = 0;
                                 ec.elements[1] = 0;
                                 ec.elements[2] = 0;
+
                                 break;
                             case 6://匕首
                                 {
@@ -260,11 +262,10 @@ public class PetAI : MonoBehaviour
                                 }
                             case 8://弹射箭
                                 anim.SetTrigger("Attack");
-                                Instantiate(Skills[8], new Vector3(player.transform.position.x - 1, player.transform.position.y + 1, 0), Quaternion.identity);
+                                Skills[8].SetActive(true);
                                 ec.elements[0] = 0;
                                 ec.elements[1] = 0;
                                 ec.elements[2] = 0;
-
                                 break;
                             case 9://炮台
                                 {
