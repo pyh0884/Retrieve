@@ -93,7 +93,7 @@ public class SKill2 : MonoBehaviour
             {
 				for (int i = 0; i < HitTimes; i++)
                 {
-                    yield return ControlFlow.Call(Attack(aims[i%HitTimes]));
+                    yield return ControlFlow.Call(Attack(aims[i%aims.Count]));
                 }
             }
         }
