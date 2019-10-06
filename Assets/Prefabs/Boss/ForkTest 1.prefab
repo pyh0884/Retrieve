@@ -98,6 +98,7 @@ MonoBehaviour:
   hitBackDist: -6
   hitBackSpeed: 40
   maxBackFrame: 20
+  deadBody: {fileID: 0}
 --- !u!58 &6037361603930189995
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,8 +173,9 @@ MonoBehaviour:
   gridSpeed: 2.5
   ViceLeft: {fileID: 732755046390457267}
   ViceRight: {fileID: 99336252032779574}
+  shadowPrefab: {fileID: 0}
   hitBackDist: -6
-  hitBackSpeed: 40
+  hitBackSpeed: 20
   maxBackFrame: 20
   gothit: 0
 --- !u!212 &8872177534303609417
@@ -255,6 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
+  DMG: 1
 --- !u!1 &7400802235872407282
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +357,7 @@ MonoBehaviour:
   hitBackDist: -6
   hitBackSpeed: 40
   maxBackFrame: 20
+  deadBody: {fileID: 0}
 --- !u!58 &1835391980273021937
 CircleCollider2D:
   m_ObjectHideFlags: 0
