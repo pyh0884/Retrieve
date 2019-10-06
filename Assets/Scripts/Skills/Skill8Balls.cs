@@ -8,6 +8,11 @@ public class Skill8Balls : MonoBehaviour
     public GameManager gm;
     Vector2 speed;
     public float IniSpeed;
+    public GameObject AccArea;
+    public void SpeedUp()
+    {
+        Instantiate(AccArea, transform.position, Quaternion.Euler(0, 0, 0));
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +52,7 @@ public class Skill8Balls : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             FindObjectOfType<AudioManager>().Play("Hit");
+            SpeedUp();
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
@@ -65,10 +71,11 @@ public class Skill8Balls : MonoBehaviour
         if (collision.gameObject.layer == 11)
         {
             FindObjectOfType<AudioManager>().Play("Hit");
+            SpeedUp();
             Destroy(collision.gameObject);
         }
     }
-        void Update()
+    void Update()
     {
         ControlDirection();
         setAngle();

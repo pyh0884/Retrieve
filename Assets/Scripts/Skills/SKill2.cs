@@ -15,9 +15,11 @@ public class SKill2 : MonoBehaviour
     private bool hit = false;
     Coroutines.Coroutine _Main;
     public int HitTimes;
+    public int DmgPerLevel = 10;
     GameManager gm;
 	Collider2D coll;
 	int count = 0;
+
     void Start()
     {
         //Destroy(gameObject, 3);
@@ -176,11 +178,11 @@ public class SKill2 : MonoBehaviour
 		FindObjectOfType<AudioManager>().Play("Hit");
 		if (target.GetComponentInParent<BossHp>() != null)
 		{
-			target.GetComponentInParent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+            target.GetComponentInParent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20 + gm.levels[0] * DmgPerLevel)));
 		}
 		else
 		{
-			target.GetComponentInParent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+			target.GetComponentInParent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20 + gm.levels[0] * DmgPerLevel)));
 		}
 		Vector2 rand = Random.insideUnitCircle.normalized;
 		Vector3 newTarget = transform.position + (Vector3)rand;
@@ -190,4 +192,9 @@ public class SKill2 : MonoBehaviour
 			yield return null;
 		}
 	}
+    public GameObject AccArea;
+    public void SpeedUp()
+    {
+        Instantiate(AccArea, transform.position, Quaternion.Euler(0, 0, 0));
+    }
 }

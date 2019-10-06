@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public float HorizontalSpeed;
     public float JumpSpeed;
     public int BurnDamage=2;
-    public float SlowMultiplier=1;
+    public float SlowMultiplier = 1.5f;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
 		HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
+        levels[0]= PlayerPrefs.GetInt("YELLOW", 0);
+        levels[1] = PlayerPrefs.GetInt("GREEN", 0);
+        levels[2] = PlayerPrefs.GetInt("BLUE", 0);
+        levels[3] = PlayerPrefs.GetInt("RED", 0);
+        SlowMultiplier = 1.5f;
     }
     public float HP
     {
@@ -101,9 +106,9 @@ public class GameManager : MonoBehaviour
     }
     public void LevelUpYellow() {
         if (levels[0] != 3)
-        {
-            levels[0]++;
-            SlowMultiplier =1.2f+ 0.2f*levels[0];
+        {   levels[0]++;
+            PlayerPrefs.SetInt("YELLOW", levels[0]);
+            SlowMultiplier =1.5f+ 0.25f*levels[0];
         }
     }
     public void LevelUpGreen()
@@ -111,8 +116,7 @@ public class GameManager : MonoBehaviour
         if (levels[1] != 3)
         {
             levels[1]++;
-            HorizontalSpeed += 0;
-            JumpSpeed += 0;
+            PlayerPrefs.SetInt("GREEN", levels[1]);            
             player.GetComponent<PlayerController>().HorizontalSpeed = HorizontalSpeed;
             player.GetComponent<PlayerController>().jumpSpeed = JumpSpeed;
         }
@@ -120,13 +124,17 @@ public class GameManager : MonoBehaviour
     public void LevelUpBlue()
     {
         if (levels[2] != 3)
+        {
             levels[2]++;
+            PlayerPrefs.SetInt("BLUE", levels[2]);            
+        }
     }
     public void LevelUpRed()
     {
         if (levels[3] != 3)
         {
             levels[3]++;
+            PlayerPrefs.SetInt("RED", levels[3]);            
             BurnDamage = 2+2*levels[3];
         }
     }

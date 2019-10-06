@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d812639e7d2464140b20e46a3affd9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yes: 1
+  DontDestroy: 1
   DestroyTime: 2
 --- !u!1 &6643269128653936555
 GameObject:
@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
+  DMG: 1
 --- !u!70 &1721714437656976742
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

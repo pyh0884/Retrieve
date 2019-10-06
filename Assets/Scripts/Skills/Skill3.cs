@@ -11,6 +11,7 @@ public class Skill3 : MonoBehaviour
     private float LastTime;
     public float dmgMultiplier;
     public int DmgPerLevel = 10;
+    public int HealPerLevel = 3;
     private HealthBarControl hbc;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class Skill3 : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             FindObjectOfType<AudioManager>().Play("Hit");
+            hbc.Damage(-HealPerLevel * (gm.levels[2] + 1));
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0, 100) < gm.CRIT)
