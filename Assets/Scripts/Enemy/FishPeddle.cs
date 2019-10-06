@@ -70,8 +70,7 @@ public class FishPeddle : MonoBehaviour
 			{
                 while (true)
                 {
-                    if (ViceLeft == null) ViceLeft = Instantiate(shadowPrefab, transform.position, Quaternion.identity,transform).transform;
-                    if (ViceRight == null) ViceRight = Instantiate(shadowPrefab, transform.position, Quaternion.identity,transform).transform;
+
                     if (gothit)
                     {
                         gothit = false;
@@ -85,27 +84,36 @@ public class FishPeddle : MonoBehaviour
 
 	IEnumerable<Instruction> Cycle(Transform target)
 	{
-		bool Detached = false;
-		yield return ControlFlow.ExecuteWhile(
-				() => !Detached,
-				FocusOn(target, transform),
-				Prepare(target, detached => Detached = detached)
+		try
+		{
+			bool Detached = false;
+			yield return ControlFlow.ExecuteWhile(
+					() => !Detached,
+					FocusOn(target, transform),
+					Prepare(target, detached => Detached = detached)
+					);
+			if (ViceLeft == null) ViceLeft = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
+			if (ViceRight == null) ViceRight = Instantiate(shadowPrefab, transform.position, Quaternion.identity).transform;
+			bool needReGrid = false;
+			yield return ControlFlow.ExecuteWhileRunning(
+					GridLie(transform, ViceLeft, false),
+					GridLie(transform, ViceRight, true),
+					FocusOn(target, transform),
+					FocusOn(target, ViceLeft),
+					FocusOn(target, ViceRight)
+					);
+			needReGrid = false;
+			yield return ControlFlow.ExecuteWhile(
+				() => !needReGrid,
+				Strike(target, transform, need => needReGrid = need),
+				Strike(target, ViceLeft, need => needReGrid = need),
+				Strike(target, ViceRight, need => needReGrid = need)
 				);
-		bool needReGrid = false;
-		yield return ControlFlow.ExecuteWhileRunning(
-				GridLie(transform, ViceLeft, false),
-				GridLie(transform, ViceRight, true),
-				FocusOn(target, transform),
-				FocusOn(target, ViceLeft),
-				FocusOn(target, ViceRight)
-				);
-		needReGrid = false;
-		yield return ControlFlow.ExecuteWhile(
-			() => !needReGrid,
-			Strike(target, transform, need => needReGrid = need),
-			Strike(target, ViceLeft, need => needReGrid = need),
-			Strike(target, ViceRight, need => needReGrid = need)
-			);
+		}
+		finally {
+			if (ViceLeft.GetComponent<Animator>() != null) ViceLeft.GetComponent<Animator>().SetTrigger("Die");
+			if (ViceRight.GetComponent<Animator>() != null) ViceRight.GetComponent<Animator>().SetTrigger("Die");
+		}
 	}
 
 	IEnumerable<Instruction> FindTargetInRadius(float radius, System.Action<Transform> targetFound)
@@ -122,16 +130,16 @@ public class FishPeddle : MonoBehaviour
 	}
 
 	IEnumerable<Instruction> GridLie(Transform center,Transform vice,bool right) {
-        //while ((vice.position - center.position).sqrMagnitude < prepareRadius * prepareRadius / 4.0f)
-        //{
-        //	vice.position += vice.up * Time.deltaTime * (right?gridSpeed:-gridSpeed);
-        //	yield return null;
-        //}
-        Vector3 targetPos = center.position + center.up * (right ? prepareRadius : -prepareRadius);
-        while (vice.position != targetPos) {
-            vice.position = Vector3.MoveTowards(vice.position, targetPos, gridSpeed * Time.deltaTime);
-            yield return null;
-        }
+		while ((vice.position - center.position).sqrMagnitude < prepareRadius * prepareRadius / 4.0f)
+		{
+			vice.position += vice.up * Time.deltaTime * (right ? gridSpeed : -gridSpeed);
+			yield return null;
+		}
+		//Vector3 targetPos = center.position + center.up * (right ? prepareRadius : -prepareRadius);
+		//while (vice.position != targetPos) {
+		//    vice.position = Vector3.MoveTowards(vice.position, targetPos, gridSpeed * Time.deltaTime);
+		//    yield return null;
+		//}
 	}
 
 	IEnumerable<Instruction> Prepare(Transform target, System.Action<bool> detached)
