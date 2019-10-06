@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 136798187166444646}
   - component: {fileID: -679185826974246204}
   - component: {fileID: 1653784083523065195}
+  - component: {fileID: 3022719706951394229}
   m_Layer: 14
-  m_Name: GameObject
+  m_Name: "\u706B\u7130"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1662195111119898710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2449546395274681320}
   m_Father: {fileID: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2064725235136235732, guid: bc9d32015fe74294d82153bf17917349,
+  m_Sprite: {fileID: -7374776547938397234, guid: 55c14ad1e98e6e64ea144a5f6a181b00,
     type: 3}
   m_Color: {r: 1, g: 0.39462644, b: 0, a: 1}
   m_FlipX: 0
@@ -119,18 +120,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.8125}
+  m_Offset: {x: 0.00017017126, y: 0.5704889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1.625}
+    oldSize: {x: 0.5, y: 1.125}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.625}
+  m_Size: {x: 0.50120175, y: 1.1409779}
   m_EdgeRadius: 0
 --- !u!114 &1653784083523065195
 MonoBehaviour:
@@ -146,6 +147,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: 0
   DestroyTime: 6
+--- !u!95 &3022719706951394229
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662195111119898710}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c715dfda49a26e428bcaa0c6a8f4a89, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5025898772365878188
 GameObject:
   m_ObjectHideFlags: 0

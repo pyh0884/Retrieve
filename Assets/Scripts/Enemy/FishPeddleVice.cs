@@ -9,8 +9,10 @@ public class FishPeddleVice : MonoBehaviour
 	public float hitBackDist = -6;
 	public float hitBackSpeed = 40;
 	public int maxBackFrame = 20;
-	// Start is called before the first frame update
-	void Start()
+    public GameObject deadBody;
+
+    // Start is called before the first frame update
+    void Start()
     {
 		main = transform.parent.gameObject;
     }
@@ -28,7 +30,22 @@ public class FishPeddleVice : MonoBehaviour
 			StartCoroutine(GotHit(transform));
 			//anim.SetTrigger("Die");
 		}
-	}
+        if (collision.tag == "Player")
+        {
+                Destroy(gameObject);
+                if (deadBody)
+                {
+                    Instantiate(deadBody, transform.position, Quaternion.identity);
+                }
+            
+        }
+        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 12))
+        {
+            if(deadBody)
+            Instantiate(deadBody, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
 
 	IEnumerator GotHit(Transform curr)
 	{

@@ -20,7 +20,7 @@ public class TresureChest : MonoBehaviour
 	public void SaveOpenState() {
 		PlayerPrefs.SetInt("TresuareChestOpened" + chestIndex, 1);
 		PlayerPrefs.SetFloat("CRIT", gm.CRIT);
-		PlayerPrefs.SetInt("MAXHP", gm.MAXHP);
+		PlayerPrefs.SetFloat("MAXHP", gm.MAXHP);
 		PlayerPrefs.SetInt("DAMAGE", gm.DAMAGE);
 	}
 }

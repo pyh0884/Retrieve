@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class HealthBarControl : MonoBehaviour
 {
-    public int Hp = 5;
-    public int HpMax = 5;
-    public int HeartCapacity;
-    public Image[] HeartImages;
-    public Sprite[] HeartSprites;
+    public Slider slider;
+    public float Hp = 5;
+    public float HpMax = 5;
+    public Transform PlayerTransform;
+    public int IncreaseHp;
+    //public int HeartCapacity;
+    //public Image[] HeartImages;
+    //public Sprite[] HeartSprites;
     private Animator anim;
     public GameManager gm;
     public float invincibleCD;
@@ -22,7 +25,7 @@ public class HealthBarControl : MonoBehaviour
         gm= FindObjectOfType<GameManager>();
         Hp = gm.HP;
         HpMax = gm.MAXHP;
-        HeartCapacity = 10;
+        //HeartCapacity = 10;
         currentHealth();
         anim = GetComponent<Animator>();
         invincibleCD = 0;
@@ -62,51 +65,61 @@ public class HealthBarControl : MonoBehaviour
 
     public void IncreaseMax()
     {
-        if (HpMax <= 9) 
-        HpMax += 1;
-        Hp = HpMax;
+        //if (HpMax <= 9)
+        HpMax += IncreaseHp;
+        Hp += IncreaseHp+20;
         currentHealth();
         gm.HpCapacity = HpMax;
     }
     IEnumerator timeStop()
     {
-        Time.timeScale = 0.4f;
-        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 0.5f;
+        yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1;
     }
+
     void currentHealth()
     {
         if (Hp <= 0)
         {
             StartCoroutine("Die");
         }
-        for (int j = 0; j < HeartCapacity; j++)
-        {
-            if (HpMax <= j)
-            {
-                HeartImages[j].enabled = false;
-            }
-            else
-            {
-                HeartImages[j].enabled = true;
-            }
-        }
-
-        int i = 0;
-        foreach (Image image in HeartImages)
-        {
-            i++;
-            if (Hp >= i)
-            {
-                image.sprite = HeartSprites[1];
-            }
-            else
-            {
-                image.sprite = HeartSprites[0];
-            }
-        }
-
+        slider.value = (float)(Hp / HpMax);
     }
+
+    //void currentHealth()
+    //{
+    //    if (Hp <= 0)
+    //    {
+    //        StartCoroutine("Die");
+    //    }
+    //    for (int j = 0; j < HeartCapacity; j++)
+    //    {
+    //        if (HpMax <= j)
+    //        {
+    //            HeartImages[j].enabled = false;
+    //        }
+    //        else
+    //        {
+    //            HeartImages[j].enabled = true;
+    //        }
+    //    }
+
+    //    int i = 0;
+    //    foreach (Image image in HeartImages)
+    //    {
+    //        i++;
+    //        if (Hp >= i)
+    //        {
+    //            image.sprite = HeartSprites[1];
+    //        }
+    //        else
+    //        {
+    //            image.sprite = HeartSprites[0];
+    //        }
+    //    }
+
+    //}
 
     IEnumerator Die()
     {

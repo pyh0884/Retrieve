@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int CurrentHp;
-    public int HpCapacity;
+    public float CurrentHp;
+    public float HpCapacity;
     public int CurrentDMG;
     public float CritPos;
     public GameObject playerPrefab;
@@ -38,10 +38,10 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
-		HpCapacity = PlayerPrefs.GetInt("MAXHP", 5);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
     }
-    public int HP
+    public float HP
     {
         get
         {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
             BossIndex = num;
     }
-    public int MAXHP
+    public float MAXHP
     {
         get
         {

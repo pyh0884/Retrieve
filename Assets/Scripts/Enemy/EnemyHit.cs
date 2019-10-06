@@ -6,11 +6,12 @@ public class EnemyHit : MonoBehaviour
 {
     public bool selfDestroy=true;
     public GameObject deadBody;
+    public int DMG=1;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthBarControl>().Damage(1);
+            collision.gameObject.GetComponent<HealthBarControl>().Damage(DMG);
             //动画，动画事件加入不同的表现+粒子
             if (selfDestroy)
             {
