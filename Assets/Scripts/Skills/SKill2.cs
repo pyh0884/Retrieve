@@ -89,9 +89,9 @@ public class SKill2 : MonoBehaviour
             yield return ControlFlow.Call(Search(success => gotOthers = success, result => aims = result));
             if (gotOthers)
             {
-                foreach (GameObject aim in aims)
+				for (int i = 0; i < HitTimes; i++)
                 {
-                    yield return ControlFlow.Call(Attack(aim));
+                    yield return ControlFlow.Call(Attack(aims[i%HitTimes]));
                 }
             }
         }
