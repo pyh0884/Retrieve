@@ -91,12 +91,7 @@ public class TargetFollowingEnemy : MonoBehaviour
         {
             Instantiate(deadBody, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            //FindObjectOfType<AudioManager>().Play("Stone");
-            //此处加动画
-            //Destroy(gameObject, 0.01f);//自毁等待时长要长于动画时长
         }
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
         if (collision.tag == "Player")
         {
             //加动画

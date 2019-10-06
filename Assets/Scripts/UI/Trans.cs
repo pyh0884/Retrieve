@@ -41,7 +41,13 @@ public class Trans : MonoBehaviour
 		if (PlayerPrefs.HasKey("RespwanX"))PlayerPrefs.DeleteKey("RespwanX");
 		if (PlayerPrefs.HasKey("RespwanY"))PlayerPrefs.DeleteKey("RespwanY");
 		if (PlayerPrefs.HasKey("RespwanSceneIndex"))PlayerPrefs.DeleteKey("RespwanSceneIndex");
-		for (int i = 0; i <= 30; i++) {
+        if (PlayerPrefs.HasKey("YELLOW")) PlayerPrefs.DeleteKey("YELLOW"); 
+        if (PlayerPrefs.HasKey("GREEN")) PlayerPrefs.DeleteKey("GREEN");
+        if (PlayerPrefs.HasKey("BLUE")) PlayerPrefs.DeleteKey("BLUE");
+        if (PlayerPrefs.HasKey("RED")) PlayerPrefs.DeleteKey("RED");
+
+
+        for (int i = 0; i <= 30; i++) {
 			if (PlayerPrefs.HasKey("TresuareChestOpened" + i)) {
 				PlayerPrefs.DeleteKey("TresuareChestOpened" + i);
 			}

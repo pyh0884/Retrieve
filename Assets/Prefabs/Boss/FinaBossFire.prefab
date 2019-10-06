@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 1
   deadBody: {fileID: 0}
+  DMG: 1
 --- !u!114 &-6274732581840373079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +151,8 @@ MonoBehaviour:
   lookAtEndTime: 4.5
   mouseAttractionAmt: 0.1
   velocityLerpAmt: 0.25
-  deadBody: {fileID: 0}
+  deadBody: {fileID: 6568061602477627140, guid: 6208a8323bd375a4eb63d40218f2f5ad,
+    type: 3}
   velocity: {x: 0, y: 0, z: 0}
   newVelocity: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}

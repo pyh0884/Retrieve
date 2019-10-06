@@ -15,7 +15,7 @@ public class Shit : MonoBehaviour
     public float SlowTimer;
     private float timer2;
     GameManager gm;
-    bool slowed;
+    public bool slowed;
     AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
