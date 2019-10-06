@@ -17,9 +17,10 @@ public class SKill2 : MonoBehaviour
     public int HitTimes;
     GameManager gm;
 	Collider2D coll;
+	int count = 0;
     void Start()
     {
-        Destroy(gameObject, 3);
+        //Destroy(gameObject, 3);
         FindEnemy();
         _Main = new Coroutines.Coroutine(Main());
         gm = FindObjectOfType<GameManager>();
@@ -53,21 +54,21 @@ public class SKill2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.tag == "Enemy")
-        //{
-        //    FindObjectOfType<AudioManager>().Play("Hit");
-        //    if (collision.gameObject.GetComponent<BossHp>() != null)
-        //    {
-        //        collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-        //    }
-        //    else
-        //    {
-        //        collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-        //    }
-        //    hit = true;
-        //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //}
-        if (collision.gameObject.layer == 11)
+		if (collision.tag == "Enemy")
+		{
+				FindObjectOfType<AudioManager>().Play("Hit");
+				if (collision.gameObject.GetComponent<BossHp>() != null)
+				{
+					collision.gameObject.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+				}
+				else
+				{
+					collision.gameObject.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
+				}
+			hit = true;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		}
+		if (collision.gameObject.layer == 11)
         {
             FindObjectOfType<AudioManager>().Play("Hit");
             Destroy(collision.gameObject);
@@ -108,6 +109,7 @@ public class SKill2 : MonoBehaviour
             if (nearest)
             {
                 GetComponent<Rigidbody2D>().velocity = (nearest.transform.position - transform.position).normalized * rushSpeed;
+				yield break;
             }
             else
             {
@@ -153,7 +155,7 @@ public class SKill2 : MonoBehaviour
         else
         {
             foreach (Collider2D candidate in candidates)
-                targets.Add(candidate.gameObject.transform.parent.gameObject);
+                targets.Add(candidate.gameObject);
             success(true);
             result(targets);
         }
@@ -161,8 +163,8 @@ public class SKill2 : MonoBehaviour
 
     IEnumerable<Instruction> Attack(GameObject target)
     {
-        Debug.Log(target.name);
-        while (transform.position != target.transform.position)
+
+		while (Vector3.Distance(transform.position ,target.transform.position)>0.2f)
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
@@ -171,27 +173,13 @@ public class SKill2 : MonoBehaviour
                 );
             yield return null;
         }
-		coll.enabled = true;
-        {
-            FindObjectOfType<AudioManager>().Play("Hit");
-            if (target.GetComponent<BossHp>() != null)
-            {
-                target.GetComponent<BossHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-            }
-            else
-            {
-                target.GetComponent<MonsterHp>().Damage(Mathf.RoundToInt((Random.Range(5, 13) + 20)));
-            }
-            hit = true;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
-        yield return null;
-		coll.enabled = false;
+
 		Vector2 rand = Random.insideUnitCircle.normalized;
 		Vector3 newTarget = transform.position + (Vector3)rand;
-		while (transform.position != newTarget) {
+		while (transform.position != newTarget)
+		{
 			transform.position = Vector3.MoveTowards(transform.position, newTarget, rushSpeed * Time.deltaTime);
 			yield return null;
 		}
-    }
+	}
 }
