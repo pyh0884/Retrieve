@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 935357120623259975}
   - component: {fileID: 2321215653254570252}
   - component: {fileID: 9074374041895640198}
+  - component: {fileID: 1825267158282994008}
+  - component: {fileID: 5825917359652827356}
   m_Layer: 0
   m_Name: ForkVice
   m_TagString: Untagged
@@ -99,6 +101,7 @@ MonoBehaviour:
   hitBackDist: -6
   hitBackSpeed: 40
   maxBackFrame: 20
+  deadBody: {fileID: 0}
 --- !u!58 &2321215653254570252
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -130,3 +133,36 @@ MonoBehaviour:
   selfDestroy: 0
   deadBody: {fileID: 0}
   DMG: 1
+--- !u!95 &1825267158282994008
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742965365465034369}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09241488dc7878f4188b4a0b24c9e4ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5825917359652827356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742965365465034369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d812639e7d2464140b20e46a3affd9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yes: 0
+  DestroyTime: 2
