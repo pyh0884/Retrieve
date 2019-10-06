@@ -168,6 +168,11 @@ public class SKill2 : MonoBehaviour
                 );
             yield return null;
         }
-        target.GetComponent<MonsterHp>().Damage(damageAmt);
+		Vector2 rand = Random.insideUnitCircle.normalized;
+		Vector3 newTarget = transform.position + (Vector3)rand;
+		while (transform.position != newTarget) {
+			transform.position = Vector3.MoveTowards(transform.position, newTarget, rushSpeed * Time.deltaTime);
+			yield return null;
+		}
     }
 }
