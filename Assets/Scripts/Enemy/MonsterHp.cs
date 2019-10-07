@@ -15,6 +15,7 @@ public class MonsterHp : MonoBehaviour
     int BurnDamage;
     float timer;
     GameManager gm;
+    public CoinsGenerator cg;
 
     public void Damage(int damageCount)
     {
@@ -67,18 +68,18 @@ public class MonsterHp : MonoBehaviour
         Hp = Mathf.Clamp(Hp, 0, HpMax);
         if (Hp <= 0 && dead == false)
         {
+            cg.GenCoins();
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
-            if (Random.Range(0, 100) > 60)
+            if (Random.Range(0, 100) > 70)
             {
                 Instantiate(drop, gameObject.transform.position, Quaternion.identity);
             }
-            else
-            {
-                Instantiate(drop2, gameObject.transform.position, Quaternion.identity);
-            }
             dead = true;
-            if (GetComponent<StabFish>() == null) anim.SetBool("Die", true);
+            if (GetComponent<StabFish>() == null)
+            {
+                anim.SetBool("Die", true);
+            }
 		}
     }
 }

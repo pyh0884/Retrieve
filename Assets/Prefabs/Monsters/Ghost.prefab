@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1893511513382788656}
   - component: {fileID: 1014836221403079177}
   - component: {fileID: 4479246733660044538}
+  - component: {fileID: 4241206326713304236}
   m_Layer: 15
   m_Name: Ghost
   m_TagString: Enemy
@@ -254,6 +255,7 @@ MonoBehaviour:
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
   drop2: {fileID: 6856371781652273344, guid: 82559663b8f57be4f855b14964b1867b, type: 3}
   Burn: 0
+  cg: {fileID: 4241206326713304236}
 --- !u!95 &1893511513382788656
 Animator:
   serializedVersion: 3
@@ -307,6 +309,33 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
+--- !u!114 &4241206326713304236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025124325825807459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52bb7ff6f996ad419b357b9aa5277f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isChest: 0
+  coins:
+  - {fileID: 6558564987447197038, guid: ff8ed8484b1f9034da80eec9da482d6e, type: 3}
+  - {fileID: 3573066080705748557, guid: 2ed5ac419ddeb514a88367517dd91b19, type: 3}
+  - {fileID: 8761589139607107894, guid: 18d34fc9f48201a418de30e980f514d7, type: 3}
+  - {fileID: 5791125294574241628, guid: f207e2b375d02d74aa30d737a201004f, type: 3}
+  - {fileID: 6785714382076042940, guid: 6f1d73eb4a19ba74992fe750b7cd8e7a, type: 3}
+  - {fileID: 983195753712521470, guid: fa379336383dd3746b629a40bb28fdd8, type: 3}
+  - {fileID: 4916549355701094366, guid: 93ee5d4e6a6730246b5be42c0f8695f5, type: 3}
+  - {fileID: 2594779863902661221, guid: 31e46d698b0a1fa4b9d12d75c74ee7cc, type: 3}
+  - {fileID: 7241726737399752392, guid: 084eb345311941540b1ff39b373257ed, type: 3}
+  - {fileID: 2179426163948921823, guid: 1d87e906aea67e149b514e5b882e5bb3, type: 3}
+  - {fileID: 2298693094366102231, guid: 888a2aa874bf1614a9eaabd8fcb92ac9, type: 3}
+  - {fileID: 7038028521388176999, guid: ad183de7a177ca645b58bb0825fa95ae, type: 3}
+  value: 8
 --- !u!1 &6877575956282200827
 GameObject:
   m_ObjectHideFlags: 0
