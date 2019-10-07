@@ -9,7 +9,10 @@ public class GrassWave : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.SetTrigger("Wave");
+            if (collision.transform.position.x <= transform.position.x)
+                anim.SetTrigger("Wave");
+            else
+                anim.SetTrigger("Left");
         }
     }
     // Start is called before the first frame update
