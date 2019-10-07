@@ -26,17 +26,17 @@ public class CoinsGenerator : MonoBehaviour
     {
 		float MinimumX = minimumX / maxmumX;
 		float MinimumY = minimumY / maxmumY;
-        while (value > 0)
-        {
+		while (value > 0)
+		{
 			float rand_VelocityX = -Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
 			float rand_VelocityY = Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
 			var ins1 = Instantiate(coins[Mathf.FloorToInt(Random.Range(0, coins.Length - 0.5f))], transform.position, Quaternion.identity);
-            ins1.GetComponent<Rigidbody2D>().velocity =
+			ins1.GetComponent<Rigidbody2D>().velocity =
 				/*new Vector2(Random.Range(0, 10) > 5 ? Random.Range(1, 7) : -Random.Range(1, 7), Random.Range(3, 10));*/
-				new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value>0.5f?maxmumX:-maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+				new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
 			value -= ins1.GetComponentInChildren<CoinAI>().MoneyValue;
-
-        }
+			//hahaha
+		}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
