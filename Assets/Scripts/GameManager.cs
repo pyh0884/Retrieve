@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public float JumpSpeed;
     public int BurnDamage=2;
     public float SlowMultiplier = 1.5f;
+    public float money = 0;
+    public float targetMoney = 0;
+    public float MoneySpeed;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
         levels[2] = PlayerPrefs.GetInt("BLUE", 0);
         levels[3] = PlayerPrefs.GetInt("RED", 0);
+        money= PlayerPrefs.GetFloat("MONEY", 0); 
         SlowMultiplier = 1.5f;
     }
     public float HP
@@ -138,6 +142,14 @@ public class GameManager : MonoBehaviour
             BurnDamage = 2+2*levels[3];
         }
     }
+    public void GetMoney(int n)
+    {
+        //lerp数字
+        targetMoney += n;
+        targetMoney = Mathf.Clamp(targetMoney,0,10000);
+        PlayerPrefs.SetFloat("MONEY", targetMoney);
+
+    }
     void Start()
     {
         CurrentHp = HpCapacity;
@@ -169,6 +181,7 @@ public class GameManager : MonoBehaviour
 		{
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
+        money = Mathf.Lerp(money,targetMoney,Time.deltaTime*MoneySpeed);
         CurrentHp = player.GetComponent<HealthBarControl>().Hp;
         if(player.GetComponentInChildren<EatColor>())
         elements = player.GetComponentInChildren<EatColor>().elements;

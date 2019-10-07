@@ -45,6 +45,8 @@ public class Trans : MonoBehaviour
         if (PlayerPrefs.HasKey("GREEN")) PlayerPrefs.DeleteKey("GREEN");
         if (PlayerPrefs.HasKey("BLUE")) PlayerPrefs.DeleteKey("BLUE");
         if (PlayerPrefs.HasKey("RED")) PlayerPrefs.DeleteKey("RED");
+        if (PlayerPrefs.HasKey("MONEY")) PlayerPrefs.DeleteKey("MONEY");
+
 
 
         for (int i = 0; i <= 30; i++) {

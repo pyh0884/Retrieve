@@ -120,6 +120,7 @@ public class BossHp : MonoBehaviour
             
             FindObjectOfType<GameManager>().SetBossIndex(BossIndex);
             dead = true;
+            gm.GetMoney(150);
             StartCoroutine("Die");
         }
 
