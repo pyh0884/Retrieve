@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float money = 0;
     public float targetMoney = 0;
     public float MoneySpeed;
+    public int TotalElites = 5;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "__Main Menu")
