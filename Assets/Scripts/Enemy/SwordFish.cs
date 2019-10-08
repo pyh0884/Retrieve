@@ -56,9 +56,8 @@ public class SwordFish : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         tempSpeed = strikeSpeed;
     }
-
-    // Update is called once per frame
-    public GameObject slowEFX;
+	// Update is called once per frame
+	public GameObject slowEFX;
     void Update()
     {
         if (slowed)

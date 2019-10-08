@@ -45,8 +45,7 @@ public class StabFish : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
 
     }
-
-    void Start()
+	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}

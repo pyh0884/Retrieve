@@ -59,7 +59,7 @@ public class SandWorm : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         tempSpeed = moveSpeed;
     }
-    void Start()
+	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());
 	}

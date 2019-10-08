@@ -261,6 +261,8 @@ MonoBehaviour:
   RedPos: 0
   IsElite: 1
   FireEFX: {fileID: 497722287984329981}
+  EXPValue: 2
+  EliteMultiply: 3
 --- !u!114 &5294941134630142565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,16 +604,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2364315780650776189}
     m_Modifications:
-    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679Cnormal"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8433646947254994746, guid: 0a5cee569ad74d34895af72265e6d462,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -665,6 +657,16 @@ PrefabInstance:
     - target: {fileID: 8433646947254994746, guid: 0a5cee569ad74d34895af72265e6d462,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679Cnormal"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3920881447682205258, guid: 0a5cee569ad74d34895af72265e6d462,

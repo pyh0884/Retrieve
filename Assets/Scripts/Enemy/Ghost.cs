@@ -37,8 +37,9 @@ public class Ghost : MonoBehaviour
             timer = 0;
         }
     }
-    // Use this for initialization
-    void Start()
+
+	// Use this for initialization
+	void Start()
 	{
 		anim = GetComponent<Animator>();
 		_Main = new Coroutines.Coroutine(Main());

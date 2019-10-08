@@ -69,6 +69,13 @@ public class Boss2Ai : MonoBehaviour
 	{
 		_Main.Update();//根节点刷新
 	}
+
+	private void OnDestroy()
+	{
+		PlayerPrefs.SetInt("GreenBossBeaten", 1);
+		Debug.Log(PlayerPrefs.GetInt("EXP", 0));
+	}
+
 	//主循环
 	IEnumerable<Instruction> Main()
 	{

@@ -37,7 +37,8 @@ public class Shit : MonoBehaviour
     }
     // Update is called once per frame
     public GameObject slowEFX;
-    void Update()
+
+	void Update()
     {
         if (slowed)
             slowEFX.SetActive(true);
