@@ -8,7 +8,7 @@ public class PetAvatar : MonoBehaviour
 	Animator anim;
 	SpriteRenderer sr;
     SpriteRenderer Main;
-    GameObject xise;
+    private GameObject xise;
     EatColor ea;
     PetAI pa;
     // Start is called before the first frame update
@@ -54,27 +54,29 @@ public class PetAvatar : MonoBehaviour
         Destroy(gameObject);
     }
     public void Eaten() {
-        switch (xise.tag)
+        if (xise)
         {
-            case "Red":
-                Destroy(xise);
-                ea.EatRed();
-                break;
-            case "Green":
-                Destroy(xise);
-                ea.EatGreen();
-                break;
-            case "Blue":
-                Destroy(xise);
-                ea.EatBlue();
-                break;
-            case "Yellow":
-                Destroy(xise);
-                ea.EatYellow();
-                break;
-            default:
-                break;
+            switch (xise.tag)
+            {
+                case "Red":
+                    Destroy(xise);
+                    ea.EatRed();
+                    break;
+                case "Green":
+                    Destroy(xise);
+                    ea.EatGreen();
+                    break;
+                case "Blue":
+                    Destroy(xise);
+                    ea.EatBlue();
+                    break;
+                case "Yellow":
+                    Destroy(xise);
+                    ea.EatYellow();
+                    break;
+                default:
+                    break;
+            }
         }
-
 	}
 }

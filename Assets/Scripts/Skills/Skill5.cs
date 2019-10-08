@@ -11,7 +11,7 @@ public class Skill5 : MonoBehaviour
     public void Heal()
     {
         gameObject.GetComponentInParent<HealthBarControl>().Damage(HealAmount);
-        Instantiate(HealArea,new Vector3(transform.position.x, transform.position.y-2),Quaternion.identity);
+        Instantiate(HealArea,new Vector3(transform.position.x, transform.position.y+1),Quaternion.identity);
     }
     private void Start()
     {

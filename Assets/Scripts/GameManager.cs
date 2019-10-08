@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
         RedPos = PlayerPrefs.GetInt("REDPOS", 5);
         SlowMultiplier = 1.5f + 0.25f * levels[0];
         BurnDamage = 2 + 2 * levels[3];
+        HorizontalSpeed = 7.75f + levels[1] * 0.5f;
+        JumpSpeed = 11.5f + levels[1] * 0.4f;
     }
     public float HP
     {
@@ -117,9 +119,9 @@ public class GameManager : MonoBehaviour
         CurrentDMG += ATK;
     }
 
-    public void increaseCrit(int CRIt)
+    public void increaseCrit(int CRIT)
     {
-        CritPos += CRIt;
+        CritPos += CRIT;
     }
     public void LevelUpYellow() {
         if (levels[0] != 3)
@@ -128,6 +130,8 @@ public class GameManager : MonoBehaviour
             YellowPos += 5;
             PlayerPrefs.SetInt("YELLOWPOS", YellowPos);
             SlowMultiplier = 1.5f+ 0.25f*levels[0];
+            CurrentDMG += 1;
+            PlayerPrefs.SetInt("DAMAGE", CurrentDMG);
         }
     }
     public void LevelUpGreen()
@@ -138,6 +142,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("GREEN", levels[1]);
             GreenPos += 5;
             PlayerPrefs.SetInt("GREENPOS", GreenPos);
+            JumpSpeed += 0.4f;
+            HorizontalSpeed += 0.5f;
             player.GetComponent<PlayerController>().HorizontalSpeed = HorizontalSpeed;
             player.GetComponent<PlayerController>().jumpSpeed = JumpSpeed;
         }
@@ -150,6 +156,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("BLUE", levels[2]);
             BluePos += 5;
             PlayerPrefs.SetInt("BLUEPOS", BluePos);
+            HpCapacity += 50;
+            PlayerPrefs.SetFloat("MAXHP", HpCapacity);
+
         }
     }
     public void LevelUpRed()
@@ -161,6 +170,9 @@ public class GameManager : MonoBehaviour
             RedPos += 5;
             PlayerPrefs.SetInt("REDPOS", RedPos);
             BurnDamage = 2+2*levels[3];
+            CritPos += 5;
+            PlayerPrefs.SetFloat("CRIT", CritPos);
+
         }
     }
     public void GetMoney(int n)

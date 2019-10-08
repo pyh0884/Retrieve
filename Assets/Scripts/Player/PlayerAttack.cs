@@ -34,9 +34,9 @@ public class PlayerAttack : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0,100)<gm.CRIT)
-                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(5, 13)+ gm.DAMAGE * 4)* dmgMultiplier*1.5f),1);
+                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(1, 3)+ gm.DAMAGE * 8)* dmgMultiplier*1.5f),1);
                 else
-                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier));
+                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(1, 3) + gm.DAMAGE * 8) * dmgMultiplier));
                 //if(gm.levels[3]==3)
                 //collision.gameObject.GetComponent<BossHp>().Burn=3;
 
@@ -44,9 +44,9 @@ public class PlayerAttack : MonoBehaviour
             else
             {
                 if (Random.Range(0, 100) < gm.CRIT)
-                    collision.gameObject.GetComponent<MonsterHp>().Damage2(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier * 1.5f), 1);
+                    collision.gameObject.GetComponent<MonsterHp>().Damage2(Mathf.RoundToInt((Random.Range(1, 3) + gm.DAMAGE * 8) * dmgMultiplier * 1.5f), 1);
                 else
-                    collision.gameObject.GetComponent<MonsterHp>().Damage2(Mathf.RoundToInt((Random.Range(5, 13) + gm.DAMAGE * 4) * dmgMultiplier));
+                    collision.gameObject.GetComponent<MonsterHp>().Damage2(Mathf.RoundToInt((Random.Range(1, 3) + gm.DAMAGE * 8) * dmgMultiplier));
                 //if (gm.levels[3] == 3)
                 //    collision.gameObject.GetComponent<MonsterHp>().Burn = 3;
 
