@@ -10,6 +10,8 @@ public class PetAI : MonoBehaviour
     public Collider2D col;
     public EatColor ec;
     public LayerMask enemyLayer;
+	public LayerMask gemLayer;
+	public float gemRadius = 5;
     public Collider2D nearest;
     public GameObject[] Skills;
     public GameObject player;
@@ -19,6 +21,8 @@ public class PetAI : MonoBehaviour
     GameManager gm;
     public float Skill4Time=0.3f;
     public float Skill6Time = 0.3f;
+	public GameObject avatarPrefab;
+	SpriteRenderer sr;
 
 	private bool isPressing = false;
 
@@ -312,9 +316,68 @@ public class PetAI : MonoBehaviour
     }
     void TryEat()
     {
+		Collider2D nearestGem = null;
+		Collider2D nearestGemBack = null;
+		float nearDist=gemRadius;
+		float nearDistBack = gemRadius;
         if (Input.GetButtonDown("Fire3") && pc.controllable)
         {
-            anim.SetTrigger("Eat");
+			Collider2D[] list = Physics2D.OverlapCircleAll(player.transform.position, gemRadius, gemLayer);
+			if (list.Length == 0) nearestGem = null;
+			else
+			{
+				foreach (Collider2D col in list) {
+					if (col.CompareTag("Red") || col.CompareTag("Yellow") || col.CompareTag("Green") || col.CompareTag("Blue"))
+					{
+						if (player.transform.right.x > 0 ? col.transform.position.x > player.transform.position.x : col.transform.position.x < player.transform.position.x)
+						{
+							if (nearestGem == null) {
+								nearestGem = col;
+								nearDist = Vector3.Distance(player.transform.position, nearestGem.transform.position);
+							}
+							else
+							{
+								float dist = Vector3.Distance(player.transform.position, col.transform.position);
+								if ( dist< nearDist)
+								{
+									nearestGem = col;
+									nearDist = dist;
+								}
+							}
+						}
+						else
+						{
+							if (nearestGemBack == null)
+							{
+								nearestGemBack = col;
+								nearDistBack = Vector3.Distance(player.transform.position, nearestGemBack.transform.position);
+							}
+							else
+							{
+								float dist = Vector3.Distance(player.transform.position, col.transform.position);
+								if (dist < nearDist)
+								{
+									nearestGemBack = col;
+									nearDistBack = dist;
+								}
+							}
+						}
+					}
+				}
+			}
+			if (nearestGem == null)
+			{
+				if (nearestGemBack != null)
+				{
+					nearestGem = nearestGemBack;
+				}
+			}
+			if (nearestGem == null) { anim.SetTrigger("Eat");}
+			else {
+				//这里可以添加任何代码
+				var avatar = Instantiate(avatarPrefab, transform.position, Quaternion.identity);
+				avatar.transform.right = col.transform.position - transform.position;
+			}
         }
     }
 
@@ -347,6 +410,7 @@ public class PetAI : MonoBehaviour
     {
         if (Boss)
             Destroy(gameObject);
+		sr = GetComponent<SpriteRenderer>();
         gm = FindObjectOfType<GameManager>();
         StartCoroutine("UseSkill");
     }

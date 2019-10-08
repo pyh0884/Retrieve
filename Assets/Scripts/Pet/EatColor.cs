@@ -10,6 +10,8 @@ public class EatColor : MonoBehaviour
     public Sprite[] SkillSprites;
     public int[] elements= {0,0,0};
     public Animator anim;
+	public bool gotcha;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -18,7 +18,6 @@ public class SKill2 : MonoBehaviour
     public int DmgPerLevel = 10;
     GameManager gm;
 	Collider2D coll;
-	int count = 0;
 
     void Start()
     {
