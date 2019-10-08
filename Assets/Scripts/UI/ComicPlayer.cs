@@ -6,8 +6,7 @@ public class ComicPlayer : MonoBehaviour
 {
 	public Animator anim;
 	public void FadeOut()
-		
-		{
+	{
 		anim.SetTrigger("FadeOut");
-}
+	}
 }

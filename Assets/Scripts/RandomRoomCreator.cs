@@ -58,7 +58,7 @@ public class RandomRoomCreator : MonoBehaviour
 		//选取开始房间
 		RoomInfo startroom = new RoomInfo
 		{
-			roomPos = new Vector2Int(0, Random0ToN(mapSizePerRoom.y-2)+1),
+			roomPos = new Vector2Int(0, 1),
 			roomType = RoomType.horizontal
 		};
 		roomData.Add(startroom);
