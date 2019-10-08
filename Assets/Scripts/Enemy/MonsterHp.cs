@@ -25,6 +25,7 @@ public class MonsterHp : MonoBehaviour
     public int GreenPos;
     public int BluePos;
     public int RedPos;
+    public bool IsElite;
 
     public void Damage2(int damageCount)
     {
@@ -34,10 +35,11 @@ public class MonsterHp : MonoBehaviour
         if (damageCount > 0) { }
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        if (anim)
-        anim.SetTrigger("Hit");
         Hp -= damageCount;
+
         //击退
+            if (anim&& !IsElite)
+                anim.SetTrigger("Hit");
         DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,2);
         //生成吸色道具
         {
@@ -70,7 +72,7 @@ public class MonsterHp : MonoBehaviour
         if (damageCount > 0) { }
         //伤害特效 
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
-        if (anim)
+        if (anim && !IsElite)
             anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
@@ -86,8 +88,8 @@ public class MonsterHp : MonoBehaviour
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
         //anim.SetTrigger("Hit");
         if (DMGtype!=3)
-            if(anim)
-        anim.SetTrigger("Hit");
+            if (anim && !IsElite)
+                anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退
         DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform,DMGtype);
@@ -124,7 +126,7 @@ public class MonsterHp : MonoBehaviour
         //       FindObjectOfType<AudioManager>().Play("Player_Hit");
         //anim.SetTrigger("Hit");
         if (DMGtype != 3)
-            if (anim)
+            if (anim && !IsElite)
                 anim.SetTrigger("Hit");
         Hp -= damageCount;
         //击退

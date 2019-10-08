@@ -7,21 +7,24 @@ public class PetAvatar : MonoBehaviour
 	public float biteSpeed = 3.0f;
 	Animator anim;
 	SpriteRenderer sr;
+    SpriteRenderer Main;
     GameObject xise;
     public EatColor ea;
     // Start is called before the first frame update
     void Start()
     {
 		anim = GetComponent<Animator>();
-		sr = GetComponent<SpriteRenderer>();
+        sr = FindObjectOfType<PetAI>().GetComponent<SpriteRenderer>();
+        Main = GetComponent<SpriteRenderer>();
         ea = FindObjectOfType<EatColor>();
+        sr.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.up.y < 0) sr.flipY = true;
-        else sr.flipY = false;
+        if (transform.up.y < 0) Main.flipY = true;
+        else Main.flipY = false;
     }
 
     public void bite(Transform target)
@@ -41,7 +44,11 @@ public class PetAvatar : MonoBehaviour
 		}
 		anim.SetTrigger("Eat");
 	}
-
+    public void show()
+    {
+        sr.enabled = true;
+        Destroy(gameObject);
+    }
     public void Eaten() {
         switch (xise.tag)
         {
@@ -65,6 +72,5 @@ public class PetAvatar : MonoBehaviour
                 break;
         }
 
-        Destroy(gameObject);
 	}
 }

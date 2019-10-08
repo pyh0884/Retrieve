@@ -11,87 +11,87 @@ public class EatColor : MonoBehaviour
     public int[] elements= {0,0,0};
     public Animator anim;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Yellow")
-        {
-            if (elements[0] == 0)
-            {
-                Debug.Log("Y1");
-                elements[0] = 1;
-            }
-            else if (elements[2] == 0)
-            {
-                Debug.Log("Y2");
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    //if (collision.tag == "Yellow")
+    //    //{
+    //    //    if (elements[0] == 0)
+    //    //    {
+    //    //        Debug.Log("Y1");
+    //    //        elements[0] = 1;
+    //    //    }
+    //    //    else if (elements[2] == 0)
+    //    //    {
+    //    //        Debug.Log("Y2");
 
-                elements[2] = 1;
-            }
-            else
-            {
-                Debug.Log("Y3");
-                elements[0] = elements[2];
-                elements[2] = 1;
-            }
-        }
-        if (collision.tag == "Green")
-        {
-            Debug.Log("G");
+    //    //        elements[2] = 1;
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        Debug.Log("Y3");
+    //    //        elements[0] = elements[2];
+    //    //        elements[2] = 1;
+    //    //    }
+    //    //}
+    //    //if (collision.tag == "Green")
+    //    //{
+    //    //    Debug.Log("G");
 
-            if (elements[0] == 0)
-                elements[0] = 2;
-            else if (elements[2] == 0)
-                elements[2] = 2;
-            else
-            {
-                elements[0] = elements[2];
-                elements[2] = 2;
-            }
+    //    //    if (elements[0] == 0)
+    //    //        elements[0] = 2;
+    //    //    else if (elements[2] == 0)
+    //    //        elements[2] = 2;
+    //    //    else
+    //    //    {
+    //    //        elements[0] = elements[2];
+    //    //        elements[2] = 2;
+    //    //    }
 
-        }
-        if (collision.tag == "Blue")
-        {
-            Debug.Log("B");
+    //    //}
+    //    //if (collision.tag == "Blue")
+    //    //{
+    //    //    Debug.Log("B");
 
-            if (elements[0] == 0)
-                elements[0] = 3;
-            else if (elements[2] == 0)
-                elements[2] = 3;
-            else
-            {
-                elements[0] = elements[2];
-                elements[2] = 3;
-            }
+    //    //    if (elements[0] == 0)
+    //    //        elements[0] = 3;
+    //    //    else if (elements[2] == 0)
+    //    //        elements[2] = 3;
+    //    //    else
+    //    //    {
+    //    //        elements[0] = elements[2];
+    //    //        elements[2] = 3;
+    //    //    }
 
-        }
-        if (collision.tag == "Red")
-        {
-            Debug.Log("R");
+    //    //}
+    //    //if (collision.tag == "Red")
+    //    //{
+    //    //    Debug.Log("R");
 
-            if (elements[0] == 0)
-                elements[0] = 4;
-            else if (elements[2] == 0)
-                elements[2] = 4;
-            else
-            {
-                elements[0] = elements[2];
-                elements[2] = 4;
-            }
+    //    //    if (elements[0] == 0)
+    //    //        elements[0] = 4;
+    //    //    else if (elements[2] == 0)
+    //    //        elements[2] = 4;
+    //    //    else
+    //    //    {
+    //    //        elements[0] = elements[2];
+    //    //        elements[2] = 4;
+    //    //    }
 
-        }
-        if (collision.tag == "Enemy")
-        {
-            FindObjectOfType<AudioManager>().Play("Hit");
-            if (collision.gameObject.GetComponent<BossHp>() != null)
-            {
-                collision.gameObject.GetComponent<BossHp>().Damage2(1, 2);
-            }
-            else
-            {
-                collision.gameObject.GetComponent<MonsterHp>().Damage2(1, 2);
-            }
-            chooseSkill();
-        }
-    }
+    //    //}
+    //    if (collision.tag == "Enemy")
+    //    {
+    //        //FindObjectOfType<AudioManager>().Play("Hit");
+    //        if (collision.gameObject.GetComponent<BossHp>() != null)
+    //        {
+    //            collision.gameObject.GetComponent<BossHp>().Damage2(1, 2);
+    //        }
+    //        else
+    //        {
+    //            collision.gameObject.GetComponent<MonsterHp>().Damage2(1, 2);
+    //        }
+    //        chooseSkill();
+    //    }
+    //}
     public void EatYellow()
     {
         if (elements[0] == 0)
