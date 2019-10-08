@@ -10,8 +10,6 @@ public class EatColor : MonoBehaviour
     public Sprite[] SkillSprites;
     public int[] elements= {0,0,0};
     public Animator anim;
-	public bool gotcha;
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -85,15 +83,83 @@ public class EatColor : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hit");
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
-                collision.gameObject.GetComponent<BossHp>().Damage(1, 2);
+                collision.gameObject.GetComponent<BossHp>().Damage2(1, 2);
             }
             else
             {
-                collision.gameObject.GetComponent<MonsterHp>().Damage(1, 2);
+                collision.gameObject.GetComponent<MonsterHp>().Damage2(1, 2);
             }
             chooseSkill();
         }
     }
+    public void EatYellow()
+    {
+        if (elements[0] == 0)
+        {
+            Debug.Log("Y1");
+            elements[0] = 1;
+        }
+        else if (elements[2] == 0)
+        {
+            Debug.Log("Y2");
+
+            elements[2] = 1;
+        }
+        else
+        {
+            Debug.Log("Y3");
+            elements[0] = elements[2];
+            elements[2] = 1;
+        }
+
+    }
+    public void EatGreen()
+    {
+                    Debug.Log("G");
+
+            if (elements[0] == 0)
+                elements[0] = 2;
+            else if (elements[2] == 0)
+                elements[2] = 2;
+            else
+            {
+                elements[0] = elements[2];
+                elements[2] = 2;
+            }
+
+
+    }
+    public void EatBlue()
+    {
+        Debug.Log("B");
+
+        if (elements[0] == 0)
+            elements[0] = 3;
+        else if (elements[2] == 0)
+            elements[2] = 3;
+        else
+        {
+            elements[0] = elements[2];
+            elements[2] = 3;
+        }
+
+    }
+    public void EatRed()
+    {
+        Debug.Log("R");
+
+        if (elements[0] == 0)
+            elements[0] = 4;
+        else if (elements[2] == 0)
+            elements[2] = 4;
+        else
+        {
+            elements[0] = elements[2];
+            elements[2] = 4;
+        }
+
+    }
+
     void chooseSkill()
     {
         switch (elements[0])
