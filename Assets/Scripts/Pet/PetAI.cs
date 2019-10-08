@@ -23,8 +23,10 @@ public class PetAI : MonoBehaviour
     public float Skill6Time = 0.3f;
 	public GameObject avatarPrefab;
 	SpriteRenderer sr;
+    public bool CanAttack = true;
 
 	private bool isPressing = false;
+    float timer = 1;
 
     IEnumerator UseSkill()
     {
@@ -319,8 +321,10 @@ public class PetAI : MonoBehaviour
 		Collider2D nearestGemBack = null;
 		float nearDist=gemRadius;
 		float nearDistBack = gemRadius;
-        if (Input.GetButtonDown("Fire3") && pc.controllable)
+        if (Input.GetButtonDown("Fire3") && pc.controllable && CanAttack && timer > 0.5f)
         {
+            timer = 0;
+            CanAttack = false;
 			Collider2D[] list = Physics2D.OverlapCircleAll(player.transform.position, gemRadius, gemLayer);
 			if (list.Length == 0) nearestGem = null;
 			else
@@ -374,6 +378,7 @@ public class PetAI : MonoBehaviour
 			if (nearestGem == null)
             {
                     anim.SetTrigger("Eat");
+                CanAttack = true;
             }
 			else {
                 //这里可以添加任何代码
@@ -384,7 +389,10 @@ public class PetAI : MonoBehaviour
 			}
         }
     }
-
+    //public void AttackOn()
+    //{
+    //    CanAttack = true;
+    //}
     void FindEnemy()
     {
         Collider2D[] list = Physics2D.OverlapCircleAll(player.transform.position, 9, enemyLayer);
@@ -420,6 +428,7 @@ public class PetAI : MonoBehaviour
     }
     void Update()
     {
+        timer += Time.deltaTime;
         TryEat();
     }
 }

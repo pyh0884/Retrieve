@@ -9,7 +9,8 @@ public class PetAvatar : MonoBehaviour
 	SpriteRenderer sr;
     SpriteRenderer Main;
     GameObject xise;
-    public EatColor ea;
+    EatColor ea;
+    PetAI pa;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,9 @@ public class PetAvatar : MonoBehaviour
         sr = FindObjectOfType<PetAI>().GetComponent<SpriteRenderer>();
         Main = GetComponent<SpriteRenderer>();
         ea = FindObjectOfType<EatColor>();
+        pa = FindObjectOfType<PetAI>();
         sr.enabled = false;
+        Destroy(gameObject, 1.3f);
     }
 
     // Update is called once per frame
@@ -47,6 +50,7 @@ public class PetAvatar : MonoBehaviour
     public void show()
     {
         sr.enabled = true;
+        pa.CanAttack = true;
         Destroy(gameObject);
     }
     public void Eaten() {
