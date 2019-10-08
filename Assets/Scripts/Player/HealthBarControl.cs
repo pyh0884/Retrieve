@@ -145,6 +145,7 @@ public class HealthBarControl : MonoBehaviour
 
     private void Update()
     {
+        HpMax = gm.MAXHP;
         currentHealth();
         JumpTimer += Time.deltaTime;
         cheat = gm.CHEAT;
