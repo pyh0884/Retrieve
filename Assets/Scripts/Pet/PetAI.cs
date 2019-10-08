@@ -298,7 +298,6 @@ public class PetAI : MonoBehaviour
                                 ec.elements[0] = 0;
                                 ec.elements[1] = 0;
                                 ec.elements[2] = 0;
-
                                 break;
                             default:
                                 break;
@@ -373,10 +372,8 @@ public class PetAI : MonoBehaviour
 				}
 			}
 			if (nearestGem == null) {
-                Debug.Log(1);
                     anim.SetTrigger("Eat");}
 			else {
-                Debug.Log(2);
 				//这里可以添加任何代码
 				var avatar = Instantiate(avatarPrefab, transform.position, Quaternion.identity);
 				avatar.transform.right = col.transform.position - transform.position;
