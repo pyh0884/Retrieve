@@ -18,21 +18,22 @@ public class ColorFade : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pet")
         {
-            col.enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
-            ps.SetActive(false);
-            Timer = 0;
+            //col.enabled = false;
+            //GetComponent<SpriteRenderer>().enabled = false;
+            //ps.SetActive(false);
+            //Timer = 0;
+            Destroy(gameObject);
         }
     }
     private void Update()
     {
-        Timer += Time.deltaTime;
-        if (Timer >= timer)
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
-            ps.SetActive(true);
+        //Timer += Time.deltaTime;
+        //if (Timer >= timer)
+        //{
+        //    GetComponent<SpriteRenderer>().enabled = true;
+        //    ps.SetActive(true);
             
-            col.enabled = true;
-        }
+        //    col.enabled = true;
+        //}
     }
 }

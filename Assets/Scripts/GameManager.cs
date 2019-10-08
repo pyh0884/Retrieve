@@ -27,9 +27,14 @@ public class GameManager : MonoBehaviour
     public float money = 0;
     public float targetMoney = 0;
     public float MoneySpeed;
-    public int TotalElites = 5;
+    public int TotalElites = 5; //每关精英怪数量
+    public int YellowPos = 5;
+    public int GreenPos = 5;
+    public int BluePos = 5;
+    public int RedPos = 5;
     private void Awake()
     {
+
         if (SceneManager.GetActiveScene().name == "__Main Menu")
             Destroy(gameObject);
 		
@@ -48,8 +53,13 @@ public class GameManager : MonoBehaviour
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
         levels[2] = PlayerPrefs.GetInt("BLUE", 0);
         levels[3] = PlayerPrefs.GetInt("RED", 0);
-        money= PlayerPrefs.GetFloat("MONEY", 0); 
-        SlowMultiplier = 1.5f;
+        money= PlayerPrefs.GetFloat("MONEY", 0);
+        YellowPos = PlayerPrefs.GetInt("YELLOWPOS", 5);
+        GreenPos = PlayerPrefs.GetInt("GREENPOS", 5);
+        BluePos = PlayerPrefs.GetInt("BLUEPOS", 5);
+        RedPos = PlayerPrefs.GetInt("REDPOS", 5);
+        SlowMultiplier = 1.5f + 0.25f * levels[0];
+        BurnDamage = 2 + 2 * levels[3];
     }
     public float HP
     {
@@ -113,7 +123,9 @@ public class GameManager : MonoBehaviour
         if (levels[0] != 3)
         {   levels[0]++;
             PlayerPrefs.SetInt("YELLOW", levels[0]);
-            SlowMultiplier =1.5f+ 0.25f*levels[0];
+            YellowPos += 5;
+            PlayerPrefs.SetInt("YELLOWPOS", YellowPos);
+            SlowMultiplier = 1.5f+ 0.25f*levels[0];
         }
     }
     public void LevelUpGreen()
@@ -121,7 +133,9 @@ public class GameManager : MonoBehaviour
         if (levels[1] != 3)
         {
             levels[1]++;
-            PlayerPrefs.SetInt("GREEN", levels[1]);            
+            PlayerPrefs.SetInt("GREEN", levels[1]);
+            GreenPos += 5;
+            PlayerPrefs.SetInt("GREENPOS", GreenPos);
             player.GetComponent<PlayerController>().HorizontalSpeed = HorizontalSpeed;
             player.GetComponent<PlayerController>().jumpSpeed = JumpSpeed;
         }
@@ -131,7 +145,9 @@ public class GameManager : MonoBehaviour
         if (levels[2] != 3)
         {
             levels[2]++;
-            PlayerPrefs.SetInt("BLUE", levels[2]);            
+            PlayerPrefs.SetInt("BLUE", levels[2]);
+            BluePos += 5;
+            PlayerPrefs.SetInt("BLUEPOS", BluePos);
         }
     }
     public void LevelUpRed()
@@ -139,7 +155,9 @@ public class GameManager : MonoBehaviour
         if (levels[3] != 3)
         {
             levels[3]++;
-            PlayerPrefs.SetInt("RED", levels[3]);            
+            PlayerPrefs.SetInt("RED", levels[3]);
+            RedPos += 5;
+            PlayerPrefs.SetInt("REDPOS", RedPos);
             BurnDamage = 2+2*levels[3];
         }
     }

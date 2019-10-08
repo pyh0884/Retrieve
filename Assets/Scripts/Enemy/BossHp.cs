@@ -21,6 +21,15 @@ public class BossHp : MonoBehaviour
     float timer;
     private GameManager gm;
     int BurnDamage;
+    public float minimumX = 6;
+    public float maxmumX = 9;
+    public float minimumY = 6;
+    public float maxmumY = 10;
+    public GameObject[] xise;
+    public int YellowPos;
+    public int GreenPos;
+    public int BluePos;
+    public int RedPos;
 
     public void Damage(int damageCount)
     {
@@ -52,6 +61,66 @@ public class BossHp : MonoBehaviour
                 DamageTextControler.CreatDamageText(1.ToString(), gameObject.transform, 2);
 
         }
+    }
+    public void Damage2(int damageCount)
+    {
+        float MinimumX = minimumX / maxmumX;
+        float MinimumY = minimumY / maxmumY;
+        float xisedaoju = Random.Range(0, 100);
+        if (!Shield)
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            TargetHp -= damageCount;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, 2);
+            else
+                DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, 2);
+
+        }
+        else
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            TargetHp -= 1;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(1.ToString(), bossTransform, 2);
+            else
+                DamageTextControler.CreatDamageText(1.ToString(), gameObject.transform, 2);
+
+        }
+        //生成吸色道具
+        {
+            float rand_VelocityX = -Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
+            float rand_VelocityY = Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
+            if (xisedaoju > 0 && xisedaoju < YellowPos)
+            {
+                var ins1 = Instantiate(xise[0], transform.position, Quaternion.identity);
+                ins1.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 25 && xisedaoju < 25 + GreenPos)
+            {
+                var ins2 = Instantiate(xise[1], transform.position, Quaternion.identity);
+                ins2.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 50 && xisedaoju < 50 + BluePos)
+            {
+                var ins3 = Instantiate(xise[2], transform.position, Quaternion.identity);
+                ins3.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 75 && xisedaoju < 75 + RedPos)
+            {
+                var ins4 = Instantiate(xise[3], transform.position, Quaternion.identity);
+                ins4.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+        }
+
     }
     public void Damage(int damageCount,int DMGtype)
     {
@@ -86,6 +155,67 @@ public class BossHp : MonoBehaviour
 
 
     }
+    public void Damage2(int damageCount, int DMGtype)
+    {
+        float MinimumX = minimumX / maxmumX;
+        float MinimumY = minimumY / maxmumY;
+        float xisedaoju = Random.Range(0, 100);
+        if (!Shield)
+        {
+
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            TargetHp -= damageCount;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(damageCount.ToString(), bossTransform, DMGtype);
+            else
+                DamageTextControler.CreatDamageText(damageCount.ToString(), gameObject.transform, DMGtype);
+        }
+        else
+        {
+            if (damageCount > 0)
+            {
+                ps.Play();
+            }
+            TargetHp -= 1;
+            TargetHp = Mathf.Clamp(TargetHp, 0, HpMax);
+            if (bossTransform != null)
+                DamageTextControler.CreatDamageText(1.ToString(), bossTransform, DMGtype);
+            else
+                DamageTextControler.CreatDamageText(1.ToString(), gameObject.transform, DMGtype);
+
+        }
+        //生成吸色道具
+        {
+            float rand_VelocityX = -Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
+            float rand_VelocityY = Mathf.Abs(Mathf.Sqrt(-2 * Mathf.Log(Random.value)) * Mathf.Sin(2 * Mathf.PI * Random.value));
+            if (xisedaoju > 0 && xisedaoju < YellowPos)
+            {
+                var ins1 = Instantiate(xise[0], transform.position, Quaternion.identity);
+                ins1.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 25 && xisedaoju < 25 + GreenPos)
+            {
+                var ins2 = Instantiate(xise[1], transform.position, Quaternion.identity);
+                ins2.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 50 && xisedaoju < 50 + BluePos)
+            {
+                var ins3 = Instantiate(xise[2], transform.position, Quaternion.identity);
+                ins3.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+            if (xisedaoju > 75 && xisedaoju < 75 + RedPos)
+            {
+                var ins4 = Instantiate(xise[3], transform.position, Quaternion.identity);
+                ins4.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
+            }
+        }
+
+
+    }
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -104,6 +234,10 @@ public class BossHp : MonoBehaviour
     }
     private void Update()
     {
+        YellowPos = gm.YellowPos;
+        GreenPos = gm.GreenPos;
+        BluePos = gm.BluePos;
+        RedPos = gm.RedPos;
         BurnDamage = gm.BurnDamage;
         timer += Time.deltaTime;
         if (Burn > 0 && timer >= 0.35f)

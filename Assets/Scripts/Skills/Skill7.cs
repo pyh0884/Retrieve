@@ -49,6 +49,6 @@ public class Skill7 : MonoBehaviour
     public GameObject AccArea;
     public void SpeedUp()
     {
-        Instantiate(AccArea, transform.position, Quaternion.Euler(0, 0, 0));
+        Instantiate(AccArea, new Vector3(Mathf.RoundToInt(transform.position.x / 4f) * 4f, transform.position.y), Quaternion.Euler(0, 0, 0));
     }
 }

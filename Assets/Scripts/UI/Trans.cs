@@ -46,6 +46,10 @@ public class Trans : MonoBehaviour
         if (PlayerPrefs.HasKey("BLUE")) PlayerPrefs.DeleteKey("BLUE");
         if (PlayerPrefs.HasKey("RED")) PlayerPrefs.DeleteKey("RED");
         if (PlayerPrefs.HasKey("MONEY")) PlayerPrefs.DeleteKey("MONEY");
+        if (PlayerPrefs.HasKey("YELLOWPOS")) PlayerPrefs.DeleteKey("YELLOWPOS");
+        if (PlayerPrefs.HasKey("GREENPOS")) PlayerPrefs.DeleteKey("GREENPOS");
+        if (PlayerPrefs.HasKey("BLUEPOS")) PlayerPrefs.DeleteKey("BLUEPOS");
+        if (PlayerPrefs.HasKey("REDPOS")) PlayerPrefs.DeleteKey("REDPOS");
 
 
 
