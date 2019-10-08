@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public float money = 0;
     public float targetMoney = 0;
     public float MoneySpeed;
+    [Header("产生精英怪比例")]
+    [Range(0, 100)]
     public float ElitePos; //每关精英怪数量
     public int YellowPos = 5;
     public int GreenPos = 5;
