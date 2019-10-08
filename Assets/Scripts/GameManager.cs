@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float money = 0;
     public float targetMoney = 0;
     public float MoneySpeed;
-    public int TotalElites = 5; //每关精英怪数量
+    public float ElitePos; //每关精英怪数量
     public int YellowPos = 5;
     public int GreenPos = 5;
     public int BluePos = 5;
