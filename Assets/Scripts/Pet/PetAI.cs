@@ -375,8 +375,8 @@ public class PetAI : MonoBehaviour
                     anim.SetTrigger("Eat");}
 			else {
 				//这里可以添加任何代码
-				var avatar = Instantiate(avatarPrefab, transform.position, Quaternion.identity);
-				avatar.transform.right = col.transform.position - transform.position;
+				var avatar = Instantiate(avatarPrefab, transform.position, new Quaternion());
+				avatar.transform.right = nearestGem.transform.position - transform.position;
                 avatar.GetComponent<PetAvatar>().bite(nearestGem.transform);
 			}
         }
