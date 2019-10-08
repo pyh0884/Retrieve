@@ -130,9 +130,14 @@ public class WaterShoot : MonoBehaviour
     }
 
     // Update is called once per frame
+    public GameObject slowEFX;
     void Update()
-	{
-		_Main.Update();
+    {
+        if (slowed)
+            slowEFX.SetActive(true);
+        else
+            slowEFX.SetActive(false);
+        _Main.Update();
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer2 += Time.deltaTime;
         if (animatorInfo.IsName("Blue2_Hit")|| animatorInfo.IsName("Blue2_Die"))

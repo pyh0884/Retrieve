@@ -66,10 +66,14 @@ public class ArrowKid : MonoBehaviour
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		_Main.Update();
+    // Update is called once per frame
+    public GameObject slowEFX;
+    void Update()
+	{   if (slowed)
+            slowEFX.SetActive(true);
+        else
+            slowEFX.SetActive(false);
+        _Main.Update();
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer += Time.deltaTime;
         if (animatorInfo.IsName("Green1_Hit")||animatorInfo.IsName("Green1_Die"))

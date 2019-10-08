@@ -63,11 +63,15 @@ public class Slime : MonoBehaviour
 		_Main = new Coroutines.Coroutine(Main());
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		// Just tick our root coroutine
-		_Main.Update();
+    // Update is called once per frame
+    public GameObject slowEFX;
+    void Update()
+    {
+        if (slowed)
+            slowEFX.SetActive(true);
+        else
+            slowEFX.SetActive(false);
+        _Main.Update();
         animatorInfo = anim.GetCurrentAnimatorStateInfo(0);
         timer2 += Time.deltaTime;
         if (animatorInfo.IsName("yellow1_hit")|| animatorInfo.IsName("Yellow1_Die"))
