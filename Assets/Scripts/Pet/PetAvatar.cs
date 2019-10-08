@@ -21,9 +21,13 @@ public class PetAvatar : MonoBehaviour
 		else sr.flipY = false;
     }
 
-	IEnumerator Bite(Transform target)
+    public void bite(Transform target)
+    {
+        StartCoroutine("Bite",target);
+    }
+    IEnumerator Bite(Transform target)
 	{
-		while (Vector3.Distance(transform.position, target.position) > 0.1f)
+		while (Vector3.Distance(transform.position, target.position) > 1)
 		{
 			
 			transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * biteSpeed);
@@ -33,7 +37,7 @@ public class PetAvatar : MonoBehaviour
 	}
 
 	public void Eaten() {
-		GameObject.FindObjectOfType<EatColor>().gotcha = true;
+		FindObjectOfType<EatColor>().gotcha = true;
 		Destroy(gameObject);
 	}
 }

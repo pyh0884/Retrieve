@@ -1949,6 +1949,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 65536
+  gemLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  gemRadius: 5
   nearest: {fileID: 0}
   Skills:
   - {fileID: 0}
@@ -1967,6 +1971,8 @@ MonoBehaviour:
   yOffSet: 8.3
   Skill4Time: 0.3
   Skill6Time: 0.3
+  avatarPrefab: {fileID: 2206246147632859342, guid: 35a90afb3f7d0e942b003e89cc1df4ba,
+    type: 3}
 --- !u!1 &5290363944328740959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2046,7 @@ MonoBehaviour:
   - {fileID: 4346139234533594853, guid: deae038857733694c97c718a94e252cb, type: 3}
   elements: 000000000000000000000000
   anim: {fileID: 5438528670009094601}
+  gotcha: 0
 --- !u!61 &8402983658520828877
 BoxCollider2D:
   m_ObjectHideFlags: 0
