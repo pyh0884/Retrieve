@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: -254248382825160685}
   - component: {fileID: 2249218373906892095}
   m_Layer: 15
-  m_Name: Slime
+  m_Name: "Slime\u7CBE\u82F1"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 4352
+  attacking: 0
   SlowTimer: 7
 --- !u!212 &412655715020408886
 SpriteRenderer:
@@ -207,6 +208,7 @@ MonoBehaviour:
   GreenPos: 0
   BluePos: 0
   RedPos: 0
+  IsElite: 1
 --- !u!58 &1840608896433564262
 CircleCollider2D:
   m_ObjectHideFlags: 0

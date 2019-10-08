@@ -45,6 +45,7 @@ public class WaterShoot : MonoBehaviour
 	public float shootGap = 1.0f;
 	public float moveSpeed = 3.0f;
     private float tempSpeed;
+	public float stopTime = 0.5f;
     //public bool Moving;
     //public Transform startPos;
     public List<Transform> endPos;
@@ -90,6 +91,7 @@ public class WaterShoot : MonoBehaviour
     private float timer2;
     GameManager gm;
     bool slowed;
+	public bool gotHit;
     AnimatorStateInfo animatorInfo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -242,7 +244,12 @@ public class WaterShoot : MonoBehaviour
 				while (transform.position != endPos[num].position)
 				{
 					transform.position = Vector3.MoveTowards(transform.position, endPos[num].position, moveSpeed * Time.deltaTime);
-					yield return null;
+					if (gotHit)
+					{
+						yield return Utils.WaitForSeconds(stopTime);
+						gotHit = false;
+					}
+					else yield return null;
 				}
 				num = (num + 1) % endPos.Count;
 			}
