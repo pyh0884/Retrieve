@@ -15,7 +15,7 @@ public class Boss4Skill6 : MonoBehaviour
         rb.velocity = new Vector2(-3,-3);
         StartCoroutine("Des");
     }
-    IEnumerator des()
+    IEnumerator Des()
     {
         yield return new WaitForSecondsRealtime(5);
         Instantiate(deadBody, transform.position, Quaternion.identity);
