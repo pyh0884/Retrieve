@@ -41,28 +41,30 @@ public class PetAvatar : MonoBehaviour
 		}
 		anim.SetTrigger("Eat");
 	}
-    public void chooseColor()
-    {
+
+    public void Eaten() {
         switch (xise.tag)
         {
             case "Red":
+                Destroy(xise);
                 ea.EatRed();
                 break;
             case "Green":
+                Destroy(xise);
                 ea.EatGreen();
                 break;
             case "Blue":
+                Destroy(xise);
                 ea.EatBlue();
                 break;
             case "Yellow":
+                Destroy(xise);
                 ea.EatYellow();
                 break;
             default:
                 break;
         }
-    }
-    public void Eaten() {
-        
-		Destroy(gameObject);
+
+        Destroy(gameObject);
 	}
 }

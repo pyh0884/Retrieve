@@ -354,7 +354,7 @@ public class PetAI : MonoBehaviour
 							else
 							{
 								float dist = Vector3.Distance(player.transform.position, col.transform.position);
-								if (dist < nearDist)
+								if (dist < nearDistBack)
 								{
 									nearestGemBack = col;
 									nearDistBack = dist;
