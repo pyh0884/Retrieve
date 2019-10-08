@@ -19,6 +19,7 @@ public class Slime : MonoBehaviour
 	public bool Walled;
 	public LayerMask groundLayer;
 	public LayerMask wallLayer;
+	public bool attacking;
 	Animator anim;
 	private Rigidbody2D rb;
 	private bool right = true;
@@ -108,7 +109,7 @@ public class Slime : MonoBehaviour
 					);
 
                 yield return ControlFlow.ExecuteWhile(
-                    ()=>Mathf.Abs(transform.position.x-target.position.x)<attackRange,
+                    ()=>Mathf.Abs(transform.position.x-target.position.x)<attackRange||attacking,
                     Attack()
                     );
 			}
@@ -198,6 +199,7 @@ public class Slime : MonoBehaviour
         }
         finally {
             anim.SetBool("Attack", false);
+			attacking = false;
         }
     }
 
