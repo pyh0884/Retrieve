@@ -30,6 +30,7 @@ public class BossHp : MonoBehaviour
     public int GreenPos;
     public int BluePos;
     public int RedPos;
+	public int EXPValue = 0;
 
     public void Damage(int damageCount)
     {
@@ -122,7 +123,16 @@ public class BossHp : MonoBehaviour
         }
 
     }
-    public void Damage(int damageCount,int DMGtype)
+
+	private void OnDestroy()
+	{
+		if (EXPValue > 0) {
+			PlayerPrefs.SetInt("EXP", PlayerPrefs.GetInt("EXP", 0) + EXPValue);
+			Debug.Log("CurrentEXP:" + PlayerPrefs.GetInt("EXP", 0));
+		}
+	}
+
+	public void Damage(int damageCount,int DMGtype)
     {
         if (!Shield)
         {

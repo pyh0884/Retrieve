@@ -27,8 +27,12 @@ public class MonsterHp : MonoBehaviour
     public int RedPos;
     public bool IsElite;
     public GameObject FireEFX;
+	[Header("加点值")]
+	public int EXPValue = 0;
+	public int EliteMultiply = 3;
 
-    public void Damage2(int damageCount)
+
+	public void Damage2(int damageCount)
     {
         float MinimumX = minimumX / maxmumX;
         float MinimumY = minimumY / maxmumY;
@@ -118,9 +122,18 @@ public class MonsterHp : MonoBehaviour
                 ins4.GetComponent<Rigidbody2D>().velocity = new Vector2((rand_VelocityX * (1 - MinimumX) + MinimumX) * (Random.value > 0.5f ? maxmumX : -maxmumX), (rand_VelocityY * (1 - MinimumY) + MinimumY) * maxmumY);
             }
         }
-
     }
-    public void Damage(int damageCount, int DMGtype)
+
+	private void OnDestroy()
+	{
+		if (EXPValue > 0)
+		{
+			PlayerPrefs.SetInt("EXP", PlayerPrefs.GetInt("EXP", 0) + EXPValue * (IsElite ? EliteMultiply : 1));
+			Debug.Log("CurrentEXP:" + PlayerPrefs.GetInt("EXP", 0));
+		}
+	}
+
+	public void Damage(int damageCount, int DMGtype)
     {
         if (damageCount > 0) { }
         //伤害特效 

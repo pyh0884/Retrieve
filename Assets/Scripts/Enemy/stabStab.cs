@@ -75,8 +75,7 @@ public class stabStab : MonoBehaviour
         }
     }
 
-
-    public void Des()
+	public void Des()
     {
         rb.velocity = Vector2.zero;
         Destroy(this);

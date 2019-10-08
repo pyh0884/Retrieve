@@ -63,6 +63,11 @@ public class Boss1Ai : MonoBehaviour
 		enemyRigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+	private void OnDestroy()
+	{
+		PlayerPrefs.SetInt("YellowBossBeaten", 1);
+		Debug.Log(PlayerPrefs.GetInt("EXP", 0));
+	}
 	void Start()
 	{
 		_Main = new Coroutines.Coroutine(Main());

@@ -114,7 +114,7 @@ public class WaterShoot : MonoBehaviour
         }
     }
 
-    public void Des()
+	public void Des()
     {
         
         Destroy(this);

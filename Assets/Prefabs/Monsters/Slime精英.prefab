@@ -213,6 +213,8 @@ MonoBehaviour:
   RedPos: 0
   IsElite: 1
   FireEFX: {fileID: 3537568627232279972}
+  EXPValue: 1
+  EliteMultiply: 3
 --- !u!58 &1840608896433564262
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -500,16 +502,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7972443351959143546}
     m_Modifications:
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -563,6 +555,16 @@ PrefabInstance:
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

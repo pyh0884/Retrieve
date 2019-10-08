@@ -45,6 +45,12 @@ public class Boss4Ai : MonoBehaviour
 		_Main.Update();
 	}
 
+	private void OnDestroy()
+	{
+		PlayerPrefs.SetInt("BlueBossBeaten", 1);
+		Debug.Log(PlayerPrefs.GetInt("EXP", 0));
+	}
+
 	//主循环
 	IEnumerable<Instruction> Main()
 	{

@@ -53,7 +53,8 @@ public class ArrowKid : MonoBehaviour
             timer = 0;
         }
     }
-    private void Awake()
+
+	private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
