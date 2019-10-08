@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5472,7 +5472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTest: 0
   isBlue: 0
-  criticalPathLength: 0
+  chestMax: 4
   mapSizePerRoom: {x: 4, y: 6}
   roomSizePerUnit: {x: 32, y: 18}
   secretDownRooms:
@@ -5499,7 +5499,9 @@ MonoBehaviour:
   - {fileID: 4520718123355475803, guid: 74646fc2caaa21e42945e5d11975ae5e, type: 3}
   - {fileID: 8261083167229220186, guid: d7e4cc26d811fa14ba09cd21d1458b8e, type: 3}
   secretUpTemps: []
-  secretRate: 3
+  criticalPathLength: 0
+  leftPathLength: 0
+  rightPathLength: 0
 --- !u!156049354 &2098426700
 Grid:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class RandomRoomCreator : MonoBehaviour
 {
 	public bool isTest;
 	public bool isBlue;
-	public int criticalPathLength;
+	public int chestMax;
 	public Vector2Int mapSizePerRoom;
 	public Vector2Int roomSizePerUnit;
 	public List<GameObject> secretDownRooms;
@@ -20,7 +20,10 @@ public class RandomRoomCreator : MonoBehaviour
 	public List<GameObject> fillRooms;
 	public List<GameObject> secretUpRooms;
 	public List<GameObject> secretUpTemps;
-	public int secretRate;
+	[Header("Warning:别动这几个int值")]
+	public int criticalPathLength;
+	public int leftPathLength;
+	public int rightPathLength;
 	public enum RoomType {
 		fill,
 		horizontal,
@@ -37,7 +40,6 @@ public class RandomRoomCreator : MonoBehaviour
 	public class RoomInfo {
 		public Vector2Int roomPos;
 		public RoomType roomType;
-		public RandomMonsterType monsterType;
 		public bool isEnd = false;
 		public bool isTreasure = false;
 	}
@@ -336,13 +338,15 @@ public class RandomRoomCreator : MonoBehaviour
 					{
 						roomData.Add(currentRoom);
 						stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
+						
 					}
 				}
+				leftPathLength = roomData.Count - criticalPathLength;
 				leftStartPos.RemoveAt(pos);
 			}
-			if(rightStartPos.Count > 2)
+			if (rightStartPos.Count > 2)
 			{
-				int pos = Random0ToN(rightStartPos.Count-2)+1;
+				int pos = Random0ToN(rightStartPos.Count - 2) + 1;
 				bool up = Random0ToN(2) == 0;
 				previousRoom = roomData[rightStartPos[pos]];
 				//if (stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1] == true) {rightStartPos.RemoveAt(pos); continue; }
@@ -357,7 +361,7 @@ public class RandomRoomCreator : MonoBehaviour
 				{
 					previousRoom = currentRoom;
 					currentRoom = new RoomInfo();
-					if (previousRoom.roomPos.y < (mapSizePerRoom.y-1) && (!stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1]))
+					if (previousRoom.roomPos.y < (mapSizePerRoom.y - 1) && (!stuffed[previousRoom.roomPos.x, previousRoom.roomPos.y + 1]))
 					{
 						currentRoom.roomPos.x = previousRoom.roomPos.x;
 						currentRoom.roomPos.y = previousRoom.roomPos.y + 1;
@@ -365,7 +369,7 @@ public class RandomRoomCreator : MonoBehaviour
 					}
 					else
 					{
-						if ((up^isBlue) ? (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true) : (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
+						if ((up ^ isBlue) ? (previousRoom.roomPos.x == (mapSizePerRoom.x - 1) || stuffed[previousRoom.roomPos.x + 1, previousRoom.roomPos.y] == true) : (previousRoom.roomPos.x == 0 || stuffed[previousRoom.roomPos.x - 1, previousRoom.roomPos.y] == true))
 						{
 							currentRoom = null;
 							previousRoom.isTreasure = true;
@@ -375,12 +379,12 @@ public class RandomRoomCreator : MonoBehaviour
 							currentRoom.roomPos.y = previousRoom.roomPos.y;
 							if (up)
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x +(isBlue?-1: 1);
+								currentRoom.roomPos.x = previousRoom.roomPos.x + (isBlue ? -1 : 1);
 								currentRoom.roomType = RoomType.secretUp;
 							}
 							else
 							{
-								currentRoom.roomPos.x = previousRoom.roomPos.x +(isBlue?1:- 1);
+								currentRoom.roomPos.x = previousRoom.roomPos.x + (isBlue ? 1 : -1);
 								currentRoom.roomType = RoomType.secretDown;
 								if (previousRoom.roomType == RoomType.horizontal) previousRoom.roomType = RoomType.vertical;
 								else previousRoom.roomType = RoomType.secretUp;
@@ -393,7 +397,18 @@ public class RandomRoomCreator : MonoBehaviour
 						stuffed[currentRoom.roomPos.x, currentRoom.roomPos.y] = true;
 					}
 				}
+				rightPathLength = roomData.Count - criticalPathLength - leftPathLength;
+				if (rightPathLength > leftPathLength) { roomData[roomData.Count - 1].isEnd = true; roomData[roomData.Count - 1].isTreasure = false; }
+				else {roomData[criticalPathLength + leftPathLength - 1].isEnd = true; roomData[criticalPathLength + leftPathLength - 1].isTreasure = false; }
 				rightStartPos.RemoveAt(pos);
+			}
+		}
+		for (int i = 0; i<chestMax;) {
+			int pos = Random0ToN(roomData.Count);
+			if (!roomData[pos].isTreasure)
+			{
+				roomData[pos].isTreasure = true;
+				i++;
 			}
 		}
 		for (int i = 0; i < mapSizePerRoom.x; i++) {
@@ -414,7 +429,7 @@ public class RandomRoomCreator : MonoBehaviour
 			//	Instantiate(endRooms[Random0ToN(endRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform);
 			//}
 			int pos;
-			GameObject obj;
+			GameObject obj=null;
 			switch (room.roomType)
 				{
 					case RoomType.secretDown:
@@ -473,8 +488,18 @@ public class RandomRoomCreator : MonoBehaviour
 						secretUpRooms.RemoveAt(pos);
 						break;
 					}
-				default: Instantiate(fillRooms[Random0ToN(fillRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform); break;
+				default:obj=Instantiate(fillRooms[Random0ToN(fillRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform); break;
 				}
+			var door = GetComponentInChildren<LoadCheck>();
+			if (door != null)
+			{
+				if (!room.isEnd) Destroy(door.gameObject);
+			}
+			var chest = obj.GetComponentInChildren<CoinsGenerator>();
+			if (chest != null && chest.isChest == true)
+			{
+				if (!room.isTreasure) Destroy(chest.gameObject);
+			}
 		}
 		if (!isTest)
 		{
