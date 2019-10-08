@@ -8,7 +8,7 @@ public class GrassWave : MonoBehaviour
     public bool canHit;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canHit && collision.gameObject.tag == "Player")
+        if (!canHit && collision.gameObject.tag == "Player")
         {
             if (collision.transform.position.x <= transform.position.x)
                 anim.SetTrigger("Wave");

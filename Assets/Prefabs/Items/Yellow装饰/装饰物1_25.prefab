@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6033891886211672604}
   - component: {fileID: 5828430137122944866}
   - component: {fileID: 7488339206833613054}
+  - component: {fileID: -5887897058871620090}
+  - component: {fileID: -586730988921427720}
   m_Layer: 0
   m_Name: "\u88C5\u9970\u72691_25"
   m_TagString: Untagged
@@ -67,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -360303427
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5187652292325386310, guid: 3b9f6a771fd61334cb9b38374db73610,
     type: 3}
@@ -101,3 +103,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5887897058871620090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081072576048702590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9733a806628ec439bfd6e88941caf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 0
+--- !u!61 &-586730988921427720
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081072576048702590}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5625}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.125, y: 1.125}
+    newSize: {x: 1.125, y: 1.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.125, y: 1.125}
+  m_EdgeRadius: 0
