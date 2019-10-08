@@ -26,6 +26,7 @@ public class MonsterHp : MonoBehaviour
     public int BluePos;
     public int RedPos;
     public bool IsElite;
+    public GameObject FireEFX;
 
     public void Damage2(int damageCount)
     {
@@ -158,6 +159,11 @@ public class MonsterHp : MonoBehaviour
             timer = 0;
             Damage(BurnDamage,3);
             Burn -= 1;
+        }
+        if (Burn > 0) { FireEFX.SetActive(true); }
+        else
+        {
+            FireEFX.SetActive(false);
         }
         Hp = Mathf.Clamp(Hp, 0, HpMax);
         if (Hp <= 0 && dead == false)
