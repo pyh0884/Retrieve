@@ -371,11 +371,14 @@ public class PetAI : MonoBehaviour
 					nearestGem = nearestGemBack;
 				}
 			}
-			if (nearestGem == null) {
-                    anim.SetTrigger("Eat");}
+			if (nearestGem == null)
+            {
+                    anim.SetTrigger("Eat");
+            }
 			else {
-				//这里可以添加任何代码
-				var avatar = Instantiate(avatarPrefab, transform.position, new Quaternion());
+                //这里可以添加任何代码
+                anim.SetTrigger("Eat");
+                var avatar = Instantiate(avatarPrefab, transform.position, new Quaternion());
 				avatar.transform.right = nearestGem.transform.position - transform.position;
                 avatar.GetComponent<PetAvatar>().bite(nearestGem.transform);
 			}
