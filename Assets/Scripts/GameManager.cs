@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
-		HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 130);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
         levels[0]= PlayerPrefs.GetInt("YELLOW", 0);
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
