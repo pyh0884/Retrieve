@@ -8,7 +8,7 @@ public class InstantKill : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthBarControl>().Damage(50);
+            collision.gameObject.GetComponent<HealthBarControl>().Damage(15);
         }
     }
 }
