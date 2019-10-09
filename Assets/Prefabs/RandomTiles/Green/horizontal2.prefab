@@ -1576,31 +1576,31 @@ Tilemap:
       m_ColliderType: 2
   - first: {x: 7, y: 1, z: 0}
     second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 7
+      m_TileIndex: 0
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
+      m_TileFlags: 2
+      m_ColliderType: 2
   - first: {x: 8, y: 1, z: 0}
     second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 7
+      m_TileIndex: 0
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
+      m_TileFlags: 2
+      m_ColliderType: 2
   - first: {x: 9, y: 1, z: 0}
     second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 7
+      m_TileIndex: 0
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
+      m_TileFlags: 2
+      m_ColliderType: 2
   - first: {x: 14, y: 4, z: 0}
     second:
       m_TileIndex: 0
@@ -1819,10 +1819,10 @@ Tilemap:
       m_ColliderType: 2
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 136
+  - m_RefCount: 139
     m_Data: {fileID: 11400000, guid: 7408ba8b969a42c4ea05f8b7765a008a, type: 2}
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: d8f884d4c29b8f54eb0c4b8dae6e809b, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 24
     m_Data: {fileID: -5217997551987646761, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
@@ -1841,9 +1841,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 3
-    m_Data: {fileID: -3656856848399749842, guid: e77ad82df1db32d4d97c560bb5fb45b1,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 6
     m_Data: {fileID: 7870602401971593492, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
       type: 3}
@@ -1853,12 +1852,15 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 2827875265607374846, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 6326438210360441729, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -3247971455746887968, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
+      type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -7886920508192700041, guid: 33c6c06e17e9a474db0a76cf1f4647c9,
       type: 3}
@@ -3737,11 +3739,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u4F20\u9001\u95E8GreenBoss (3)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420182068716040249, guid: 999b8f5f8fd112140bbab7e5b5bae901,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1420182068716040226, guid: 999b8f5f8fd112140bbab7e5b5bae901,
         type: 3}

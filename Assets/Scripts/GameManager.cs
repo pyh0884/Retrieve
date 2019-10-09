@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
-		HpCapacity = PlayerPrefs.GetInt("MAXHP", 130);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
         levels[0]= PlayerPrefs.GetInt("YELLOW", 0);
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
@@ -281,10 +281,12 @@ public class GameManager : MonoBehaviour
         targetMoney = Mathf.Clamp(targetMoney, 0, 1000);
         money = Mathf.Clamp(targetMoney, 0, 1000);
         money = Mathf.Lerp(money,targetMoney,Time.deltaTime*MoneySpeed);
-        
-        CurrentHp = player.GetComponent<HealthBarControl>().Hp;
-        if(player.GetComponentInChildren<EatColor>())
-        elements = player.GetComponentInChildren<EatColor>().elements;
+        if (player)
+        {
+            CurrentHp = player.GetComponent<HealthBarControl>().Hp;
+            if (player.GetComponentInChildren<EatColor>())
+                elements = player.GetComponentInChildren<EatColor>().elements;
+        }
         //HpCapacity = player.GetComponent<HealthBarControl>().HpMax;
     }
 }

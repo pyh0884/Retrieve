@@ -20,9 +20,15 @@ public class PetAvatar : MonoBehaviour
         ea = FindObjectOfType<EatColor>();
         pa = FindObjectOfType<PetAI>();
         sr.enabled = false;
-        Destroy(gameObject, 1.3f);
+        StartCoroutine("des");
     }
-
+    public IEnumerator des()
+    {
+        yield return new WaitForSeconds(1.3f);
+        sr.enabled = true;
+        pa.CanAttack = true;
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -45,7 +51,8 @@ public class PetAvatar : MonoBehaviour
 			transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, target.position.y+0.3f), Time.deltaTime * biteSpeed);
 			yield return null;
 		}
-		anim.SetTrigger("Eat");
+
+        anim.SetTrigger("Eat");
 	}
     public void show()
     {

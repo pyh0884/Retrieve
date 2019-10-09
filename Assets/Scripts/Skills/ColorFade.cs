@@ -14,17 +14,17 @@ public class ColorFade : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Pet")
-        {
-            //col.enabled = false;
-            //GetComponent<SpriteRenderer>().enabled = false;
-            //ps.SetActive(false);
-            //Timer = 0;
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Pet")
+    //    {
+    //        //col.enabled = false;
+    //        //GetComponent<SpriteRenderer>().enabled = false;
+    //        //ps.SetActive(false);
+    //        //Timer = 0;
+    //        Destroy(gameObject);
+    //    }
+    //}
     private void Update()
     {
         //Timer += Time.deltaTime;

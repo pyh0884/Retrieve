@@ -88,7 +88,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -538539813163903175, guid: 718c61d527b194a489633d0378e4a90a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
   efx: {fileID: 5500428596020937315, guid: e8d668f95bb52d84f9d83e8bc68f8cf6, type: 3}
+  DmgPerLevel: 10
 --- !u!114 &777130160337206759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +150,8 @@ MonoBehaviour:
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
     m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
+    m_AmplitudeGain: 0.5
+    m_FrequencyGain: 0.4
     m_RepeatMode: 0
     m_Randomize: 1
     m_TimeEnvelope:
@@ -167,7 +168,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_AttackTime: 0
-      m_SustainTime: 0.3
+      m_SustainTime: 0.1
       m_DecayTime: 0.7
       m_ScaleWithImpact: 1
       m_HoldForever: 0
