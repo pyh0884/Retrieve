@@ -145,7 +145,6 @@ public class HealthBarControl : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         gm.Respawn();
     }
-
     private void Update()
     {
         HpMax = gm.MAXHP;

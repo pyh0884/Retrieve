@@ -126,7 +126,22 @@ public class GameManager : MonoBehaviour
     }
     public void LevelUpYellow() {
         if (levels[0] != 3)
-        {   levels[0]++;
+        {
+            switch (levels[0])
+            {
+                case 0:
+                    targetMoney -= 50;
+                    break;
+                case 1:
+                    targetMoney -= 150;
+
+                    break;
+                case 2:
+                    targetMoney -= 300;
+
+                    break;
+            }
+            levels[0]++;
             PlayerPrefs.SetInt("YELLOW", levels[0]);
             YellowPos += 5;
             PlayerPrefs.SetInt("YELLOWPOS", YellowPos);
@@ -139,6 +154,20 @@ public class GameManager : MonoBehaviour
     {
         if (levels[1] != 3)
         {
+            switch (levels[1])
+            {
+                case 0:
+                    targetMoney -= 50;
+                    break;
+                case 1:
+                    targetMoney -= 150;
+
+                    break;
+                case 2:
+                    targetMoney -= 300;
+
+                    break;
+            }
             levels[1]++;
             PlayerPrefs.SetInt("GREEN", levels[1]);
             GreenPos += 5;
@@ -153,6 +182,19 @@ public class GameManager : MonoBehaviour
     {
         if (levels[2] != 3)
         {
+            switch (levels[2])
+            {
+                case 0:
+                    targetMoney -= 50;
+                    break;
+                case 1:
+                    targetMoney -= 150;
+                    break;
+                case 2:
+                    targetMoney -= 300;
+
+                    break;
+            }
             levels[2]++;
             PlayerPrefs.SetInt("BLUE", levels[2]);
             BluePos += 5;
@@ -166,6 +208,20 @@ public class GameManager : MonoBehaviour
     {
         if (levels[3] != 3)
         {
+            switch (levels[3])
+            {
+                case 0:
+                    targetMoney -= 50;
+                    break;
+                case 1:
+                    targetMoney -= 150;
+
+                    break;
+                case 2:
+                    targetMoney -= 300;
+
+                    break;
+            }
             levels[3]++;
             PlayerPrefs.SetInt("RED", levels[3]);
             RedPos += 5;
@@ -184,6 +240,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("MONEY", targetMoney);
 
     }
+
     void Start()
     {
         CurrentHp = HpCapacity;
@@ -199,7 +256,12 @@ public class GameManager : MonoBehaviour
         spawnPos = new Vector3(x, y);
         /*		if(SceneManager.GetActiveScene().buildIndex!=index)*/
         SceneManager.LoadScene(index);
-        CurrentHp = HpCapacity;	
+        CurrentHp = HpCapacity;
+    }
+    public void CheatOnOff()
+    {
+        if (cheat) { cheat = false; }
+        else { cheat = true; }
     }
     private void Update()
     {
