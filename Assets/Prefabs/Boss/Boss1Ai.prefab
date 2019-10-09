@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 0
   deadBody: {fileID: 0}
-  DMG: 1
+  DMG: 30
 --- !u!1 &3300781479599153052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,10 +1300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1618366035}
-  Hp: 400
+  Hp: 500
   TargetHp: 0
   lerpSpeed: 5
-  HpMax: 400
+  HpMax: 500
   bossTransform: {fileID: 3898554762337869090}
   ps: {fileID: 7623538091976381204}
   isBoss: 1

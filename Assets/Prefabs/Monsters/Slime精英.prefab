@@ -190,8 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 80
-  HpMax: 80
+  Hp: 180
+  HpMax: 180
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 0
   deadBody: {fileID: 0}
-  DMG: 1
+  DMG: 40
 --- !u!70 &3758218287576746812
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

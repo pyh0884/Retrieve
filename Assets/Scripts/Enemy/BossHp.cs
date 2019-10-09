@@ -229,7 +229,7 @@ public class BossHp : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        HpMax += gm.DAMAGE*100;
+        HpMax = HpMax + gm.elements[0] * 70 + gm.elements[1] * 70 + gm.elements[2] * 70 + gm.elements[3] * 70;
         Hp = HpMax;
         TargetHp = Hp;
         anim = GetComponent<Animator>();

@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 70
-  HpMax: 70
+  Hp: 100
+  HpMax: 100
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -542,6 +542,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4324361383480089604}
     m_Modifications:
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,16 +605,6 @@ PrefabInstance:
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671577263635585908, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
