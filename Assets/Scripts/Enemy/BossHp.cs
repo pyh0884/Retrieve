@@ -31,6 +31,8 @@ public class BossHp : MonoBehaviour
     public int BluePos;
     public int RedPos;
 	public int EXPValue = 0;
+    public CoinsGenerator cg;
+
 
     public void Damage(int damageCount)
     {
@@ -229,7 +231,7 @@ public class BossHp : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        HpMax = HpMax + gm.levels[0] * 70 + gm.levels[1] * 70 + gm.levels[2] * 70 + gm.levels[3] * 70;
+        HpMax = HpMax + gm.levels[0] * 50 + gm.levels[1] * 50 + gm.levels[2] * 50 + gm.levels[3] * 50;
         Hp = HpMax;
         TargetHp = Hp;
         anim = GetComponent<Animator>();
@@ -261,10 +263,9 @@ public class BossHp : MonoBehaviour
         {
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
-            
+            cg.GenCoins();
             FindObjectOfType<GameManager>().SetBossIndex(BossIndex);
             dead = true;
-            gm.GetMoney(150);
             StartCoroutine("Die");
         }
 
