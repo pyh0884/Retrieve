@@ -408,6 +408,7 @@ public class PlayerController : MonoBehaviour
                 am.Mute("BGM2");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 4:
                 am.UnMute("BGM1");
@@ -415,6 +416,7 @@ public class PlayerController : MonoBehaviour
                 am.Mute("BGM3");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 5:
                 am.UnMute("BGM3");
@@ -422,76 +424,87 @@ public class PlayerController : MonoBehaviour
                 am.Mute("BGM1");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 6:
-                am.UnMute("BGM3");
-                am.Mute("BGM0");
+                am.UnMute("BGM0");
+                am.Mute("BGM3");
                 am.Mute("BGM1");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 7:
-                am.UnMute("BGM3");
+                am.UnMute("BGM1");
+                am.Mute("BGM3");
                 am.Mute("BGM0");
-                am.Mute("BGM1");
                 am.Mute("BGM2");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 8:
-                am.UnMute("BGM0");
+                am.UnMute("BGM2");
                 am.Mute("BGM1");
-                am.Mute("BGM2");
+                am.Mute("BGM0");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 9:
-                am.UnMute("BGM2");
-                am.Mute("BGM0");
+                am.UnMute("BGM0");
+                am.Mute("BGM2");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 10:
-                am.UnMute("BGM2");
+                am.UnMute("BGM1");
+                am.Mute("BGM2");
                 am.Mute("BGM0");
-                am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("Final");
                 break;
             case 11:
-                am.UnMute("BGM0");
+                am.UnMute("BGM4");
                 am.Mute("BGM2");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
-                am.Mute("BGM4");
+                am.Mute("BGM0");
+                am.Mute("Final");
                 break;
             case 12:
-                am.UnMute("BGM4");
-                am.Mute("BGM0");
+                am.UnMute("BGM0");
+                am.Mute("BGM4");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM2");
+                am.Mute("Final");
                 break;
             case 13:
-                am.UnMute("BGM4");
+                am.UnMute("BGM1");
+                am.Mute("BGM4");
                 am.Mute("BGM0");
-                am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM2");
+                am.Mute("Final");
                 break;
             case 14:
-                am.UnMute("BGM0");
+                am.UnMute("Final");
                 am.Mute("BGM2");
                 am.Mute("BGM1");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("BGM0");
                 break;
             case 15:
-                am.UnMute("BGM0");
+                am.UnMute("BGM1");
                 am.Mute("BGM2");
-                am.Mute("BGM1");
+                am.Mute("Final");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("BGM0");
                 break;
             default:
                 am.Mute("BGM0");
@@ -499,6 +512,7 @@ public class PlayerController : MonoBehaviour
                 am.Mute("BGM2");
                 am.Mute("BGM3");
                 am.Mute("BGM4");
+                am.Mute("Final");   
                 break;
         }
     }

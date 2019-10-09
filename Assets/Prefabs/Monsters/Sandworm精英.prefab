@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2180448377429000140, guid: 90c58e96aab3447498c13b367c4ca02e,
+  m_Sprite: {fileID: -2180448377429000140, guid: 4b4a0961646230c4b9413e6c6250d441,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -209,7 +209,7 @@ Animator:
   m_GameObject: {fileID: 1946662742444387506}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1b002099ca94df40b7c0122b9806094, type: 2}
+  m_Controller: {fileID: 9100000, guid: 51519bb2dae7f844b822122b47c28ac4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -500,6 +500,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1425117349972966608}
     m_Modifications:
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -553,16 +563,6 @@ PrefabInstance:
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6330369525382746742, guid: 1b991e0e8af8f9542a70c844d2b12129,
