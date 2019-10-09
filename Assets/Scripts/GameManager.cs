@@ -278,7 +278,10 @@ public class GameManager : MonoBehaviour
 		{
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}
+        targetMoney = Mathf.Clamp(targetMoney, 0, 1000);
+        money = Mathf.Clamp(targetMoney, 0, 1000);
         money = Mathf.Lerp(money,targetMoney,Time.deltaTime*MoneySpeed);
+        
         CurrentHp = player.GetComponent<HealthBarControl>().Hp;
         if(player.GetComponentInChildren<EatColor>())
         elements = player.GetComponentInChildren<EatColor>().elements;
