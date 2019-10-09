@@ -185,7 +185,7 @@ public class MonsterHp : MonoBehaviour
             cg.GenCoins();
             // TODO 帧动画事件淡出+destroy 
             // destroy the object or play the dead animation
-            if (Random.Range(0, 100) > 70)
+            if (Random.Range(0, 100) > 50)
             {
                 Instantiate(drop, gameObject.transform.position, Quaternion.identity);
             }

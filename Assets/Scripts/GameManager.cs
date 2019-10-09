@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
-		HpCapacity = PlayerPrefs.GetInt("MAXHP", 110);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 130);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
         levels[0]= PlayerPrefs.GetInt("YELLOW", 0);
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         targetMoney = money;
         YellowPos = PlayerPrefs.GetInt("YELLOWPOS", 5);
         GreenPos = PlayerPrefs.GetInt("GREENPOS", 5);
-        BluePos = PlayerPrefs.GetInt("BLUEPOS", 5);
+        BluePos = PlayerPrefs.GetInt("BLUEPOS", 10);
         RedPos = PlayerPrefs.GetInt("REDPOS", 5);
         SlowMultiplier = 1.5f + 0.25f * levels[0];
         BurnDamage = 2 + 2 * levels[3];
@@ -134,7 +134,6 @@ public class GameManager : MonoBehaviour
                     break;
                 case 1:
                     targetMoney -= 150;
-
                     break;
                 case 2:
                     targetMoney -= 300;

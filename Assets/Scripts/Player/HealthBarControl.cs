@@ -20,7 +20,7 @@ public class HealthBarControl : MonoBehaviour
     public float JumpTimer;
 	public float vibrationStrength = 1.5f;
 	public float vibrationTime = 0.3f;
-    public float TargetHp = 150;
+    public float TargetHp;
     public float lerpSpeed=5;
     public float lerpSpeed2 = 5;
     public Text textHp;
