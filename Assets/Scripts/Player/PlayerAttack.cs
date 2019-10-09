@@ -34,9 +34,9 @@ public class PlayerAttack : MonoBehaviour
             if (collision.gameObject.GetComponent<BossHp>() != null)
             {
                 if (Random.Range(0,100)<gm.CRIT)
-                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(4, 6)+ gm.DAMAGE * 8)* dmgMultiplier*1.4f),1);
+                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(4, 6)+ gm.DAMAGE * 5)* dmgMultiplier*1.4f),1);
                 else
-                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(4, 6) + gm.DAMAGE * 8) * dmgMultiplier));
+                collision.gameObject.GetComponent<BossHp>().Damage2(Mathf.RoundToInt((Random.Range(4, 6) + gm.DAMAGE * 5) * dmgMultiplier));
                 //if(gm.levels[3]==3)
                 //collision.gameObject.GetComponent<BossHp>().Burn=3;
 

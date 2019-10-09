@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 		CritPos = PlayerPrefs.GetFloat("CRIT", 8);
-		HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
+		HpCapacity = PlayerPrefs.GetInt("MAXHP", 110);
 		CurrentDMG = PlayerPrefs.GetInt("DAMAGE", 0);
         levels[0]= PlayerPrefs.GetInt("YELLOW", 0);
         levels[1] = PlayerPrefs.GetInt("GREEN", 0);
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("BLUE", levels[2]);
             BluePos += 5;
             PlayerPrefs.SetInt("BLUEPOS", BluePos);
-            HpCapacity += 50;
+            HpCapacity += 30;
             PlayerPrefs.SetFloat("MAXHP", HpCapacity);
 
         }

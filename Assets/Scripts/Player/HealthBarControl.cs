@@ -150,7 +150,7 @@ public class HealthBarControl : MonoBehaviour
     {
         HpMax = gm.MAXHP;
         currentHealth();
-        textHp.text = Hp + " / " + HpMax;
+        textHp.text = Mathf.RoundToInt(Hp) + " / " + HpMax;
         textMoney.text = " "+Mathf.RoundToInt(gm.money);
         JumpTimer += Time.deltaTime;
         cheat = gm.CHEAT;
