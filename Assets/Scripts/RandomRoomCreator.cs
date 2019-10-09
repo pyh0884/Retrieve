@@ -490,7 +490,7 @@ public class RandomRoomCreator : MonoBehaviour
 					}
 				default:obj=Instantiate(fillRooms[Random0ToN(fillRooms.Count)], RoomToWorldPos(room.roomPos) + transform.position, transform.rotation, transform); break;
 				}
-			var door = GetComponentInChildren<LoadCheck>();
+			var door = obj.GetComponentInChildren<LoadCheck>();
 			if (door != null)
 			{
 				if (!room.isEnd) Destroy(door.gameObject);
