@@ -23,6 +23,9 @@ public class HealthBarControl : MonoBehaviour
     public float TargetHp = 150;
     public float lerpSpeed=5;
     public float lerpSpeed2 = 5;
+    public Text textHp;
+    public Text textMoney;
+
 
     void Awake()
     {
@@ -147,6 +150,8 @@ public class HealthBarControl : MonoBehaviour
     {
         HpMax = gm.MAXHP;
         currentHealth();
+        textHp.text = Hp + " / " + HpMax;
+        textMoney.text = " "+Mathf.RoundToInt(gm.money);
         JumpTimer += Time.deltaTime;
         cheat = gm.CHEAT;
 
