@@ -53,6 +53,9 @@ public class Boss1Ai : MonoBehaviour
     public GameObject Boss1Echo;
     public RuntimeAnimatorController AngryAnim;
 	GameObject st;
+    public GameObject groundcheck1;
+    public GameObject groundcheck2;
+
 
     List<IEnumerable<Instruction>> SkillList;
 	Coroutines.Coroutine _Main;
@@ -74,36 +77,38 @@ public class Boss1Ai : MonoBehaviour
 	}
 	void Update()
     {
-		//      if (!player) player = GameObject.FindWithTag("Player");
-		//      else
-		//      {
-		//          dist = player.transform.position - transform.position;
-		//      }
-		//      if (!isAwake)
-		//{
-		//	if (Mathf.Abs(dist.x) < farDist) isAwake = true;
-		//}
-		//else
-		//{
-		//	if (!isSkill && !isSkillActing[1] && !isSkillActing[2] && !isSkillActing[0])
-		//	{
-		//		Move();
-		//		if (!pubCD)
-		//		{
-		//			skillNum = SkillSelect();
-		//			isSkill = true;
-		//		}
-		//	}
-		//	else
-		//	{
-		//		if (!pubCD)
-		//		{
-		//			enemyRigidBody.velocity = Vector2.zero;
-		//			SkillUse(skillNum);
-		//		}
-		//	}
-		//}
-		_Main.Update();
+        //      if (!player) player = GameObject.FindWithTag("Player");
+        //      else
+        //      {
+        //          dist = player.transform.position - transform.position;
+        //      }
+        //      if (!isAwake)
+        //{
+        //	if (Mathf.Abs(dist.x) < farDist) isAwake = true;
+        //}
+        //else
+        //{
+        //	if (!isSkill && !isSkillActing[1] && !isSkillActing[2] && !isSkillActing[0])
+        //	{
+        //		Move();
+        //		if (!pubCD)
+        //		{
+        //			skillNum = SkillSelect();
+        //			isSkill = true;
+        //		}
+        //	}
+        //	else
+        //	{
+        //		if (!pubCD)
+        //		{
+        //			enemyRigidBody.velocity = Vector2.zero;
+        //			SkillUse(skillNum);
+        //		}
+        //	}
+        //}
+        Grounded=(isGround2||isGround);
+
+        _Main.Update();
 		if (!shield.activeSelf && needRefill) {
 			SkillList.Add(OpenShield(transform));
 			needRefill = false;
@@ -155,7 +160,7 @@ public class Boss1Ai : MonoBehaviour
 				bool right = transform.rotation.eulerAngles != Vector3.zero;
 				yield return ControlFlow.ExecuteWhileRunning(SkillList[curr],TrackTarget(target,right,isright=>right=isright));
 				curr = SkillSelect(SkillList.Count, curr);
-				yield return ControlFlow.ExecuteWhile(()=>!isGround,MoveTo(new Vector3(transform.position.x, y)));
+				yield return ControlFlow.ExecuteWhile(()=>!Grounded,MoveTo(new Vector3(transform.position.x, y)));
 			}
 		}
 		finally {
@@ -226,7 +231,7 @@ public class Boss1Ai : MonoBehaviour
 					transform.eulerAngles = new Vector3(0, !isright ? 0f : -180f, 0);
 					isRight(isright);
 				}
-				if (!isGround)
+				if (!Grounded)
 				{
 					enemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
 					enemyRigidBody.velocity = new Vector2(isright ? speed : -speed, enemyRigidBody.velocity.y);
@@ -332,7 +337,7 @@ public class Boss1Ai : MonoBehaviour
 				enemyRigidBody.velocity = new Vector2((targetPos.x - tempX) / jumpTime, jumphighAmt);
 				yield return null;
 				while (enemyRigidBody.velocity.y>0)yield return null;
-				while (!isGround) yield return null;
+				while (!Grounded) yield return null;
 				FindObjectOfType<AudioManager>().Play("BossLand");
 			    st.GetComponent<ShakeTest>().StartVibration(0.2f, 0.3f, 0.4f);
 				if (aftermath)
@@ -431,15 +436,26 @@ public class Boss1Ai : MonoBehaviour
 	bool isGround {
 		get
 		{
-			Vector2 start = wallCheck.position;
+			Vector2 start = groundcheck1.transform.position;
 			Vector2 end = new Vector2(start.x, start.y - groundCheckDistance);
 			Debug.DrawLine(start, end, Color.red);
 			Grounded = Physics2D.Linecast(start, end, groundLayer);
 			return Grounded;
 		}
 	}
+    bool isGround2
+    {
+        get
+        {
+            Vector2 start = groundcheck2.transform.position;
+            Vector2 end = new Vector2(start.x, start.y - groundCheckDistance);
+            Debug.DrawLine(start, end, Color.red);
+            Grounded = Physics2D.Linecast(start, end, groundLayer);
+            return Grounded;
+        }
+    }
 
-	int SkillSelect(int amount, int current = 0)
+    int SkillSelect(int amount, int current = 0)
 	{
 		int temp = Random0ToN(amount);
 		while (temp == current)
