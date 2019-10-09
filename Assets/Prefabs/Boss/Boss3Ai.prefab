@@ -5783,6 +5783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1937533006}
   Hp: 400
+  TargetHp: 0
+  lerpSpeed: 5
   HpMax: 400
   bossTransform: {fileID: 7996836834203229874}
   ps: {fileID: 1734004955118383505}
@@ -5790,6 +5792,20 @@ MonoBehaviour:
   BossIndex: 4
   Burn: 0
   Shield: 0
+  minimumX: 6
+  maxmumX: 9
+  minimumY: 6
+  maxmumY: 10
+  xise:
+  - {fileID: 7516511912685020056, guid: 189264e96ce4cea43bcb3c649e81846c, type: 3}
+  - {fileID: 7516511912685020056, guid: 189264e96ce4cea43bcb3c649e81846c, type: 3}
+  - {fileID: 7516511912685020056, guid: 189264e96ce4cea43bcb3c649e81846c, type: 3}
+  - {fileID: 7516511912685020056, guid: 189264e96ce4cea43bcb3c649e81846c, type: 3}
+  YellowPos: 0
+  GreenPos: 0
+  BluePos: 0
+  RedPos: 0
+  EXPValue: 0
 --- !u!1 &7350020359032296327
 GameObject:
   m_ObjectHideFlags: 0
