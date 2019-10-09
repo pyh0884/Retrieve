@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        Cursor.visible = false;
         if (Input.GetKeyDown(KeyCode.F12) && !cheat)
         {
             cheat = true;

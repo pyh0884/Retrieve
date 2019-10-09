@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CursorController : MonoBehaviour
 {
-    void Start()
+
+    private void OnEnable()
     {
         Cursor.visible = false;
-    }
 
+    }
     private void Update()
     {
         transform.position = Input.mousePosition;
