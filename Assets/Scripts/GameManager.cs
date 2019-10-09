@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
     {
 		float x = PlayerPrefs.GetFloat("RespwanX", 1.5f);
 		float y = PlayerPrefs.GetFloat("RespwanY", -1);
-		int index = PlayerPrefs.GetInt("RespwanSceneIndex", 3);
+		int index = 17;
         spawnPos = new Vector3(x, y);
         /*		if(SceneManager.GetActiveScene().buildIndex!=index)*/
         SceneManager.LoadScene(index);
