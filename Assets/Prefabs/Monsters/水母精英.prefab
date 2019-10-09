@@ -137,7 +137,7 @@ Animator:
   m_GameObject: {fileID: 2364315780650776178}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: afd5176c2d45b634fa59fb056a3018d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: c8f117aa789e24c49b5270d50424e18e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -238,8 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 70
-  HpMax: 70
+  Hp: 130
+  HpMax: 130
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -690,6 +690,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2364315780650776189}
     m_Modifications:
+    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679Cnormal"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8433646947254994746, guid: 0a5cee569ad74d34895af72265e6d462,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -743,16 +753,6 @@ PrefabInstance:
     - target: {fileID: 8433646947254994746, guid: 0a5cee569ad74d34895af72265e6d462,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679Cnormal"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107830502929303720, guid: 0a5cee569ad74d34895af72265e6d462,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3920881447682205258, guid: 0a5cee569ad74d34895af72265e6d462,

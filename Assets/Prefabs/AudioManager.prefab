@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audios:
   - name: BGM0
-    clip: {fileID: 8300000, guid: 54677294a9d4f3543a7581d8706539d9, type: 3}
+    clip: {fileID: 8300000, guid: a983ae7a3f1ebdc4887c5f7022711e2e, type: 3}
     volume: 0.15
     pitch: 1
     loop: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     mute: 1
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
   - name: BGM1
-    clip: {fileID: 8300000, guid: 9c0e5be651cd45c45994529c00641c4e, type: 3}
+    clip: {fileID: 8300000, guid: c0feb9eb90a703f41bab01cd1aa94cc4, type: 3}
     volume: 0.15
     pitch: 1
     loop: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
     mute: 1
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
   - name: BGM2
-    clip: {fileID: 8300000, guid: 47f71175c9a10f241836d7b1bb684918, type: 3}
+    clip: {fileID: 8300000, guid: 86647fa4917251e4c8d36aba148e2751, type: 3}
     volume: 0.15
     pitch: 1
     loop: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
     mute: 1
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
   - name: BGM3
-    clip: {fileID: 8300000, guid: 4b58ba7931769814e839b01d830dac00, type: 3}
+    clip: {fileID: 8300000, guid: 7d71e13a2bc33ae4b82d2186dc533535, type: 3}
     volume: 0.15
     pitch: 1
     loop: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
     mute: 1
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
   - name: BGM4
-    clip: {fileID: 8300000, guid: 4a6a81a29113bd24e91fdba0c3d2e97a, type: 3}
+    clip: {fileID: 8300000, guid: b9c735f6b22c6b444bcbc142973189e2, type: 3}
     volume: 0.15
     pitch: 1
     loop: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
     mute: 0
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
   - name: PlayerRun
-    clip: {fileID: 8300000, guid: 9c9e4f709547c374d8f2a43c96100269, type: 3}
+    clip: {fileID: 8300000, guid: c92c2f92bac4cdc4aacf9b96b00afbe5, type: 3}
     volume: 0.8
     pitch: 1
     loop: 1
@@ -203,4 +203,12 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     mute: 0
+    mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}
+  - name: Final
+    clip: {fileID: 8300000, guid: 3788e2f4e95db12429d019d641fe83b6, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mute: 1
     mixer: {fileID: 24300002, guid: 919e4d4aa5052da4dbba6d59446019cd, type: 2}

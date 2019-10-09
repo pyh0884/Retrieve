@@ -190,8 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 80
-  HpMax: 80
+  Hp: 180
+  HpMax: 180
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -241,7 +241,7 @@ Animator:
   m_GameObject: {fileID: 3885879463445333247}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a61cc01eb23613d4d95e069b18267c9f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 70fb806ea1acf4b479767417372bae8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 0
   deadBody: {fileID: 0}
-  DMG: 1
+  DMG: 40
 --- !u!70 &3758218287576746812
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -502,6 +502,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7972443351959143546}
     m_Modifications:
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -555,16 +565,6 @@ PrefabInstance:
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

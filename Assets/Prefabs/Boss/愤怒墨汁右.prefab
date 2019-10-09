@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4033146431779431194}
   - component: {fileID: 6974648694662931154}
   m_Layer: 0
-  m_Name: "\u6124\u6012\u58A8\u6C41"
+  m_Name: "\u6124\u6012\u58A8\u6C41\u53F3"
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestroy: 0
+  deadBody: {fileID: 0}
+  DMG: 30
 --- !u!70 &4033146431779431194
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

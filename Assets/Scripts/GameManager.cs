@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         levels[2] = PlayerPrefs.GetInt("BLUE", 0);
         levels[3] = PlayerPrefs.GetInt("RED", 0);
         money= PlayerPrefs.GetFloat("MONEY", 0);
+        targetMoney = money;
         YellowPos = PlayerPrefs.GetInt("YELLOWPOS", 5);
         GreenPos = PlayerPrefs.GetInt("GREENPOS", 5);
         BluePos = PlayerPrefs.GetInt("BLUEPOS", 5);
@@ -211,7 +212,8 @@ public class GameManager : MonoBehaviour
         {
             cheat = false;
         }
-        if (player == null)
+        int sceneNum = SceneManager.GetActiveScene().buildIndex;
+        if (player == null&&sceneNum!=0&& sceneNum !=1 && sceneNum != 2 && sceneNum != 7 && sceneNum != 10 && sceneNum != 13 && sceneNum != 15 && sceneNum != 16 && sceneNum != 17)
 		{
 			player = Instantiate(playerPrefab, spawnPos, new Quaternion());			
 		}

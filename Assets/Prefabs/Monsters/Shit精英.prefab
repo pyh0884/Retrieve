@@ -174,7 +174,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 144881212998205095, guid: edcf80892772be24495b6270a66ba996, type: 3}
+  m_Sprite: {fileID: -5922387341414907350, guid: 255a1b6f19331a44fbae8453099006db,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -253,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 70
-  HpMax: 70
+  Hp: 150
+  HpMax: 150
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -288,7 +289,7 @@ Animator:
   m_GameObject: {fileID: 3301055664645926907}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 85c064b190fe11c45a7d8559bfe77d40, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0de379780e6d8f24d88385a55012c129, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -542,6 +543,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4324361383480089604}
     m_Modifications:
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,16 +606,6 @@ PrefabInstance:
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671577263635585908, guid: f45b3db0957b5c74f902ec4c46c2c8d0,

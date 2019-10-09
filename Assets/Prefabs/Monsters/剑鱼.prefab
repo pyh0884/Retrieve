@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 0
   deadBody: {fileID: 0}
-  DMG: 1
+  DMG: 15
 --- !u!70 &2537865181990912226
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 50
-  HpMax: 50
+  Hp: 80
+  HpMax: 80
   dead: 0
   CauseDMG: 1
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -489,6 +489,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6887810525284083677}
     m_Modifications:
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -542,16 +552,6 @@ PrefabInstance:
     - target: {fileID: 8588595699174791800, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u957F\u6761"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293504689604065618, guid: f45b3db0957b5c74f902ec4c46c2c8d0,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671577263635585908, guid: f45b3db0957b5c74f902ec4c46c2c8d0,

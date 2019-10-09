@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2180448377429000140, guid: 90c58e96aab3447498c13b367c4ca02e,
+  m_Sprite: {fileID: -2180448377429000140, guid: 4b4a0961646230c4b9413e6c6250d441,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3f893351a20343bf514c25ca4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 70
-  HpMax: 70
+  Hp: 150
+  HpMax: 150
   dead: 0
   CauseDMG: 0
   drop: {fileID: 1396632640881395343, guid: a961b2a30ad236d46bc21834a9e9f186, type: 3}
@@ -209,7 +209,7 @@ Animator:
   m_GameObject: {fileID: 1946662742444387506}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1b002099ca94df40b7c0122b9806094, type: 2}
+  m_Controller: {fileID: 9100000, guid: 51519bb2dae7f844b822122b47c28ac4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroy: 0
   deadBody: {fileID: 0}
-  DMG: 1
+  DMG: 30
 --- !u!70 &8714579314188724197
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -500,6 +500,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1425117349972966608}
     m_Modifications:
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_Name
+      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -553,16 +563,6 @@ PrefabInstance:
     - target: {fileID: 2359000230330834999, guid: 1b991e0e8af8f9542a70c844d2b12129,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_Name
-      value: "\u70B9\u71C3\u6548\u679C\u5C0F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056277219361140641, guid: 1b991e0e8af8f9542a70c844d2b12129,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6330369525382746742, guid: 1b991e0e8af8f9542a70c844d2b12129,

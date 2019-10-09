@@ -149,6 +149,7 @@ public class MonsterHp : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        HpMax= HpMax + gm.elements[0] * 15 + gm.elements[1] * 15 + gm.elements[2] * 15 + gm.elements[3] * 15;
         Hp = HpMax;
         anim = GetComponent<Animator>();
         DamageTextControler.Initialize();
