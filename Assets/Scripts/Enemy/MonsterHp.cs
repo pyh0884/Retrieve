@@ -126,7 +126,7 @@ public class MonsterHp : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		if (EXPValue > 0)
+		if (EXPValue > 0&&Hp<=0)
 		{
 			PlayerPrefs.SetInt("EXP", PlayerPrefs.GetInt("EXP", 0) + EXPValue * (IsElite ? EliteMultiply : 1));
 			Debug.Log("CurrentEXP:" + PlayerPrefs.GetInt("EXP", 0));

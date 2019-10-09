@@ -126,7 +126,7 @@ public class BossHp : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		if (EXPValue > 0) {
+		if (EXPValue > 0&&Hp<=0) {
 			PlayerPrefs.SetInt("EXP", PlayerPrefs.GetInt("EXP", 0) + EXPValue);
 			Debug.Log("CurrentEXP:" + PlayerPrefs.GetInt("EXP", 0));
 		}
