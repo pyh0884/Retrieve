@@ -30,6 +30,7 @@ public class LoadCheck : Trans
 	void Update()
     {
         if(!manager) manager = FindObjectOfType<GameManager>();
+		if (!anim) anim = GameObject.Find("转场动画").GetComponentInChildren<Animator>();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
