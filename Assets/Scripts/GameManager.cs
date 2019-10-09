@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         GreenPos = PlayerPrefs.GetInt("GREENPOS", 5);
         BluePos = PlayerPrefs.GetInt("BLUEPOS", 10);
         RedPos = PlayerPrefs.GetInt("REDPOS", 5);
-        SlowMultiplier = 1.5f + 0.25f * levels[0];
+        SlowMultiplier = 2 + 0.2f * levels[0];
         BurnDamage = 2 + 2 * levels[3];
         HorizontalSpeed = 7.75f + levels[1] * 0.5f;
         JumpSpeed = 11.5f + levels[1] * 0.4f;
