@@ -10,7 +10,7 @@ public class LoadCheck : Trans
     public bool BossPortol;
 	public int bossIndex;
 	public Animator anim;
-	private bool[] BossBeaten=new bool[3];
+	public bool[] BossBeaten=new bool[3];
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("GreenBossBeaten", 0) > 0)
@@ -35,7 +35,7 @@ public class LoadCheck : Trans
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "Player"&&(((!BossBeaten[bossIndex])&&BossPortol)||(!BossPortol)))
+		if (collision.tag == "Player"&&((/*(!BossBeaten[bossIndex])&&*/BossPortol)||(!BossPortol)))
         {
 			manager.spawnPos = loadPos;
             anim.SetTrigger("FadeOut");
