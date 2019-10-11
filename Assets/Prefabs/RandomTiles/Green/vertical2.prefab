@@ -2935,7 +2935,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4234,6 +4234,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3202787738456103165, guid: 763e78ca60a5ca742b616b7f9ef873a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 3202787738822028973, guid: 763e78ca60a5ca742b616b7f9ef873a4,
         type: 3}
       propertyPath: m_Offset.x
@@ -4248,11 +4253,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 7.274126
-      objectReference: {fileID: 0}
-    - target: {fileID: 3202787738456103165, guid: 763e78ca60a5ca742b616b7f9ef873a4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 763e78ca60a5ca742b616b7f9ef873a4, type: 3}
