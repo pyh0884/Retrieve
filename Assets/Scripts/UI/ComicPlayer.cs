@@ -5,8 +5,15 @@ using UnityEngine;
 public class ComicPlayer : MonoBehaviour
 {
 	public Animator anim;
-	public void FadeOut()
+    AudioManager am;
+    public void FadeOut()
 	{
 		anim.SetTrigger("FadeOut");
 	}
+    private void Start()
+    {
+        am = FindObjectOfType<AudioManager>();
+        am.Mute("PlayerRun");
+
+    }
 }

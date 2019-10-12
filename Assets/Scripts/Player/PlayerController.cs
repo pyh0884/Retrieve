@@ -629,6 +629,10 @@ public class PlayerController : MonoBehaviour
         MovementX();
 
     }
+    private void OnDestroy()
+    {
+        XInputDotNetPure.GamePad.SetVibration(XInputDotNetPure.PlayerIndex.One, 0, 0);
+    }
     //public float WallTime=0.3f;
     //void wallJump()
     //{
