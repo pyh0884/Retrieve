@@ -246,6 +246,9 @@ public class GameManager : MonoBehaviour
         BossIndex = 0;
         HorizontalSpeed = 7.75f;
         JumpSpeed = 11.5f;
+        HpCapacity = PlayerPrefs.GetInt("MAXHP", 150);
+        money = PlayerPrefs.GetFloat("MONEY", 0);
+        targetMoney = money;
     }
     public void Respawn()
     {
