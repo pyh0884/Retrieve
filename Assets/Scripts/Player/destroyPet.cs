@@ -12,7 +12,7 @@ public class destroyPet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 15)
+        if (SceneManager.GetActiveScene().buildIndex == 14)
         {
             Destroy(obj1);
             Destroy(obj2);
